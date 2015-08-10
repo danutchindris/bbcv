@@ -1,0 +1,28 @@
+spring:
+        messages:
+                  basename: messages
+                  cacheSeconds: -1
+                  encoding: UTF-8
+
+        profiles:
+                  active: development
+
+---
+
+spring:
+          profiles: development
+
+server:
+          port: 8081
+
+ro:
+  leje:
+    services:
+      user: "http://localhost:8083/user"
+---
+
+spring:
+          profiles: production
+
+server:
+          port: 8082
