@@ -16,15 +16,17 @@
         <hibernate.core.version>4.3.10.Final</hibernate.core.version>
         <tomcat.dbcp.version>7.0.63</tomcat.dbcp.version>
         <mysql.connector.java.version>5.1.36</mysql.connector.java.version>
+        <org.springframework.version>4.1.7.RELEASE</org.springframework.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-rest</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${org.springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>ro.leje</groupId>

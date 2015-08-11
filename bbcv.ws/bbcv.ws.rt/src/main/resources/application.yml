@@ -1,5 +1,5 @@
 spring:
-        profiles:
+          profiles:
                   active: development
 
 ---
@@ -9,6 +9,19 @@ spring:
 
 server:
           port: 8083
+
+db:
+          driver: "com.mysql.jdbc.Driver"
+          url: "jdbc:mysql://localhost:3306/bbcvdb"
+          usr: "root"
+          password: "root"
+
+hibernate:
+          dialect: "org.hibernate.dialect.MySQLInnoDBDialect"
+          show_sql: "true"
+          connection:
+                    characterEncoding: "UTF-8"
+
 
 ---
 

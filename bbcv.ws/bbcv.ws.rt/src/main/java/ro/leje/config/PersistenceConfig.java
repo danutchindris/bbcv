@@ -19,6 +19,13 @@ import java.util.Properties;
 @ComponentScan({ "ro.leje.model.entity" })
 public class PersistenceConfig {
 
+    private static final String HIBERNATE_DIALECT = "hibernate.dialect";
+    private static final String HIBERNATE_SHOW_SQL = "hibernate.show_sql";
+    private static final String HIBERNATE_CONNECTION_CHARACTER_ENCODING = "hibernate.connection.characterEncoding";
+
+    @Autowired
+    private PersistenceSettings persistenceSettings;
+
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -32,10 +39,10 @@ public class PersistenceConfig {
     @Bean
     public DataSource restDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/bbcvdb");
-        dataSource.setUsername("root");
-        dataSource.setPassword("root");
+        dataSource.setDriverClassName(persistenceSettings.getDriver());
+        dataSource.setUrl(persistenceSettings.getUrl());
+        dataSource.setUsername(persistenceSettings.getUsr());
+        dataSource.setPassword(persistenceSettings.getPassword());
 
         return dataSource;
     }
@@ -57,9 +64,9 @@ public class PersistenceConfig {
     Properties hibernateProperties() {
         return new Properties() {
             {
-                setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLInnoDBDialect");
-                setProperty("hibernate.show_sql", "false");
-                setProperty("hibernate.connection.characterEncoding", "UTF-8");
+                setProperty(HIBERNATE_DIALECT, persistenceSettings.getDialect());
+                setProperty(HIBERNATE_SHOW_SQL, persistenceSettings.getShowSql());
+                setProperty(HIBERNATE_CONNECTION_CHARACTER_ENCODING, persistenceSettings.getCharacterEncoding());
             }
         };
     }
