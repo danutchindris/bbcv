@@ -33,6 +33,8 @@ public class User implements Serializable, Comparable<User> {
 
     private long id;
 
+    private String userName;
+
     private String firstName;
 
     private String lastName;
@@ -43,6 +45,14 @@ public class User implements Serializable, Comparable<User> {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getFirstName() {
@@ -61,18 +71,11 @@ public class User implements Serializable, Comparable<User> {
         this.lastName = lastName;
     }
 
-    protected User() {
-    }
-
-    public User(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("id", id)
+                .add("userName", userName)
                 .add("firstName", firstName)
                 .add("lastName", lastName)
                 .toString();
@@ -88,6 +91,7 @@ public class User implements Serializable, Comparable<User> {
         }
         final User other = (User) obj;
         return Objects.equal(this.id, other.id)
+                && Objects.equal(this.userName, other.userName)
                 && Objects.equal(this.firstName, other.firstName)
                 && Objects.equal(this.lastName, other.lastName);
     }
@@ -95,12 +99,13 @@ public class User implements Serializable, Comparable<User> {
     @Override
     public int hashCode() {
         return Objects.hashCode(
-                this.id, this.firstName, this.lastName);
+                this.id, this.userName, this.firstName, this.lastName);
     }
 
     @Override
     public int compareTo(User o) {
         return ComparisonChain.start()
+                .compare(this.userName, o.userName)
                 .compare(this.firstName, o.firstName)
                 .compare(this.lastName, o.lastName)
                 .result();
