@@ -12,7 +12,7 @@ import java.io.Serializable;
  * <br />
  * This is the reference for implementing value objects across the application.
  * Following there is the checklist for implementation requirements:
- *
+ * <p>
  * <ul>
  * <li>Always implement java.io.Serializable</li>
  * <li>Always populate all fields of a value object</li>
@@ -29,15 +29,31 @@ import java.io.Serializable;
  */
 public class User implements Serializable, Comparable<User> {
 
-    private static final long serialVersionUID = 0L;
+    private static final long serialVersionUID = 1L;
 
     private long id;
 
     private String userName;
 
+    private String password;
+
     private String firstName;
 
     private String lastName;
+
+    private String email;
+
+    public User() {
+    }
+
+    public User(long id, String userName, String password, String firstName, String lastName, String email) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
 
     public long getId() {
         return id;
@@ -53,6 +69,14 @@ public class User implements Serializable, Comparable<User> {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -71,6 +95,14 @@ public class User implements Serializable, Comparable<User> {
         this.lastName = lastName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -78,6 +110,7 @@ public class User implements Serializable, Comparable<User> {
                 .add("userName", userName)
                 .add("firstName", firstName)
                 .add("lastName", lastName)
+                .add("email", email)
                 .toString();
     }
 
@@ -93,13 +126,14 @@ public class User implements Serializable, Comparable<User> {
         return Objects.equal(this.id, other.id)
                 && Objects.equal(this.userName, other.userName)
                 && Objects.equal(this.firstName, other.firstName)
-                && Objects.equal(this.lastName, other.lastName);
+                && Objects.equal(this.lastName, other.lastName)
+                && Objects.equal(this.email, other.email);
     }
 
     @Override
     public int hashCode() {
         return Objects.hashCode(
-                this.id, this.userName, this.firstName, this.lastName);
+                this.id, this.userName, this.firstName, this.lastName, this.email);
     }
 
     @Override
@@ -108,6 +142,7 @@ public class User implements Serializable, Comparable<User> {
                 .compare(this.userName, o.userName)
                 .compare(this.firstName, o.firstName)
                 .compare(this.lastName, o.lastName)
+                .compare(this.email, o.email)
                 .result();
     }
 }

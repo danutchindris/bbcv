@@ -21,25 +21,26 @@ import java.util.*;
  * @author Danut Chindris
  * @since August 11, 2015
  */
-@Service
+@Service("customUserDetailsService")
 public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
+
+    private static final String FIND_BY_USER_NAME_URL_SUFFIX = "/findByUserName/{userName}";
+    private static final String USER_NAME_PARAM = "userName";
 
     @Autowired
     private ServiceSettings serviceSettings;
 
     public CustomUserDetails getCustomUserDetailsByUserName(String userName) {
-        String endpoint = serviceSettings.getUser() + "/userName/{userName}";
+        String endpoint = serviceSettings.getUser() + FIND_BY_USER_NAME_URL_SUFFIX;
         Map<String, String> params = new HashMap<>();
-        params.put("userName", userName);
+        params.put(USER_NAME_PARAM, userName);
         RestTemplate restTemplate = new RestTemplate();
-        // http://thespringway.info/spring-web/map-to-list-of-objects-from-json-array-with-resttemplate/
-        ParameterizedTypeReference<List<User>> responseType = new ParameterizedTypeReference<List<User>>() {};
-        ResponseEntity<List<User>> result = restTemplate.exchange(endpoint,
-                HttpMethod.GET, null, responseType, params);
-        List<User> list = result.getBody();
-        //TODO finish implementation
-        User user = (list != null && !list.isEmpty()) ? list.get(0) : null;
+        User user = restTemplate.getForObject(endpoint, User.class, params);
         CustomUserDetails customUserDetails = new CustomUserDetails();
+        customUserDetails.setUserName(user.getUserName());
+        customUserDetails.setPassword(user.getPassword());
+        customUserDetails.setFirstName(user.getFirstName());
+        customUserDetails.setLastName(user.getLastName());
         return customUserDetails;
     }
 

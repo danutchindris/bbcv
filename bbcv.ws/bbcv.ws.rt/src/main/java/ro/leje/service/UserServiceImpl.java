@@ -24,8 +24,20 @@ public class UserServiceImpl implements UserService {
         List<ro.leje.model.entity.User> userEntities = userDAO.findAllUsers();
         List<User> users = new ArrayList<>();
         for (ro.leje.model.entity.User userEntity : userEntities) {
-            users.add(new ro.leje.model.vo.User(userEntity.getFirstName(), userEntity.getLastName()));
+            User userVO = new ro.leje.model.vo.User();
+            userVO.setId(userEntity.getId());
+            userVO.setUserName(userEntity.getUserName());
+            userVO.setFirstName(userEntity.getFirstName());
+            userVO.setLastName(userEntity.getLastName());
+            userVO.setEmail(userEntity.getEmail());
+            users.add(userVO);
         }
         return users;
+    }
+
+    @Override
+    @Transactional
+    public User findByUserName(String userName) {
+        return userDAO.findByUserName(userName);
     }
 }

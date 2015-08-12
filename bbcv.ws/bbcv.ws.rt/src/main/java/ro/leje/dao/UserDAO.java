@@ -11,4 +11,6 @@ import java.util.List;
 public interface UserDAO {
 
     List<User> findAllUsers();
+
+    ro.leje.model.vo.User findByUserName(String userName);
 }
