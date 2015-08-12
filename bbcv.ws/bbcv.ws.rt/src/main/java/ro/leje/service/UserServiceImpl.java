@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
 
     @Transactional
-    public List<User> findAllUsers() {
+    public List<User> findAll() {
         List<ro.leje.model.entity.User> userEntities = userDAO.findAllUsers();
         List<User> users = new ArrayList<>();
         for (ro.leje.model.entity.User userEntity : userEntities) {

@@ -24,7 +24,7 @@ public class UserRestController {
 
     @RequestMapping(value = "/allUsers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ro.leje.model.vo.User> getAllUsers() {
-        List<User> users = userService.findAllUsers();
+        List<User> users = userService.findAll();
         return users;
     }
 
