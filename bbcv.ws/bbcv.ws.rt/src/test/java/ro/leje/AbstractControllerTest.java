@@ -11,7 +11,7 @@ import org.springframework.web.context.WebApplicationContext;
  * @since August 12, 2015
  */
 @WebAppConfiguration
-public class AbstractControllerTest extends ApplicationTest {
+public abstract class AbstractControllerTest extends AbstractTest {
 
     protected MockMvc mvc;
 

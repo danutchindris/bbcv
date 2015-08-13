@@ -18,6 +18,8 @@ import javax.transaction.Transactional;
 @Transactional
 public class UserRestControllerTest extends AbstractControllerTest {
 
+    private static final String TEST_USERNAME = "test.user";
+
     @Before
     public void setUp() {
         super.setUp();
@@ -26,7 +28,7 @@ public class UserRestControllerTest extends AbstractControllerTest {
     @Test
     public void testFindByUserName() throws Exception {
         MvcResult result = mvc.perform(MockMvcRequestBuilders
-                .get(RestMappings.USER_FIND_BY_USERNAME, "test.user")
+                .get(RestMappings.USER + RestMappings.USER_FIND_BY_USERNAME, TEST_USERNAME)
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn();
         String content = result.getResponse().getContentAsString();

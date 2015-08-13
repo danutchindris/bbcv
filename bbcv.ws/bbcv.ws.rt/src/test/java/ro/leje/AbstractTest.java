@@ -19,7 +19,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @ActiveProfiles(profiles = "localtest")
-public abstract class ApplicationTest {
+public abstract class AbstractTest {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 }

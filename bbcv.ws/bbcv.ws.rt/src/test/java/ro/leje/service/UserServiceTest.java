@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import ro.leje.ApplicationTest;
+import ro.leje.AbstractTest;
 import ro.leje.model.vo.User;
 
 import javax.transaction.Transactional;
@@ -17,7 +17,7 @@ import java.util.List;
  * @since August 12, 2015
  */
 @Transactional
-public class UserServiceTest extends ApplicationTest {
+public class UserServiceTest extends AbstractTest {
 
     @Autowired
     private UserService service;
