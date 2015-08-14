@@ -9,7 +9,7 @@
     <!--     Font Awesome     -->
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
     <link href="http://fonts.googleapis.com/css?family=Grand+Hotel" rel="stylesheet" type="text/css"/>
-    <title th:text="#{home.you.are.invited}">You are Invited</title>
+    <title th:text="#{page.you.are.invited.header}">You are Invited</title>
 </head>
 <body>
 
@@ -18,18 +18,24 @@
 <div class="main">
     <div class="container tim-container" style="max-width:800px; padding-top:100px">
         <h1 class="text-center">
-            <span th:text="#{home.you.are.invited}">Header</span>
-            <small class="subtitle" th:text="#{doctrine.motto}">Motto</small>
+            <span th:text="#{page.you.are.invited.header}">Header</span>
+            <small class="subtitle" th:text="#{page.you.are.invited.motto}">Motto</small>
         </h1>
-        <p th:text="#{doctrine.paragraph1}">Paragraph 1</p>
-        <p th:text="#{doctrine.paragraph2}">Paragraph 2</p>
-        <p th:text="#{doctrine.paragraph3}">Paragraph 3</p>
-        <p th:text="#{doctrine.paragraph4}">Paragraph 4</p>
-        <p th:text="#{doctrine.paragraph5}">Paragraph 5</p>
-        <p th:text="#{doctrine.paragraph6}">Paragraph 6</p>
-        <p th:text="#{doctrine.paragraph7}">Paragraph 7</p>
-        <p th:text="#{doctrine.paragraph8}">Paragraph 8</p>
-        <p th:text="#{doctrine.paragraph9}">Paragraph 9</p>
+        <p th:utext="#{page.you.are.invited.paragraph1}">Paragraph 1</p>
+        <ol>
+            <li>
+                <p th:utext="#{page.you.are.invited.paragraph2}">Paragraph 2</p>
+            </li>
+            <li>
+                <p th:utext="#{page.you.are.invited.paragraph3}">Paragraph 3</p>
+            </li>
+            <li>
+                <p th:utext="#{page.you.are.invited.paragraph4}">Paragraph 4</p>
+            </li>
+            <li>
+                <p th:utext="#{page.you.are.invited.paragraph5}">Paragraph 5</p>
+            </li>
+        </ol>
     </div>
     <div class="space"></div>
     <!-- end container -->
