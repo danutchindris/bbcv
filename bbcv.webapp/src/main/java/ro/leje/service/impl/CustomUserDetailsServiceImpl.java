@@ -1,9 +1,6 @@
 package ro.leje.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +12,10 @@ import ro.leje.model.CustomUserDetails;
 import ro.leje.model.vo.User;
 import ro.leje.service.CustomUserDetailsService;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Danut Chindris
@@ -37,10 +37,12 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
         RestTemplate restTemplate = new RestTemplate();
         User user = restTemplate.getForObject(endpoint, User.class, params);
         CustomUserDetails customUserDetails = new CustomUserDetails();
+        customUserDetails.setId(user.getId());
         customUserDetails.setUserName(user.getUserName());
         customUserDetails.setPassword(user.getPassword());
         customUserDetails.setFirstName(user.getFirstName());
         customUserDetails.setLastName(user.getLastName());
+        customUserDetails.setEmail(user.getEmail());
         return customUserDetails;
     }
 

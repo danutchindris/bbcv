@@ -19,6 +19,19 @@ ro:
   leje:
     services:
       user: "http://localhost:8083/user"
+
+---
+
+spring:
+          profiles: localtest
+
+server:
+          port: 8085
+
+ro:
+  leje:
+    services:
+      user: "http://localhost:8084/user"
 ---
 
 spring:
@@ -26,3 +39,8 @@ spring:
 
 server:
           port: 8082
+
+ro:
+  leje:
+    services:
+      user: "http://localhost:8083/user"

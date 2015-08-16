@@ -100,7 +100,7 @@ public class User {
         this.roles = roles;
     }
 
-    protected User() {
+    public User() {
     }
 
     @Override

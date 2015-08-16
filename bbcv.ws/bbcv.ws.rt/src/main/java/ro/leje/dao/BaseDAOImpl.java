@@ -11,11 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Danut Chindris
  * @since August 6, 2015
  */
-public abstract class BaseDAO {
+public abstract class BaseDAOImpl {
     @Autowired
     private SessionFactory sessionFactory;
 
     protected Session getCurrentSession(){
         return sessionFactory.getCurrentSession();
+    }
+
+    public Long create(Object object) {
+        return (Long)getCurrentSession().save(object);
     }
 }

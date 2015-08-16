@@ -33,4 +33,9 @@ public class UserRestController {
     public User findByUserName(@PathVariable String userName) {
         return userService.findByUserName(userName);
     }
+
+    @RequestMapping(value = RestMappings.USER_FIND_BY_ID, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public User findById(@PathVariable long id) {
+        return userService.findById(id);
+    }
 }

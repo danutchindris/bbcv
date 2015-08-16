@@ -18,7 +18,8 @@ import javax.transaction.Transactional;
 @Transactional
 public class UserRestControllerTest extends AbstractControllerTest {
 
-    private static final String TEST_USERNAME = "test.user";
+    private static final String TEST_USER_USERNAME = "test.user";
+    private static final long TEST_USER_ID = 1L;
 
     @Before
     public void setUp() {
@@ -28,7 +29,19 @@ public class UserRestControllerTest extends AbstractControllerTest {
     @Test
     public void testFindByUserName() throws Exception {
         MvcResult result = mvc.perform(MockMvcRequestBuilders
-                .get(RestMappings.USER + RestMappings.USER_FIND_BY_USERNAME, TEST_USERNAME)
+                .get(RestMappings.USER + RestMappings.USER_FIND_BY_USERNAME, TEST_USER_USERNAME)
+                .accept(MediaType.APPLICATION_JSON))
+                .andReturn();
+        String content = result.getResponse().getContentAsString();
+        int status = result.getResponse().getStatus();
+        Assert.assertEquals("The expected HTTP status is 200", 200, status);
+        Assert.assertTrue("The HTTP response body is expected to be non empty", content.trim().length() > 0);
+    }
+
+    @Test
+    public void testFindById() throws Exception {
+        MvcResult result = mvc.perform(MockMvcRequestBuilders
+                .get(RestMappings.USER + RestMappings.USER_FIND_BY_ID, TEST_USER_ID)
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn();
         String content = result.getResponse().getContentAsString();

@@ -2,9 +2,9 @@ package ro.leje.controller;
 
 /**
  * @author Danut Chindris
- * @since August 12, 2015
+ * @since August 15, 2015, Catiasu
  */
-public class HomeControllerTest {
+public class AdminControllerTest {
 
     // TODO implement unit tests
 }

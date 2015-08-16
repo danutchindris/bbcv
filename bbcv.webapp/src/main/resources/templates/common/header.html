@@ -58,8 +58,15 @@
                                 <p th:text="#{home.account}">Account</p>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="javascript:void(0)" onclick="openLoginModal();" th:text="#{home.login}">Login</a></li>
-                                <li><a href="javascript:void(0)" onclick="openRegisterModal();" th:text="#{home.register}">Register</a></li>
+                                <!--<li th:if="${#authorization.expression('!isAuthenticated()')}">-->
+                                <li>
+                                    <a href="javascript:void(0)" onclick="openLoginModal();" th:text="#{home.login}">Login</a>
+                                </li>
+                                <!--<li th:if="${#authorization.expression('!isAuthenticated()')}">-->
+                                <!--<li data-th-if="${#authentication.principal.isAdmin()}">-->
+                                <li>
+                                    <a href="javascript:void(0)" onclick="openRegisterModal();" th:text="#{home.register}">Register</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="dropdown">

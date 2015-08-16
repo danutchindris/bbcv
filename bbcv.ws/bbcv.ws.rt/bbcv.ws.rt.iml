@@ -67,6 +67,7 @@
     <orderEntry type="library" name="Maven: org.jboss:jandex:1.1.0.Final" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-dbcp:7.0.63" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: mysql:mysql-connector-java:5.1.36" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:18.0" level="project" />
   </component>
 </module>

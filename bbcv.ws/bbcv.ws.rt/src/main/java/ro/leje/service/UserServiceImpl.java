@@ -1,5 +1,6 @@
 package ro.leje.service;
 
+import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.leje.dao.UserDAO;
@@ -38,6 +39,28 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User findByUserName(String userName) {
+        Validate.notEmpty(userName, "Null or empty user name not allowed");
         return userDAO.findByUserName(userName);
+    }
+
+    @Override
+    @Transactional
+    public User findById(long id) {
+        return userDAO.findById(id);
+    }
+
+    @Override
+    @Transactional
+    public Long create(String userName, String password, String firstName, String lastName, String email) {
+        Validate.notEmpty(userName, "Null or empty user name not allowed");
+        Validate.notEmpty(password, "Null or empty password not allowed");
+        Validate.notEmpty(userName, "Null or empty email not allowed");
+        ro.leje.model.entity.User user = new ro.leje.model.entity.User();
+        user.setUserName(userName);
+        user.setPassword(password);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        return userDAO.create(user);
     }
 }

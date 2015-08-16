@@ -13,4 +13,8 @@ public interface UserService {
     List<User> findAll();
 
     User findByUserName(String userName);
+
+    User findById(long id);
+
+    Long create(String userName, String password, String firstName, String lastName, String email);
 }
