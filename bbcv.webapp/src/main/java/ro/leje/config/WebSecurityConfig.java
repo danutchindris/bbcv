@@ -23,14 +23,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        String[] staticContent = {"/css/*", "/fonts/*", "/images/*", "/images/flags/*", "/js/*"};
+        // String[] staticContent = {"/css/*", "/fonts/*", "/images/*", "/images/flags/*", "/js/*"};
         String[] accessibleToAllUrlPatterns = {"/", "/home", "/we-believe", "/you-are-invited", "/links", "/contact"};
         // @formatter:off
         http
                 .authorizeRequests()
-                    .antMatchers(staticContent).permitAll()
-                    .antMatchers(accessibleToAllUrlPatterns)
-                        .permitAll()
+                    .antMatchers("/resources/**").permitAll()
+                    .antMatchers(accessibleToAllUrlPatterns).permitAll()
                     .anyRequest()
                         .authenticated()
                 .and()
