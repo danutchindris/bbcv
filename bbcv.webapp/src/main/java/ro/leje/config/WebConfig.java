@@ -6,7 +6,6 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
@@ -28,19 +27,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     /**
-     * Maps resources path to webapp/resources
-     */
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-    }
-
-    /**
      * Provides internationalization of messages
      */
     @Bean
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource source = new ResourceBundleMessageSource();
         source.setBasenames("messages", "validation-messages");
+        source.setDefaultEncoding("UTF-8");
         return source;
     }
 
