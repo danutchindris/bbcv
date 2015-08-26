@@ -6,14 +6,17 @@ package ro.leje.util;
  */
 public interface MappingConstants {
 
-    public static final String ROOT = "/";
-    public static final String HOME = "/home";
-    public static final String WE_BELIEVE = "/we-believe";
-    public static final String YOU_ARE_INVITED = "/you-are-invited";
+    String ROOT = "/";
+    String HOME = "/home";
+    String WE_BELIEVE = "/we-believe";
+    String YOU_ARE_INVITED = "/you-are-invited";
 
     // authentication and authorization related constants
-    public static final String LOGIN = "/login";
+    String LOGIN = "/login";
+
+    // administration related constants
+    String ADMIN = "/admin";
 
     // shop related constants
-    public static final String SHOP = "/shop";
+    String SHOP = "/shop";
 }

@@ -1,9 +1,5 @@
 package ro.leje.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -11,10 +7,16 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import ro.leje.AbstractWebAppTest;
 import ro.leje.delegate.LanguageDelegate;
+import ro.leje.util.ConfigConstants;
 import ro.leje.util.MappingConstants;
 import ro.leje.util.ViewConstants;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 /**
  * @author Danut Chindris
@@ -33,7 +35,14 @@ public class HomeControllerTest extends AbstractWebAppTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(homeController).build();
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setPrefix(ConfigConstants.TEMPLATES_PREFIX);
+        viewResolver.setSuffix(ConfigConstants.TEMPLATES_SUFFIX);
+        // for unit tests use the standaloneSetup() method
+        // for integration tests use the webAppContextSetup() method
+        mockMvc = MockMvcBuilders.standaloneSetup(homeController)
+                .setViewResolvers(viewResolver)
+                .build();
     }
 
     @Test
