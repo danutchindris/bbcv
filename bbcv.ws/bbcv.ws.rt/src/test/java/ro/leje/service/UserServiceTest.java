@@ -49,9 +49,10 @@ public class UserServiceTest extends AbstractTest {
     }
 
     @Test
-    public void testFindAll() {
+    public void whenCalledFindAllReturnsANotEmptyList() {
         List<User> list = service.findAll();
         Assert.assertNotNull("The list shouldn't be null", list);
+        Assert.assertTrue("The list should contain one item", list.size() == 1);
     }
 
     @Test

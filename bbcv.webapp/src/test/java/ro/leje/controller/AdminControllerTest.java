@@ -45,9 +45,9 @@ public class AdminControllerTest {
     }
 
     @Test
-    public void testHomeController() throws Exception {
-        mockMvc.perform(get(MappingConstants.ADMIN))
+    public void testUserList() throws Exception {
+        mockMvc.perform(get(MappingConstants.ADMIN + MappingConstants.USER_LIST))
                 .andExpect(status().isOk())
-                .andExpect(view().name(ViewConstants.ADMIN));
+                .andExpect(view().name(ViewConstants.USER_LIST));
     }
 }

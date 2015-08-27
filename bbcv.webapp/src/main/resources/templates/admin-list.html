@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head data-th-fragment="header">
+    <meta charset="utf-8"/>
+    <title data-th-text="#{strategy.list.page.title}">Title</title>
+    <style rel="stylesheet" type="text/css">
+        body {
+        font-family: Arial, sans-serif;
+        font-size: 1em;
+        }
+
+        caption {
+        font-size: 18px;
+        }
+
+        /**
+        * Table style from Top 10 CSS Table Designs
+        * http://coding.smashingmagazine.com/2008/08/13/top-10-css-table-designs/
+        */
+
+        .box-table-a {
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        font-size: 12px;
+        margin: 45px;
+        width: 700px;
+        text-align: left;
+        border-collapse: collapse;
+        }
+
+        .box-table-a th {
+        font-size: 13px;
+        font-weight: normal;
+        text-align: left;
+        padding: 8px;
+        background: #b9c9fe;
+        border-top: 4px solid #aabcfe;
+        border-bottom: 1px solid #fff;
+        color: #039;
+        }
+
+        .box-table-a td {
+        padding: 8px;
+        background: #e8edff;
+        border-bottom: 1px solid #fff;
+        color: #669;
+        border-top: 1px solid transparent;
+        }
+
+        .box-table-a tr:hover td {
+        background: #d0dafd;
+        color: #339;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <table class="box-table-a">
+        <caption data-th-text="#{user.list.table.title}">Temp Table Title</caption>
+        <thead>
+        <tr>
+            <th scope="col" data-th-text="#{user.list.id.label}">Temp ID</th>
+            <th scope="col" data-th-text="#{user.list.username.label}">Temp User Name</th>
+            <th scope="col" data-th-text="#{user.list.firstname.label}">Temp First Name</th>
+            <th scope="col" data-th-text="#{user.list.lastname.label}">Temp Last Name</th>
+            <th scope="col" data-th-text="#{user.list.email.label}">Temp Email</th>
+            <th scope="col" data-th-text="#{user.list.actions.label}">Temp Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="user : ${users}">
+            <td data-th-text="${user.id}">1</td>
+            <td data-th-text="${user.userName}">Dummy User Name</td>
+            <td data-th-text="${user.firstName}">Dummy First Name</td>
+            <td data-th-text="${user.lastName}">Dummy Last Name</td>
+            <td data-th-text="${user.email}">Dummy Email</td>
+            <td><a href="#">delete</a> |
+                <a href="#">edit</a>
+            </td>
+        </tr>
+        <tr data-th-remove="all">
+            <td>2</td>
+            <td>Iron Condor</td>
+            <td>High Prob Hedged</td>
+            <td><a href="#">delete</a> | <a href="#">edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

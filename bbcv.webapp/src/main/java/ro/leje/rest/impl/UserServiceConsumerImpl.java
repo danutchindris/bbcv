@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import ro.leje.config.ServiceSettings;
 import ro.leje.model.vo.User;
 import ro.leje.rest.UserServiceConsumer;
+import ro.leje.util.RestMappings;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -35,6 +36,18 @@ public class UserServiceConsumerImpl implements UserServiceConsumer {
         ParameterizedTypeReference<List<User>> responseType = new ParameterizedTypeReference<List<User>>() {};
         ResponseEntity<List<User>> result = restTemplate.exchange(endpoint,
                 HttpMethod.GET, null, responseType, params);
+        List<User> list = result.getBody();
+        return list != null ? list : Collections.emptyList();
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        String endpoint = serviceSettings.getUser() + RestMappings.USER_FIND_ALL;
+        RestTemplate restTemplate = new RestTemplate();
+        // http://thespringway.info/spring-web/map-to-list-of-objects-from-json-array-with-resttemplate/
+        ParameterizedTypeReference<List<User>> responseType = new ParameterizedTypeReference<List<User>>() {};
+        ResponseEntity<List<User>> result = restTemplate.exchange(endpoint,
+                HttpMethod.GET, null, responseType);
         List<User> list = result.getBody();
         return list != null ? list : Collections.emptyList();
     }

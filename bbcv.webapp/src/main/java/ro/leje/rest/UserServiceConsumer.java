@@ -11,4 +11,6 @@ import java.util.List;
 public interface UserServiceConsumer {
 
     List<User> getUsersByFirstName(String firstName);
+
+    List<User> getAllUsers();
 }
