@@ -91,23 +91,43 @@ public class UserServiceTest extends AbstractTest {
 
     @Test
     public void whenMandatoryFieldsAreProvidedCreateUserReturnsEntityId() {
-        Assert.assertNotNull("The user entity should have been created", service.create(TEST_USER_NEW_USERNAME,
-                TEST_USER_NEW_PASSWORD, TEST_USER_NEW_FIRSTNAME, TEST_USER_NEW_LASTNAME, TEST_USER_NEW_EMAIL));
+        User object = new User();
+        object.setUserName(TEST_USER_NEW_USERNAME);
+        object.setPassword(TEST_USER_NEW_PASSWORD);
+        object.setFirstName(TEST_USER_NEW_FIRSTNAME);
+        object.setLastName(TEST_USER_NEW_LASTNAME);
+        object.setEmail(TEST_USER_NEW_EMAIL);
+        Assert.assertNotNull("The user entity should have been created", service.create(object));
     }
 
     @Test(expected = NullPointerException.class)
     public void whenMandatoryUserNameIsNotProvidedCreateUserThrowsException() {
-        service.create(null, TEST_USER_NEW_PASSWORD, TEST_USER_NEW_FIRSTNAME, TEST_USER_NEW_LASTNAME, TEST_USER_NEW_EMAIL);
+        User object = new User();
+        object.setPassword(TEST_USER_NEW_PASSWORD);
+        object.setFirstName(TEST_USER_NEW_FIRSTNAME);
+        object.setLastName(TEST_USER_NEW_LASTNAME);
+        object.setEmail(TEST_USER_NEW_EMAIL);
+        service.create(object);
     }
 
     @Test(expected = NullPointerException.class)
     public void whenMandatoryPasswordIsNotProvidedCreateUserThrowsException() {
-        service.create(TEST_USER_NEW_USERNAME, null, TEST_USER_NEW_FIRSTNAME, TEST_USER_NEW_LASTNAME, TEST_USER_NEW_EMAIL);
+        User object = new User();
+        object.setUserName(TEST_USER_NEW_USERNAME);
+        object.setFirstName(TEST_USER_NEW_FIRSTNAME);
+        object.setLastName(TEST_USER_NEW_LASTNAME);
+        object.setEmail(TEST_USER_NEW_EMAIL);
+        service.create(object);
     }
 
     @Test(expected = DataIntegrityViolationException.class)
     public void whenMandatoryEmailIsNotProvidedCreateUserThrowsException() {
-        service.create(TEST_USER_NEW_USERNAME, TEST_USER_NEW_PASSWORD, TEST_USER_NEW_FIRSTNAME, TEST_USER_NEW_LASTNAME, null);
+        User object = new User();
+        object.setUserName(TEST_USER_NEW_USERNAME);
+        object.setPassword(TEST_USER_NEW_PASSWORD);
+        object.setFirstName(TEST_USER_NEW_FIRSTNAME);
+        object.setLastName(TEST_USER_NEW_LASTNAME);
+        service.create(object);
     }
 
     private void checkUserObjectProperties(User object) {

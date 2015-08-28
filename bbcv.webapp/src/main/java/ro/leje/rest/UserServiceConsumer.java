@@ -10,7 +10,9 @@ import java.util.List;
  */
 public interface UserServiceConsumer {
 
-    List<User> getUsersByFirstName(String firstName);
+    User findByUserName(String userName);
 
-    List<User> getAllUsers();
+    List<User> findAll();
+
+    Long create(User user);
 }

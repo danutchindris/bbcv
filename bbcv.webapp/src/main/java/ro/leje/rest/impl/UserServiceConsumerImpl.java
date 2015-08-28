@@ -23,25 +23,22 @@ import java.util.Map;
 @Service
 public class UserServiceConsumerImpl implements UserServiceConsumer {
 
+    private static final String PARAM_USER_NAME = "userName";
     @Autowired
     private ServiceSettings serviceSettings;
 
     @Override
-    public List<User> getUsersByFirstName(String firstName) {
-        String endpoint = serviceSettings.getUser() + "/{firstName}";
+    public User findByUserName(String userName) {
+        String endpoint = serviceSettings.getUser() + RestMappings.USER_FIND_BY_USER_NAME;
         Map<String, String> params = new HashMap<>();
-        params.put("firstName", firstName);
+        params.put(PARAM_USER_NAME, userName);
         RestTemplate restTemplate = new RestTemplate();
-        // http://thespringway.info/spring-web/map-to-list-of-objects-from-json-array-with-resttemplate/
-        ParameterizedTypeReference<List<User>> responseType = new ParameterizedTypeReference<List<User>>() {};
-        ResponseEntity<List<User>> result = restTemplate.exchange(endpoint,
-                HttpMethod.GET, null, responseType, params);
-        List<User> list = result.getBody();
-        return list != null ? list : Collections.emptyList();
+        User object = restTemplate.getForObject(endpoint, User.class, params);
+        return object != null ? object : new User();
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<User> findAll() {
         String endpoint = serviceSettings.getUser() + RestMappings.USER_FIND_ALL;
         RestTemplate restTemplate = new RestTemplate();
         // http://thespringway.info/spring-web/map-to-list-of-objects-from-json-array-with-resttemplate/
@@ -50,5 +47,10 @@ public class UserServiceConsumerImpl implements UserServiceConsumer {
                 HttpMethod.GET, null, responseType);
         List<User> list = result.getBody();
         return list != null ? list : Collections.emptyList();
+    }
+
+    @Override
+    public Long create(User user) {
+        return null;
     }
 }

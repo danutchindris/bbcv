@@ -27,14 +27,14 @@ public class AdminController {
     private UserServiceConsumer userServiceConsumer;
 
     @RequestMapping(value = MappingConstants.USER_LIST, method = RequestMethod.GET)
-    public String adminList(Model model) {
-        model.addAttribute(USERS, userServiceConsumer.getAllUsers());
+    public String usersList(Model model) {
+        model.addAttribute(USERS, userServiceConsumer.findAll());
         return ViewConstants.USER_LIST;
     }
 
     @RequestMapping(value = MappingConstants.USER, method = RequestMethod.POST)
     @ResponseBody
-    public void addUser(@RequestBody User user) {
-        userServiceConsumer.getUsersByFirstName(user.getFirstName());
+    public Long addUser(@RequestBody User user) {
+        return userServiceConsumer.create(user);
     }
 }

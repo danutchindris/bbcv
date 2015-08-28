@@ -2,10 +2,7 @@ package ro.leje.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ro.leje.model.vo.User;
 import ro.leje.service.UserService;
 import ro.leje.util.RestMappings;
@@ -24,12 +21,12 @@ public class UserRestController {
     private UserService userService;
 
     @RequestMapping(value = RestMappings.USER_FIND_ALL, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ro.leje.model.vo.User> getAllUsers() {
+    public List<ro.leje.model.vo.User> findAll() {
         List<User> users = userService.findAll();
         return users;
     }
 
-    @RequestMapping(value = RestMappings.USER_FIND_BY_USERNAME, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = RestMappings.USER_FIND_BY_USER_NAME, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public User findByUserName(@PathVariable String userName) {
         return userService.findByUserName(userName);
     }
@@ -37,5 +34,11 @@ public class UserRestController {
     @RequestMapping(value = RestMappings.USER_FIND_BY_ID, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public User findById(@PathVariable long id) {
         return userService.findById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseBody
+    public Long create(@RequestBody User user) {
+        return userService.create(user);
     }
 }

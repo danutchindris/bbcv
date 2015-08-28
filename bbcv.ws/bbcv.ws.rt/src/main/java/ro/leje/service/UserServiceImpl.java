@@ -51,16 +51,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public Long create(String userName, String password, String firstName, String lastName, String email) {
-        Validate.notEmpty(userName, "Null or empty user name not allowed");
-        Validate.notEmpty(password, "Null or empty password not allowed");
-        Validate.notEmpty(userName, "Null or empty email not allowed");
-        ro.leje.model.entity.User user = new ro.leje.model.entity.User();
-        user.setUserName(userName);
-        user.setPassword(password);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setEmail(email);
-        return userDAO.create(user);
+    public Long create(User user) {
+        Validate.notNull(user, "Null user object not allowed");
+        Validate.notEmpty(user.getUserName(), "Null or empty user name not allowed");
+        Validate.notEmpty(user.getPassword(), "Null or empty password not allowed");
+        Validate.notEmpty(user.getUserName(), "Null or empty email not allowed");
+        ro.leje.model.entity.User userEntity = new ro.leje.model.entity.User();
+        userEntity.setUserName(user.getUserName());
+        userEntity.setPassword(user.getPassword());
+        userEntity.setFirstName(user.getFirstName());
+        userEntity.setLastName(user.getLastName());
+        userEntity.setEmail(user.getEmail());
+        return userDAO.create(userEntity);
     }
 }

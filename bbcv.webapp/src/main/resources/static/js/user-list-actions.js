@@ -57,6 +57,7 @@ $().ready(function() {
                 row[$(this).attr('name')] = $(this).val();
             });
 
+            // required by Spring Security
             var header = $("meta[name='_csrf_header']").attr("content");
             var token = $("meta[name='_csrf']").attr("content");
 
@@ -71,11 +72,11 @@ $().ready(function() {
                 success: function () {
                     $modal.modal('hide');
                     $table.bootstrapTable('refresh');
-                    showAlert(($modal.data('id') ? 'Update' : 'Create') + ' item successful!', 'success');
+                    showAlert('The item was ' + ($modal.data('id') ? 'updated' : 'created'), 'success');
                 },
                 error: function () {
                     $modal.modal('hide');
-                    showAlert(($modal.data('id') ? 'Update' : 'Create') + ' item error!', 'danger');
+                    showAlert('The item was not ' + ($modal.data('id') ? 'updated' : 'created'), 'danger');
                 }
             });
         });
