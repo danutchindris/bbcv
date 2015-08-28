@@ -16,6 +16,7 @@ public interface MappingConstants {
 
     // administration related constants
     String ADMIN = "/admin";
+    String USER = "/user";
     String USER_LIST = "/user/list";
 
     // shop related constants
