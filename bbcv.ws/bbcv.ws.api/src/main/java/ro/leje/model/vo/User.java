@@ -43,16 +43,19 @@ public class User implements Serializable, Comparable<User> {
 
     private String email;
 
+    private Boolean enabled;
+
     public User() {
     }
 
-    public User(long id, String userName, String password, String firstName, String lastName, String email) {
+    public User(long id, String userName, String password, String firstName, String lastName, String email, Boolean enabled) {
         this.id = id;
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.enabled = enabled;
     }
 
     public long getId() {
@@ -103,6 +106,14 @@ public class User implements Serializable, Comparable<User> {
         this.email = email;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -111,6 +122,7 @@ public class User implements Serializable, Comparable<User> {
                 .add("firstName", firstName)
                 .add("lastName", lastName)
                 .add("email", email)
+                .add("enabled", enabled)
                 .toString();
     }
 

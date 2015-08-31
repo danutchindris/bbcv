@@ -3,7 +3,7 @@ package ro.leje.model.entity;
 import javax.persistence.*;
 
 /**
- * An entity which describes a role that a {@link ro.leje.model.entity.User} user can have.
+ * An entity which describes a role that a {@link UserEntity} user can have.
  * Users can have several of these roles.
  *
  * @author Danut Chindris
@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "ROLE")
-public class Role {
+public class RoleEntity {
 
     @Id
     @Column(name = "ROLE_ID", unique = true, nullable = false)

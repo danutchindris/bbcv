@@ -1,6 +1,9 @@
 package ro.leje.dao;
 
 
+import ro.leje.model.entity.UserEntity;
+import ro.leje.model.vo.User;
+
 import java.util.List;
 
 /**
@@ -9,11 +12,11 @@ import java.util.List;
  */
 public interface UserDAO {
 
-    Long create(ro.leje.model.entity.User user);
+    Long create(UserEntity userEntity);
 
-    List<ro.leje.model.entity.User> findAllUsers();
+    List<UserEntity> findAllUsers();
 
-    ro.leje.model.vo.User findByUserName(String userName);
+    User findByUserName(String userName);
 
-    ro.leje.model.vo.User findById(long id);
+    User findById(long id);
 }

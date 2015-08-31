@@ -55,7 +55,6 @@ public class CustomUserDetails extends User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        //TODO provide implementation
-        return true;
+        return super.getEnabled();
     }
 }

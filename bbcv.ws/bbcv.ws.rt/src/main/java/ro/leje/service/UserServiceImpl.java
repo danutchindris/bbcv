@@ -4,6 +4,7 @@ import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.leje.dao.UserDAO;
+import ro.leje.model.entity.UserEntity;
 import ro.leje.model.vo.User;
 
 import javax.transaction.Transactional;
@@ -22,9 +23,9 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public List<User> findAll() {
-        List<ro.leje.model.entity.User> userEntities = userDAO.findAllUsers();
+        List<UserEntity> userEntities = userDAO.findAllUsers();
         List<User> users = new ArrayList<>();
-        for (ro.leje.model.entity.User userEntity : userEntities) {
+        for (UserEntity userEntity : userEntities) {
             User userVO = new ro.leje.model.vo.User();
             userVO.setId(userEntity.getId());
             userVO.setUserName(userEntity.getUserName());
@@ -56,7 +57,7 @@ public class UserServiceImpl implements UserService {
         Validate.notEmpty(user.getUserName(), "Null or empty user name not allowed");
         Validate.notEmpty(user.getPassword(), "Null or empty password not allowed");
         Validate.notEmpty(user.getUserName(), "Null or empty email not allowed");
-        ro.leje.model.entity.User userEntity = new ro.leje.model.entity.User();
+        UserEntity userEntity = new UserEntity();
         userEntity.setUserName(user.getUserName());
         userEntity.setPassword(user.getPassword());
         userEntity.setFirstName(user.getFirstName());

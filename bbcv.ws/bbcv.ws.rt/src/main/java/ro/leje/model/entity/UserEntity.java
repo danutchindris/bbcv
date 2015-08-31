@@ -13,7 +13,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "USER")
-public class User {
+public class UserEntity {
 
     @Id
     @Column(name = "USER_ID", unique = true, nullable = false)
@@ -35,14 +35,17 @@ public class User {
     @Column(name = "EMAIL")
     private String email;
 
-    @ManyToMany(targetEntity = Role.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Column(name = "ENABLED")
+    private Boolean enabled;
+
+    @ManyToMany(targetEntity = RoleEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE", joinColumns = {
             @JoinColumn(name = "USER_ID", nullable = false)
     },
     inverseJoinColumns = {
             @JoinColumn(name = "ROLE_ID")
     })
-    private Set<Role> roles;
+    private Set<RoleEntity> roles;
 
     public long getId() {
         return id;
@@ -92,15 +95,23 @@ public class User {
         this.email = email;
     }
 
-    public Set<Role> getRoles() {
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Set<RoleEntity> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<RoleEntity> roles) {
         this.roles = roles;
     }
 
-    public User() {
+    public UserEntity() {
     }
 
     @Override

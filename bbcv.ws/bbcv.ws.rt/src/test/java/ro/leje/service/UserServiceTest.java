@@ -24,7 +24,7 @@ public class UserServiceTest extends AbstractTest {
     private final static long TEST_USER_ID = 1L;
     private final static String TEST_USER_USERNAME = "test.user";
     private final static String TEST_USER_FIRSTNAME = "Test";
-    private final static String TEST_USER_LASTNAME = "User";
+    private final static String TEST_USER_LASTNAME = "UserEntity";
     private final static String TEST_USER_EMAIL = "test.user@testuser.app";
 
     private final static String TEST_USER_NOT_EXISTING_USERNAME = "not.existing.user";
@@ -32,7 +32,7 @@ public class UserServiceTest extends AbstractTest {
     private final static String TEST_USER_NEW_USERNAME = "test.new.user";
     private final static String TEST_USER_NEW_PASSWORD = "$2a$11$WYWaOD55tFDhUQquHY.RZ.yEW5YS1lGkt7CiqRYAs79Fa6j.hnPaO";
     private final static String TEST_USER_NEW_FIRSTNAME = "Test.New";
-    private final static String TEST_USER_NEW_LASTNAME = "User.New";
+    private final static String TEST_USER_NEW_LASTNAME = "UserEntity.New";
     private final static String TEST_USER_NEW_EMAIL = "test.new.user@testuser.app";
 
     @Autowired
