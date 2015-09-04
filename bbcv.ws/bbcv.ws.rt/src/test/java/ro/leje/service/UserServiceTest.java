@@ -130,6 +130,11 @@ public class UserServiceTest extends AbstractTest {
         service.create(object);
     }
 
+    @Test(expected = NullPointerException.class)
+    public void whenTheUserObjectIsNotProvidedCreateThrowsException() {
+        service.create(null);
+    }
+
     private void checkUserObjectProperties(User object) {
         Assert.assertNotNull("The returned object shouldn't be null", object);
         Assert.assertEquals("The id is incorrect", TEST_USER_ID, object.getId());

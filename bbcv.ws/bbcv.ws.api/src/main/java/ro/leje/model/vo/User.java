@@ -48,14 +48,19 @@ public class User implements Serializable, Comparable<User> {
     public User() {
     }
 
-    public User(long id, String userName, String password, String firstName, String lastName, String email, Boolean enabled) {
+    public User(long id, String userName, String firstName, String lastName, String email, Boolean enabled) {
         this.id = id;
         this.userName = userName;
-        this.password = password;
+        this.password = "";
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.enabled = enabled;
+    }
+
+    public User(long id, String userName, String password, String firstName, String lastName, String email, Boolean enabled) {
+        this(id, userName, firstName, lastName, email, enabled);
+        this.password = password;
     }
 
     public long getId() {

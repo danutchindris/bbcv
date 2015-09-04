@@ -22,4 +22,12 @@ public abstract class BaseDAOImpl {
     public Long create(Object object) {
         return (Long)getCurrentSession().save(object);
     }
+
+    public void update(Object object) {
+        getCurrentSession().update(object);
+    }
+
+    public void delete(Object object) {
+        getCurrentSession().delete(object);
+    }
 }

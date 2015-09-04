@@ -16,6 +16,7 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
         return super.create(userEntity);
     }
 
+    @SuppressWarnings("unchecked")
     public List<UserEntity> findAllUsers() {
         return getCurrentSession().createQuery("from ro.leje.model.entity.UserEntity").list();
     }
