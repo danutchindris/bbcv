@@ -43,6 +43,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
         customUserDetails.setFirstName(user.getFirstName());
         customUserDetails.setLastName(user.getLastName());
         customUserDetails.setEmail(user.getEmail());
+        customUserDetails.setEnabled(user.getEnabled());
         return customUserDetails;
     }
 

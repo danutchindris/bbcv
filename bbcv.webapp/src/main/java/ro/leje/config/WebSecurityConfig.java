@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        String[] staticContent = {"/css/*", "/fonts/*", "/images/*", "/images/flags/*", "/js/*"};
+        String[] staticContent = {"/assets/*", "/css/*", "/fonts/*", "/images/*", "/images/flags/*", "/js/*"};
         String[] accessibleToAllUrlPatterns = {"/", "/home", "/we-believe", "/you-are-invited", "/links", "/contact"};
         // @formatter:off
         http

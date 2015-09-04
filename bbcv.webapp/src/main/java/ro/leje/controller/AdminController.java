@@ -26,6 +26,11 @@ public class AdminController {
     @Resource
     private UserServiceConsumer userServiceConsumer;
 
+    @RequestMapping(method = RequestMethod.GET)
+    public String displayDashboard() {
+        return ViewConstants.ADMIN;
+    }
+
     @RequestMapping(value = MappingConstants.USER_LIST, method = RequestMethod.GET)
     public String usersList(Model model) {
         model.addAttribute(USERS, userServiceConsumer.findAll());
