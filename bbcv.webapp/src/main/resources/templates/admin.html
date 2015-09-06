@@ -2,39 +2,43 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
+
     <link rel="icon" type="image/png" href="assets/img/favicon.ico" data-th-href="@{/assets/img/favicon.ico}" />
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Light Bootstrap Dashboard by Creative Tim</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
 
+    <link href="css/gsdk.css" rel="stylesheet" type="text/css" data-th-href="@{/css/gsdk.css}" />
 
     <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" data-th-href="@{/assets/css/bootstrap.min.css}" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" data-th-href="@{/assets/css/bootstrap.min.css}" />
 
     <!-- Animation library for notifications -->
-    <link href="assets/css/animate.min.css" rel="stylesheet" data-th-href="@{/assets/css/animate.min.css}" />
+    <link href="assets/css/animate.min.css" rel="stylesheet" type="text/css" data-th-href="@{/assets/css/animate.min.css}" />
 
-    <!--  Light Bootstrap Table core CSS -->
-    <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet" data-th-href="@{/assets/css/light-bootstrap-dashboard.css}" />
+    <!--  Light Bootstrap Dashboard -->
+    <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet" type="text/css" data-th-href="@{/assets/css/light-bootstrap-dashboard.css}" />
 
-
-    <!--  CSS for Demo Purpose, don't include it in your project -->
-    <!-- <link href="assets/css/demo.css" rel="stylesheet" data-th-href="@{/assets/css/demo.css}" /> -->
-
+    <!-- Fresh Bootstrap Table -->
+    <link href="css/fresh-bootstrap-table.css" rel="stylesheet" type="text/css" data-th-href="@{/css/fresh-bootstrap-table.css}" />
 
     <!-- Fonts and icons -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css" />
-    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" data-th-href="@{/assets/css/pe-icon-7-stroke.css}" />
+    <link href="http://fonts.googleapis.com/css?family=Grand+Hotel" rel="stylesheet" type="text/css" />
+    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css" data-th-href="@{/assets/css/pe-icon-7-stroke.css}" />
 
+    <title th:text="#{admin.title}">Title</title>
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="blue" data-image="@{/assets/img/sidebar-5.jpg}" th:attr="data-image=@{/assets/img/sidebar-5.jpg}">
+    <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg" th:attr="data-image=@{/assets/img/sidebar-5.jpg}">
 
         <!--
             Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
@@ -43,14 +47,25 @@
 
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="#" data-th-href="@{/}" class="simple-text">Cuvantul vietii</a>
+                <a href="#" data-th-href="@{/}" class="simple-text" th:text="#{home.site}">Site</a>
             </div>
-
             <ul class="nav">
                 <li>
                     <a href="#">
-                        <i class="pe-7s-note2"></i>
-                        <p>Users List</p>
+                        <i class="pe-7s-users"></i>
+                        <p th:text="#{users.title}">Page</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="pe-7s-umbrella"></i>
+                        <p th:text="#{roles.title}">Page</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="pe-7s-news-paper"></i>
+                        <p th:text="#{articles}">Page</p>
                     </a>
                 </li>
             </ul>
@@ -68,15 +83,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
+                    <a class="navbar-brand" href="#" th:text="#{admin.title}">Title</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <!-- <a href="#" data-th-href="@{/logout}">Log out</a> -->
-                            <form th:action="@{/logout}" method="post">
-                                <input class="btn btn-link" type="submit" value="Sign Out"/>
-                            </form>
+                            <form th:action="@{/logout}" method="post"></form>
+                            <a href="#" onclick="document.forms[0].submit();" th:text="#{logout}">Log Out</a>
                         </li>
                     </ul>
                 </div>
@@ -89,10 +102,51 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Users List</h4>
+                                <h4 class="title" th:text="#{users.title}">List</h4>
                             </div>
                             <div class="content">
+                                <div class="fresh-table full-color-blue">
+                                    <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
+                                            Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+                                    -->
 
+                                    <div class="toolbar">
+                                        <button class="create btn btn-default">Create User</button>
+                                        <span class="alert"></span>
+                                    </div>
+
+                                    <table id="fresh-table"
+                                           class="table"
+                                           data-toggle="table"
+                                           data-show-refresh="true"
+                                           data-show-columns="true"
+                                           data-search="true"
+                                           data-query-params="queryParams"
+                                           data-toolbar=".toolbar"
+                                           data-pagination="true">
+                                        <thead>
+                                        <th data-field="id">ID</th>
+                                        <th data-field="userName" data-sortable="true">User Name</th>
+                                        <th data-field="firstName" data-sortable="true">First Name</th>
+                                        <th data-field="lastName" data-sortable="true">Last Name</th>
+                                        <th data-field="email" data-sortable="true">Email</th>
+                                        <th data-field="actions"
+                                            data-align="center"
+                                            data-formatter="operateFormatter"
+                                            data-events="operateEvents">Actions</th>
+                                        </thead>
+                                        <tbody>
+                                        <tr data-th-each="user : ${users}">
+                                            <td data-th-text="${user.id}">1</td>
+                                            <td data-th-text="${user.userName}">Dummy User Name</td>
+                                            <td data-th-text="${user.firstName}">Dummy First Name</td>
+                                            <td data-th-text="${user.lastName}">Dummy Last Name</td>
+                                            <td data-th-text="${user.email}">Dummy Email</td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -105,61 +159,81 @@
                 <nav class="pull-left">
                     <ul>
                         <li>
-                            <a href="#" data-th-href="@{/}">Home</a>
+                            <a href="#" data-th-href="@{/}" th:text="#{home.title}">Home</a>
                         </li>
                         <li>
-                            <a href="#" data-th-href="@{/we-believe}">We Believe</a>
+                            <a href="#" data-th-href="@{/we-believe}" th:text="#{home.we.believe}">We Believe</a>
                         </li>
                         <li>
-                            <a href="#" data-th-href="@{/you-are-invited}">You are Invited</a>
+                            <a href="#" data-th-href="@{/you-are-invited}" th:text="#{page.you.are.invited.header}">You are Invited</a>
                         </li>
                         <li>
-                            <a href="#" data-th-href="@{/contact-us}">Contact Us</a>
+                            <a href="#" data-th-href="@{/contact-us}" th:text="#{home.contact}">Contact Us</a>
                         </li>
                     </ul>
                 </nav>
-                <p class="copyright pull-right">&copy; 2015 <a href="#" data-th-href="@{/}">Cuvantul vietii</a></p>
+                <p class="copyright pull-right">&copy; 2015 <a href="#" data-th-href="@{/}" th:text="#{home.site}">Site</a></p>
             </div>
         </footer>
     </div>
 </div>
 
+<div id="modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>User Name</label>
+                    <input type="text" class="form-control" name="userName" placeholder="User Name" />
+                </div>
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" name="firstName" placeholder="First Name" />
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" name="lastName" placeholder="Last Name" />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control" name="email" placeholder="Email" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary submit">Submit</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 </body>
 
 <!--   Core JS Files   -->
-<script src="assets/js/jquery-1.10.2.js" type="text/javascript" data-th-src="@{/assets/js/jquery-1.10.2.js}"></script>
-<script src="assets/js/bootstrap.min.js" type="text/javascript" data-th-src="@{/assets/js/bootstrap.min.js}"></script>
+<script type="text/javascript" src="assets/js/jquery-1.10.2.js" data-th-src="@{/assets/js/jquery-1.10.2.js}"></script>
+<script type="text/javascript" src="assets/js/bootstrap.min.js" data-th-src="@{/assets/js/bootstrap.min.js}"></script>
 
 <!--  Checkbox, Radio & Switch Plugins -->
-<script src="assets/js/bootstrap-checkbox-radio-switch.js" data-th-src="@{/assets/js/bootstrap-checkbox-radio-switch.js}"></script>
+<script type="text/javascript" src="assets/js/bootstrap-checkbox-radio-switch.js" data-th-src="@{/assets/js/bootstrap-checkbox-radio-switch.js}"></script>
 
 <!--  Charts Plugin -->
-<script src="assets/js/chartist.min.js" data-th-src="@{/assets/js/chartist.min.js}"></script>
+<script type="text/javascript" src="assets/js/chartist.min.js" data-th-src="@{/assets/js/chartist.min.js}"></script>
 
 <!--  Notifications Plugin    -->
-<script src="assets/js/bootstrap-notify.js" data-th-src="@{/assets/js/bootstrap-notify.js}"></script>
+<script type="text/javascript" src="assets/js/bootstrap-notify.js" data-th-src="@{/assets/js/bootstrap-notify.js}"></script>
 
 <!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-<script src="assets/js/light-bootstrap-dashboard.js" data-th-src="@{/assets/js/light-bootstrap-dashboard.js}"></script>
+<script type="text/javascript" src="assets/js/light-bootstrap-dashboard.js" data-th-src="@{/assets/js/light-bootstrap-dashboard.js}"></script>
 
-<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-<!-- <script src="assets/js/demo.js" data-th-src="@{/assets/js/demo.js}"></script> -->
+<script type="text/javascript" src="js/bootstrap-table.js" data-th-src="@{/js/bootstrap-table.js}"></script>
 
-<script type="text/javascript">
-    	$(document).ready(function(){
-        	$.notify({
-            	icon: 'pe-7s-gift',
-            	message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
-            	
-            },{
-                type: 'info',
-                timer: 4000
-            });
-            
-    	});
-</script>
+<script type="text/javascript" src="js/user-list-actions.js" data-th-src="@{/js/user-list-actions.js}"></script>
 
 </html>
