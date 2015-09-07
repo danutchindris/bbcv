@@ -2,134 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="250f1c6f-687d-4928-a9b2-d1528ea22e45" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/AD.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/AE.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/AG.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/AM.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/AR.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/AT.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/AU.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/BE.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/BF.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/BG.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/BO.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/BR.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CA.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CD.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CG.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CH.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CL.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CM.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CN.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CO.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CZ.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/DE.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/DJ.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/DK.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/DZ.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/EE.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/EG.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/ES.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/FI.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/FR.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/fonts/FontAwesome.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/GA.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/GB.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/GM.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/GT.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/HN.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/HT.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/HU.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/ID.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/IE.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/IL.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/IN.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/IQ.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/IR.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/IT.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/JM.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/JO.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/JP.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/KG.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/KN.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/KP.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/KR.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/KW.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/KZ.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/LA.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/LB.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/LC.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/LS.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/LU.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/LV.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/MG.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/MK.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/ML.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/MM.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/MT.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/MX.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/NA.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/NE.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/NG.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/NI.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/NL.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/NO.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/OM.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/PA.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/PE.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/PG.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/PK.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/PL.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/PT.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/PY.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/QA.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/RO.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/RU.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/RW.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/SA.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/SE.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/SG.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/SL.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/SN.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/SO.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/SV.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/TD.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/TJ.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/TL.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/TR.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/TZ.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/UA.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/US.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/VE.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/VN.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/YE.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/blog_page8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/blog_page8_black.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/fonts/fontawesome-webfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/fonts/fontawesome-webfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/fonts/fontawesome-webfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-datepicker.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-table.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/ct-navbar.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/ct-navbar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/examples.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/fonts/fontawesome-webfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/fresh-bootstrap-table.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/get-shit-done.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/gsdk-bootstrapswitch.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/gsdk-checkbox.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/gsdk-morphing.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/gsdk-radio.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/gsdk.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/jquery-1.11.2.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/jquery-ui-1.10.4.custom.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/jquery.tagsinput.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/login-register.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/login-register.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/styles.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/user-list-actions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages_ro.properties" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages_ro.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/user-list-actions.js" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/user-list-actions.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -177,11 +53,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user-list.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user-list.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.51335657">
-              <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
+            <state vertical-scroll-proportion="-21.346153">
+              <caret line="45" column="158" selection-start-line="45" selection-start-column="158" selection-end-line="45" selection-end-column="158" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap-table.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-table.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33411214">
+              <caret line="923" column="73" selection-start-line="923" selection-start-column="62" selection-end-line="923" selection-end-column="73" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user-list-actions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/user-list-actions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -190,8 +86,8 @@
       <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.769231">
-              <caret line="27" column="135" selection-start-line="27" selection-start-column="135" selection-end-line="27" selection-end-column="135" />
+            <state vertical-scroll-proportion="-24.615385">
+              <caret line="63" column="43" selection-start-line="63" selection-start-column="43" selection-end-line="63" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -237,7 +133,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/bbcv.webapp/src/test/java/ro/leje/AbstractWebAppTest.java" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/you-are-invited.html" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/test/java/ro/leje/service/CustomUserDetailsServiceTest.java" />
@@ -284,8 +179,9 @@
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/layout/admin.html" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin-list.html" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/util/ViewConstants.java" />
-        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java" />
+        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties" />
+        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/user-list-actions.js" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html" />
       </list>
@@ -1002,10 +898,6 @@
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1331,21 +1223,21 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="293" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="291" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="293" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="291" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="293" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="291" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="967" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="960" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="293" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="291" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="292" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="290" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="293" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="291" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="968" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="961" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
   </component>
   <component name="RecentsManager">
@@ -1863,7 +1755,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441633953517</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="moved static resources to the assets subdirectory; refactored the admin dashboard as a Thymeleaf layout template; refactored the user-list page to use the admin layout">
+      <created>1441634945734</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1441634945734</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1887,10 +1785,10 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32442397" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15668203" sideWeight="0.4946695" order="2" side_tool="false" content_ui="tabs" x="40" y="155" width="1299" height="518" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15852535" sideWeight="0.4946695" order="2" side_tool="false" content_ui="tabs" x="40" y="155" width="1299" height="518" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32995737" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32995737" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1969,24 +1867,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties">
-      <provider selected="true" editor-type-id="ResourceBundle">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/test/java/ro/leje/rest/UserServiceConsumerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/rest/UserServiceConsumer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2258,13 +2138,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/config/WebSecurityConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23186344">
@@ -2311,6 +2184,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties">
       <provider selected="true" editor-type-id="ResourceBundle">
         <state />
@@ -2322,26 +2203,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java">
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.41463414">
+          <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.769231">
-          <caret line="27" column="135" selection-start-line="27" selection-start-column="135" selection-end-line="27" selection-end-column="135" />
+        <state vertical-scroll-proportion="-24.615385">
+          <caret line="63" column="43" selection-start-line="63" selection-start-column="43" selection-end-line="63" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/user-list-actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51335657">
-          <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
+        <state vertical-scroll-proportion="-21.346153">
+          <caret line="45" column="158" selection-start-line="45" selection-start-column="158" selection-end-line="45" selection-end-column="158" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33411214">
+          <caret line="923" column="73" selection-start-line="923" selection-start-column="62" selection-end-line="923" selection-end-column="73" />
           <folding />
         </state>
       </provider>
