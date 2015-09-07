@@ -1,0 +1,7 @@
+.separator {
+    content: "Separator";
+    color: #FFF;
+    display: block;
+    width: 100%;
+    padding: 20px;
+}

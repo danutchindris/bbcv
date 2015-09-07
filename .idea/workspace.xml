@@ -1,155 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="250f1c6f-687d-4928-a9b2-d1528ea22e45" name="Default" comment="some work on the user and role services; unit tests for these services">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\css\bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\css\ct-navbar.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\css\examples.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\css\fresh-bootstrap-table.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\css\gsdk.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\css\login-register.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\css\pe-icon-7-stroke.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\css\styles.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\fonts\FontAwesome.otf" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\fonts\Pe-icon-7-stroke.eot" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\fonts\Pe-icon-7-stroke.svg" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\fonts\Pe-icon-7-stroke.ttf" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\fonts\Pe-icon-7-stroke.woff" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\fonts\fontawesome-webfont.eot" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\fonts\fontawesome-webfont.svg" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\fonts\fontawesome-webfont.ttf" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\fonts\fontawesome-webfont.woff" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\bible-bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\bible-logo.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\blog_page8.jpg" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\blog_page8_black.jpg" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\AD.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\AE.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\AG.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\AM.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\AR.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\AT.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\AU.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\BE.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\BF.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\BG.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\BO.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\BR.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\CA.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\CD.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\CG.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\CH.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\CL.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\CM.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\CN.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\CO.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\CZ.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\DE.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\DJ.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\DK.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\DZ.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\EE.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\EG.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\ES.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\FI.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\FR.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\GA.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\GB.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\GM.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\GT.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\HN.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\HT.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\HU.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\ID.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\IE.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\IL.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\IN.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\IQ.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\IR.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\IT.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\JM.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\JO.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\JP.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\KG.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\KN.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\KP.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\KR.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\KW.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\KZ.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\LA.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\LB.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\LC.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\LS.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\LU.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\LV.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\MG.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\MK.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\ML.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\MM.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\MT.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\MX.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\NA.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\NE.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\NG.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\NI.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\NL.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\NO.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\OM.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\PA.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\PE.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\PG.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\PK.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\PL.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\PT.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\PY.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\QA.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\RO.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\RU.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\RW.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\SA.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\SE.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\SG.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\SL.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\SN.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\SO.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\SV.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\TD.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\TJ.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\TL.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\TR.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\TZ.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\UA.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\US.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\VE.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\VN.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\images\flags\YE.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\bootstrap-datepicker.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\bootstrap-select.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\bootstrap-table.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\chartist.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\ct-navbar.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\get-shit-done.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\gsdk-bootstrapswitch.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\gsdk-checkbox.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\gsdk-morphing.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\gsdk-radio.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\jquery-1.10.2.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\jquery-1.11.2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\jquery-ui-1.10.4.custom.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\jquery.tagsinput.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\login-register.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\static\js\user-list-actions.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\danut\projects\bbcv\bbcv.webapp\src\main\resources\templates\admin-list.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/util/ViewConstants.java" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/util/ViewConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-select.js" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-select.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages_ro.properties" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages_ro.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/pe-icon-7-stroke.css" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/pe-icon-7-stroke.css" />
+    <list default="true" id="250f1c6f-687d-4928-a9b2-d1528ea22e45" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/AD.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/AE.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/AG.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/AM.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/AR.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/AT.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/AU.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/BE.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/BF.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/BG.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/BO.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/BR.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CA.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CD.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CG.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CH.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CL.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CM.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CN.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CO.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/CZ.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/DE.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/DJ.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/DK.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/DZ.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/EE.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/EG.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/ES.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/FI.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/FR.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/fonts/FontAwesome.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/GA.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/GB.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/GM.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/GT.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/HN.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/HT.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/HU.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/ID.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/IE.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/IL.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/IN.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/IQ.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/IR.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/IT.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/JM.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/JO.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/JP.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/KG.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/KN.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/KP.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/KR.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/KW.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/KZ.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/LA.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/LB.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/LC.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/LS.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/LU.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/LV.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/MG.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/MK.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/ML.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/MM.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/MT.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/MX.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/NA.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/NE.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/NG.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/NI.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/NL.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/NO.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/OM.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/PA.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/PE.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/PG.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/PK.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/PL.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/PT.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/PY.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/QA.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/RO.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/RU.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/RW.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/SA.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/SE.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/SG.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/SL.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/SN.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/SO.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/SV.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/TD.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/TJ.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/TL.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/TR.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/TZ.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/UA.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/US.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/VE.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/VN.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/flags/YE.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/blog_page8.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/blog_page8_black.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/fonts/fontawesome-webfont.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/fonts/fontawesome-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/fonts/fontawesome-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-datepicker.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-table.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/bootstrap.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/ct-navbar.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/ct-navbar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/examples.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/fonts/fontawesome-webfont.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/fresh-bootstrap-table.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/get-shit-done.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/gsdk-bootstrapswitch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/gsdk-checkbox.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/gsdk-morphing.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/gsdk-radio.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/gsdk.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/jquery-1.11.2.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/jquery-ui-1.10.4.custom.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/jquery.tagsinput.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/login-register.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/login-register.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/styles.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/user-list-actions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bbcv.iws" />
@@ -176,11 +157,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46597353">
-              <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -196,11 +177,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user-list.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="user-list.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.51335657">
+              <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -209,8 +190,8 @@
       <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="125" selection-start-line="15" selection-start-column="125" selection-end-line="15" selection-end-column="125" />
+            <state vertical-scroll-proportion="-11.769231">
+              <caret line="27" column="135" selection-start-line="27" selection-start-column="135" selection-end-line="27" selection-end-column="135" />
               <folding />
             </state>
           </provider>
@@ -303,10 +284,10 @@
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/layout/admin.html" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin-list.html" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/util/ViewConstants.java" />
-        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties" />
-        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java" />
+        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html" />
+        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html" />
       </list>
     </option>
   </component>
@@ -426,10 +407,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="bbcv" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -989,6 +966,112 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv.webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv.webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fonts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv.webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1774,7 +1857,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441388853472</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="moved static resources to the assets subdirectory; refactored the admin dashboard as a Thymeleaf layout template; refactored the user-list page to use the admin layout">
+      <created>1441633953517</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1441633953517</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1792,11 +1881,13 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32626426" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31874144" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25023696" sideWeight="0.5053305" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32504603" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32442397" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15668203" sideWeight="0.4946695" order="2" side_tool="false" content_ui="tabs" x="40" y="155" width="1299" height="518" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32995737" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1804,15 +1895,13 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32784638" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31874144" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15668203" sideWeight="0.4946695" order="2" side_tool="false" content_ui="tabs" x="40" y="155" width="1299" height="518" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3276515" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32784638" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1858,7 +1947,8 @@
     <MESSAGE value="added a few messages in the resource bundle, adjusted the &quot;You are Invited&quot; page" />
     <MESSAGE value="controllers unit testing; refactoring" />
     <MESSAGE value="some work on the user and role services; unit tests for these services" />
-    <option name="LAST_COMMIT_MESSAGE" value="some work on the user and role services; unit tests for these services" />
+    <MESSAGE value="moved static resources to the assets subdirectory; refactored the admin dashboard as a Thymeleaf layout template; refactored the user-list page to use the admin layout" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved static resources to the assets subdirectory; refactored the admin dashboard as a Thymeleaf layout template; refactored the user-list page to use the admin layout" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1974,6 +2064,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2200,6 +2291,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="103" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2207,6 +2299,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="3.8106852">
           <caret line="217" column="51" selection-start-line="217" selection-start-column="51" selection-end-line="217" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2214,14 +2307,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="125" selection-start-line="15" selection-start-column="125" selection-end-line="15" selection-end-column="125" />
           <folding />
         </state>
       </provider>
@@ -2237,18 +2322,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html">
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java">
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46597353">
-          <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+        <state vertical-scroll-proportion="-11.769231">
+          <caret line="27" column="135" selection-start-line="27" selection-start-column="135" selection-end-line="27" selection-end-column="135" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51335657">
+          <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
           <folding />
         </state>
       </provider>
