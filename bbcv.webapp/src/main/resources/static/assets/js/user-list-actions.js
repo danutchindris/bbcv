@@ -1,5 +1,4 @@
 var $table = $('#fresh-table'),
-    $createUserBtn = $('#createUser'),
     $modal = $('#modal').modal({show: false}),
     $alert = $('.alert').hide(),
     full_screen = false;

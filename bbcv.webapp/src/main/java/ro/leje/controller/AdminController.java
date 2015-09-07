@@ -12,6 +12,7 @@ import ro.leje.util.MappingConstants;
 import ro.leje.util.ViewConstants;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author Danut Chindris
@@ -28,13 +29,24 @@ public class AdminController {
 
     @RequestMapping(value = MappingConstants.USER_LIST, method = RequestMethod.GET)
     public String displayUserList(Model model) {
-        model.addAttribute(USERS, userServiceConsumer.findAll());
+        // model.addAttribute(USERS, userServiceConsumer.findAll());
         return ViewConstants.ADMIN + "/" + ViewConstants.USER_LIST;
+    }
+
+    @RequestMapping(MappingConstants.USER_LIST_JSON)
+    public @ResponseBody List<User> findUsers() {
+        return userServiceConsumer.findAll();
     }
 
     @RequestMapping(value = MappingConstants.USER, method = RequestMethod.POST)
     @ResponseBody
     public Long addUser(@RequestBody User user) {
         return userServiceConsumer.create(user);
+    }
+
+    @RequestMapping(value = MappingConstants.ROLE_LIST, method = RequestMethod.GET)
+    public String displayRoleList(Model model) {
+        // model.addAttribute(ROLES, userServiceConsumer.findAll());
+        return ViewConstants.ADMIN + "/" + ViewConstants.ROLE_LIST;
     }
 }
