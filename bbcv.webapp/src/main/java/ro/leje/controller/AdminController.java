@@ -26,16 +26,10 @@ public class AdminController {
     @Resource
     private UserServiceConsumer userServiceConsumer;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String displayDashboard(Model model) {
-        model.addAttribute(USERS, userServiceConsumer.findAll());
-        return ViewConstants.ADMIN;
-    }
-
     @RequestMapping(value = MappingConstants.USER_LIST, method = RequestMethod.GET)
-    public String usersList(Model model) {
+    public String displayUserList(Model model) {
         model.addAttribute(USERS, userServiceConsumer.findAll());
-        return ViewConstants.USER_LIST;
+        return ViewConstants.ADMIN + "/" + ViewConstants.USER_LIST;
     }
 
     @RequestMapping(value = MappingConstants.USER, method = RequestMethod.POST)

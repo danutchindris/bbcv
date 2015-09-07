@@ -15,7 +15,7 @@ public interface ViewConstants {
 
     // administration related constants
     String ADMIN = "admin";
-    String USER_LIST = "admin-list";
+    String USER_LIST = "user-list";
 
     // shop related constants
     String SHOP = "shop";

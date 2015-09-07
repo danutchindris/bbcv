@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/layout">
+
+<head>
+
+    <link rel="stylesheet" type="text/css" href="../../static/assets/css/fresh-bootstrap-table.css" data-th-href="@{/assets/css/fresh-bootstrap-table.css}" />
+
+    <script type="text/javascript" src="../../static/assets/js/bootstrap-table.js" data-th-src="@{/assets/js/bootstrap-table.js}"></script>
+    <script type="text/javascript" src="../../static/assets/js/user-list-actions.js" data-th-src="@{/assets/js/user-list-actions.js}"></script>
+
+    <title>Users List</title>
+
+</head>
+
+<body>
+
+    <div class="row" layout:fragment="content">
+        <div class="col-md-12">
+            <div class="fresh-table full-color-blue">
+                <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
+                        Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+                -->
+
+                <div class="toolbar">
+                    <button class="create btn btn-default">Create User</button>
+                    <span class="alert"></span>
+                </div>
+
+                <table id="fresh-table"
+                       class="table"
+                       data-toggle="table"
+                       data-show-refresh="true"
+                       data-show-columns="true"
+                       data-search="true"
+                       data-query-params="queryParams"
+                       data-toolbar=".toolbar"
+                       data-pagination="true">
+                    <thead>
+                    <th data-field="id">ID</th>
+                    <th data-field="userName" data-sortable="true">User Name</th>
+                    <th data-field="firstName" data-sortable="true">First Name</th>
+                    <th data-field="lastName" data-sortable="true">Last Name</th>
+                    <th data-field="email" data-sortable="true">Email</th>
+                    <th data-field="actions"
+                        data-align="center"
+                        data-formatter="operateFormatter"
+                        data-events="operateEvents">Actions</th>
+                    </thead>
+                    <tbody>
+                    <tr data-th-each="user : ${users}">
+                        <td data-th-text="${user.id}">1</td>
+                        <td data-th-text="${user.userName}">Dummy User Name</td>
+                        <td data-th-text="${user.firstName}">Dummy First Name</td>
+                        <td data-th-text="${user.lastName}">Dummy Last Name</td>
+                        <td data-th-text="${user.email}">Dummy Email</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>User Name</label>
+                            <input type="text" class="form-control" name="userName" placeholder="User Name" />
+                        </div>
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" name="firstName" placeholder="First Name" />
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" name="lastName" placeholder="Last Name" />
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" class="form-control" name="email" placeholder="Email" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary submit">Submit</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+
+</body>
+
+</html>
