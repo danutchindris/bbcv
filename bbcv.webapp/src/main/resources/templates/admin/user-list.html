@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="../../static/assets/css/fresh-bootstrap-table.css" data-th-href="@{/assets/css/fresh-bootstrap-table.css}" />
 
     <script type="text/javascript" src="../../static/assets/js/bootstrap-table.js" data-th-src="@{/assets/js/bootstrap-table.js}"></script>
+    <script type="text/javascript" src="../../static/assets/js/bootstrap-table-en-US.js" data-th-src="@{/assets/js/bootstrap-table-en-US.js}"></script>
+    <script type="text/javascript" src="../../static/assets/js/bootstrap-table-ro-RO.js" data-th-src="@{/assets/js/bootstrap-table-ro-RO.js}"></script>
 
     <title data-th-text="#{users}">Page Title</title>
 
@@ -24,8 +26,9 @@
                 -->
 
                 <p class="toolbar">
-                    <a class="create btn btn-default">Create Item</a>
+                    <a class="create btn btn-default" data-th-text="#{create.user}">Create Item</a>
                     <span class="alert"></span>
+                    <span data-th-text="${param.lang[0]}" data-th-unless="${param.lang == null}">Test</span>
                 </p>
 
                 <table id="table"
@@ -36,21 +39,22 @@
                        data-query-params="queryParams"
                        data-toolbar=".toolbar"
                        data-striped="true"
-                       data-page-size="10"
-                       data-page-list="[10,25,50,100,ALL]"
+                       data-page-size="5"
+                       data-page-list="[5,10,25,50,100,ALL]"
                        data-pagination="true">
                     <thead>
                     <tr>
-                        <th data-field="id">ID</th>
-                        <th data-field="userName" data-sortable="true">User Name</th>
-                        <th data-field="firstName" data-sortable="true">First Name</th>
-                        <th data-field="lastName" data-sortable="true">Last Name</th>
-                        <th data-field="email" data-sortable="true">Email</th>
-                        <th data-field="enabled" data-formatter="checkboxFormatter">Enabled</th>
+                        <th data-field="id" data-sortable="true" data-th-text="#{id}">ID</th>
+                        <th data-field="userName" data-sortable="true" data-th-text="#{user.name}">User Name</th>
+                        <th data-field="firstName" data-sortable="true" data-th-text="#{first.name}">First Name</th>
+                        <th data-field="lastName" data-sortable="true" data-th-text="#{last.name}">Last Name</th>
+                        <th data-field="email" data-sortable="true" data-th-text="#{email}">Email</th>
+                        <th data-field="enabled" data-formatter="checkboxFormatter" data-th-text="#{enabled}">Enabled</th>
                         <th data-field="action"
                             data-align="center"
                             data-formatter="actionFormatter"
-                            data-events="actionEvents">Action</th>
+                            data-events="actionEvents"
+                            data-th-text="#{action}">Action</th>
                     </tr>
                     </thead>
                 </table>
@@ -97,9 +101,13 @@
     </div><!-- /.modal -->
 
     <script layout:fragment="script">
+        $(function() {
+            $("#li-users").attr("class", "active");
+        });
+
         var API_URL = '/admin/user/list/json';
 
-        var $table = $('#table').bootstrapTable({url: API_URL}),
+        var $table = $('#table').bootstrapTable({url: API_URL, locale: 'ro-RO'}),
             $modal = $('#modal').modal({show: false}),
             $alert = $('.alert').hide();
 
