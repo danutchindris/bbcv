@@ -46,6 +46,7 @@
                         <th data-field="firstName" data-sortable="true">First Name</th>
                         <th data-field="lastName" data-sortable="true">Last Name</th>
                         <th data-field="email" data-sortable="true">Email</th>
+                        <th data-field="enabled" data-formatter="checkboxFormatter">Enabled</th>
                         <th data-field="action"
                             data-align="center"
                             data-formatter="actionFormatter"
@@ -82,6 +83,10 @@
                         <label>Email</label>
                         <input type="text" class="form-control" name="email" placeholder="Email" />
                     </div>
+                    <div class="form-group">
+                        <label>Enabled</label>
+                        <input type="checkbox" class="form-control" name="enabled" placeholder="Enabled" />
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -108,7 +113,12 @@
                 var row = {};
 
                 $modal.find('input[name]').each(function () {
-                    row[$(this).attr('name')] = $(this).val();
+                    if ($(this).attr('name') == 'enabled') {
+                        row[$(this).attr('name')] = $(this).is(':checked');
+                    }
+                    else {
+                        row[$(this).attr('name')] = $(this).val();
+                    }
                 });
 
                 // required by Spring Security
@@ -148,6 +158,10 @@
             ].join('');
         }
 
+        function checkboxFormatter(value) {
+            return value ? '<i class="fa fa-check-square-o"></i>' : '<i class="fa fa-square-o"></i>';
+        }
+
         // update and delete events
         window.actionEvents = {
             'click .update': function (e, value, row) {
@@ -172,15 +186,22 @@
 
         function showModal(title, row) {
             row = row || {
-                name: '',
-                stargazers_count: 0,
-                forks_count: 0,
-                description: ''
+                id: 0,
+                userName: '',
+                firstName: '',
+                lastName: '',
+                email: ''
             }; // default row value
             $modal.data('id', row.id);
             $modal.find('.modal-title').text(title);
             for (var name in row) {
                 $modal.find('input[name="' + name + '"]').val(row[name]);
+            }
+            if (row['enabled'] == true) {
+                $modal.find('input[name="enabled"]').attr('checked', true);
+            }
+            else {
+                $modal.find('input[name="enabled"]').attr('checked', false);
             }
             $modal.modal('show');
         }
