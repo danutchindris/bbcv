@@ -2,6 +2,7 @@ package ro.leje.dao;
 
 import org.springframework.stereotype.Repository;
 import ro.leje.model.entity.UserEntity;
+import ro.leje.model.vo.User;
 
 import java.util.List;
 
@@ -16,12 +17,17 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
         return super.create(userEntity);
     }
 
+    @Override
     @SuppressWarnings("unchecked")
-    public List<UserEntity> findAllUsers() {
-        return getCurrentSession().createQuery("from ro.leje.model.entity.UserEntity").list();
+    public List<User> findAll() {
+        return getCurrentSession()
+                .createQuery("select new ro.leje.model.vo.User(u.id, u.userName, u.firstName, u.lastName, u.email, u.enabled) "
+                        + "from ro.leje.model.entity.UserEntity u ")
+                .list();
     }
 
-    public ro.leje.model.vo.User findByUserName(String userName) {
+    @Override
+    public User findByUserName(String userName) {
         StringBuilder query = new StringBuilder();
         query.append("select new ro.leje.model.vo.User(u.id, u.userName, u.password, u.firstName, u.lastName, u.email, u.enabled) ");
         query.append("from ro.leje.model.entity.UserEntity u ");
@@ -34,7 +40,7 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
     }
 
     @Override
-    public ro.leje.model.vo.User findById(long id) {
+    public User findById(long id) {
         StringBuilder query = new StringBuilder();
         query.append("select new ro.leje.model.vo.User(u.id, u.userName, u.password, u.firstName, u.lastName, u.email, u.enabled) ");
         query.append("from ro.leje.model.entity.UserEntity u ");

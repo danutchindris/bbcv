@@ -8,7 +8,6 @@ import ro.leje.model.entity.UserEntity;
 import ro.leje.model.vo.User;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,20 +20,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAO userDAO;
 
+    @Override
     @Transactional
     public List<User> findAll() {
-        List<UserEntity> userEntities = userDAO.findAllUsers();
-        List<User> users = new ArrayList<>();
-        for (UserEntity userEntity : userEntities) {
-            User userVO = new ro.leje.model.vo.User();
-            userVO.setId(userEntity.getId());
-            userVO.setUserName(userEntity.getUserName());
-            userVO.setFirstName(userEntity.getFirstName());
-            userVO.setLastName(userEntity.getLastName());
-            userVO.setEmail(userEntity.getEmail());
-            users.add(userVO);
-        }
-        return users;
+        return userDAO.findAll();
     }
 
     @Override

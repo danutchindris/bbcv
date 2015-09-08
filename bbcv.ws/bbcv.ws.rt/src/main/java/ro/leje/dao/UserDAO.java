@@ -14,7 +14,7 @@ public interface UserDAO {
 
     Long create(UserEntity userEntity);
 
-    List<UserEntity> findAllUsers();
+    List<User> findAll();
 
     User findByUserName(String userName);
 
