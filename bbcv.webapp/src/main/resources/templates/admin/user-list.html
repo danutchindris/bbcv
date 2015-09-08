@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="../../static/assets/css/fresh-bootstrap-table.css" data-th-href="@{/assets/css/fresh-bootstrap-table.css}" />
 
     <script type="text/javascript" src="../../static/assets/js/bootstrap-table.js" data-th-src="@{/assets/js/bootstrap-table.js}"></script>
-    <script type="text/javascript" src="../../static/assets/js/user-list-actions.js" data-th-src="@{/assets/js/user-list-actions.js}"></script>
 
     <title data-th-text="#{users}">Page Title</title>
 
@@ -24,63 +23,22 @@
                         Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
                 -->
 
-                <div class="toolbar">
-                    <button class="create btn btn-default">Create User</button>
+                <p class="toolbar">
+                    <a class="create btn btn-default">Create Item</a>
                     <span class="alert"></span>
-                </div>
+                </p>
 
-                <!-- <table id="fresh-table"
-                       class="table"
-                       data-toggle="table"
+                <table id="table"
                        data-show-refresh="true"
                        data-show-columns="true"
+                       data-show-toggle="true"
                        data-search="true"
                        data-query-params="queryParams"
                        data-toolbar=".toolbar"
-                       data-pagination="true"
                        data-striped="true"
-                       data-show-toggle="true"
-                       data-page-size="8"
-                       data-page-list="[8,10,25,50,100,ALL]"
-                       data-icons-prefix="fa"
-                       data-icons="{refresh:'fa-refresh',toggle:'fa-th-list',columns:'fa-columns',detailOpen:'fa-plus-circle',detailClose:'fa-minus-circle'}">
-                    <thead>
-                    <th data-field="id">ID</th>
-                    <th data-field="userName" data-sortable="true">User Name</th>
-                    <th data-field="firstName" data-sortable="true">First Name</th>
-                    <th data-field="lastName" data-sortable="true">Last Name</th>
-                    <th data-field="email" data-sortable="true">Email</th>
-                    <th data-field="actions"
-                        data-align="center"
-                        data-formatter="operateFormatter"
-                        data-events="operateEvents">Actions</th>
-                    </thead>
-                    <tbody>
-                    <tr data-th-each="user : ${users}">
-                        <td data-th-text="${user.id}">1</td>
-                        <td data-th-text="${user.userName}">Dummy User Name</td>
-                        <td data-th-text="${user.firstName}">Dummy First Name</td>
-                        <td data-th-text="${user.lastName}">Dummy Last Name</td>
-                        <td data-th-text="${user.email}">Dummy Email</td>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                </table> -->
-                <table class="table"
-                       data-toggle="table"
-                       data-url="/admin/user/list/json"
-                       data-show-refresh="true"
-                       data-show-columns="true"
-                       data-search="true"
-                       data-query-params="queryParams"
-                       data-toolbar=".toolbar"
-                       data-pagination="true"
-                       data-striped="true"
-                       data-show-toggle="true"
-                       data-page-size="8"
-                       data-page-list="[8,10,25,50,100,ALL]"
-                       data-icons-prefix="fa"
-                       data-icons="{refresh:'fa-refresh',toggle:'fa-th-list',columns:'fa-columns',detailOpen:'fa-plus-circle',detailClose:'fa-minus-circle'}">
+                       data-page-size="10"
+                       data-page-list="[10,25,50,100,ALL]"
+                       data-pagination="true">
                     <thead>
                     <tr>
                         <th data-field="id">ID</th>
@@ -88,13 +46,14 @@
                         <th data-field="firstName" data-sortable="true">First Name</th>
                         <th data-field="lastName" data-sortable="true">Last Name</th>
                         <th data-field="email" data-sortable="true">Email</th>
-                        <th data-field="actions"
+                        <th data-field="action"
                             data-align="center"
-                            data-formatter="operateFormatter"
-                            data-events="operateEvents">Actions</th>
+                            data-formatter="actionFormatter"
+                            data-events="actionEvents">Action</th>
                     </tr>
                     </thead>
                 </table>
+
             </div>
         </div>
     </div>
@@ -131,6 +90,109 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <script layout:fragment="script">
+        var API_URL = '/admin/user/list/json';
+
+        var $table = $('#table').bootstrapTable({url: API_URL}),
+            $modal = $('#modal').modal({show: false}),
+            $alert = $('.alert').hide();
+
+        $(function () {
+            // create event
+            $('.create').click(function () {
+                showModal($(this).text());
+            });
+
+            $modal.find('.submit').click(function () {
+                var row = {};
+
+                $modal.find('input[name]').each(function () {
+                    row[$(this).attr('name')] = $(this).val();
+                });
+
+                // required by Spring Security
+                var header = $("meta[name='_csrf_header']").attr("content");
+                var token = $("meta[name='_csrf']").attr("content");
+
+                $.ajax({
+                    url: '/admin/user/' + ($modal.data('id') || ''),
+                    type: $modal.data('id') ? 'put' : 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify(row),
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success: function () {
+                        $modal.modal('hide');
+                        $table.bootstrapTable('refresh');
+                        showAlert('The item was ' + ($modal.data('id') ? 'updated' : 'created'), 'success');
+                    },
+                    error: function () {
+                        $modal.modal('hide');
+                        showAlert('The item was not ' + ($modal.data('id') ? 'updated' : 'created'), 'danger');
+                    }
+                });
+            });
+        });
+
+
+        function queryParams(params) {
+            return {};
+        }
+
+        function actionFormatter(value) {
+            return [
+                '<a class="update" href="javascript:" title="Update Item"><i class="fa fa-edit"></i></a>',
+                '<a class="remove" href="javascript:" title="Delete Item"><i class="fa fa-remove"></i></a>',
+            ].join('');
+        }
+
+        // update and delete events
+        window.actionEvents = {
+            'click .update': function (e, value, row) {
+                showModal($(this).attr('title'), row);
+            },
+            'click .remove': function (e, value, row) {
+                if (confirm('Are you sure to delete this item?')) {
+                    $.ajax({
+                        url: API_URL + row.id,
+                        type: 'delete',
+                        success: function () {
+                            $table.bootstrapTable('refresh');
+                            showAlert('Delete item successful!', 'success');
+                        },
+                        error: function () {
+                            showAlert('Delete item error!', 'danger');
+                        }
+                    })
+                }
+            }
+        };
+
+        function showModal(title, row) {
+            row = row || {
+                name: '',
+                stargazers_count: 0,
+                forks_count: 0,
+                description: ''
+            }; // default row value
+            $modal.data('id', row.id);
+            $modal.find('.modal-title').text(title);
+            for (var name in row) {
+                $modal.find('input[name="' + name + '"]').val(row[name]);
+            }
+            $modal.modal('show');
+        }
+
+        function showAlert(title, type) {
+            $alert.attr('class', 'alert alert-' + type || 'success')
+                  .html('<i class="glyphicon glyphicon-check"></i> ' + title).show();
+            setTimeout(function () {
+                $alert.hide();
+            }, 3000);
+        }
+    </script>
 </body>
 
 </html>
