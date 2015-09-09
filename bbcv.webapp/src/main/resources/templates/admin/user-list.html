@@ -21,14 +21,14 @@
     <div class="row" layout:fragment="content">
         <div class="col-md-12">
             <div class="fresh-table full-color-blue">
-                <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
-                        Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+                <!--
+                    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
+                    Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
                 -->
 
                 <p class="toolbar">
                     <a class="create btn btn-default" data-th-text="#{create.user}">Create Item</a>
                     <span class="alert"></span>
-                    <span data-th-text="${param.lang[0]}" data-th-unless="${param.lang == null}">Test</span>
                 </p>
 
                 <table id="table"
@@ -72,44 +72,80 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>User Name</label>
-                        <input type="text" class="form-control" name="userName" placeholder="User Name" />
+                        <label data-th-text="#{user.name}">User Name</label>
+                        <input type="text" class="form-control" name="userName" placeholder="User Name" data-th-attr="placeholder=#{user.name}" />
                     </div>
                     <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" class="form-control" name="firstName" placeholder="First Name" />
+                        <label data-th-text="#{first.name}">First Name</label>
+                        <input type="text" class="form-control" name="firstName" placeholder="First Name" data-th-attr="placeholder=#{first.name}" />
                     </div>
                     <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" name="lastName" placeholder="Last Name" />
+                        <label data-th-text="#{last.name}">Last Name</label>
+                        <input type="text" class="form-control" name="lastName" placeholder="Last Name" data-th-attr="placeholder=#{last.name}" />
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="text" class="form-control" name="email" placeholder="Email" />
+                        <label data-th-text="#{email}">Email</label>
+                        <input type="text" class="form-control" name="email" placeholder="Email" data-th-attr="placeholder=#{email}" />
                     </div>
                     <div class="form-group">
-                        <label>Enabled</label>
-                        <input type="checkbox" class="form-control" name="enabled" placeholder="Enabled" />
+                        <label data-th-text="#{enabled}">Enabled</label>
+                        <input type="checkbox" class="form-control" name="enabled" placeholder="Enabled" data-th-attr="placeholder=#{enabled}" />
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary submit">Submit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" data-th-text="#{close}">Close</button>
+                    <button type="button" class="btn btn-primary submit" data-th-text="#{apply}">Apply</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <script layout:fragment="script">
+    <div id="delete-modal" class="modal fade" layout:fragment="delete-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary submit" data-th-text="#{yes}">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" data-th-text="#{no}">No</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!--
+        how to include Thymeleaf internationalization within JavaScript code
+        http://blog.florentlim.com/how-to-write-javascript-including-thymeleaf/
+    -->
+
+    <!--
+        how to access the locale associated with the current request
+        http://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html#appendix-a-expression-basic-objects
+    -->
+
+    <script layout:fragment="script" data-th-inline="text">
+    /*<![CDATA[*/
         $(function() {
             $("#li-users").attr("class", "active");
         });
 
         var API_URL = '/admin/user/list/json';
 
-        var $table = $('#table').bootstrapTable({url: API_URL, locale: 'ro-RO'}),
+        var $table = $('#table').bootstrapTable({url: API_URL, locale: '[[${#locale}]]', icons: {
+                            refresh: 'fa fa-refresh',
+                            toggle: 'fa fa-th-list',
+                            columns: 'fa fa-columns',
+                            detailOpen: 'fa fa-plus-circle',
+                            detailClose: 'fa fa-minus-circle'
+                        }}),
             $modal = $('#modal').modal({show: false}),
-            $alert = $('.alert').hide();
+            $alert = $('.alert').hide(),
+            $deleteModal = $('#delete-modal').modal({show: false});
 
         $(function () {
             // create event
@@ -144,16 +180,40 @@
                     success: function () {
                         $modal.modal('hide');
                         $table.bootstrapTable('refresh');
-                        showAlert('The item was ' + ($modal.data('id') ? 'updated' : 'created'), 'success');
+                        showAlert($modal.data('id') ? '[[#{item.updated}]]' : '[[#{item.created}]]', 'success');
                     },
                     error: function () {
                         $modal.modal('hide');
-                        showAlert('The item was not ' + ($modal.data('id') ? 'updated' : 'created'), 'danger');
+                        showAlert($modal.data('id') ? '[[#{item.not.updated}]]' : '[[#{item.not.created}]]', 'danger');
                     }
                 });
             });
-        });
 
+            $deleteModal.find('.submit').click(function () {
+                // required by Spring Security
+                var header = $("meta[name='_csrf_header']").attr("content");
+                var token = $("meta[name='_csrf']").attr("content");
+
+                $.ajax({
+                    url: '/admin/user/' + ($modal.data('id') || ''),
+                    type: 'delete',
+                    contentType: 'application/json',
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success: function () {
+                        $deleteModal.modal('hide');
+                        $table.bootstrapTable('refresh');
+                        showAlert('[[#{item.deleted}]]', 'success');
+                    },
+                    error: function () {
+                        $deleteModal.modal('hide');
+                        showAlert('[[#{item.not.deleted}]]', 'danger');
+                    }
+                });
+            });
+
+        });
 
         function queryParams(params) {
             return {};
@@ -161,8 +221,8 @@
 
         function actionFormatter(value) {
             return [
-                '<a class="update" href="javascript:" title="Update Item"><i class="fa fa-edit"></i></a>',
-                '<a class="remove" href="javascript:" title="Delete Item"><i class="fa fa-remove"></i></a>',
+                '<a class="update" href="javascript:" title="[[#{edit}]]"><i class="fa fa-edit"></i></a>',
+                '<a class="remove" href="javascript:" title="[[#{delete}]]"><i class="fa fa-remove"></i></a>',
             ].join('');
         }
 
@@ -176,19 +236,7 @@
                 showModal($(this).attr('title'), row);
             },
             'click .remove': function (e, value, row) {
-                if (confirm('Are you sure to delete this item?')) {
-                    $.ajax({
-                        url: API_URL + row.id,
-                        type: 'delete',
-                        success: function () {
-                            $table.bootstrapTable('refresh');
-                            showAlert('Delete item successful!', 'success');
-                        },
-                        error: function () {
-                            showAlert('Delete item error!', 'danger');
-                        }
-                    })
-                }
+                showDeleteModal(row);
             }
         };
 
@@ -216,11 +264,17 @@
 
         function showAlert(title, type) {
             $alert.attr('class', 'alert alert-' + type || 'success')
-                  .html('<i class="glyphicon glyphicon-check"></i> ' + title).show();
+                  .html('<i class="fa fa-check-square-o"></i> ' + title).show();
             setTimeout(function () {
                 $alert.hide();
             }, 3000);
         }
+
+        function showDeleteModal(row) {
+            $deleteModal.data('id', row.id);
+            $deleteModal.modal('show');
+        }
+    /*]]>*/
     </script>
 </body>
 

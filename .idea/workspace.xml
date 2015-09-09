@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="250f1c6f-687d-4928-a9b2-d1528ea22e45" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-table-en-US.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-table-ro-RO.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages_ro.properties" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages_ro.properties" />
@@ -67,8 +65,18 @@
       <file leaf-file-name="user-list.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.076555">
-              <caret line="30" column="108" selection-start-line="30" selection-start-column="108" selection-end-line="30" selection-end-column="108" />
+            <state vertical-scroll-proportion="-2.2581143">
+              <caret line="102" column="77" selection-start-line="102" selection-start-column="77" selection-end-line="102" selection-end-column="77" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-21.615385">
+              <caret line="132" column="7" selection-start-line="132" selection-start-column="7" selection-end-line="132" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -161,10 +169,10 @@
         <option value="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/dao/UserDAO.java" />
         <option value="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/service/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/dao/UserDAOImpl.java" />
-        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html" />
-        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-table-ro-RO.js" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html" />
+        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html" />
+        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties" />
       </list>
     </option>
   </component>
@@ -194,9 +202,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="821" />
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1216" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -274,7 +283,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -995,40 +1006,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bbcv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bbcv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bbcv.webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1060,10 +1037,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1383,8 +1356,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1434,7 +1405,7 @@
       <recent name="ro.leje" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Application WebApp (Development)">
+  <component name="RunManager" selected="Application.Application WS (Development)">
     <configuration default="false" name="RoleServiceTest.whenCalledWithValidValuesUpdatePersistsTheNewValues" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1706,6 +1677,38 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <extension name="scalaCoverage" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Specs2RunConfiguration" factoryName="Specs2">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <extension name="scalaCoverage" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -1734,17 +1737,20 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="true" type="executeSpecs" factoryName="Gauge Execution">
-      <setting name="environment" value="" />
-      <setting name="specsToExecute" value="" />
-      <setting name="tags" value="" />
-      <setting name="parallelNodes" value="" />
-      <setting name="execInParallel" value="false" />
-      <setting name="programParameters" value="" />
+    <configuration default="true" type="uTestRunConfiguration" factoryName="utest">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <extension name="scalaCoverage" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
       <setting name="workingDirectory" value="" />
-      <setting name="moduleName" value="" />
-      <envMap />
-      <setting name="rowsRange" value="" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
       <method />
     </configuration>
     <configuration default="false" name="Application WebApp (Development)" type="Application" factoryName="Application">
@@ -1929,7 +1935,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="821" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1216" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1940,10 +1946,10 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32442397" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3552812" sideWeight="0.4946695" order="2" side_tool="false" content_ui="tabs" x="40" y="155" width="1299" height="518" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35391706" sideWeight="0.4946695" order="2" side_tool="false" content_ui="tabs" x="40" y="155" width="1299" height="518" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32904148" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32889125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2030,13 +2036,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bbcv.ws/bbcv.ws.api/src/main/java/ro/leje/model/vo/Role.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="15" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/service/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2242,13 +2241,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-table.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="23.586031">
-          <caret line="923" column="73" selection-start-line="923" selection-start-column="62" selection-end-line="923" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/css/fresh-bootstrap-table.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2358,6 +2350,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-table-ro-RO.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42307693">
+          <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-table-en-US.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="70" selection-start-line="40" selection-start-column="63" selection-end-line="40" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-110.55173">
+          <caret line="390" column="25" selection-start-line="390" selection-start-column="19" selection-end-line="390" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2368,8 +2383,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7535885">
-          <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
+        <state vertical-scroll-proportion="-21.615385">
+          <caret line="132" column="7" selection-start-line="132" selection-start-column="7" selection-end-line="132" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -2385,18 +2400,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/js/bootstrap-table-ro-RO.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42307693">
-          <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.076555">
-          <caret line="30" column="108" selection-start-line="30" selection-start-column="108" selection-end-line="30" selection-end-column="108" />
+        <state vertical-scroll-proportion="-2.2581143">
+          <caret line="102" column="77" selection-start-line="102" selection-start-column="77" selection-end-line="102" selection-end-column="77" />
           <folding />
         </state>
       </provider>
