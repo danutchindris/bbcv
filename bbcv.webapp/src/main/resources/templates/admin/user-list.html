@@ -93,8 +93,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" data-th-text="#{close}">Close</button>
                     <button type="button" class="btn btn-primary submit" data-th-text="#{apply}">Apply</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" data-th-text="#{close}">Close</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -107,9 +107,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title"></h4>
                 </div>
-                <div class="modal-body">
-
-                </div>
+                <div class="modal-body"></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary submit" data-th-text="#{yes}">Yes</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal" data-th-text="#{no}">No</button>
@@ -236,7 +234,7 @@
                 showModal($(this).attr('title'), row);
             },
             'click .remove': function (e, value, row) {
-                showDeleteModal(row);
+                showDeleteModal($(this).attr('title'), '[[#{confirm.delete}]]', row);
             }
         };
 
@@ -270,8 +268,10 @@
             }, 3000);
         }
 
-        function showDeleteModal(row) {
+        function showDeleteModal(title, text, row) {
             $deleteModal.data('id', row.id);
+            $deleteModal.find('.modal-title').text(title);
+            $deleteModal.find('.modal-body').text(text);
             $deleteModal.modal('show');
         }
     /*]]>*/

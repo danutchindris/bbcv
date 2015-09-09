@@ -84,6 +84,27 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span th:text="#{language}">Language</span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li th:each="locale : ${locales}">
+                                    <a href="#" th:href="'?lang=' + ${locale.code}">
+                                        <img src="../../static/assets/img/flags/US.png" th:attr="src=${'/assets/img/flags/' + locale.code + '.png'}" />
+                                        <span th:text="${locale.name}">English (US)</span>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li th:each="locale : ${notAvailableLocales}">
+                                    <a href="#" th:href="'?lang=' + ${locale.code}">
+                                        <img src="../../static/assets/img/flags/US.png" th:attr="src=${'/assets/img/flags/' + locale.code + '.png'}" />
+                                        <span th:text="${locale.name}">English (US)</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li>
                             <form th:action="@{/logout}" method="post"></form>
                             <a href="#" onclick="document.forms[0].submit();" th:text="#{logout}">Log Out</a>

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ro.leje.delegate.LanguageDelegate;
 import ro.leje.model.vo.User;
 import ro.leje.rest.UserServiceConsumer;
 import ro.leje.util.MappingConstants;
@@ -25,11 +26,15 @@ public class AdminController {
     private static final String USERS = "users";
 
     @Resource
+    private LanguageDelegate languageDelegate;
+
+    @Resource
     private UserServiceConsumer userServiceConsumer;
 
     @RequestMapping(value = MappingConstants.USER_LIST, method = RequestMethod.GET)
     public String displayUserList(Model model) {
-        // model.addAttribute(USERS, userServiceConsumer.findAll());
+        languageDelegate.addAvailableLanguages(model);
+        languageDelegate.addNotAvailableLanguages(model);
         return ViewConstants.ADMIN + "/" + ViewConstants.USER_LIST;
     }
 
