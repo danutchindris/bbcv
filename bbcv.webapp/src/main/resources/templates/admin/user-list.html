@@ -76,6 +76,10 @@
                         <input type="text" class="form-control" name="userName" placeholder="User Name" data-th-attr="placeholder=#{user.name}" />
                     </div>
                     <div class="form-group">
+                        <label data-th-text="#{password}">Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Password" data-th-attr="placeholder=#{password}" />
+                    </div>
+                    <div class="form-group">
                         <label data-th-text="#{first.name}">First Name</label>
                         <input type="text" class="form-control" name="firstName" placeholder="First Name" data-th-attr="placeholder=#{first.name}" />
                     </div>
@@ -242,6 +246,7 @@
             row = row || {
                 id: 0,
                 userName: '',
+                password: '',
                 firstName: '',
                 lastName: '',
                 email: ''

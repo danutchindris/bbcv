@@ -51,6 +51,7 @@ public class UserServiceConsumerImpl implements UserServiceConsumer {
 
     @Override
     public Long create(User user) {
-        return null;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForObject(serviceSettings.getUser(), user, Long.class);
     }
 }

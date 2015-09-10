@@ -1,5 +1,6 @@
 package ro.leje.controller;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +32,9 @@ public class AdminController {
     @Resource
     private UserServiceConsumer userServiceConsumer;
 
+    @Resource
+    PasswordEncoder passwordEncoder;
+
     @RequestMapping(value = MappingConstants.USER_LIST, method = RequestMethod.GET)
     public String displayUserList(Model model) {
         languageDelegate.addAvailableLanguages(model);
@@ -46,6 +50,9 @@ public class AdminController {
     @RequestMapping(value = MappingConstants.USER, method = RequestMethod.POST)
     @ResponseBody
     public Long addUser(@RequestBody User user) {
+        if (user != null && user.getPassword() != null) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         return userServiceConsumer.create(user);
     }
 

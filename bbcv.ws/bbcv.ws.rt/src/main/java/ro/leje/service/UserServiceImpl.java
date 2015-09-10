@@ -45,13 +45,15 @@ public class UserServiceImpl implements UserService {
         Validate.notNull(user, "Null user object not allowed");
         Validate.notEmpty(user.getUserName(), "Null or empty user name not allowed");
         Validate.notEmpty(user.getPassword(), "Null or empty password not allowed");
-        Validate.notEmpty(user.getUserName(), "Null or empty email not allowed");
+        Validate.notEmpty(user.getEmail(), "Null or empty email not allowed");
+        Validate.notNull(user.getEnabled(), "Null enabled flag not allowed");
         UserEntity userEntity = new UserEntity();
         userEntity.setUserName(user.getUserName());
         userEntity.setPassword(user.getPassword());
         userEntity.setFirstName(user.getFirstName());
         userEntity.setLastName(user.getLastName());
         userEntity.setEmail(user.getEmail());
+        userEntity.setEnabled(user.getEnabled());
         return userDAO.create(userEntity);
     }
 }

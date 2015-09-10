@@ -43,7 +43,7 @@ public class User implements Serializable, Comparable<User> {
 
     private String email;
 
-    private Boolean enabled;
+    private Boolean enabled = false;
 
     public User() {
     }
