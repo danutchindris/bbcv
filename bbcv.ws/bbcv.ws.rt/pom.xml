@@ -17,6 +17,8 @@
         <tomcat.dbcp.version>7.0.63</tomcat.dbcp.version>
         <mysql.connector.java.version>5.1.36</mysql.connector.java.version>
         <org.springframework.version>4.1.7.RELEASE</org.springframework.version>
+        <commons-lang3.version>3.1</commons-lang3.version>
+        <gson.version>2.3.1</gson.version>
     </properties>
     <dependencies>
         <dependency>
@@ -57,12 +59,12 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.1</version>
+            <version>${commons-lang3.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.3.1</version>
+            <version>${gson.version}</version>
         </dependency>
 
     </dependencies>

@@ -13,6 +13,7 @@
     <packaging>jar</packaging>
     <name>Web Application</name>
     <properties>
+        <guava.version>18.0</guava.version>
     </properties>
     <dependencies>
         <dependency>
@@ -46,5 +47,10 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
         </dependency>-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
     </dependencies>
 </project>

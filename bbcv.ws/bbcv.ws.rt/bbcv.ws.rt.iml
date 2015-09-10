@@ -33,7 +33,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.4.6" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.4.6" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-validator:5.1.3.Final" level="project" />
-    <orderEntry type="library" name="Maven: javax.validation:validation-api:1.1.0.Final" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml:classmate:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-core:4.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:4.1.7.RELEASE" level="project" />
@@ -54,6 +53,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:4.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.1.7.RELEASE" level="project" />
     <orderEntry type="module" module-name="bbcv.ws.api" />
+    <orderEntry type="library" name="Maven: javax.validation:validation-api:1.1.0.Final" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:4.3.10.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.1.3.GA" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging-annotations:1.2.0.Beta1" level="project" />

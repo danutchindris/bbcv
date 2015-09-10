@@ -3,7 +3,11 @@ package ro.leje.model.vo;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ComparisonChain;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -33,6 +37,9 @@ public class User implements Serializable, Comparable<User> {
 
     private long id;
 
+    @NotNull(message = "{error.user.name.null}")
+    @NotEmpty(message = "{error.user.name.empty}")
+    @Size(min = 3, max = 20, message = "{error.user.name.size}")
     private String userName;
 
     private String password;
@@ -41,6 +48,7 @@ public class User implements Serializable, Comparable<User> {
 
     private String lastName;
 
+    @Email(message = "{error.email}")
     private String email;
 
     private Boolean enabled = false;
