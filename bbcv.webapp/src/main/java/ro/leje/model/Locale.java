@@ -7,14 +7,16 @@ package ro.leje.model;
 public class Locale {
 
     private String code;
+    private String country;
     private String name;
     private boolean soon;
 
     public Locale() {
     }
 
-    public Locale(String code, String name, boolean soon) {
+    public Locale(String code, String country, String name, boolean soon) {
         this.code = code;
+        this.country = country;
         this.name = name;
         this.soon = soon;
     }
@@ -25,6 +27,14 @@ public class Locale {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getName() {

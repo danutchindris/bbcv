@@ -92,15 +92,15 @@
                             <ul class="dropdown-menu">
                                 <li th:each="locale : ${locales}">
                                     <a href="#" th:href="'?lang=' + ${locale.code}">
-                                        <img src="../../static/assets/img/flags/US.png" th:attr="src=${'/assets/img/flags/' + locale.code + '.png'}" />
-                                        <span th:text="${locale.name}">English (US)</span>
+                                        <img src="../../static/assets/img/flags/US.png" th:attr="src=${'/assets/img/flags/' + locale.country + '.png'}" />
+                                        <span th:text="${locale.name}">English</span>
                                     </a>
                                 </li>
                                 <li class="divider"></li>
                                 <li th:each="locale : ${notAvailableLocales}">
                                     <a href="#" th:href="'?lang=' + ${locale.code}">
-                                        <img src="../../static/assets/img/flags/US.png" th:attr="src=${'/assets/img/flags/' + locale.code + '.png'}" />
-                                        <span th:text="${locale.name}">English (US)</span>
+                                        <img src="../../static/assets/img/flags/US.png" th:attr="src=${'/assets/img/flags/' + locale.country + '.png'}" />
+                                        <span th:text="${locale.name}">English</span>
                                     </a>
                                 </li>
                             </ul>

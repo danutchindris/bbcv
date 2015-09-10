@@ -17,18 +17,18 @@ public class LanguageDelegate {
 
     public void addAvailableLanguages(Model model) {
         List<Locale> locales = Arrays.asList(
-                new Locale("US", "English", false),
-                new Locale("RO", "Română", false)
+                new Locale("EN", "US", "English", false),
+                new Locale("RO", "RO", "Română", false)
         );
         model.addAttribute("locales", locales);
     }
 
     public void addNotAvailableLanguages(Model model) {
         List<Locale> notAvailablelocales = Arrays.asList(
-                new Locale("DE", "Deutsch", true),
-                new Locale("ES", "Español", true),
-                new Locale("FR", "Français", true),
-                new Locale("IT", "Italiano", true)
+                new Locale("DE", "DE", "Deutsch", true),
+                new Locale("ES", "ES", "Español", true),
+                new Locale("FR", "FR", "Français", true),
+                new Locale("IT", "IT", "Italiano", true)
         );
         model.addAttribute("notAvailableLocales", notAvailablelocales);
     }
