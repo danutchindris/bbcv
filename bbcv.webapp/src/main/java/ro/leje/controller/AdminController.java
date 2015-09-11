@@ -1,5 +1,6 @@
 package ro.leje.controller;
 
+import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,12 +13,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ro.leje.delegate.LanguageDelegate;
 import ro.leje.model.vo.User;
 import ro.leje.rest.UserServiceConsumer;
-import ro.leje.util.JsonResponse;
+import ro.leje.util.ErrorMessage;
+import ro.leje.util.ValidationResponse;
 import ro.leje.util.MappingConstants;
 import ro.leje.util.ViewConstants;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +34,9 @@ import java.util.Map;
 public class AdminController {
 
     private static final String USERS = "users";
+
+    @Resource
+    private MessageSource messages;
 
     @Resource
     private LanguageDelegate languageDelegate;
@@ -58,30 +64,29 @@ public class AdminController {
     // http://dtr-trading.blogspot.ro/2014/04/spring-mvc-4-spring-security-32-part-3.html
 
     @RequestMapping(value = MappingConstants.USER, method = RequestMethod.POST)
-    @ResponseBody
-    public JsonResponse addUser(@RequestBody @Valid User user, BindingResult bindingResult) {
+    public @ResponseBody ValidationResponse addUser(@RequestBody @Valid User user, BindingResult bindingResult) {
         if (user != null && user.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
-        JsonResponse jsonResponse = new JsonResponse();
+        ValidationResponse validationResponse = new ValidationResponse();
         if(bindingResult.hasErrors()) {
-            Map<String, String> errors = new HashMap<>();
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+            List<ErrorMessage> errorMessages = new ArrayList<>();
             for (FieldError fieldError: fieldErrors) {
                 String[] resolvedMessageCodes = bindingResult.resolveMessageCodes(fieldError.getCode());
-                //String resolvedMessageCode = resolvedMessageCodes[0];
-                //String message = messages.getMessage(string + "."
-                // + fieldError.getField(), new Object[]{fieldError.getRejectedValue()}, null);
-                //errors.put(fieldError.getField(), message);
+                String resolvedMessageCode = resolvedMessageCodes[0];
+                String message = messages.getMessage(resolvedMessageCode + "."
+                        + fieldError.getField(), new Object[]{fieldError.getRejectedValue()}, null);
+                //errorMessages.add(fieldError.getField(), message);
             }
-            jsonResponse.setErrorsMap(errors);
-            jsonResponse.setStatus("ERROR");
+            validationResponse.setErrorMessageList(errorMessages);
+            validationResponse.setStatus("FAILURE");
         }
         else {
             userServiceConsumer.create(user);
-            jsonResponse.setStatus("SUCCESS");
+            validationResponse.setStatus("SUCCESS");
         }
-        return jsonResponse;
+        return validationResponse;
     }
 
     @RequestMapping(value = MappingConstants.ROLE_LIST, method = RequestMethod.GET)

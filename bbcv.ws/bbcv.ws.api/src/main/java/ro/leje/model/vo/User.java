@@ -37,7 +37,6 @@ public class User implements Serializable, Comparable<User> {
 
     private long id;
 
-    @NotNull(message = "{error.user.name.null}")
     @NotEmpty(message = "{error.user.name.empty}")
     @Size(min = 3, max = 20, message = "{error.user.name.size}")
     private String userName;
