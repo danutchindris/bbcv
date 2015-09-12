@@ -6,7 +6,6 @@ import com.google.common.collect.ComparisonChain;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -37,8 +36,8 @@ public class User implements Serializable, Comparable<User> {
 
     private long id;
 
-    @NotEmpty(message = "{error.user.name.empty}")
     @Size(min = 3, max = 20, message = "{error.user.name.size}")
+    @NotEmpty(message = "{error.user.name.empty}")
     private String userName;
 
     private String password;

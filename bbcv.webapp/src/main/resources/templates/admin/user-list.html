@@ -71,27 +71,27 @@
                     <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div id="userNameFormGroup" class="form-group">
                         <label data-th-text="#{user.name}">User Name</label>
                         <input type="text" class="form-control" name="userName" placeholder="User Name" data-th-attr="placeholder=#{user.name}" />
                     </div>
-                    <div class="form-group">
+                    <div id="passwordFormGroup" class="form-group">
                         <label data-th-text="#{password}">Password</label>
                         <input type="password" class="form-control" name="password" placeholder="Password" data-th-attr="placeholder=#{password}" />
                     </div>
-                    <div class="form-group">
+                    <div id="firstNameFormGroup" class="form-group">
                         <label data-th-text="#{first.name}">First Name</label>
                         <input type="text" class="form-control" name="firstName" placeholder="First Name" data-th-attr="placeholder=#{first.name}" />
                     </div>
-                    <div class="form-group">
+                    <div id="lastNameFormGroup" class="form-group">
                         <label data-th-text="#{last.name}">Last Name</label>
                         <input type="text" class="form-control" name="lastName" placeholder="Last Name" data-th-attr="placeholder=#{last.name}" />
                     </div>
-                    <div class="form-group">
+                    <div id="emailFormGroup" class="form-group">
                         <label data-th-text="#{email}">Email</label>
                         <input type="text" class="form-control" name="email" placeholder="Email" data-th-attr="placeholder=#{email}" />
                     </div>
-                    <div class="form-group">
+                    <div id="enabledFormGroup" class="form-group">
                         <label data-th-text="#{enabled}">Enabled</label>
                         <input type="checkbox" class="form-control" name="enabled" placeholder="Enabled" data-th-attr="placeholder=#{enabled}" />
                     </div>
@@ -179,12 +179,28 @@
                     beforeSend: function(xhr) {
                         xhr.setRequestHeader(header, token);
                     },
-                    success: function () {
-                        $modal.modal('hide');
-                        $table.bootstrapTable('refresh');
-                        showAlert($modal.data('id') ? '[[#{item.updated}]]' : '[[#{item.created}]]', 'success');
+                    success: function (result) {
+                        $('.form-group').removeClass('has-error');
+                        $('.help-block').empty();
+                        if (result.status == "SUCCESS") {
+                            $modal.modal('hide');
+                            $table.bootstrapTable('refresh');
+                            showAlert($modal.data('id') ? '[[#{item.updated}]]' : '[[#{item.created}]]', 'success');
+                        }
+                        else if (result.status == "FAILURE") {
+                            for (var i = 0; i < result.errorMessageList.length; i++) {
+                                var errorMessage = result.errorMessageList[i];
+                                var $formGroup = $('#' + errorMessage.fieldName + 'FormGroup');
+                                $formGroup.addClass('has-error');
+                                $formGroup.append('<span class="help-block">' + errorMessage.message + '</span>');
+                            }
+                        }
                     },
                     error: function () {
+                        $modal.modal('hide');
+                        showAlert($modal.data('id') ? '[[#{item.not.updated}]]' : '[[#{item.not.created}]]', 'danger');
+                    },
+                    fail: function() {
                         $modal.modal('hide');
                         showAlert($modal.data('id') ? '[[#{item.not.updated}]]' : '[[#{item.not.created}]]', 'danger');
                     }
@@ -243,6 +259,10 @@
         };
 
         function showModal(title, row) {
+            // remove error messages that it's possible to be previously shown
+            $('.form-group').removeClass('has-error');
+            $('.help-block').empty();
+
             row = row || {
                 id: 0,
                 userName: '',

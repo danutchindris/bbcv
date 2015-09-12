@@ -1,9 +1,4 @@
 spring:
-        messages:
-                  basename: messages
-                  cacheSeconds: -1
-                  encoding: UTF-8
-
         profiles:
                   active: development
 
