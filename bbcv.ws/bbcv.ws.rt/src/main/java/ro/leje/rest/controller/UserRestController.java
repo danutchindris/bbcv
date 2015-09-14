@@ -20,7 +20,7 @@ public class UserRestController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = RestMappings.USER_FIND_ALL, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = RestMappings.FIND_ALL, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ro.leje.model.vo.User> findAll() {
         List<User> users = userService.findAll();
         return users;

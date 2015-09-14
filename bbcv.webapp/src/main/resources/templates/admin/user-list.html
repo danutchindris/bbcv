@@ -93,7 +93,7 @@
                     </div>
                     <div id="enabledFormGroup" class="form-group">
                         <label data-th-text="#{enabled}">Enabled</label>
-                        <input type="checkbox" name="enabled" placeholder="Enabled" data-th-attr="placeholder=#{enabled}" />
+                        <input type="checkbox" name="enabled" />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -241,6 +241,7 @@
             return [
                 '<a class="update" href="javascript:" title="[[#{edit}]]"><i class="fa fa-edit"></i></a>',
                 '<a class="remove" href="javascript:" title="[[#{delete}]]"><i class="fa fa-remove"></i></a>',
+                '<a class="roles" href="javascript:" title="[[#{roles}]]"><i class="fa fa-puzzle-piece"></i></a>',
             ].join('');
         }
 
@@ -255,6 +256,9 @@
             },
             'click .remove': function (e, value, row) {
                 showDeleteModal($(this).attr('title'), '[[#{confirm.delete}]]', row);
+            },
+            'click .roles': function (e, value, row) {
+                alert("Roles");
             }
         };
 

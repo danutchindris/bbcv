@@ -39,7 +39,7 @@ public class UserServiceConsumerImpl implements UserServiceConsumer {
 
     @Override
     public List<User> findAll() {
-        String endpoint = serviceSettings.getUser() + RestMappings.USER_FIND_ALL;
+        String endpoint = serviceSettings.getUser() + RestMappings.FIND_ALL;
         RestTemplate restTemplate = new RestTemplate();
         // http://thespringway.info/spring-web/map-to-list-of-objects-from-json-array-with-resttemplate/
         ParameterizedTypeReference<List<User>> responseType = new ParameterizedTypeReference<List<User>>() {};

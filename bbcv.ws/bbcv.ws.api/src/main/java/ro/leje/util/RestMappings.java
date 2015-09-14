@@ -8,7 +8,7 @@ public interface RestMappings {
 
     String USER = "/user";
 
-    String USER_FIND_ALL = "/findAll";
+    String FIND_ALL = "/findAll";
 
     // we are using a regular expression for the userName path variable lest the value gets truncated
     // for instance, if the path variable is declared as {userName}
@@ -16,4 +16,6 @@ public interface RestMappings {
     String USER_FIND_BY_USER_NAME = "/findByUserName/{userName:.+}";
 
     String USER_FIND_BY_ID = "/findById/{id}";
+
+    String ROLE = "/role";
 }

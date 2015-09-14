@@ -16,7 +16,7 @@ public class RoleDAOImpl extends BaseDAOImpl implements RoleDAO {
     @Override
     @SuppressWarnings("unchecked")
     public List<RoleEntity> findAll() {
-        return getCurrentSession().createQuery("from ro.leje.model.entity.RoleEntity").list();
+        return getCurrentSession().createQuery("from ro.leje.model.entity.RoleEntity order by name").list();
     }
 
     @Override

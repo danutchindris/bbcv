@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ro.leje.delegate.LanguageDelegate;
+import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
+import ro.leje.rest.RoleServiceConsumer;
 import ro.leje.rest.UserServiceConsumer;
 import ro.leje.util.ErrorMessage;
 import ro.leje.util.MappingConstants;
@@ -36,6 +38,9 @@ public class AdminController {
 
     @Resource
     private UserServiceConsumer userServiceConsumer;
+
+    @Resource
+    private RoleServiceConsumer roleServiceConsumer;
 
     @Resource
     PasswordEncoder passwordEncoder;
@@ -78,5 +83,10 @@ public class AdminController {
     public String displayRoleList(Model model) {
         // model.addAttribute(ROLES, userServiceConsumer.findAll());
         return ViewConstants.ADMIN + "/" + ViewConstants.ROLE_LIST;
+    }
+
+    @RequestMapping(MappingConstants.ROLE_LIST_JSON)
+    public @ResponseBody List<Role> findRoles() {
+        return roleServiceConsumer.findAll();
     }
 }
