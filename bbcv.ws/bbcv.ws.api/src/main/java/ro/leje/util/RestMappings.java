@@ -17,5 +17,7 @@ public interface RestMappings {
 
     String USER_FIND_BY_ID = "/findById/{id}";
 
+    String USER_FIND_ROLES = "/role/{id}";
+
     String ROLE = "/role";
 }

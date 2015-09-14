@@ -18,7 +18,9 @@ public interface MappingConstants {
     String ADMIN = "/admin";
     String USER = "/user";
     String USER_LIST = "/user/list";
+    String USER_ROLE_LIST = "/user/role/list/{id}";
     String USER_LIST_JSON = "/user/list/json";
+    String USER_ROLE_LIST_JSON = "/user/role/list/json/{id}";
     String ROLE = "/role";
     String ROLE_LIST = "/role/list";
     String ROLE_LIST_JSON = "/role/list/json";

@@ -1,5 +1,6 @@
 package ro.leje.rest;
 
+import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface UserServiceConsumer {
     List<User> findAll();
 
     Long create(User user);
+
+    List<Role> findRoles(long id);
 }

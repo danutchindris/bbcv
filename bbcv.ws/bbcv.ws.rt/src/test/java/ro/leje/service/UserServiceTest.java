@@ -4,11 +4,11 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import ro.leje.AbstractTest;
+import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 
+import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -24,18 +24,24 @@ public class UserServiceTest extends AbstractTest {
     private final static long TEST_USER_ID = 1L;
     private final static String TEST_USER_USERNAME = "test.user";
     private final static String TEST_USER_FIRSTNAME = "Test";
-    private final static String TEST_USER_LASTNAME = "UserEntity";
+    private final static String TEST_USER_LASTNAME = "User";
     private final static String TEST_USER_EMAIL = "test.user@testuser.app";
 
+    private final static long TEST_USER_WITHOUT_ROLES_ID = 2L;
+
+    private final static long TEST_USER_NOT_EXISTING_ID = Long.MAX_VALUE;
     private final static String TEST_USER_NOT_EXISTING_USERNAME = "not.existing.user";
 
     private final static String TEST_USER_NEW_USERNAME = "test.new.user";
     private final static String TEST_USER_NEW_PASSWORD = "$2a$11$WYWaOD55tFDhUQquHY.RZ.yEW5YS1lGkt7CiqRYAs79Fa6j.hnPaO";
     private final static String TEST_USER_NEW_FIRSTNAME = "Test.New";
-    private final static String TEST_USER_NEW_LASTNAME = "UserEntity.New";
+    private final static String TEST_USER_NEW_LASTNAME = "User.New";
     private final static String TEST_USER_NEW_EMAIL = "test.new.user@testuser.app";
 
-    @Autowired
+    private final static long TEST_ROLE_ID = 1L;
+    private final static String TEST_ROLE_NAME = "admin";
+
+    @Resource
     private UserService service;
 
     @Before
@@ -52,7 +58,7 @@ public class UserServiceTest extends AbstractTest {
     public void whenCalledFindAllReturnsANotEmptyList() {
         List<User> list = service.findAll();
         Assert.assertNotNull("The list shouldn't be null", list);
-        Assert.assertTrue("The list should contain one item", list.size() == 1);
+        Assert.assertTrue("The list should contain two items", list.size() == 2);
     }
 
     @Test
@@ -120,7 +126,7 @@ public class UserServiceTest extends AbstractTest {
         service.create(object);
     }
 
-    @Test(expected = DataIntegrityViolationException.class)
+    @Test(expected = NullPointerException.class)
     public void whenMandatoryEmailIsNotProvidedCreateUserThrowsException() {
         User object = new User();
         object.setUserName(TEST_USER_NEW_USERNAME);
@@ -133,6 +139,29 @@ public class UserServiceTest extends AbstractTest {
     @Test(expected = NullPointerException.class)
     public void whenTheUserObjectIsNotProvidedCreateThrowsException() {
         service.create(null);
+    }
+
+    @Test
+    public void whenExistingUserIdIsProvidedFindRolesReturnsExpectedList() {
+        List<Role> list = service.findRoles(TEST_USER_ID);
+        Assert.assertNotNull("The list shouldn't be null", list);
+        Assert.assertTrue("The list should contain one item", list.size() == 1);
+        Assert.assertEquals("The id is incorrect", TEST_ROLE_ID, list.get(0).getId());
+        Assert.assertEquals("The name is incorrect", TEST_ROLE_NAME, list.get(0).getName());
+    }
+
+    @Test
+    public void whenNotExistingUserIdIsProvidedFindRolesReturnsNotNullList() {
+        List<Role> list = service.findRoles(TEST_USER_NOT_EXISTING_ID);
+        Assert.assertNotNull("The list shouldn't be null", list);
+        Assert.assertTrue("The list should contain zero items", list.size() == 0);
+    }
+
+    @Test
+    public void whenExistingUserWithoutRolesIsProvidedFindRolesReturnsEmptyList() {
+        List<Role> list = service.findRoles(TEST_USER_WITHOUT_ROLES_ID);
+        Assert.assertNotNull("The list shouldn't be null", list);
+        Assert.assertTrue("The list should contain zero items", list.size() == 0);
     }
 
     private void checkUserObjectProperties(User object) {

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.leje.dao.UserDAO;
 import ro.leje.model.entity.UserEntity;
+import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 
 import javax.transaction.Transactional;
@@ -55,5 +56,11 @@ public class UserServiceImpl implements UserService {
         userEntity.setEmail(user.getEmail());
         userEntity.setEnabled(user.getEnabled());
         return userDAO.create(userEntity);
+    }
+
+    @Override
+    @Transactional
+    public List<Role> findRoles(long id) {
+        return userDAO.findRoles(id);
     }
 }

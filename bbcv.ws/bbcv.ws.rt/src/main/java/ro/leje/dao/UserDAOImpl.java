@@ -2,6 +2,7 @@ package ro.leje.dao;
 
 import org.springframework.stereotype.Repository;
 import ro.leje.model.entity.UserEntity;
+import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 
 import java.util.List;
@@ -50,5 +51,15 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
                 .setLong("id", id)
                 .setMaxResults(1)
                 .uniqueResult();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Role> findRoles(long id) {
+        return getCurrentSession()
+                .createQuery("select new ro.leje.model.vo.Role(r.id, r.name) "
+                        + "from ro.leje.model.entity.UserEntity u inner join u.roles r where u.id = :id")
+                .setLong("id", id)
+                .list();
     }
 }

@@ -1,16 +1,17 @@
 package ro.leje.rest.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ro.leje.config.ServiceSettings;
+import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 import ro.leje.rest.UserServiceConsumer;
 import ro.leje.util.RestMappings;
 
+import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +24,10 @@ import java.util.Map;
 @Service
 public class UserServiceConsumerImpl implements UserServiceConsumer {
 
+    private static final String PARAM_ID = "id";
     private static final String PARAM_USER_NAME = "userName";
-    @Autowired
+
+    @Resource
     private ServiceSettings serviceSettings;
 
     @Override
@@ -53,5 +56,19 @@ public class UserServiceConsumerImpl implements UserServiceConsumer {
     public Long create(User user) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForObject(serviceSettings.getUser(), user, Long.class);
+    }
+
+    @Override
+    public List<Role> findRoles(long id) {
+        String endpoint = serviceSettings.getUser() + RestMappings.USER_FIND_ROLES;
+        Map<String, Long> params = new HashMap<>();
+        params.put(PARAM_ID, id);
+        RestTemplate restTemplate = new RestTemplate();
+        // http://thespringway.info/spring-web/map-to-list-of-objects-from-json-array-with-resttemplate/
+        ParameterizedTypeReference<List<Role>> responseType = new ParameterizedTypeReference<List<Role>>() {};
+        ResponseEntity<List<Role>> result = restTemplate.exchange(endpoint,
+                HttpMethod.GET, null, responseType, params);
+        List<Role> list = result.getBody();
+        return list != null ? list : Collections.emptyList();
     }
 }

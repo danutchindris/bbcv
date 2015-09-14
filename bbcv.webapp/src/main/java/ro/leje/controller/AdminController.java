@@ -6,10 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import ro.leje.delegate.LanguageDelegate;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
@@ -33,6 +30,9 @@ import java.util.List;
 @RequestMapping(value = MappingConstants.ADMIN)
 public class AdminController {
 
+    private static final String ID = "id";
+    private static final String ROLES = "roles";
+
     @Resource
     private LanguageDelegate languageDelegate;
 
@@ -52,9 +52,28 @@ public class AdminController {
         return ViewConstants.ADMIN + "/" + ViewConstants.USER_LIST;
     }
 
+    @RequestMapping(value = MappingConstants.USER_ROLE_LIST, method = RequestMethod.GET)
+    public String displayUserRoleList(@PathVariable long id, Model model) {
+        languageDelegate.addAvailableLanguages(model);
+        languageDelegate.addNotAvailableLanguages(model);
+        model.addAttribute(ID, id);
+        model.addAttribute(ROLES, roleServiceConsumer.findAll());
+        return ViewConstants.ADMIN + "/" + ViewConstants.USER_ROLE_LIST;
+    }
+
     @RequestMapping(MappingConstants.USER_LIST_JSON)
     public @ResponseBody List<User> findUsers() {
         return userServiceConsumer.findAll();
+    }
+
+    @RequestMapping(MappingConstants.USER_ROLE_LIST_JSON)
+    public @ResponseBody List<Role> findUserRoles(@PathVariable long id) {
+        return userServiceConsumer.findRoles(id);
+    }
+
+    @RequestMapping(MappingConstants.ROLE_LIST_JSON)
+    public @ResponseBody List<Role> findRoles() {
+        return roleServiceConsumer.findAll();
     }
 
     @RequestMapping(value = MappingConstants.USER, method = RequestMethod.POST)
@@ -83,10 +102,5 @@ public class AdminController {
     public String displayRoleList(Model model) {
         // model.addAttribute(ROLES, userServiceConsumer.findAll());
         return ViewConstants.ADMIN + "/" + ViewConstants.ROLE_LIST;
-    }
-
-    @RequestMapping(MappingConstants.ROLE_LIST_JSON)
-    public @ResponseBody List<Role> findRoles() {
-        return roleServiceConsumer.findAll();
     }
 }

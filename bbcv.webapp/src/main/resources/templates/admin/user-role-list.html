@@ -21,13 +21,10 @@
     <div class="row" layout:fragment="content">
         <div class="col-md-12">
             <div class="fresh-table full-color-blue">
-                <!--
-                    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
-                    Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
-                -->
 
                 <p class="toolbar">
-                    <a class="create btn btn-default" data-th-text="#{create.user}">Create Item</a>
+                    <a class="add btn btn-default" data-th-text="#{add.role}">Add Item</a>
+                    <a class="back btn btn-default" data-th-text="#{back}">Back</a>
                     <span class="alert"></span>
                 </p>
 
@@ -45,11 +42,7 @@
                     <thead>
                     <tr>
                         <th data-field="id" data-sortable="true" data-th-text="#{id}">ID</th>
-                        <th data-field="userName" data-sortable="true" data-th-text="#{user.name}">User Name</th>
-                        <th data-field="firstName" data-sortable="true" data-th-text="#{first.name}">First Name</th>
-                        <th data-field="lastName" data-sortable="true" data-th-text="#{last.name}">Last Name</th>
-                        <th data-field="email" data-sortable="true" data-th-text="#{email}">Email</th>
-                        <th data-field="enabled" data-formatter="checkboxFormatter" data-th-text="#{enabled}">Enabled</th>
+                        <th data-field="name" data-sortable="true" data-th-text="#{name}">Name</th>
                         <th data-field="action"
                             data-align="center"
                             data-formatter="actionFormatter"
@@ -71,29 +64,12 @@
                     <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
-                    <div id="userNameFormGroup" class="form-group">
-                        <label data-th-text="#{user.name}">User Name</label>
-                        <input type="text" class="form-control" name="userName" placeholder="User Name" data-th-attr="placeholder=#{user.name}" />
-                    </div>
-                    <div id="passwordFormGroup" class="form-group">
-                        <label data-th-text="#{password}">Password</label>
-                        <input type="password" class="form-control" name="password" placeholder="Password" data-th-attr="placeholder=#{password}" />
-                    </div>
-                    <div id="firstNameFormGroup" class="form-group">
-                        <label data-th-text="#{first.name}">First Name</label>
-                        <input type="text" class="form-control" name="firstName" placeholder="First Name" data-th-attr="placeholder=#{first.name}" />
-                    </div>
-                    <div id="lastNameFormGroup" class="form-group">
-                        <label data-th-text="#{last.name}">Last Name</label>
-                        <input type="text" class="form-control" name="lastName" placeholder="Last Name" data-th-attr="placeholder=#{last.name}" />
-                    </div>
-                    <div id="emailFormGroup" class="form-group">
-                        <label data-th-text="#{email}">Email</label>
-                        <input type="text" class="form-control" name="email" placeholder="Email" data-th-attr="placeholder=#{email}" />
-                    </div>
-                    <div id="enabledFormGroup" class="form-group">
-                        <label data-th-text="#{enabled}">Enabled</label>
-                        <input type="checkbox" name="enabled" />
+                    <div id="roleFormGroup" class="form-group">
+                        <label data-th-text="#{role}" style="padding-right: 2em;">Item</label>
+                        <select name="roles">
+                            <option value="-1" data-th-text="#{choose.a.role}">Option</option>
+                            <option data-th-each="role : ${roles}" data-th-attr="value=${role.id}" data-th-text="${role.name}">Option</option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -120,23 +96,13 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <!--
-        how to include Thymeleaf internationalization within JavaScript code
-        http://blog.florentlim.com/how-to-write-javascript-including-thymeleaf/
-    -->
-
-    <!--
-        how to access the locale associated with the current request
-        http://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html#appendix-a-expression-basic-objects
-    -->
-
     <script layout:fragment="script" data-th-inline="text">
     /*<![CDATA[*/
         $(function() {
             $("#li-users").attr("class", "active");
         });
 
-        var API_URL = '/admin/user/list/json';
+        var API_URL = '/admin/user/role/list/json/[[${id}]]';
 
         var $table = $('#table').bootstrapTable({url: API_URL, locale: '[[${#locale}]]', icons: {
                             refresh: 'fa fa-refresh',
@@ -151,8 +117,12 @@
 
         $(function () {
             // create event
-            $('.create').click(function () {
+            $('.add').click(function () {
                 showModal($(this).text());
+            });
+
+            $('.back').click(function() {
+                window.location.href = '/admin/user/list';
             });
 
             $modal.find('.submit').click(function () {
@@ -239,26 +209,14 @@
 
         function actionFormatter(value) {
             return [
-                '<a class="update" href="javascript:" title="[[#{edit}]]"><i class="fa fa-edit"></i></a>',
                 '<a class="remove" href="javascript:" title="[[#{delete}]]"><i class="fa fa-remove"></i></a>',
-                '<a class="roles" href="javascript:" title="[[#{roles}]]"><i class="fa fa-puzzle-piece"></i></a>',
             ].join('');
-        }
-
-        function checkboxFormatter(value) {
-            return value ? '<i class="fa fa-check-square-o"></i>' : '<i class="fa fa-square-o"></i>';
         }
 
         // update and delete events
         window.actionEvents = {
-            'click .update': function (e, value, row) {
-                showModal($(this).attr('title'), row);
-            },
             'click .remove': function (e, value, row) {
                 showDeleteModal($(this).attr('title'), '[[#{confirm.delete}]]', row);
-            },
-            'click .roles': function (e, value, row) {
-                window.location.href = '/admin/user/role/list/' + row.id;
             }
         };
 

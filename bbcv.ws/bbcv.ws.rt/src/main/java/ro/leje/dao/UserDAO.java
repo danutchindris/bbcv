@@ -2,6 +2,7 @@ package ro.leje.dao;
 
 
 import ro.leje.model.entity.UserEntity;
+import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface UserDAO {
     User findByUserName(String userName);
 
     User findById(long id);
+
+    List<Role> findRoles(long id);
 }
