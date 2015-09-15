@@ -1,5 +1,6 @@
 package ro.leje.service;
 
+import org.apache.commons.lang3.exception.ContextedRuntimeException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -40,6 +41,8 @@ public class UserServiceTest extends AbstractTest {
 
     private final static long TEST_ROLE_ID = 1L;
     private final static String TEST_ROLE_NAME = "admin";
+
+    private final static long TEST_ROLE_NOT_EXISTING_ID = Long.MAX_VALUE;
 
     @Resource
     private UserService service;
@@ -162,6 +165,49 @@ public class UserServiceTest extends AbstractTest {
         List<Role> list = service.findRoles(TEST_USER_WITHOUT_ROLES_ID);
         Assert.assertNotNull("The list shouldn't be null", list);
         Assert.assertTrue("The list should contain zero items", list.size() == 0);
+    }
+
+    @Test
+    public void whenExistingAssignationIsProvidedIsRoleAssignedReturnsTrue() {
+        Assert.assertTrue("The method should have detected the existing assignation",
+                service.isRoleAssigned(TEST_USER_ID, TEST_ROLE_ID));
+    }
+
+    @Test
+    public void whenNotExistingAssignationIsProvidedIsRoleAssignedReturnsFalse() {
+        Assert.assertTrue("The method should have detected that there is no assignation",
+                !service.isRoleAssigned(TEST_USER_WITHOUT_ROLES_ID, TEST_ROLE_ID));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenNotExistingUserIdIsProvidedIsRoleAssignedThrowsException() {
+        service.isRoleAssigned(TEST_USER_NOT_EXISTING_ID, TEST_ROLE_ID);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenNotExistingRoleIdIsProvidedIsRoleAssignedThrowsException() {
+        service.isRoleAssigned(TEST_USER_ID, TEST_ROLE_NOT_EXISTING_ID);
+    }
+
+    @Test
+    public void whenExistingUserIdAndExistingRoleIdAreProvidedAddRoleReturnsBoolean() {
+        Assert.assertTrue("The method call should have returned 'true'",
+                service.addRole(TEST_USER_WITHOUT_ROLES_ID, TEST_ROLE_ID));
+    }
+
+    @Test(expected = ContextedRuntimeException.class)
+    public void whenAnAlreadyAssignedRoleIdIsProvidedToAnExistingUserAddRoleThrowsException() {
+        service.addRole(TEST_USER_ID, TEST_ROLE_ID);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenNotExistingUserIdIsProvidedAddRoleThrowsException() {
+        service.addRole(TEST_USER_NOT_EXISTING_ID, TEST_ROLE_ID);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenNotExistingRoleIdIsProvidedAddRoleThrowsException() {
+        service.addRole(TEST_USER_ID, TEST_ROLE_NOT_EXISTING_ID);
     }
 
     private void checkUserObjectProperties(User object) {

@@ -33,7 +33,7 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
         query.append("select new ro.leje.model.vo.User(u.id, u.userName, u.password, u.firstName, u.lastName, u.email, u.enabled) ");
         query.append("from ro.leje.model.entity.UserEntity u ");
         query.append("where u.userName = :userName");
-        return (ro.leje.model.vo.User)getCurrentSession()
+        return (User)getCurrentSession()
                 .createQuery(query.toString())
                 .setString("userName", userName)
                 .setMaxResults(1)
@@ -46,7 +46,7 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
         query.append("select new ro.leje.model.vo.User(u.id, u.userName, u.password, u.firstName, u.lastName, u.email, u.enabled) ");
         query.append("from ro.leje.model.entity.UserEntity u ");
         query.append("where u.id = :id");
-        return (ro.leje.model.vo.User)getCurrentSession()
+        return (User)getCurrentSession()
                 .createQuery(query.toString())
                 .setLong("id", id)
                 .setMaxResults(1)
@@ -61,5 +61,17 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
                         + "from ro.leje.model.entity.UserEntity u inner join u.roles r where u.id = :id")
                 .setLong("id", id)
                 .list();
+    }
+
+    @Override
+    public Role findRole(long userId, long roleId) {
+        return (Role)getCurrentSession()
+                .createQuery("select new ro.leje.model.vo.Role(r.id, r.name) "
+                        + "from ro.leje.model.entity.UserEntity u inner join u.roles r where u.id = :id "
+                        + "and r.id = :roleId")
+                .setLong("id", userId)
+                .setLong("roleId", roleId)
+                .setMaxResults(1)
+                .uniqueResult();
     }
 }

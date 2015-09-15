@@ -11,7 +11,7 @@ import java.util.List;
  * @author Danut Chindris
  * @since August 6, 2015
  */
-public interface UserDAO {
+public interface UserDAO extends BaseDAO {
 
     Long create(UserEntity userEntity);
 
@@ -22,4 +22,6 @@ public interface UserDAO {
     User findById(long id);
 
     List<Role> findRoles(long id);
+
+    Role findRole(long userId, long roleId);
 }

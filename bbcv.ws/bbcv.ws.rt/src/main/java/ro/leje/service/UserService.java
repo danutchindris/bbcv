@@ -20,4 +20,8 @@ public interface UserService {
     Long create(User user);
 
     List<Role> findRoles(long id);
+
+    boolean isRoleAssigned(long userId, long roleId);
+
+    boolean addRole(long userId, long roleId);
 }

@@ -1,9 +1,11 @@
 package ro.leje.service;
 
 import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.exception.ContextedRuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.leje.dao.UserDAO;
+import ro.leje.model.entity.RoleEntity;
 import ro.leje.model.entity.UserEntity;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
@@ -20,6 +22,13 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAO userDAO;
+
+    private <T> void validateId(long id, Class<T> clazz) {
+        T entity = userDAO.findEntity(id, clazz);
+        if (entity == null) {
+            throw new IllegalArgumentException("No " + clazz.getName() + " entity found for id: " + id);
+        }
+    }
 
     @Override
     @Transactional
@@ -62,5 +71,27 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public List<Role> findRoles(long id) {
         return userDAO.findRoles(id);
+    }
+
+    @Override
+    @Transactional
+    public boolean isRoleAssigned(long userId, long roleId) {
+        validateId(userId, UserEntity.class);
+        validateId(roleId, RoleEntity.class);
+        return (userDAO.findRole(userId, roleId) != null);
+    }
+
+    @Override
+    @Transactional
+    public boolean addRole(long userId, long roleId) {
+        validateId(userId, UserEntity.class);
+        validateId(roleId, RoleEntity.class);
+        // check if the role is already assigned or not
+        if (isRoleAssigned(userId, roleId)) {
+            throw new ContextedRuntimeException("Role is already assigned")
+                    .addContextValue("userId", userId)
+                    .addContextValue("roleId", roleId);
+        }
+        return true;
     }
 }
