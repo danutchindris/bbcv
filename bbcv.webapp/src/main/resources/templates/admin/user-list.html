@@ -258,7 +258,7 @@
                 showDeleteModal($(this).attr('title'), '[[#{confirm.delete}]]', row);
             },
             'click .roles': function (e, value, row) {
-                window.location.href = '/admin/user/role/list/' + row.id;
+                window.location.href = '/admin/user/' + row.id + '/role/list';
             }
         };
 

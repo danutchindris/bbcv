@@ -102,7 +102,7 @@
             $("#li-users").attr("class", "active");
         });
 
-        var API_URL = '/admin/user/role/list/json/[[${id}]]';
+        var API_URL = '/admin/user/[[${id}]]/role/list/json';
 
         var $table = $('#table').bootstrapTable({url: API_URL, locale: '[[${#locale}]]', icons: {
                             refresh: 'fa fa-refresh',
