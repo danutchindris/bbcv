@@ -26,6 +26,8 @@ public class UserServiceConsumerImpl implements UserServiceConsumer {
 
     private static final String PARAM_ID = "id";
     private static final String PARAM_USER_NAME = "userName";
+    private static final String PARAM_USER_ID = "userId";
+    private static final String PARAM_ROLE_ID = "roleId";
 
     @Resource
     private ServiceSettings serviceSettings;
@@ -70,5 +72,15 @@ public class UserServiceConsumerImpl implements UserServiceConsumer {
                 HttpMethod.GET, null, responseType, params);
         List<Role> list = result.getBody();
         return list != null ? list : Collections.emptyList();
+    }
+
+    @Override
+    public boolean addRole(long userId, long roleId) {
+        String endpoint = serviceSettings.getUser() + RestMappings.USER_ADD_ROLE;
+        Map<String, Long> params = new HashMap<>();
+        params.put(PARAM_USER_ID, userId);
+        params.put(PARAM_ROLE_ID, roleId);
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForObject(endpoint, null, Boolean.class, params);
     }
 }

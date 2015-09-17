@@ -21,6 +21,8 @@ public interface UserService {
 
     List<Role> findRoles(long id);
 
+    Role findRole(long userId, long roleId);
+
     boolean isRoleAssigned(long userId, long roleId);
 
     boolean addRole(long userId, long roleId);

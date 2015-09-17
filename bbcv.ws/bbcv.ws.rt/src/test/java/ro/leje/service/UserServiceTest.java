@@ -168,6 +168,29 @@ public class UserServiceTest extends AbstractTest {
     }
 
     @Test
+    public void whenExistingAssignationIsProvidedFindRoleReturnsExpectedObject() {
+        Role object = service.findRole(TEST_USER_ID, TEST_ROLE_ID);
+        Assert.assertNotNull("The returned object shouldn't be null", object);
+        Assert.assertEquals("The id is incorrect", TEST_ROLE_ID, object.getId());
+        Assert.assertEquals("The name is incorrect", TEST_ROLE_NAME, object.getName());
+    }
+
+    @Test(expected = ContextedRuntimeException.class)
+    public void whenNotExistingAssignationIsProvidedFindRoleThrowsException() {
+        service.findRole(TEST_USER_WITHOUT_ROLES_ID, TEST_ROLE_ID);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenNotExistingUserIdIsProvidedFindRoleThrowsException() {
+        service.findRole(TEST_USER_NOT_EXISTING_ID, TEST_ROLE_ID);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenNotExistingRoleIdIsProvidedFindRoleThrowsException() {
+        service.findRole(TEST_USER_ID, TEST_ROLE_NOT_EXISTING_ID);
+    }
+
+    @Test
     public void whenExistingAssignationIsProvidedIsRoleAssignedReturnsTrue() {
         Assert.assertTrue("The method should have detected the existing assignation",
                 service.isRoleAssigned(TEST_USER_ID, TEST_ROLE_ID));

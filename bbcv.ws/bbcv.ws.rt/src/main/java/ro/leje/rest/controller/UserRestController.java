@@ -47,4 +47,9 @@ public class UserRestController {
     public List<Role> findRoles(@PathVariable long id) {
         return userService.findRoles(id);
     }
+
+    @RequestMapping(value = RestMappings.USER_ADD_ROLE, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody boolean addRole(@PathVariable long userId, @PathVariable long roleId) {
+        return userService.addRole(userId, roleId);
+    }
 }

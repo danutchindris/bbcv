@@ -75,6 +75,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    public Role findRole(long userId, long roleId) {
+        validateId(userId, UserEntity.class);
+        validateId(roleId, RoleEntity.class);
+        Role role = userDAO.findRole(userId, roleId);
+        if (role == null) {
+            throw new ContextedRuntimeException("No user role assignation found")
+                    .addContextValue("userId", userId)
+                    .addContextValue("roleId", roleId);
+        }
+        return role;
+    }
+
+    @Override
+    @Transactional
     public boolean isRoleAssigned(long userId, long roleId) {
         validateId(userId, UserEntity.class);
         validateId(roleId, RoleEntity.class);

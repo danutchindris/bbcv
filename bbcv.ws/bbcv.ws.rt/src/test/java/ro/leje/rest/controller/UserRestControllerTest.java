@@ -75,4 +75,9 @@ public class UserRestControllerTest extends AbstractControllerTest {
         Assert.assertEquals("The expected HTTP status is 200", 200, status);
         Assert.assertTrue("The HTTP response body is expected to be non empty", content.trim().length() > 0);
     }
+
+    @Test
+    public void testAddRole() {
+
+    }
 }

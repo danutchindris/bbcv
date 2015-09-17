@@ -18,4 +18,6 @@ public interface UserServiceConsumer {
     Long create(User user);
 
     List<Role> findRoles(long id);
+
+    boolean addRole(long userId, long roleId);
 }
