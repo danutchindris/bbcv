@@ -69,8 +69,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public List<Role> findRoles(long id) {
-        return userDAO.findRoles(id);
+    public List<Role> findRoles(long userId) {
+        return userDAO.findRoles(userId);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public boolean addRole(long userId, long roleId) {
+    public void addRole(long userId, long roleId) {
         validateId(userId, UserEntity.class);
         validateId(roleId, RoleEntity.class);
         // check if the role is already assigned or not
@@ -106,6 +106,6 @@ public class UserServiceImpl implements UserService {
                     .addContextValue("userId", userId)
                     .addContextValue("roleId", roleId);
         }
-        return true;
+        userDAO.addRole(userId, roleId);
     }
 }

@@ -21,7 +21,9 @@ public interface UserDAO extends BaseDAO {
 
     User findById(long id);
 
-    List<Role> findRoles(long id);
+    List<Role> findRoles(long userId);
 
     Role findRole(long userId, long roleId);
+
+    void addRole(long userId, long roleId);
 }

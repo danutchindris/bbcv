@@ -1,11 +1,13 @@
 package ro.leje.dao;
 
 import org.springframework.stereotype.Repository;
+import ro.leje.model.entity.RoleEntity;
 import ro.leje.model.entity.UserEntity;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Danut Chindris
@@ -73,5 +75,15 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
                 .setLong("roleId", roleId)
                 .setMaxResults(1)
                 .uniqueResult();
+    }
+
+    @Override
+    public void addRole(long userId, long roleId) {
+        UserEntity userEntity = findEntity(userId, UserEntity.class);
+        RoleEntity roleEntity = findEntity(roleId, RoleEntity.class);
+        Set<RoleEntity> userRoles = userEntity.getRoles();
+        userRoles.add(roleEntity);
+        userEntity.setRoles(userRoles);
+        getCurrentSession().update(userEntity);
     }
 }

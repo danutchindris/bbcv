@@ -25,5 +25,5 @@ public interface UserService {
 
     boolean isRoleAssigned(long userId, long roleId);
 
-    boolean addRole(long userId, long roleId);
+    void addRole(long userId, long roleId);
 }
