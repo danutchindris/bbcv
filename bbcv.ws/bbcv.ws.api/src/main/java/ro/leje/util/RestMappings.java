@@ -6,6 +6,8 @@ package ro.leje.util;
  */
 public interface RestMappings {
 
+    String API = "/api";
+
     String USER = "/user";
 
     String FIND_ALL = "/findAll";
@@ -20,5 +22,6 @@ public interface RestMappings {
     String USER_FIND_ROLES = "/findRoles/{id}";
 
     String USER_ADD_ROLE = "/{userId}/role/{roleId}";
+
     String ROLE = "/role";
 }

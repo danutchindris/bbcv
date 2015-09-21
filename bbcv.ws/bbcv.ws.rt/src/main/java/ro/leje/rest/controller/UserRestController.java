@@ -15,7 +15,7 @@ import java.util.List;
  * @since July 11, 2015
  */
 @RestController
-@RequestMapping(RestMappings.USER)
+@RequestMapping(RestMappings.API + RestMappings.USER)
 public class UserRestController {
 
     @Autowired

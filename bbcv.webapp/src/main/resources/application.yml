@@ -13,8 +13,8 @@ server:
 ro:
   leje:
     services:
-      user: "http://localhost:8083/user"
-      role: "http://localhost:8083/role"
+      user: "http://localhost:8083/api/user"
+      role: "http://localhost:8083/api/role"
 
 ---
 
@@ -27,8 +27,8 @@ server:
 ro:
   leje:
     services:
-      user: "http://localhost:8084/user"
-      role: "http://localhost:8084/role"
+      user: "http://localhost:8084/api/user"
+      role: "http://localhost:8084/api/role"
 ---
 
 spring:
@@ -40,5 +40,5 @@ server:
 ro:
   leje:
     services:
-      user: "http://localhost:8083/user"
-      role: "http://localhost:8083/role"
+      user: "http://localhost:8083/api/user"
+      role: "http://localhost:8083/api/role"

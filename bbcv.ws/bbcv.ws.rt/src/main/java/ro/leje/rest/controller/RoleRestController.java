@@ -16,7 +16,7 @@ import java.util.List;
  * @since September 14, 2015
  */
 @RestController
-@RequestMapping(RestMappings.ROLE)
+@RequestMapping(RestMappings.API + RestMappings.ROLE)
 public class RoleRestController {
 
     @Resource

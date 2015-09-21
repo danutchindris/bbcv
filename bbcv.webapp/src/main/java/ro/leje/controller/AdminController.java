@@ -77,7 +77,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = MappingConstants.USER, method = RequestMethod.POST)
-    public @ResponseBody ValidationResponse addUser(@RequestBody @Valid User user, BindingResult bindingResult, Errors errors) {
+    public @ResponseBody ValidationResponse addUser(@RequestBody @Valid User user, BindingResult bindingResult) {
         if (user != null && user.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
@@ -102,5 +102,13 @@ public class AdminController {
     public String displayRoleList(Model model) {
         // model.addAttribute(ROLES, userServiceConsumer.findAll());
         return ViewConstants.ADMIN + "/" + ViewConstants.ROLE_LIST;
+    }
+
+    @RequestMapping(value = MappingConstants.USER_ROLE, method = RequestMethod.POST)
+    public @ResponseBody ValidationResponse addRole(@PathVariable long userId, @PathVariable long roleId) {
+        userServiceConsumer.addRole(userId, roleId);
+        ValidationResponse validationResponse = new ValidationResponse();
+        validationResponse.setStatus("SUCCESS");
+        return validationResponse;
     }
 }

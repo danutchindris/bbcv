@@ -66,7 +66,7 @@
                 <div class="modal-body">
                     <div id="roleFormGroup" class="form-group">
                         <label data-th-text="#{role}" style="padding-right: 2em;">Item</label>
-                        <select name="roles">
+                        <select id="rolesSelect" name="roles">
                             <option value="-1" data-th-text="#{choose.a.role}">Option</option>
                             <option data-th-each="role : ${roles}" data-th-attr="value=${role.id}" data-th-text="${role.name}">Option</option>
                         </select>
@@ -126,26 +126,16 @@
             });
 
             $modal.find('.submit').click(function () {
-                var row = {};
-
-                $modal.find('input[name]').each(function () {
-                    if ($(this).attr('name') == 'enabled') {
-                        row[$(this).attr('name')] = $(this).is(':checked');
-                    }
-                    else {
-                        row[$(this).attr('name')] = $(this).val();
-                    }
-                });
+                var selectedOption = $('#rolesSelect option:selected').attr('value');
 
                 // required by Spring Security
                 var header = $("meta[name='_csrf_header']").attr("content");
                 var token = $("meta[name='_csrf']").attr("content");
 
                 $.ajax({
-                    url: '/admin/user/' + ($modal.data('id') || ''),
-                    type: $modal.data('id') ? 'put' : 'post',
+                    url: '/admin/user/' + $modal.data('id') + '/role/' + selectedOption,
+                    type: 'post',
                     contentType: 'application/json',
-                    data: JSON.stringify(row),
                     beforeSend: function(xhr) {
                         xhr.setRequestHeader(header, token);
                     },
@@ -166,11 +156,11 @@
                             }
                         }
                     },
-                    error: function () {
+                    error: function (result) {
                         $modal.modal('hide');
                         showAlert($modal.data('id') ? '[[#{item.not.updated}]]' : '[[#{item.not.created}]]', 'danger');
                     },
-                    fail: function() {
+                    fail: function(result) {
                         $modal.modal('hide');
                         showAlert($modal.data('id') ? '[[#{item.not.updated}]]' : '[[#{item.not.created}]]', 'danger');
                     }
@@ -225,25 +215,9 @@
             $('.form-group').removeClass('has-error');
             $('.help-block').empty();
 
-            row = row || {
-                id: 0,
-                userName: '',
-                password: '',
-                firstName: '',
-                lastName: '',
-                email: ''
-            }; // default row value
-            $modal.data('id', row.id);
+            $modal.data('id', '[[${id}]]');
             $modal.find('.modal-title').text(title);
-            for (var name in row) {
-                $modal.find('input[name="' + name + '"]').val(row[name]);
-            }
-            if (row['enabled'] == true) {
-                $modal.find('input[name="enabled"]').attr('checked', true);
-            }
-            else {
-                $modal.find('input[name="enabled"]').attr('checked', false);
-            }
+
             $modal.modal('show');
         }
 

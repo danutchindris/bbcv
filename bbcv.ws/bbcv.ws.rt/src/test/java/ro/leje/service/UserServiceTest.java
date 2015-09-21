@@ -213,9 +213,8 @@ public class UserServiceTest extends AbstractTest {
     }
 
     @Test
-    public void whenExistingUserIdAndExistingRoleIdAreProvidedAddRoleReturnsBoolean() {
-        Assert.assertTrue("The method call should have returned 'true'",
-                service.addRole(TEST_USER_WITHOUT_ROLES_ID, TEST_ROLE_ID));
+    public void whenExistingUserIdAndExistingRoleIdAreProvidedAddRoleThrowsNoException() {
+        service.addRole(TEST_USER_WITHOUT_ROLES_ID, TEST_ROLE_ID);
     }
 
     @Test(expected = ContextedRuntimeException.class)
