@@ -5,112 +5,9 @@
     <title></title>
 </head>
 <body>
-<div id="navbar-full" th:fragment="navigation-bar">
-    <div th:replace="common/login-register-modal :: login-register-modal"></div>
-    <div id="navbar">
-        <!--
-         navbar-default can be changed with navbar-ct-blue navbar-ct-azzure navbar-ct-red navbar-ct-green navbar-ct-orange
-         -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse"
-                            data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/" th:text="#{home.site}">BBCV</a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="javascript:void(0);" data-toggle="search" class="hidden-xs">
-                                <i class="pe-7s-search"></i>
-                                <p th:text="#{home.search}">Search</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/shop" class="dropdown-toggle">
-                                <i class="pe-7s-cart"></i>
-                                <p th:text="#{home.order}">Order</p>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="pe-7s-safe"></i>
-                                <p th:text="#{home.resources}">Resources</p>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/we-believe" th:text="#{home.we.believe}">We Believe</a></li>
-                                <li><a href="/you-are-invited" th:text="#{page.you.are.invited.header}">You are Invited</a></li>
-                                <li><a href="/links" th:text="#{home.links}">Links</a></li>
-                                <li><a href="/contact" th:text="#{home.contact}">Contact</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="pe-7s-user"></i>
-                                <p th:text="#{home.account}">Account</p>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!--<li th:if="${#authorization.expression('!isAuthenticated()')}">-->
-                                <li>
-                                    <a href="javascript:void(0)" onclick="openLoginModal();" th:text="#{home.login}">Login</a>
-                                </li>
-                                <!--<li th:if="${#authorization.expression('!isAuthenticated()')}">-->
-                                <!--<li data-th-if="${#authentication.principal.isAdmin()}">-->
-                                <li>
-                                    <a href="javascript:void(0)" onclick="openRegisterModal();" th:text="#{home.register}">Register</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="pe-7s-flag"></i>
-                                <p th:text="#{label.language}">Language</p>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li th:each="locale : ${locales}">
-                                    <a href="#" th:href="'?lang=' + ${locale.code}">
-                                        <img src="images/flags/US.png" th:attr="src=${'images/flags/' + locale.code + '.png'}" />
-                                        <span th:text="${locale.name}">English (US)</span>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li th:each="locale : ${notAvailableLocales}">
-                                    <a href="#" th:href="'?lang=' + ${locale.code}">
-                                        <img src="images/flags/US.png" th:attr="src=${'images/flags/' + locale.code + '.png'}" />
-                                        <span th:text="${locale.name}">English (US)</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="navbar-form navbar-right navbar-search-form" role="search">
-                        <div class="form-group">
-                            <input type="text" value="" class="form-control" placeholder="Search..." th:attr="placeholder=#{home.search.placeholder}" />
-                        </div>
-                    </form>
-
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
-        <!-- <div class="blurred-container">
-            <div class="img-src" style="background-image: url('images/bible-bg.jpg')"></div>
-        </div> -->
-    </div>
-    <!--  end navbar -->
-</div>
-<!-- end menu-dropdown -->
-
-<nav class="navbar navbar-inverse navbar-transparent navbar-fixed-top" role="navigation" th:fragment="navigation-bar-test">
+<nav class="navbar navbar-inverse navbar-transparent navbar-fixed-top"
+     role="navigation" th:fragment="navigation-bar">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -120,90 +17,89 @@
                 <span class="icon-bar bar2"></span>
                 <span class="icon-bar bar3"></span>
             </button>
+            <a class="navbar-brand" href="/" th:text="#{site}">Site</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse">
             <ul  class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="components.html">
-                        All Components
-                    </a>
-                </li>
-                <li>
-                    <a href="home.html">
-                        Home
-                    </a>
-                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Blog
+                        <span th:text="#{resources}">Resources</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown-with-icons">
                         <li>
-                            <a href="blog-page.html">
-                                <i class="pe-7s-comment"></i> Blog Page
+                            <a href="#" data-th-href="@{/we-believe}">
+                                <i class="pe-7s-comment"></i>
+                                <span th:text="#{we.believe}">We Believe</span>
                             </a>
                         </li>
                         <li>
-                            <a href="blog-post.html">
-                                <i class="pe-7s-news-paper"></i> Blog Post
+                            <a href="#" data-th-href="@{/you-are-invited}">
+                                <i class="pe-7s-news-paper"></i>
+                                <span th:text="#{you.are.invited}">You are Invited</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-th-href="@{/links}">
+                                <i class="pe-7s-ticket"></i>
+                                <span href="/links" th:text="#{links}">Links</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-th-href="@{/contact-us}">
+                                <i class="pe-7s-piggy"></i>
+                                <span href="/contact" th:text="#{contact}">Contact</span>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Ecommerce
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu dropdown-with-icons">
-                        <li>
-                            <a href="ecommerce.html">
-                                <i class="pe-7s-ticket"></i> Store Page
-                            </a>
-                        </li>
-                        <li>
-                            <a href="product-page.html">
-                                <i class="pe-7s-piggy"></i> Product Page
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        More
+                        <span th:text="#{account}">Account</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown-with-icons">
                         <li>
                             <a href="contact-us.html">
-                                <i class="pe-7s-mail-open-file"></i> Contact Us
+                                <i class="pe-7s-user"></i>
+                                <span th:text="#{login}">Login</span>
                             </a>
                         </li>
                         <li>
                             <a href="about-us.html">
-                                <i class="pe-7s-info"></i> About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="pricing.html">
-                                <i class="pe-7s-cash"></i> Pricing Page
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="pe-7s-gift"></i> More (soon)
+                                <i class="pe-7s-user"></i>
+                                <span th:text="#{register}">Register</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li><a href="http://www.creative-tim.com/product/get-shit-done-pro" class="btn btn-round btn-default">Buy this Kit!</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span th:text="#{language}">Language</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li th:each="locale : ${locales}">
+                            <a href="#" th:href="'?lang=' + ${locale.code}">
+                                <img src="../../static/assets/img/flags/US.png" th:attr="src=${'/assets/img/flags/' + locale.country + '.png'}" />
+                                <span th:text="${locale.name}">English</span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li th:each="locale : ${notAvailableLocales}">
+                            <a href="#" th:href="'?lang=' + ${locale.code}">
+                                <img src="../../static/assets/img/flags/US.png" th:attr="src=${'/assets/img/flags/' + locale.country + '.png'}" />
+                                <span th:text="${locale.name}">English</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
-
         </div><!-- /.navbar-collapse -->
     </div>
 </nav>
+
 </body>
 </html>

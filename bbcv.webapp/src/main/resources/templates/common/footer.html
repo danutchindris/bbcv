@@ -6,7 +6,10 @@
 </head>
 <body>
 
-<footer th:fragment="footer-area" class="footer footer-big footer-transparent" style="background-image: url('images/blog_page8_black.jpg');">
+<footer th:fragment="footer-area"
+        class="footer footer-big footer-transparent"
+        style="background-image: url('../../static/assets/img/blog_page8_black.jpg');"
+        th:style="'background-image:url(' + @{/assets/img/blog_page8_black.jpg} + ');'">
     <div class="container">
         <div class="row">
             <div class="col-md-2">
@@ -127,7 +130,7 @@
         </div>
         <hr />
         <div class="copyright">
-            &copy; 2015 <span th:text="#{home.author}">Author</span>
+            <a href="#" data-th-href="@{/}" th:utext="#{author}">Author</a>
         </div>
     </div>
 </footer>

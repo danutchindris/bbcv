@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="250f1c6f-687d-4928-a9b2-d1528ea22e45" name="Default" comment="reworked the request mappings for user role assignations to a more logical organization">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/util/MappingConstants.java" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/util/MappingConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.ws/bbcv.ws.api/src/main/java/ro/leje/util/RestMappings.java" afterPath="$PROJECT_DIR$/bbcv.ws/bbcv.ws.api/src/main/java/ro/leje/util/RestMappings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/rest/controller/RoleRestController.java" afterPath="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/rest/controller/RoleRestController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/rest/controller/UserRestController.java" afterPath="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/rest/controller/UserRestController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/test/java/ro/leje/service/UserServiceTest.java" afterPath="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/test/java/ro/leje/service/UserServiceTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/application.yml" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/application.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-role-list.html" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-role-list.html" />
+    <list default="true" id="250f1c6f-687d-4928-a9b2-d1528ea22e45" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/error.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/favicon.ico" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/favicon.ico" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/config/WebSecurityConfig.java" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/config/WebSecurityConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/common/footer.html" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/common/footer.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/common/header.html" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/common/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/home.html" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages_ro.properties" afterPath="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages_ro.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bbcv.iws" />
@@ -42,71 +43,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UserRestController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/rest/controller/UserRestController.java">
+      <file leaf-file-name="error.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/error.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+            <state vertical-scroll-proportion="-2.5">
+              <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RestMappings.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bbcv.ws/bbcv.ws.api/src/main/java/ro/leje/util/RestMappings.java">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.28803545">
+              <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/service/UserServiceImpl.java">
+      <file leaf-file-name="footer.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/common/footer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+            <state vertical-scroll-proportion="-82.5">
+              <caret line="132" column="48" selection-start-line="132" selection-start-column="48" selection-end-line="132" selection-end-column="48" />
+              <folding>
+                <element signature="n#style#0;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/common/header.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-63.75">
+              <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MappingConstants.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/util/MappingConstants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="54" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
-              <folding />
-            </state>
+      <file leaf-file-name="messages.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties">
+          <provider selected="true" editor-type-id="ResourceBundle">
+            <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user-role-list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-role-list.html">
-          <provider selected="true" editor-type-id="text-editor">
+          <provider editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="159" column="45" selection-start-line="159" selection-start-column="45" selection-end-line="159" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.77603424">
-              <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserServiceConsumerImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/rest/impl/UserServiceConsumerImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
+              <caret line="65" column="17" selection-start-line="65" selection-start-column="17" selection-end-line="65" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -115,18 +101,8 @@
       <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="125" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="125" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserServiceTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/test/java/ro/leje/service/UserServiceTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="215" column="30" selection-start-line="215" selection-start-column="30" selection-end-line="215" selection-end-column="30" />
+            <state vertical-scroll-proportion="-8.708333">
+              <caret line="140" column="123" selection-start-line="140" selection-start-column="60" selection-end-line="140" selection-end-column="123" />
               <folding />
             </state>
           </provider>
@@ -159,11 +135,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/model/entity/RoleEntity.java" />
-        <option value="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/service/RoleService.java" />
-        <option value="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/dao/RoleDAO.java" />
-        <option value="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/service/RoleServiceImpl.java" />
-        <option value="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/test/java/ro/leje/service/RoleServiceTest.java" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin.html" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/layout/admin.html" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin-list.html" />
@@ -182,7 +153,6 @@
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/config/WebConfig.java" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages_ro.properties" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/validation.properties" />
-        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/config/ServiceSettings.java" />
         <option value="$PROJECT_DIR$/bbcv.ws/bbcv.ws.api/src/main/java/ro/leje/model/vo/Role.java" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/rest/RoleServiceConsumer.java" />
@@ -190,7 +160,6 @@
         <option value="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/dao/RoleDAOImpl.java" />
         <option value="$PROJECT_DIR$/bbcv.ws/bbcv.ws.api/src/main/java/ro/leje/model/vo/User.java" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/util/ViewConstants.java" />
-        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties" />
         <option value="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/dao/BaseDAO.java" />
         <option value="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/dao/BaseDAOImpl.java" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html" />
@@ -210,6 +179,13 @@
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java" />
         <option value="$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/test/java/ro/leje/service/UserServiceTest.java" />
         <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-role-list.html" />
+        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/error.html" />
+        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html" />
+        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/config/WebSecurityConfig.java" />
+        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties" />
+        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/common/footer.html" />
+        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/common/header.html" />
+        <option value="$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/home.html" />
       </list>
     </option>
   </component>
@@ -319,6 +295,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -1016,7 +993,71 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Resource Bundle 'messages'" />
+              <option name="myItemType" value="com.intellij.lang.properties.projectView.ResourceBundleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv.webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv.webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1081,6 +1122,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv.webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1254,9 +1329,42 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbcv.webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="leje" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -1309,7 +1417,7 @@
       <recent name="ro.leje" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Application WebApp (Development)">
+  <component name="RunManager" selected="Application.Application WS (Development)">
     <configuration default="false" name="UserServiceTest.whenNotExistingAssignationIsProvidedFindRoleThrowsException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1816,7 +1924,13 @@
       <option name="project" value="LOCAL" />
       <updated>1442516747004</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="some more work on adding a user role">
+      <created>1442863725533</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1442863725533</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1834,11 +1948,13 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32626426" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3196159" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25023696" sideWeight="0.5053305" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3196159" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28395063" sideWeight="0.4946695" order="2" side_tool="false" content_ui="tabs" x="40" y="155" width="1299" height="518" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32546496" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1846,16 +1962,14 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3840878" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3196159" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28395063" sideWeight="0.4946695" order="2" side_tool="false" content_ui="tabs" x="40" y="155" width="1299" height="518" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32647464" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3840878" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1909,7 +2023,8 @@
     <MESSAGE value="some more work on the &quot;user role&quot; page" />
     <MESSAGE value="started to work on the business logic for adding a role to a user" />
     <MESSAGE value="reworked the request mappings for user role assignations to a more logical organization" />
-    <option name="LAST_COMMIT_MESSAGE" value="reworked the request mappings for user role assignations to a more logical organization" />
+    <MESSAGE value="some more work on adding a user role" />
+    <option name="LAST_COMMIT_MESSAGE" value="some more work on adding a user role" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1954,51 +2069,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bbcv.ws/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64285713">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.ws/bbcv.ws.api/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49107143">
-          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.71428573">
-          <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7589286">
-          <caret line="72" column="21" selection-start-line="72" selection-start-column="21" selection-end-line="72" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/validation_ro.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15267175">
-          <caret line="4" column="56" selection-start-line="4" selection-start-column="56" selection-end-line="4" selection-end-column="56" />
-        </state>
-      </provider>
-      <provider editor-type-id="ResourceBundle">
-        <state />
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.1.7.RELEASE/spring-webmvc-4.1.7.RELEASE.jar!/org/springframework/web/servlet/config/annotation/WebMvcConfigurerAdapter.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.888889">
@@ -2020,27 +2090,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/config/WebSecurityConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.91943127">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages_ro.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7964377">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-        </state>
-      </provider>
       <provider editor-type-id="ResourceBundle">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/config/WebConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1374408">
-          <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.7964377">
+          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -2073,13 +2129,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/validation.properties">
+      <provider selected="true" editor-type-id="ResourceBundle">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="75" selection-start-line="2" selection-start-column="75" selection-end-line="2" selection-end-column="75" />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="ResourceBundle">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bbcv.ws/bbcv.ws.api/src/main/java/ro/leje/model/vo/User.java">
@@ -2094,16 +2150,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="106" column="5" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="68" column="17" selection-start-line="68" selection-start-column="17" selection-end-line="68" selection-end-column="17" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="ResourceBundle">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bbcv.ws/bbcv.ws.rt/src/main/java/ro/leje/service/RoleService.java">
@@ -2124,13 +2170,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22340426">
-          <caret line="260" column="77" selection-start-line="260" selection-start-column="77" selection-end-line="260" selection-end-column="77" />
         </state>
       </provider>
     </entry>
@@ -2287,14 +2326,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-role-list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="159" column="45" selection-start-line="159" selection-start-column="45" selection-end-line="159" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.1.7.RELEASE/spring-web-4.1.7.RELEASE.jar!/org/springframework/web/client/RestTemplate.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.0740743">
@@ -2309,26 +2340,116 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/rest/impl/UserServiceConsumerImpl.java">
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.359352">
+          <caret line="215" column="0" selection-start-line="215" selection-start-column="0" selection-end-line="217" selection-end-column="118" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/static/assets/img/favicon.ico">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/rest/impl/UserServiceConsumerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.72672063">
           <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/config/WebConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/config/WebSecurityConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30364373">
+          <caret line="25" column="48" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-162.5">
+          <caret line="260" column="77" selection-start-line="260" selection-start-column="77" selection-end-line="260" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/user-role-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-99.375">
+          <caret line="159" column="45" selection-start-line="159" selection-start-column="45" selection-end-line="159" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/error.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.5">
+          <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/messages.properties">
+      <provider selected="true" editor-type-id="ResourceBundle">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="65" column="17" selection-start-line="65" selection-start-column="17" selection-end-line="65" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/admin/layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="15" column="125" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="125" />
+        <state vertical-scroll-proportion="-8.708333">
+          <caret line="140" column="123" selection-start-line="140" selection-start-column="60" selection-end-line="140" selection-end-column="123" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/java/ro/leje/controller/AdminController.java">
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/common/header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77603424">
-          <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+        <state vertical-scroll-proportion="-63.75">
+          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/common/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-82.5">
+          <caret line="132" column="48" selection-start-line="132" selection-start-column="48" selection-end-line="132" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcv.webapp/src/main/resources/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28803545">
+          <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
           <folding />
         </state>
       </provider>
