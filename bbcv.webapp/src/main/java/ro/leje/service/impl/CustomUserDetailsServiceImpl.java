@@ -1,6 +1,5 @@
 package ro.leje.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +10,9 @@ import ro.leje.config.ServiceSettings;
 import ro.leje.model.CustomUserDetails;
 import ro.leje.model.vo.User;
 import ro.leje.service.CustomUserDetailsService;
+import ro.leje.util.RestMappings;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -24,14 +25,14 @@ import java.util.Map;
 @Service("customUserDetailsService")
 public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 
-    private static final String FIND_BY_USER_NAME_URL_SUFFIX = "/findByUserName/{userName}";
     private static final String USER_NAME_PARAM = "userName";
 
-    @Autowired
+    @Resource
     private ServiceSettings serviceSettings;
 
+    @Override
     public CustomUserDetails getCustomUserDetailsByUserName(String userName) {
-        String endpoint = serviceSettings.getUser() + FIND_BY_USER_NAME_URL_SUFFIX;
+        String endpoint = serviceSettings.getUser() + RestMappings.USER_FIND_BY_USER_NAME;
         Map<String, String> params = new HashMap<>();
         params.put(USER_NAME_PARAM, userName);
         RestTemplate restTemplate = new RestTemplate();

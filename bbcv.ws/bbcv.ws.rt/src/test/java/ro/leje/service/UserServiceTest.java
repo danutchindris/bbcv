@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import ro.leje.AbstractTest;
+import ro.leje.model.vo.Permission;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 
@@ -43,6 +44,9 @@ public class UserServiceTest extends AbstractTest {
     private final static String TEST_ROLE_NAME = "admin";
 
     private final static long TEST_ROLE_NOT_EXISTING_ID = Long.MAX_VALUE;
+
+    private final static long TEST_PERMISSION_ID = 1L;
+    private final static String TEST_PERMISSION_NAME = "permission_admin_user_list_get";
 
     @Resource
     private UserService service;
@@ -230,6 +234,29 @@ public class UserServiceTest extends AbstractTest {
     @Test(expected = IllegalArgumentException.class)
     public void whenNotExistingRoleIdIsProvidedAddRoleThrowsException() {
         service.addRole(TEST_USER_ID, TEST_ROLE_NOT_EXISTING_ID);
+    }
+
+    @Test
+    public void whenExistingUserIdIsProvidedFindPermissionsReturnsExpectedList() {
+        List<Permission> list = service.findPermissions(TEST_USER_ID);
+        Assert.assertNotNull("The list shouldn't be null", list);
+        Assert.assertTrue("The list should contain one item", list.size() == 1);
+        Assert.assertEquals("The id is incorrect", TEST_PERMISSION_ID, list.get(0).getId());
+        Assert.assertEquals("The name is incorrect", TEST_PERMISSION_NAME, list.get(0).getName());
+    }
+
+    @Test
+    public void whenNotExistingUserIdIsProvidedFindPermissionsReturnsNotNullList() {
+        List<Permission> list = service.findPermissions(TEST_USER_NOT_EXISTING_ID);
+        Assert.assertNotNull("The list shouldn't be null", list);
+        Assert.assertTrue("The list should contain zero items", list.size() == 0);
+    }
+
+    @Test
+    public void whenExistingUserWithoutPermissionsIsProvidedFindPermissionsReturnsEmptyList() {
+        List<Permission> list = service.findPermissions(TEST_USER_WITHOUT_ROLES_ID);
+        Assert.assertNotNull("The list shouldn't be null", list);
+        Assert.assertTrue("The list should contain zero items", list.size() == 0);
     }
 
     private void checkUserObjectProperties(User object) {

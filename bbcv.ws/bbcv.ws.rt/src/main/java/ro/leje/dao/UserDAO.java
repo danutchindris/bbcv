@@ -2,6 +2,7 @@ package ro.leje.dao;
 
 
 import ro.leje.model.entity.UserEntity;
+import ro.leje.model.vo.Permission;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 
@@ -26,4 +27,6 @@ public interface UserDAO extends BaseDAO {
     Role findRole(long userId, long roleId);
 
     void addRole(long userId, long roleId);
+
+    List<Permission> findPermissions(long userId);
 }

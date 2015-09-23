@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ro.leje.dao.UserDAO;
 import ro.leje.model.entity.RoleEntity;
 import ro.leje.model.entity.UserEntity;
+import ro.leje.model.vo.Permission;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 
@@ -107,5 +108,11 @@ public class UserServiceImpl implements UserService {
                     .addContextValue("roleId", roleId);
         }
         userDAO.addRole(userId, roleId);
+    }
+
+    @Override
+    @Transactional
+    public List<Permission> findPermissions(long userId) {
+        return userDAO.findPermissions(userId);
     }
 }

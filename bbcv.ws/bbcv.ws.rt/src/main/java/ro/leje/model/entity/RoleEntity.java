@@ -1,6 +1,7 @@
 package ro.leje.model.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * An entity which describes a role that a {@link UserEntity} user can have.
@@ -21,6 +22,15 @@ public class RoleEntity {
     @Column(name = "NAME")
     private String name;
 
+    @ManyToMany(targetEntity = PermissionEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "ROLE_PERMISSION", joinColumns = {
+            @JoinColumn(name = "ROLE_ID", nullable = false)
+    },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "PERMISSION_ID")
+            })
+    private Set<PermissionEntity> permissions;
+
     public long getId() {
         return id;
     }
@@ -35,5 +45,13 @@ public class RoleEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<PermissionEntity> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<PermissionEntity> permissions) {
+        this.permissions = permissions;
     }
 }

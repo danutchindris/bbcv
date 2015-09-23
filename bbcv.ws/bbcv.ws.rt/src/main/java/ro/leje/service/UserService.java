@@ -1,5 +1,6 @@
 package ro.leje.service;
 
+import ro.leje.model.vo.Permission;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 
@@ -15,15 +16,17 @@ public interface UserService {
 
     User findByUserName(String userName);
 
-    User findById(long id);
+    User findById(long userId);
 
     Long create(User user);
 
-    List<Role> findRoles(long id);
+    List<Role> findRoles(long userId);
 
     Role findRole(long userId, long roleId);
 
     boolean isRoleAssigned(long userId, long roleId);
 
     void addRole(long userId, long roleId);
+
+    List<Permission> findPermissions(long userId);
 }

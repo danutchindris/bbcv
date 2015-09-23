@@ -3,6 +3,7 @@ package ro.leje.dao;
 import org.springframework.stereotype.Repository;
 import ro.leje.model.entity.RoleEntity;
 import ro.leje.model.entity.UserEntity;
+import ro.leje.model.vo.Permission;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 
@@ -85,5 +86,15 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
         userRoles.add(roleEntity);
         userEntity.setRoles(userRoles);
         getCurrentSession().update(userEntity);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Permission> findPermissions(long userId) {
+        return getCurrentSession()
+                .createQuery("select new ro.leje.model.vo.Permission(p.id, p.name) "
+                        + "from ro.leje.model.entity.UserEntity u inner join u.roles r inner join r.permissions p where u.id = :userId")
+                .setLong("userId", userId)
+                .list();
     }
 }
