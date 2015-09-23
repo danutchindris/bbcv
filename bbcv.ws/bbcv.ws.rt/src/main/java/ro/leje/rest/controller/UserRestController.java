@@ -3,6 +3,7 @@ package ro.leje.rest.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import ro.leje.model.vo.Permission;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 import ro.leje.service.UserService;
@@ -44,12 +45,17 @@ public class UserRestController {
     }
 
     @RequestMapping(value = RestMappings.USER_FIND_ROLES, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Role> findRoles(@PathVariable long id) {
-        return userService.findRoles(id);
+    public List<Role> findRoles(@PathVariable long userId) {
+        return userService.findRoles(userId);
     }
 
     @RequestMapping(value = RestMappings.USER_ADD_ROLE, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public void addRole(@PathVariable long userId, @PathVariable long roleId) {
         userService.addRole(userId, roleId);
+    }
+
+    @RequestMapping(value = RestMappings.USER_FIND_PERMISSIONS, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Permission> findPermissions(@PathVariable long userId) {
+        return userService.findPermissions(userId);
     }
 }

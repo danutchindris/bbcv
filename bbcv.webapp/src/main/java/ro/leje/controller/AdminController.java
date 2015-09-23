@@ -5,7 +5,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ro.leje.delegate.LanguageDelegate;
@@ -29,7 +28,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = MappingConstants.ADMIN)
-@PreAuthorize("hasRole('admin')")
+//@PreAuthorize("hasRole('admin')")
 public class AdminController {
 
     private static final String ID = "id";

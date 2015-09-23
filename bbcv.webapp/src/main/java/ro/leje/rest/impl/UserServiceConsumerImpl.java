@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ro.leje.config.ServiceSettings;
+import ro.leje.model.vo.Permission;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 import ro.leje.rest.UserServiceConsumer;
@@ -61,10 +62,10 @@ public class UserServiceConsumerImpl implements UserServiceConsumer {
     }
 
     @Override
-    public List<Role> findRoles(long id) {
+    public List<Role> findRoles(long userId) {
         String endpoint = serviceSettings.getUser() + RestMappings.USER_FIND_ROLES;
         Map<String, Long> params = new HashMap<>();
-        params.put(PARAM_ID, id);
+        params.put(PARAM_USER_ID, userId);
         RestTemplate restTemplate = new RestTemplate();
         // http://thespringway.info/spring-web/map-to-list-of-objects-from-json-array-with-resttemplate/
         ParameterizedTypeReference<List<Role>> responseType = new ParameterizedTypeReference<List<Role>>() {};
@@ -82,5 +83,19 @@ public class UserServiceConsumerImpl implements UserServiceConsumer {
         params.put(PARAM_ROLE_ID, roleId);
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForObject(endpoint, null, Boolean.class, params);
+    }
+
+    @Override
+    public List<Permission> findPermissions(long userId) {
+        String endpoint = serviceSettings.getUser() + RestMappings.USER_FIND_PERMISSIONS;
+        Map<String, Long> params = new HashMap<>();
+        params.put(PARAM_USER_ID, userId);
+        RestTemplate restTemplate = new RestTemplate();
+        // http://thespringway.info/spring-web/map-to-list-of-objects-from-json-array-with-resttemplate/
+        ParameterizedTypeReference<List<Permission>> responseType = new ParameterizedTypeReference<List<Permission>>() {};
+        ResponseEntity<List<Permission>> result = restTemplate.exchange(endpoint,
+                HttpMethod.GET, null, responseType, params);
+        List<Permission> list = result.getBody();
+        return list != null ? list : Collections.emptyList();
     }
 }

@@ -1,5 +1,6 @@
 package ro.leje.rest;
 
+import ro.leje.model.vo.Permission;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 
@@ -17,7 +18,9 @@ public interface UserServiceConsumer {
 
     Long create(User user);
 
-    List<Role> findRoles(long id);
+    List<Role> findRoles(long userId);
 
     boolean addRole(long userId, long roleId);
+
+    List<Permission> findPermissions(long userId);
 }

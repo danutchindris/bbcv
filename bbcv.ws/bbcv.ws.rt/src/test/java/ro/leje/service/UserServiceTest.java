@@ -46,7 +46,7 @@ public class UserServiceTest extends AbstractTest {
     private final static long TEST_ROLE_NOT_EXISTING_ID = Long.MAX_VALUE;
 
     private final static long TEST_PERMISSION_ID = 1L;
-    private final static String TEST_PERMISSION_NAME = "permission_admin_user_list_get";
+    private final static String TEST_PERMISSION_NAME = "permission_admin_user_post";
 
     @Resource
     private UserService service;
@@ -240,7 +240,7 @@ public class UserServiceTest extends AbstractTest {
     public void whenExistingUserIdIsProvidedFindPermissionsReturnsExpectedList() {
         List<Permission> list = service.findPermissions(TEST_USER_ID);
         Assert.assertNotNull("The list shouldn't be null", list);
-        Assert.assertTrue("The list should contain one item", list.size() == 1);
+        Assert.assertTrue("The list should contain three items", list.size() == 3);
         Assert.assertEquals("The id is incorrect", TEST_PERMISSION_ID, list.get(0).getId());
         Assert.assertEquals("The name is incorrect", TEST_PERMISSION_NAME, list.get(0).getName());
     }

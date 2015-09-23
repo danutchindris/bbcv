@@ -8,15 +8,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ro.leje.config.ServiceSettings;
 import ro.leje.model.CustomUserDetails;
+import ro.leje.model.vo.Permission;
+import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
+import ro.leje.rest.UserServiceConsumer;
 import ro.leje.service.CustomUserDetailsService;
 import ro.leje.util.RestMappings;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Danut Chindris
@@ -29,6 +29,9 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 
     @Resource
     private ServiceSettings serviceSettings;
+
+    @Resource
+    private UserServiceConsumer userServiceConsumer;
 
     @Override
     public CustomUserDetails getCustomUserDetailsByUserName(String userName) {
@@ -51,11 +54,19 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         try {
-            Collection<GrantedAuthority> authorities = new ArrayList<>();
-            //TODO dummy role added temporarily
-            SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_ADMIN");
-            authorities.add(authority);
             CustomUserDetails customUserDetails = getCustomUserDetailsByUserName(userName);
+            List<Role> roles = userServiceConsumer.findRoles(customUserDetails.getId());
+            List<Permission> permissions = userServiceConsumer.findPermissions(customUserDetails.getId());
+            Collection<GrantedAuthority> authorities = new ArrayList<>();
+            GrantedAuthority authority;
+            for (Role role : roles) {
+                authority = new SimpleGrantedAuthority(role.getName());
+                authorities.add(authority);
+            }
+            for (Permission permission : permissions) {
+                authority = new SimpleGrantedAuthority(permission.getName());
+                authorities.add(authority);
+            }
             customUserDetails.setAuthorities(authorities);
             return customUserDetails;
         } catch (RuntimeException e) {
