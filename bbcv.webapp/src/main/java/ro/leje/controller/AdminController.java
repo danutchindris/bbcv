@@ -12,10 +12,7 @@ import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 import ro.leje.rest.RoleServiceConsumer;
 import ro.leje.rest.UserServiceConsumer;
-import ro.leje.util.ErrorMessage;
-import ro.leje.util.MappingConstants;
-import ro.leje.util.ValidationResponse;
-import ro.leje.util.ViewConstants;
+import ro.leje.util.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -47,39 +44,21 @@ public class AdminController {
     PasswordEncoder passwordEncoder;
 
     @RequestMapping(value = MappingConstants.USER_LIST, method = RequestMethod.GET)
-    @PreAuthorize("hasRole('permission_admin_user_list_get')")
+    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_USER_LIST_GET + "')")
     public String displayUserList(Model model) {
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
         return ViewConstants.ADMIN + "/" + ViewConstants.USER_LIST;
     }
 
-    @RequestMapping(value = MappingConstants.USER_ROLE_LIST, method = RequestMethod.GET)
-    public String displayUserRoleList(@PathVariable long id, Model model) {
-        languageDelegate.addAvailableLanguages(model);
-        languageDelegate.addNotAvailableLanguages(model);
-        model.addAttribute(ID, id);
-        model.addAttribute(ROLES, roleServiceConsumer.findAll());
-        return ViewConstants.ADMIN + "/" + ViewConstants.USER_ROLE_LIST;
-    }
-
     @RequestMapping(MappingConstants.USER_LIST_JSON)
-    @PreAuthorize("hasRole('permission_admin_user_list_get')")
+    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_USER_LIST_JSON_GET + "')")
     public @ResponseBody List<User> findUsers() {
         return userServiceConsumer.findAll();
     }
 
-    @RequestMapping(MappingConstants.USER_ROLE_LIST_JSON)
-    public @ResponseBody List<Role> findUserRoles(@PathVariable long id) {
-        return userServiceConsumer.findRoles(id);
-    }
-
-    @RequestMapping(MappingConstants.ROLE_LIST_JSON)
-    public @ResponseBody List<Role> findRoles() {
-        return roleServiceConsumer.findAll();
-    }
-
     @RequestMapping(value = MappingConstants.USER, method = RequestMethod.POST)
+    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_USER_POST + "')")
     public @ResponseBody ValidationResponse addUser(@RequestBody @Valid User user, BindingResult bindingResult) {
         if (user != null && user.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -99,6 +78,25 @@ public class AdminController {
             validationResponse.setStatus("SUCCESS");
         }
         return validationResponse;
+    }
+
+    @RequestMapping(value = MappingConstants.USER_ROLE_LIST, method = RequestMethod.GET)
+    public String displayUserRoleList(@PathVariable long id, Model model) {
+        languageDelegate.addAvailableLanguages(model);
+        languageDelegate.addNotAvailableLanguages(model);
+        model.addAttribute(ID, id);
+        model.addAttribute(ROLES, roleServiceConsumer.findAll());
+        return ViewConstants.ADMIN + "/" + ViewConstants.USER_ROLE_LIST;
+    }
+
+    @RequestMapping(MappingConstants.USER_ROLE_LIST_JSON)
+    public @ResponseBody List<Role> findUserRoles(@PathVariable long id) {
+        return userServiceConsumer.findRoles(id);
+    }
+
+    @RequestMapping(MappingConstants.ROLE_LIST_JSON)
+    public @ResponseBody List<Role> findRoles() {
+        return roleServiceConsumer.findAll();
     }
 
     @RequestMapping(value = MappingConstants.ROLE_LIST, method = RequestMethod.GET)
