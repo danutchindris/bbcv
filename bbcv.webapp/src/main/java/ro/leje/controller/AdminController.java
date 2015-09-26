@@ -28,7 +28,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = MappingConstants.ADMIN)
-//@PreAuthorize("hasRole('admin')")
+@PreAuthorize("denyAll")
 public class AdminController {
 
     private static final String ID = "id";
@@ -47,6 +47,7 @@ public class AdminController {
     PasswordEncoder passwordEncoder;
 
     @RequestMapping(value = MappingConstants.USER_LIST, method = RequestMethod.GET)
+    @PreAuthorize("hasRole('permission_admin_user_list_get')")
     public String displayUserList(Model model) {
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
@@ -63,6 +64,7 @@ public class AdminController {
     }
 
     @RequestMapping(MappingConstants.USER_LIST_JSON)
+    @PreAuthorize("hasRole('permission_admin_user_list_get')")
     public @ResponseBody List<User> findUsers() {
         return userServiceConsumer.findAll();
     }
