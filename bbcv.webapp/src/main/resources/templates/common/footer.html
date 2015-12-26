@@ -13,81 +13,41 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2">
-                <h5 class="title">Company</h5>
+                <h5 class="title" th:text="#{word.of.life}">Word of Life</h5>
                 <nav>
                     <ul>
                         <li>
-                            <a href="#">
-                                Home
-                            </a>
+                            <a href="#" th:text="#{home}">Home</a>
                         </li>
                         <li>
-                            <a href="#">
-                                Find offers
-                            </a>
+                            <a href="#" data-th-href="@{/we-believe}" th:text="#{we.believe}">We Believe</a>
                         </li>
                         <li>
-                            <a href="#">
-                                Discover Projects
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Our Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                About Us
-                            </a>
+                            <a href="#" data-th-href="@{/you-are-invited}" th:text="#{you.are.invited}">You Are Invited</a>
                         </li>
                     </ul>
                 </nav>
             </div>
             <div class="col-md-3 col-md-offset-1">
-                <h5 class="title"> Help and Support</h5>
+                <h5 class="title" th:text="#{help}">Help</h5>
                 <nav>
                     <ul>
                         <li>
-                            <a href="#">
-                                Contact Us
-                            </a>
+                            <a href="#" data-th-href="@{/links}" th:text="#{links}">Links</a>
                         </li>
                         <li>
-                            <a href="#">
-                                How it works
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Terms &amp; Conditions
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Company Policy
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Money Back
-                            </a>
+                            <a href="#" data-th-href="@{/contact-us}" th:text="#{contact.us}">Contact Us</a>
                         </li>
                     </ul>
                 </nav>
             </div>
             <div class="col-md-3">
-                <h5 class="title">Follow us on</h5>
+                <h5 class="title" th:text="#{follow.us}">Follow us on</h5>
                 <nav>
                     <ul>
                         <li>
                             <a href="#" class="btn btn-social btn-facebook btn-simple">
                                 <i class="fa fa-facebook-square"></i> Facebook
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn btn-social btn-dribbble btn-simple">
-                                <i class="fa fa-dribbble"></i> Dribbble
                             </a>
                         </li>
                         <li>
@@ -106,7 +66,7 @@
             </div>
 
             <div class="col-md-3">
-                <h5 class="title">Latest News</h5>
+                <h5 class="title" th:text="#{latest.news}">Latest News</h5>
                 <nav>
                     <ul>
                         <li>

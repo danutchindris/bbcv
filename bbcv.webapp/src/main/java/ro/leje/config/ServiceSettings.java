@@ -17,6 +17,8 @@ public class ServiceSettings {
 
     private String role;
 
+    private String link;
+
     public String getUser() {
         return user;
     }
@@ -31,5 +33,13 @@ public class ServiceSettings {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }

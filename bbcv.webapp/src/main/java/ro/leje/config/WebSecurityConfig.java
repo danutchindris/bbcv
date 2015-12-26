@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         String[] staticContent = {"/assets/**"};
-        String[] accessibleToAllUrlPatterns = {"/error", "/", "/home", "/we-believe", "/you-are-invited", "/links", "/contact"};
+        String[] accessibleToAllUrlPatterns = {"/error", "/", "/home", "/we-believe", "/you-are-invited", "/links", "/contact-us"};
         // @formatter:off
         http
                 .authorizeRequests()

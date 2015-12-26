@@ -29,98 +29,45 @@
             <img src="../static/assets/img/blog_page8.jpg" data-th-attr="src=@{/assets/img/blog_page8.jpg}" />
         </div>
         <div class="small-info">
-            <h1 th:text="#{our.doctrines}">Our Doctrines</h1>
-            <h3 th:text="#{we.believe.motto}">We Believe</h3>
+            <h1 th:text="#{words.of.life}">Header 1</h1>
+            <h3 th:text="#{awesome.articles}">Header 3</h3>
         </div>
     </div>
-<!--
-    <div class="social-line social-line-black">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2 col-md-offset-3">
-                    <a href="" class="btn btn-simple btn-social btn-neutral">
-                        <i class="fa fa-facebook-square"></i> Share &middot; 753
-                    </a>
-                </div>
-                <div class="col-md-2">
-                    <a href="" class="btn btn-simple btn-social btn-neutral">
-                        <i class="fa fa-twitter"></i> Tweet &middot; 832
-                    </a>
-                </div>
-                <div class="col-md-2">
-                    <a href="" class="btn btn-simple btn-social btn-neutral">
-                        <i class="fa fa-google-plus-square"></i> Post &middot; 131
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
--->
+
     <div class="section">
         <div class="container">
+            <h2 class="section-title" th:text="#{links}">Header 2</h2>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-4">
                     <div class="card card-plain">
-                        <div class="content">
-                            <h4 class="title" th:text="#{doctrine.paragraph1}">Content 1</h4>
+                        <div class="image">
+                            <img src="../assets/img/examples/ecommerce.jpg" alt="..."/>
                         </div>
-                    </div>
+                        <div class="content">
+                            <p class="category text-info">
+                                <i class="fa fa-trophy"></i> Editor's Choice
+                            </p>
+                            <a class="card-link" href="#">
+                                <h4 class="title" th:text="#{site}">Header</h4>
+                            </a>
+                        </div>
+                    </div> <!-- end card -->
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <div class="card card-plain">
-                        <div class="content">
-                            <h4 class="title" th:text="#{doctrine.paragraph2}">Content 2</h4>
+                        <div class="image">
+                            <img src="../assets/img/examples/blog_page.jpg" alt="..."/>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card card-plain">
                         <div class="content">
-                            <h4 class="title" th:text="#{doctrine.paragraph3}">Content 3</h4>
+                            <p class="category text-danger">
+                                <i class="fa fa-fire" rel="tooltip" title="Hot!"></i> Trending
+                            </p>
+
+                            <a class="card-link" href="#">
+                                <h4 class="title" th:text="#{site}">Header</h4>
+                            </a>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card card-plain">
-                        <div class="content">
-                            <h4 class="title" th:text="#{doctrine.paragraph4}">Content 4</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card card-plain">
-                        <div class="content">
-                            <h4 class="title" th:text="#{doctrine.paragraph5}">Content 5</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card card-plain">
-                        <div class="content">
-                            <h4 class="title" th:text="#{doctrine.paragraph6}">Content 6</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card card-plain">
-                        <div class="content">
-                            <h4 class="title" th:text="#{doctrine.paragraph7}">Content 7</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card card-plain">
-                        <div class="content">
-                            <h4 class="title" th:text="#{doctrine.paragraph8}">Content 8</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card card-plain">
-                        <div class="content">
-                            <h4 class="title" th:text="#{doctrine.paragraph9}">Content 9</h4>
-                        </div>
-                    </div>
+                    </div> <!-- end card -->
                 </div>
             </div>
         </div>

@@ -10,6 +10,8 @@ public interface MappingConstants {
     String HOME = "/home";
     String WE_BELIEVE = "/we-believe";
     String YOU_ARE_INVITED = "/you-are-invited";
+    String LINKS = "/links";
+    String CONTACT_US = "/contact-us";
 
     // authentication and authorization related constants
     String LOGIN = "/login";
@@ -25,6 +27,12 @@ public interface MappingConstants {
     String ROLE = "/role";
     String ROLE_LIST = "/role/list";
     String ROLE_LIST_JSON = "/role/list/json";
+    String LINK_LIST = "/link/list";
+    String LINK_LIST_JSON = "/link/list/json";
+    String ARTICLE_LIST = "/article/list";
+    String ARTICLE_LIST_JSON = "/article/list/json";
+    String MESSAGE_LIST = "/message/list";
+    String MESSAGE_LIST_JSON = "/message/list/json";
 
     // shop related constants
     String SHOP = "/shop";

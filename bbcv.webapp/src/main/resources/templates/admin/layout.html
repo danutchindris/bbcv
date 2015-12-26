@@ -65,6 +65,24 @@
                         <p th:text="#{articles}">Page</p>
                     </a>
                 </li>
+                <li id="li-links">
+                    <a href="#">
+                        <i class="pe-7s-link"></i>
+                        <p th:text="#{links}">Page</p>
+                    </a>
+                </li>
+                <li id="li-messages">
+                    <a href="#">
+                        <i class="pe-7s-mail"></i>
+                        <p th:text="#{messages}">Page</p>
+                    </a>
+                </li>
+                <li id="li-shop">
+                    <a href="#">
+                        <i class="pe-7s-cart"></i>
+                        <p th:text="#{shop}">Page</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -105,9 +123,33 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <form th:action="@{/logout}" method="post"></form>
-                            <a href="#" onclick="document.forms[0].submit();" th:text="#{logout}">Log Out</a>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span th:text="#{account}">Account</span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu dropdown-with-icons">
+                                <li th:if="${authenticatedUserFirstName} != null">
+                                    <a href="#">
+                                        <i class="pe-7s-user"></i>
+                                        <span th:text="${authenticatedUserFirstName}">First Name</span>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" th:attr="href=@{/profile}">
+                                        <i class="pe-7s-user"></i>
+                                        <span th:text="#{profile}">Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <form th:action="@{/logout}" method="post"></form>
+                                    <a href="#" onclick="document.forms[0].submit();">
+                                        <i class="pe-7s-lock"></i>
+                                        <span th:text="#{logout}">Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -134,7 +176,10 @@
                             <a href="#" data-th-href="@{/you-are-invited}" th:text="#{you.are.invited}">You are Invited</a>
                         </li>
                         <li>
-                            <a href="#" data-th-href="@{/contact-us}" th:text="#{contact}">Contact Us</a>
+                            <a href="#" data-th-href="@{/links}" th:text="#{links}">Links</a>
+                        </li>
+                        <li>
+                            <a href="#" data-th-href="@{/contact-us}" th:text="#{contact.us}">Contact Us</a>
                         </li>
                     </ul>
                 </nav>

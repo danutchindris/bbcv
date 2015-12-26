@@ -9,6 +9,8 @@ public interface ViewConstants {
     String HOME = "home";
     String WE_BELIEVE = "we-believe";
     String YOU_ARE_INVITED = "you-are-invited";
+    String LINKS = "links";
+    String CONTACT_US = "contact-us";
 
     // authentication and authorization related constants
     String LOGIN = "login";
@@ -18,6 +20,9 @@ public interface ViewConstants {
     String USER_LIST = "user-list";
     String USER_ROLE_LIST = "user-role-list";
     String ROLE_LIST = "role-list";
+    String LINK_LIST = "link-list";
+    String ARTICLE_LIST = "article-list";
+    String MESSAGE_LIST = "message-list";
 
     // shop related constants
     String SHOP = "shop";

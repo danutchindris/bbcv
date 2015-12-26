@@ -2,14 +2,18 @@ package ro.leje.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ro.leje.delegate.LanguageDelegate;
+import ro.leje.model.CustomUserDetails;
+import ro.leje.model.vo.Link;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
+import ro.leje.rest.LinkServiceConsumer;
 import ro.leje.rest.RoleServiceConsumer;
 import ro.leje.rest.UserServiceConsumer;
 import ro.leje.util.*;
@@ -28,6 +32,8 @@ import java.util.List;
 @PreAuthorize("denyAll")
 public class AdminController {
 
+    private static final String AUTHENTICATED_USER_FIRST_NAME = "authenticatedUserFirstName";
+
     private static final String ID = "id";
     private static final String ROLES = "roles";
 
@@ -41,13 +47,17 @@ public class AdminController {
     private RoleServiceConsumer roleServiceConsumer;
 
     @Resource
+    private LinkServiceConsumer linkServiceConsumer;
+
+    @Resource
     PasswordEncoder passwordEncoder;
 
     @RequestMapping(value = MappingConstants.USER_LIST, method = RequestMethod.GET)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_USER_LIST_GET + "')")
-    public String displayUserList(Model model) {
+    public String displayUserList(Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
+        model.addAttribute(AUTHENTICATED_USER_FIRST_NAME, userDetails != null ? userDetails.getFirstName() : null);
         return ViewConstants.ADMIN + "/" + ViewConstants.USER_LIST;
     }
 
@@ -81,15 +91,18 @@ public class AdminController {
     }
 
     @RequestMapping(value = MappingConstants.USER_ROLE_LIST, method = RequestMethod.GET)
-    public String displayUserRoleList(@PathVariable long id, Model model) {
+    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_USER_ROLE_LIST_GET + "')")
+    public String displayUserRoleList(@PathVariable long id, Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
         model.addAttribute(ID, id);
         model.addAttribute(ROLES, roleServiceConsumer.findAll());
+        model.addAttribute(AUTHENTICATED_USER_FIRST_NAME, userDetails != null ? userDetails.getFirstName() : null);
         return ViewConstants.ADMIN + "/" + ViewConstants.USER_ROLE_LIST;
     }
 
     @RequestMapping(MappingConstants.USER_ROLE_LIST_JSON)
+    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_USER_ROLE_LIST_JSON_GET + "')")
     public @ResponseBody List<Role> findUserRoles(@PathVariable long id) {
         return userServiceConsumer.findRoles(id);
     }
@@ -111,5 +124,20 @@ public class AdminController {
         ValidationResponse validationResponse = new ValidationResponse();
         validationResponse.setStatus("SUCCESS");
         return validationResponse;
+    }
+
+    @RequestMapping(value = MappingConstants.LINK_LIST, method = RequestMethod.GET)
+    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_LINK_LIST_GET + "')")
+    public String displayLinkList(Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
+        languageDelegate.addAvailableLanguages(model);
+        languageDelegate.addNotAvailableLanguages(model);
+        model.addAttribute(AUTHENTICATED_USER_FIRST_NAME, userDetails != null ? userDetails.getFirstName() : null);
+        return ViewConstants.ADMIN + "/" + ViewConstants.LINK_LIST;
+    }
+
+    @RequestMapping(MappingConstants.LINK_LIST_JSON)
+    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_LINK_LIST_JSON_GET + "')")
+    public @ResponseBody List<Link> findLinks() {
+        return linkServiceConsumer.findAll();
     }
 }

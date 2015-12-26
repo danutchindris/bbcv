@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8" />
     <title></title>
@@ -44,33 +45,13 @@
                         <li>
                             <a href="#" data-th-href="@{/links}">
                                 <i class="pe-7s-ticket"></i>
-                                <span href="/links" th:text="#{links}">Links</span>
+                                <span th:text="#{links}">Links</span>
                             </a>
                         </li>
                         <li>
                             <a href="#" data-th-href="@{/contact-us}">
                                 <i class="pe-7s-piggy"></i>
-                                <span href="/contact" th:text="#{contact}">Contact</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span th:text="#{account}">Account</span>
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu dropdown-with-icons">
-                        <li>
-                            <a href="contact-us.html">
-                                <i class="pe-7s-user"></i>
-                                <span th:text="#{login}">Login</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="about-us.html">
-                                <i class="pe-7s-user"></i>
-                                <span th:text="#{register}">Register</span>
+                                <span th:text="#{contact.us}">Contact Us</span>
                             </a>
                         </li>
                     </ul>
@@ -92,6 +73,52 @@
                             <a href="#" th:href="'?lang=' + ${locale.code}">
                                 <img src="../../static/assets/img/flags/US.png" th:attr="src=${'/assets/img/flags/' + locale.country + '.png'}" />
                                 <span th:text="${locale.name}">English</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span th:text="#{account}">Account</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu dropdown-with-icons">
+                        <li th:if="${authenticatedUserFirstName} != null">
+                            <a href="#">
+                                <i class="pe-7s-user"></i>
+                                <span th:text="${authenticatedUserFirstName}">First Name</span>
+                            </a>
+                        </li>
+                        <li th:if="${authenticatedUserFirstName} != null" class="divider"></li>
+                        <li sec:authorize="hasRole('admin')">
+                            <a href="#" th:attr="href=@{/admin/user/list}">
+                                <i class="pe-7s-safe"></i>
+                                <span th:text="#{admin}">Admin</span>
+                            </a>
+                        </li>
+                        <li sec:authorize="isAnonymous()">
+                            <a href="#" th:attr="href=@{/login}">
+                                <i class="pe-7s-user"></i>
+                                <span th:text="#{login}">Login</span>
+                            </a>
+                        </li>
+                        <li sec:authorize="isAnonymous()">
+                            <a href="#" th:attr="href=@{/register}">
+                                <i class="pe-7s-add-user"></i>
+                                <span th:text="#{register}">Register</span>
+                            </a>
+                        </li>
+                        <li sec:authorize="isAuthenticated()">
+                            <a href="#" th:attr="href=@{/profile}">
+                                <i class="pe-7s-user"></i>
+                                <span th:text="#{profile}">Profile</span>
+                            </a>
+                        </li>
+                        <li sec:authorize="isAuthenticated()">
+                            <form th:action="@{/logout}" method="post"></form>
+                            <a href="#" onclick="document.forms[0].submit();">
+                                <i class="pe-7s-lock"></i>
+                                <span th:text="#{logout}">Logout</span>
                             </a>
                         </li>
                     </ul>

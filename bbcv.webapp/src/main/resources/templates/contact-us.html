@@ -29,74 +29,74 @@
             <img src="../static/assets/img/blog_page8.jpg" data-th-attr="src=@{/assets/img/blog_page8.jpg}" />
         </div>
         <div class="small-info">
-            <h1 th:text="#{you.are.invited}">You Are Invited</h1>
-            <h3 th:text="#{you.are.invited.motto}">You Are Invited Motto</h3>
+            <h1 th:text="#{words.of.life}">Header 1</h1>
+            <h3 th:text="#{awesome.articles}">Header 3</h3>
         </div>
     </div>
-    <!--
-        <div class="social-line social-line-black">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2 col-md-offset-3">
-                        <a href="" class="btn btn-simple btn-social btn-neutral">
-                            <i class="fa fa-facebook-square"></i> Share &middot; 753
-                        </a>
-                    </div>
-                    <div class="col-md-2">
-                        <a href="" class="btn btn-simple btn-social btn-neutral">
-                            <i class="fa fa-twitter"></i> Tweet &middot; 832
-                        </a>
-                    </div>
-                    <div class="col-md-2">
-                        <a href="" class="btn btn-simple btn-social btn-neutral">
-                            <i class="fa fa-google-plus-square"></i> Post &middot; 131
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    -->
+
     <div class="section">
         <div class="container">
+            <h2 class="section-title" th:text="#{leave.us.a.message}">Header 2</h2>
             <div class="row">
-                <div class="col-md-12">
-                    <div class="card card-plain">
-                        <div class="content">
-                            <h4 class="title" th:utext="#{you.are.invited.paragraph1}">Content 1</h4>
+                <div class="col-md-6">
+                    <p th:text="#{contact.us.explanation}">
+                        Paragraph
+                        <br/>
+                        <br/>
+                    </p>
+                    <form role="form" id="contact-form" method="post">
+                        <div class="form-group">
+                            <label for="name" th:text="#{your.name}">Label</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Placeholder" data-th-attr="placeholder=#{first.name.and.last.name}" />
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="email" th:text="#{email}">Label</label>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="Placeholder" data-th-attr="placeholder=#{email}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" th:text="#{phone}">Label</label>
+                            <input type="text" name="phone" class="form-control" id="phone" placeholder="Placeholder" data-th-attr="placeholder=#{phone}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="message" th:text="#{your.message}">Label</label>
+                            <textarea name="message" class="form-control" id="message" rows="6" placeholder="Placeholder" data-th-attr="placeholder=#{leave.us.a.message}"></textarea>
+                        </div>
+                        <div class="submit">
+                            <input type="submit" class="btn btn-info btn-fill" value="Button" data-th-attr="value=#{contact.us}" />
+                        </div>
+                    </form>
                 </div>
-                <div class="col-md-12">
-                    <div class="card card-plain">
-                        <div class="content">
-                            <h4 class="title" th:utext="#{you.are.invited.paragraph2}">Content 2</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card card-plain">
-                        <div class="content">
-                            <h4 class="title" th:utext="#{you.are.invited.paragraph3}">Content 3</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card card-plain">
-                        <div class="content">
-                            <h4 class="title" th:utext="#{you.are.invited.paragraph4}">Content 4</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card card-plain">
-                        <div class="content">
-                            <h4 class="title" th:utext="#{you.are.invited.paragraph5}">Content 5</h4>
-                        </div>
+                <div class="col-md-4 col-md-offset-2">
+                    <div class="contact-info">
+                        <h5>
+                            <i class="fa fa-map-marker text-muted"></i>
+                            <span th:text="#{address}">Span</span>
+                        </h5>
+                        <p class="text-muted">
+                            <span th:text="#{owner.address}">Span</span>
+                            <br/>
+                            <span th:text="#{owner.city}">Span</span>
+                            <br/>
+                            <span th:text="#{owner.country}">Span</span>
+                        </p>
+                        <br/>
+                        <h5>
+                            <i class="fa fa-phone text-muted"></i>
+                            <span th:text="#{contact.person}">Span</span>
+                        </h5>
+                        <p class="text-muted">
+                            <span th:text="#{owner}">Span</span>
+                            <br/>
+                            <span th:text="#{owner.phone}">Span</span>
+                            <br/>
+                            <span th:text="#{working.hours}">Span</span>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div><!-- section -->
+    <div class="space-50"></div>
 
     <div th:replace="common/footer :: footer-area"></div>
 

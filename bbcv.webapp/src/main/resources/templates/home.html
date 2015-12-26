@@ -33,11 +33,11 @@
             <h3 th:text="#{awesome.articles}">Header 3</h3>
         </div>
     </div>
-
+<!--
     <div class="social-line social-line-black">
         <div class="container">
             <div class="row">
-                <div class="col-md-2 col-md-offset-2">
+                <div class="col-md-2 col-md-offset-3">
                     <a href="" class="btn btn-simple btn-social btn-neutral">
                         <i class="fa fa-facebook-square"></i> Share &middot; 753
                     </a>
@@ -52,18 +52,13 @@
                         <i class="fa fa-google-plus-square"></i> Post &middot; 131
                     </a>
                 </div>
-                <div class="col-md-2">
-                    <a href="" class="btn btn-simple btn-social btn-neutral">
-                        <i class="fa fa-pinterest"></i> Pin it &middot; 323
-                    </a>
-                </div>
             </div>
         </div>
     </div>
-
+-->
     <div class="section">
         <div class="container">
-            <h2 class="section-title">Latest Stories</h2>
+            <h2 class="section-title" th:text="#{latest.stories}">Latest Stories</h2>
             <div class="row">
                 <div class="col-md-4">
                     <div class="card card-plain">
@@ -219,109 +214,10 @@
         </div>
     </div><!-- section -->
 
-    <div class="section">
-        <div class="container">
-            <h2 class="section-title">Creative Stories</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card card-plain">
-                        <div class="image">
-                            <img src="../assets/img/examples/ecommerce.jpg" alt="..."/>
-                            <div class="filter filter-white">
-                                <button type="button" class="btn btn-info btn-round btn-fill">
-                                    <i class="fa fa-heart"></i> Bookmarked
-                                </button>
-                            </div>
-                        </div>
-                        <div class="content">
-                            <p class="category">News</p>
-                            <a class="card-link" href="#">
-                                <h4 class="title">Get Shit Done Kit PRO, the most wanted bootstrap kit is here and... </h4>
-                            </a>
-                            <div class="footer">
-                                <div class="author">
-                                    <a class="card-link" href="#">
-                                        <img src="../assets/img/faces/face-5.jpg" alt="..." class="avatar" />
-                                        <span> Alex </span>
-                                    </a>
-                                </div>
-                                <div class="stats pull-right">
-                                    <i class="fa fa-clock-o"></i> 7 min read
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- end card -->
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card card-plain">
-                        <div class="image">
-                            <img src="../assets/img/examples/blog_page2.jpg" alt="..."/>
-                            <div class="filter filter-azure">
-                                <button type="button" class="btn btn-neutral btn-round">
-                                    <i class="fa fa-heart-o"></i> Bookmark
-                                </button>
-                            </div>
-                        </div>
-                        <div class="content">
-                            <p class="category">Famous</p>
-                            <a class="card-link" href="#">
-                                <h4 class="title">This is a very beautiful field in our office, we would love to hear... </h4>
-                            </a>
-                            <div class="footer">
-                                <div class="author">
-                                    <a class="card-link" href="#">
-                                        <img src="../assets/img/faces/face-7.jpg" alt="..." class="avatar" />
-                                        <span> Radu </span>
-                                    </a>
-                                </div>
-                                <div class="stats pull-right">
-                                    <i class="fa fa-clock-o"></i> 7 min read
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- end card -->
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card card-plain">
-                        <div class="image">
-                            <img src="../assets/img/examples/about_5.jpg" alt="..."/>
-                            <div class="filter filter-white">
-                                <button type="button" class="btn btn-info btn-round btn-fill">
-                                    <i class="fa fa-heart"></i> Bookmarked
-                                </button>
-                            </div>
-                        </div>
-                        <div class="content">
-                            <p class="category">Famous</p>
-                            <a class="card-link" href="#">
-                                <h4 class="title">This is the most wanted bootstrap kit. We would love to hear your... </h4>
-                            </a>
-                            <div class="footer">
-                                <div class="author">
-                                    <a class="card-link" href="#">
-                                        <img src="../assets/img/faces/face-6.jpg" alt="..." class="avatar" />
-                                        <span> Elena </span>
-                                    </a>
-                                </div>
-                                <div class="stats pull-right">
-                                    <i class="fa fa-clock-o"></i> 7 min read
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- end card -->
-                </div>
-            </div>
-        </div>
-    </div><!-- section -->
 
     <div class="section section-gray">
         <div class="container">
-            <h2 class="section-title">
-                Latest Stories
-                <small>(example 2 cards)</small>
-            </h2>
+            <h2 class="section-title" th:text="#{best.of}">Best Of</h2>
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">

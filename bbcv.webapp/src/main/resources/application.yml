@@ -4,6 +4,9 @@ spring:
 
 ---
 
+logging:
+          file: /var/log/bbcv/webapp.log
+
 spring:
           profiles: development
 
@@ -15,6 +18,7 @@ ro:
     services:
       user: "http://localhost:8083/api/user"
       role: "http://localhost:8083/api/role"
+      link: "http://localhost:8083/api/link"
 
 ---
 
@@ -29,6 +33,7 @@ ro:
     services:
       user: "http://localhost:8084/api/user"
       role: "http://localhost:8084/api/role"
+      link: "http://localhost:8084/api/link"
 ---
 
 spring:
@@ -42,3 +47,4 @@ ro:
     services:
       user: "http://localhost:8083/api/user"
       role: "http://localhost:8083/api/role"
+      link: "http://localhost:8083/api/link"

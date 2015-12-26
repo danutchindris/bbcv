@@ -12,21 +12,21 @@ import ro.leje.util.ViewConstants;
 
 /**
  * @author Danut Chindris
- * @since August 1, 2015
+ * @since December 5, 2015
  */
 @Controller
-public class WeBelieveController {
+public class LinksController {
 
-    private static final Logger logger = LoggerFactory.getLogger(WeBelieveController.class);
+    private static final Logger logger = LoggerFactory.getLogger(LinksController.class);
 
     @Autowired
     private LanguageDelegate languageDelegate;
 
-    @RequestMapping(value = MappingConstants.WE_BELIEVE)
-    public String weBelieve(Model model) {
-        logger.debug("Processing WeBelieveController#weBelieve()");
+    @RequestMapping(value = MappingConstants.LINKS)
+    public String links(Model model) {
+        logger.debug("Processing LinksController#links()");
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
-        return ViewConstants.WE_BELIEVE;
+        return ViewConstants.LINKS;
     }
 }
