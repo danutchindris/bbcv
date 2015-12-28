@@ -16,9 +16,9 @@ server:
 ro:
   leje:
     services:
-      user: "http://localhost:8083/api/user"
-      role: "http://localhost:8083/api/role"
-      link: "http://localhost:8083/api/link"
+      users: "http://localhost:8083/api/v1/users"
+      roles: "http://localhost:8083/api/v1/roles"
+      links: "http://localhost:8083/api/v1/links"
 
 ---
 
@@ -31,9 +31,9 @@ server:
 ro:
   leje:
     services:
-      user: "http://localhost:8084/api/user"
-      role: "http://localhost:8084/api/role"
-      link: "http://localhost:8084/api/link"
+      users: "http://localhost:8084/api/v1/users"
+      roles: "http://localhost:8084/api/v1/roles"
+      links: "http://localhost:8084/api/v1/links"
 ---
 
 spring:
@@ -45,6 +45,6 @@ server:
 ro:
   leje:
     services:
-      user: "http://localhost:8083/api/user"
-      role: "http://localhost:8083/api/role"
-      link: "http://localhost:8083/api/link"
+      users: "http://localhost:8083/api/v1/users"
+      roles: "http://localhost:8083/api/v1/roles"
+      links: "http://localhost:8083/api/v1/links"

@@ -35,7 +35,7 @@ public class UserServiceConsumerImpl implements UserServiceConsumer {
 
     @Override
     public User findByUserName(String userName) {
-        String endpoint = serviceSettings.getUser() + RestMappings.USER_FIND_BY_USER_NAME;
+        String endpoint = serviceSettings.getUsers() + RestMappings.USER_NAME;
         Map<String, String> params = new HashMap<>();
         params.put(PARAM_USER_NAME, userName);
         RestTemplate restTemplate = new RestTemplate();
@@ -45,7 +45,7 @@ public class UserServiceConsumerImpl implements UserServiceConsumer {
 
     @Override
     public List<User> findAll() {
-        String endpoint = serviceSettings.getUser() + RestMappings.FIND_ALL;
+        String endpoint = serviceSettings.getUsers();
         RestTemplate restTemplate = new RestTemplate();
         // http://thespringway.info/spring-web/map-to-list-of-objects-from-json-array-with-resttemplate/
         ParameterizedTypeReference<List<User>> responseType = new ParameterizedTypeReference<List<User>>() {};
@@ -58,12 +58,12 @@ public class UserServiceConsumerImpl implements UserServiceConsumer {
     @Override
     public Long create(User user) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForObject(serviceSettings.getUser(), user, Long.class);
+        return restTemplate.postForObject(serviceSettings.getUsers(), user, Long.class);
     }
 
     @Override
     public List<Role> findRoles(long userId) {
-        String endpoint = serviceSettings.getUser() + RestMappings.USER_FIND_ROLES;
+        String endpoint = serviceSettings.getUsers() + RestMappings.USER_ID + RestMappings.ROLES;
         Map<String, Long> params = new HashMap<>();
         params.put(PARAM_USER_ID, userId);
         RestTemplate restTemplate = new RestTemplate();
@@ -77,7 +77,7 @@ public class UserServiceConsumerImpl implements UserServiceConsumer {
 
     @Override
     public boolean addRole(long userId, long roleId) {
-        String endpoint = serviceSettings.getUser() + RestMappings.USER_ADD_ROLE;
+        String endpoint = serviceSettings.getUsers() + RestMappings.USER_ID + RestMappings.ROLES + RestMappings.ROLE_ID;
         Map<String, Long> params = new HashMap<>();
         params.put(PARAM_USER_ID, userId);
         params.put(PARAM_ROLE_ID, roleId);
@@ -87,7 +87,7 @@ public class UserServiceConsumerImpl implements UserServiceConsumer {
 
     @Override
     public List<Permission> findPermissions(long userId) {
-        String endpoint = serviceSettings.getUser() + RestMappings.USER_FIND_PERMISSIONS;
+        String endpoint = serviceSettings.getUsers() + RestMappings.USER_ID + RestMappings.PERMISSIONS;
         Map<String, Long> params = new HashMap<>();
         params.put(PARAM_USER_ID, userId);
         RestTemplate restTemplate = new RestTemplate();

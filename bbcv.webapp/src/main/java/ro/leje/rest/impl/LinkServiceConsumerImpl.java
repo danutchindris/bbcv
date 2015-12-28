@@ -8,7 +8,6 @@ import org.springframework.web.client.RestTemplate;
 import ro.leje.config.ServiceSettings;
 import ro.leje.model.vo.Link;
 import ro.leje.rest.LinkServiceConsumer;
-import ro.leje.util.RestMappings;
 
 import javax.annotation.Resource;
 import java.util.Collections;
@@ -26,7 +25,7 @@ public class LinkServiceConsumerImpl implements LinkServiceConsumer {
 
     @Override
     public List<Link> findAll() {
-        String endpoint = serviceSettings.getLink() + RestMappings.FIND_ALL;
+        String endpoint = serviceSettings.getLinks();
         RestTemplate restTemplate = new RestTemplate();
         // http://thespringway.info/spring-web/map-to-list-of-objects-from-json-array-with-resttemplate/
         ParameterizedTypeReference<List<Link>> responseType = new ParameterizedTypeReference<List<Link>>() {};

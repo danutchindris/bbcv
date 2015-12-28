@@ -13,33 +13,33 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix="ro.leje.services")
 public class ServiceSettings {
 
-    private String user;
+    private String users;
 
-    private String role;
+    private String roles;
 
-    private String link;
+    private String links;
 
-    public String getUser() {
-        return user;
+    public String getUsers() {
+        return users;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsers(String users) {
+        this.users = users;
     }
 
-    public String getRole() {
-        return role;
+    public String getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
-    public String getLink() {
-        return link;
+    public String getLinks() {
+        return links;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setLinks(String links) {
+        this.links = links;
     }
 }

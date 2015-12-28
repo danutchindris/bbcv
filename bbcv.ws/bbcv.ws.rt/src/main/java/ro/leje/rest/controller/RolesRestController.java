@@ -1,6 +1,7 @@
 package ro.leje.rest.controller;
 
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,15 +17,22 @@ import java.util.List;
  * @since September 14, 2015
  */
 @RestController
-@RequestMapping(RestMappings.API + RestMappings.ROLE)
-public class RoleRestController {
+@RequestMapping(RestMappings.API + RestMappings.V1 + RestMappings.ROLES)
+public class RolesRestController {
 
     @Resource
     private RoleService roleService;
 
-    @RequestMapping(value = RestMappings.FIND_ALL, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Role> findAll() {
-        List<Role> list = roleService.findAll();
-        return list;
+        return roleService.findAll();
+    }
+
+    @RequestMapping(value = RestMappings.ROLE_ID,
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Role findById(@PathVariable long roleId) {
+        return roleService.find(roleId);
     }
 }

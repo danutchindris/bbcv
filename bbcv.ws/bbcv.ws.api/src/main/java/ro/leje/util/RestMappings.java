@@ -8,22 +8,20 @@ public interface RestMappings {
 
     String API = "/api";
 
-    String USER = "/user";
+    String V1 = "/v1";
 
-    String FIND_ALL = "/findAll";
+    String USERS = "/users";
+
+    String ROLES = "/roles";
+
+    String PERMISSIONS = "/permissions";
 
     // we are using a regular expression for the userName path variable lest the value gets truncated
     // for instance, if the path variable is declared as {userName}
     // for "test.user" the value gets truncated to "test"
-    String USER_FIND_BY_USER_NAME = "/findByUserName/{userName:.+}";
+    String USER_NAME = "/{userName:.+}";
 
-    String USER_FIND_BY_ID = "/findById/{userId}";
+    String USER_ID = "/{userId}";
 
-    String USER_FIND_ROLES = "/findRoles/{userId}";
-
-    String USER_FIND_PERMISSIONS = "/findPermissions/{userId}";
-
-    String USER_ADD_ROLE = "/{userId}/role/{roleId}";
-
-    String ROLE = "/role";
+    String ROLE_ID = "/{roleId}";
 }

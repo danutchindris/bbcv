@@ -18,14 +18,13 @@ import javax.transaction.Transactional;
  * @since August 12, 2015
  */
 @Transactional
-public class UserRestControllerTest extends AbstractControllerTest {
+public class UsersRestControllerTest extends AbstractControllerTest {
 
-    private static final String TEST_USER_USERNAME = "test.user";
-    private static final long TEST_USER_ID = 1L;
+    private static final String TEST_USER_NAME = "test.user";
 
-    private static final String TEST_NEW_USER_USERNAME = "new.test.user";
-    private static final String TEST_NEW_USER_PASSWORD = "new.test.password";
-    private static final String TEST_NEW_USER_EMAIL = "new.test.email";
+    private static final String TEST_NEW_USER_NAME = "new.test.user";
+    private static final String TEST_NEW_PASSWORD = "new.test.password";
+    private static final String TEST_NEW_EMAIL = "new.test.email";
 
     @Before
     public void setUp() {
@@ -35,19 +34,7 @@ public class UserRestControllerTest extends AbstractControllerTest {
     @Test
     public void testFindByUserName() throws Exception {
         MvcResult result = mvc.perform(MockMvcRequestBuilders
-                .get(RestMappings.USER + RestMappings.USER_FIND_BY_USER_NAME, TEST_USER_USERNAME)
-                .accept(MediaType.APPLICATION_JSON))
-                .andReturn();
-        String content = result.getResponse().getContentAsString();
-        int status = result.getResponse().getStatus();
-        Assert.assertEquals("The expected HTTP status is 200", 200, status);
-        Assert.assertTrue("The HTTP response body is expected to be non empty", content.trim().length() > 0);
-    }
-
-    @Test
-    public void testFindById() throws Exception {
-        MvcResult result = mvc.perform(MockMvcRequestBuilders
-                .get(RestMappings.USER + RestMappings.USER_FIND_BY_ID, TEST_USER_ID)
+                .get(RestMappings.API + RestMappings.V1 + RestMappings.USERS + RestMappings.USER_NAME, TEST_USER_NAME)
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn();
         String content = result.getResponse().getContentAsString();
@@ -59,13 +46,13 @@ public class UserRestControllerTest extends AbstractControllerTest {
     @Test
     public void testCreate() throws Exception {
         User object = new User();
-        object.setUserName(TEST_NEW_USER_USERNAME);
-        object.setPassword(TEST_NEW_USER_PASSWORD);
-        object.setEmail(TEST_NEW_USER_EMAIL);
+        object.setUserName(TEST_NEW_USER_NAME);
+        object.setPassword(TEST_NEW_PASSWORD);
+        object.setEmail(TEST_NEW_EMAIL);
         Gson gson = new Gson();
         String json = gson.toJson(object);
         MvcResult result = mvc.perform(MockMvcRequestBuilders
-                .post(RestMappings.USER)
+                .post(RestMappings.API + RestMappings.V1 + RestMappings.USERS)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json)
                 .accept(MediaType.APPLICATION_JSON))
@@ -74,10 +61,5 @@ public class UserRestControllerTest extends AbstractControllerTest {
         int status = result.getResponse().getStatus();
         Assert.assertEquals("The expected HTTP status is 200", 200, status);
         Assert.assertTrue("The HTTP response body is expected to be non empty", content.trim().length() > 0);
-    }
-
-    @Test
-    public void testAddRole() {
-
     }
 }

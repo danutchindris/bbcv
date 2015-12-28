@@ -35,7 +35,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 
     @Override
     public CustomUserDetails getCustomUserDetailsByUserName(String userName) {
-        String endpoint = serviceSettings.getUser() + RestMappings.USER_FIND_BY_USER_NAME;
+        String endpoint = serviceSettings.getUsers() + RestMappings.USER_NAME;
         Map<String, String> params = new HashMap<>();
         params.put(USER_NAME_PARAM, userName);
         RestTemplate restTemplate = new RestTemplate();
