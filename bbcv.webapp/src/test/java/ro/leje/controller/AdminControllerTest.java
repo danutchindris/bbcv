@@ -8,6 +8,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import ro.leje.AbstractTest;
 import ro.leje.delegate.LanguageDelegate;
 import ro.leje.util.ConfigConstants;
 import ro.leje.util.MappingConstants;
@@ -21,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Danut Chindris
  * @since August 15, 2015, Catiasu
  */
-public class AdminControllerTest {
+public class AdminControllerTest extends AbstractTest {
 
     @Mock
     private LanguageDelegate languageDelegate;
@@ -48,6 +49,6 @@ public class AdminControllerTest {
     public void testUserList() throws Exception {
         mockMvc.perform(get(MappingConstants.ADMIN + MappingConstants.USER_LIST))
                 .andExpect(status().isOk())
-                .andExpect(view().name(ViewConstants.USER_LIST));
+                .andExpect(view().name(ViewConstants.ADMIN + "/" + ViewConstants.USER_LIST));
     }
 }

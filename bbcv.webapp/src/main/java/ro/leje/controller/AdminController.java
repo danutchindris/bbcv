@@ -13,9 +13,9 @@ import ro.leje.model.CustomUserDetails;
 import ro.leje.model.vo.Link;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
-import ro.leje.rest.LinkServiceConsumer;
-import ro.leje.rest.RoleServiceConsumer;
-import ro.leje.rest.UserServiceConsumer;
+import ro.leje.service.LinkService;
+import ro.leje.service.RoleService;
+import ro.leje.service.UserService;
 import ro.leje.util.*;
 
 import javax.annotation.Resource;
@@ -41,13 +41,13 @@ public class AdminController {
     private LanguageDelegate languageDelegate;
 
     @Resource
-    private UserServiceConsumer userServiceConsumer;
+    private UserService userService;
 
     @Resource
-    private RoleServiceConsumer roleServiceConsumer;
+    private RoleService roleService;
 
     @Resource
-    private LinkServiceConsumer linkServiceConsumer;
+    private LinkService linkService;
 
     @Resource
     PasswordEncoder passwordEncoder;
@@ -64,7 +64,7 @@ public class AdminController {
     @RequestMapping(MappingConstants.USER_LIST_JSON)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_USER_LIST_JSON_GET + "')")
     public @ResponseBody List<User> findUsers() {
-        return userServiceConsumer.findAll();
+        return userService.findAll();
     }
 
     @RequestMapping(value = MappingConstants.USER, method = RequestMethod.POST)
@@ -84,7 +84,7 @@ public class AdminController {
             validationResponse.setStatus("FAILURE");
         }
         else {
-            userServiceConsumer.create(user);
+            userService.create(user);
             validationResponse.setStatus("SUCCESS");
         }
         return validationResponse;
@@ -96,7 +96,7 @@ public class AdminController {
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
         model.addAttribute(ID, id);
-        model.addAttribute(ROLES, roleServiceConsumer.findAll());
+        model.addAttribute(ROLES, roleService.findAll());
         model.addAttribute(AUTHENTICATED_USER_FIRST_NAME, userDetails != null ? userDetails.getFirstName() : null);
         return ViewConstants.ADMIN + "/" + ViewConstants.USER_ROLE_LIST;
     }
@@ -104,12 +104,12 @@ public class AdminController {
     @RequestMapping(MappingConstants.USER_ROLE_LIST_JSON)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_USER_ROLE_LIST_JSON_GET + "')")
     public @ResponseBody List<Role> findUserRoles(@PathVariable long id) {
-        return userServiceConsumer.findRoles(id);
+        return userService.findRoles(id);
     }
 
     @RequestMapping(MappingConstants.ROLE_LIST_JSON)
     public @ResponseBody List<Role> findRoles() {
-        return roleServiceConsumer.findAll();
+        return roleService.findAll();
     }
 
     @RequestMapping(value = MappingConstants.ROLE_LIST, method = RequestMethod.GET)
@@ -120,7 +120,7 @@ public class AdminController {
 
     @RequestMapping(value = MappingConstants.USER_ROLE, method = RequestMethod.POST)
     public @ResponseBody ValidationResponse addRole(@PathVariable long userId, @PathVariable long roleId) {
-        userServiceConsumer.addRole(userId, roleId);
+        userService.addRole(userId, roleId);
         ValidationResponse validationResponse = new ValidationResponse();
         validationResponse.setStatus("SUCCESS");
         return validationResponse;
@@ -138,6 +138,6 @@ public class AdminController {
     @RequestMapping(MappingConstants.LINK_LIST_JSON)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_LINK_LIST_JSON_GET + "')")
     public @ResponseBody List<Link> findLinks() {
-        return linkServiceConsumer.findAll();
+        return linkService.findAll();
     }
 }

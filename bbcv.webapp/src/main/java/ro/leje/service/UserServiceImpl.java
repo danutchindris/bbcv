@@ -2,7 +2,6 @@ package ro.leje.service;
 
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.exception.ContextedRuntimeException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.leje.dao.UserDAO;
 import ro.leje.model.entity.RoleEntity;
@@ -11,6 +10,7 @@ import ro.leje.model.vo.Permission;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 
+import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -21,7 +21,7 @@ import java.util.List;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+    @Resource
     private UserDAO userDAO;
 
     private <T> void validateId(long id, Class<T> clazz) {

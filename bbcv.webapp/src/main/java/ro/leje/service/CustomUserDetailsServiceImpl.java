@@ -1,19 +1,14 @@
-package ro.leje.service.impl;
+package ro.leje.service;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import ro.leje.config.ServiceSettings;
 import ro.leje.model.CustomUserDetails;
 import ro.leje.model.vo.Permission;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
-import ro.leje.rest.UserServiceConsumer;
-import ro.leje.service.CustomUserDetailsService;
-import ro.leje.util.RestMappings;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -28,18 +23,11 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     private static final String USER_NAME_PARAM = "userName";
 
     @Resource
-    private ServiceSettings serviceSettings;
-
-    @Resource
-    private UserServiceConsumer userServiceConsumer;
+    private UserService userService;
 
     @Override
     public CustomUserDetails getCustomUserDetailsByUserName(String userName) {
-        String endpoint = serviceSettings.getUsers() + RestMappings.USER_NAME;
-        Map<String, String> params = new HashMap<>();
-        params.put(USER_NAME_PARAM, userName);
-        RestTemplate restTemplate = new RestTemplate();
-        User user = restTemplate.getForObject(endpoint, User.class, params);
+        User user = userService.findByUserName(userName);
         CustomUserDetails customUserDetails = new CustomUserDetails();
         customUserDetails.setId(user.getId());
         customUserDetails.setUserName(user.getUserName());
@@ -55,8 +43,8 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         try {
             CustomUserDetails customUserDetails = getCustomUserDetailsByUserName(userName);
-            List<Role> roles = userServiceConsumer.findRoles(customUserDetails.getId());
-            List<Permission> permissions = userServiceConsumer.findPermissions(customUserDetails.getId());
+            List<Role> roles = userService.findRoles(customUserDetails.getId());
+            List<Permission> permissions = userService.findPermissions(customUserDetails.getId());
             Collection<GrantedAuthority> authorities = new ArrayList<>();
             GrantedAuthority authority;
             for (Role role : roles) {

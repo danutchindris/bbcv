@@ -2,7 +2,6 @@ package ro.leje.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +10,8 @@ import ro.leje.delegate.LanguageDelegate;
 import ro.leje.model.CustomUserDetails;
 import ro.leje.util.MappingConstants;
 import ro.leje.util.ViewConstants;
+
+import javax.annotation.Resource;
 
 /**
  * @author Danut Chindris
@@ -23,7 +24,7 @@ public class HomeController {
 
     private static final String AUTHENTICATED_USER_FIRST_NAME = "authenticatedUserFirstName";
 
-    @Autowired
+    @Resource
     private LanguageDelegate languageDelegate;
 
     @RequestMapping(value = {MappingConstants.ROOT, MappingConstants.HOME})

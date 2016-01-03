@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @author Danut Chindris
- * @since September 11th, 2015
+ * @since September 11, 2015
  */
 public class ValidationResponse {
 

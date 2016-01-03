@@ -9,6 +9,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 /**
+ * We are using a special profile that accesses a database set up for testing purposes.
+ * This profile is activated via the {@link ActiveProfiles} annotation
+ *
  * @author Danut Chindris
  * @since August 12, 2015
  */
@@ -16,7 +19,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @ActiveProfiles(profiles = "localtest")
-public class AbstractWebAppTest {
+public abstract class AbstractTest {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 }

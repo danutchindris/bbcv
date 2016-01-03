@@ -13,12 +13,17 @@ spring:
 server:
           port: 8081
 
-ro:
-  leje:
-    services:
-      users: "http://localhost:8083/api/v1/users"
-      roles: "http://localhost:8083/api/v1/roles"
-      links: "http://localhost:8083/api/v1/links"
+db:
+          driver: "com.mysql.jdbc.Driver"
+          url: "jdbc:mysql://localhost:3307/bbcvdb"
+          usr: "testuser"
+          password: "testpassword"
+
+hibernate:
+          dialect: "org.hibernate.dialect.MySQLInnoDBDialect"
+          show_sql: "true"
+          connection:
+                    characterEncoding: "UTF-8"
 
 ---
 
@@ -28,12 +33,18 @@ spring:
 server:
           port: 8085
 
-ro:
-  leje:
-    services:
-      users: "http://localhost:8084/api/v1/users"
-      roles: "http://localhost:8084/api/v1/roles"
-      links: "http://localhost:8084/api/v1/links"
+db:
+          driver: "com.mysql.jdbc.Driver"
+          url: "jdbc:mysql://localhost:3307/bbcvdblocaltest"
+          usr: "testuser"
+          password: "testpassword"
+
+hibernate:
+          dialect: "org.hibernate.dialect.MySQLInnoDBDialect"
+          show_sql: "true"
+          connection:
+                    characterEncoding: "UTF-8"
+
 ---
 
 spring:
@@ -42,9 +53,14 @@ spring:
 server:
           port: 8082
 
-ro:
-  leje:
-    services:
-      users: "http://localhost:8083/api/v1/users"
-      roles: "http://localhost:8083/api/v1/roles"
-      links: "http://localhost:8083/api/v1/links"
+db:
+          driver: "com.mysql.jdbc.Driver"
+          url: "jdbc:mysql://localhost:3307/bbcvdblocaltest"
+          usr: "testuser"
+          password: "testpassword"
+
+hibernate:
+          dialect: "org.hibernate.dialect.MySQLInnoDBDialect"
+          show_sql: "true"
+          connection:
+                    characterEncoding: "UTF-8"

@@ -3,7 +3,7 @@ package ro.leje.service;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.security.core.userdetails.UserDetails;
-import ro.leje.AbstractWebAppTest;
+import ro.leje.AbstractTest;
 import ro.leje.model.CustomUserDetails;
 
 import javax.annotation.Resource;
@@ -12,7 +12,7 @@ import javax.annotation.Resource;
  * @author Danut Chindris
  * @since August 14, 2015
  */
-public class CustomUserDetailsServiceTest extends AbstractWebAppTest {
+public class CustomUserDetailsServiceTest extends AbstractTest {
 
     private final static long TEST_USER_ID = 1L;
     private final static String TEST_USER_USERNAME = "test.user";
@@ -20,7 +20,7 @@ public class CustomUserDetailsServiceTest extends AbstractWebAppTest {
     private final static String TEST_USER_LASTNAME = "User";
     private final static String TEST_USER_EMAIL = "test.user@testuser.app";
 
-    private final static String TEST_USER_AUTHORITY = "ROLE_ADMIN";
+    private final static String TEST_USER_AUTHORITY = "admin";
 
     @Resource
     private CustomUserDetailsService customUserDetailsService;
@@ -42,9 +42,9 @@ public class CustomUserDetailsServiceTest extends AbstractWebAppTest {
         Assert.assertNotNull("The custom user details object shouldn't be null", userDetails);
         Assert.assertEquals("The user name is incorrect", TEST_USER_USERNAME, userDetails.getUsername());
         Assert.assertNotNull("The password shouldn't be null", userDetails.getPassword());
-        Assert.assertTrue("The authorities list should contain one element",
-                (userDetails.getAuthorities() != null && userDetails.getAuthorities().size() == 1));
-        Assert.assertEquals("The test user's authority is incorrect", TEST_USER_AUTHORITY,
+        Assert.assertTrue("The authorities list should contain four elements",
+                (userDetails.getAuthorities() != null && userDetails.getAuthorities().size() == 4));
+        Assert.assertEquals("The test user's first authority is incorrect", TEST_USER_AUTHORITY,
                 userDetails.getAuthorities().iterator().next().getAuthority());
         Assert.assertEquals("The account shouldn't be expired", true, userDetails.isAccountNonExpired());
         Assert.assertEquals("The account shouldn't be locked", true, userDetails.isAccountNonLocked());

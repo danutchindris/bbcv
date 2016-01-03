@@ -25,7 +25,6 @@
 
     <modules>
         <module>bbcv.webapp</module>
-        <module>bbcv.ws</module>
     </modules>
 
     <build>

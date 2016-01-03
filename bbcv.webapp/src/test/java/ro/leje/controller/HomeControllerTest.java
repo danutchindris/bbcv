@@ -8,7 +8,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import ro.leje.AbstractWebAppTest;
+import ro.leje.AbstractTest;
 import ro.leje.delegate.LanguageDelegate;
 import ro.leje.util.ConfigConstants;
 import ro.leje.util.MappingConstants;
@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Danut Chindris
  * @since August 12, 2015
  */
-public class HomeControllerTest extends AbstractWebAppTest {
+public class HomeControllerTest extends AbstractTest {
 
     @Mock
     private LanguageDelegate languageDelegate;

@@ -1,4 +1,4 @@
-package ro.leje.rest;
+package ro.leje.service;
 
 import ro.leje.model.vo.Link;
 
@@ -6,9 +6,9 @@ import java.util.List;
 
 /**
  * @author Danut Chindris
- * @since December 6, 2015
+ * @since January 3, 2016
  */
-public interface LinkServiceConsumer {
+public interface LinkService {
 
     List<Link> findAll();
 }

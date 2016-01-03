@@ -216,6 +216,10 @@ public class UserServiceTest extends AbstractTest {
         service.isRoleAssigned(TEST_USER_ID, TEST_ROLE_NOT_EXISTING_ID);
     }
 
+    /**
+     * We assume the transaction is rolled back thanks to the @Transactional annotation
+     * at class level
+     */
     @Test
     public void whenExistingUserIdAndExistingRoleIdAreProvidedAddRoleThrowsNoException() {
         service.addRole(TEST_USER_WITHOUT_ROLES_ID, TEST_ROLE_ID);

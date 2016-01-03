@@ -2,13 +2,14 @@ package ro.leje.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ro.leje.delegate.LanguageDelegate;
 import ro.leje.util.MappingConstants;
 import ro.leje.util.ViewConstants;
+
+import javax.annotation.Resource;
 
 /**
  * @author Danut Chindris
@@ -19,7 +20,7 @@ public class ContactUsController {
 
     private static final Logger logger = LoggerFactory.getLogger(ContactUsController.class);
 
-    @Autowired
+    @Resource
     private LanguageDelegate languageDelegate;
 
     @RequestMapping(value = MappingConstants.CONTACT_US)

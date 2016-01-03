@@ -23,7 +23,7 @@ import java.io.Serializable;
  * <li>Check dependence on third-party classes in value objects</li>
  * <li>Always override method {@link Object#toString()}</li>
  * <li>Consider overriding methods {@link Object#equals(Object)} and {@link Object#hashCode()}</li>
- * <li>Consider implementing {@link java.lang.Comparable}</li>
+ * <li>Consider implementing {@link Comparable}</li>
  * </ul>
  *
  * @author Danut Chindris

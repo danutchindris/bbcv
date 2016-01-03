@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import ro.leje.model.Locale;
 
-import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
 

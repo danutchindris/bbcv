@@ -2,7 +2,8 @@ package ro.leje.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.Resource;
 
 /**
  * Base class for the data access layer.
@@ -12,7 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @since August 6, 2015
  */
 public abstract class BaseDAOImpl implements BaseDAO {
-    @Autowired
+
+    @Resource
     private SessionFactory sessionFactory;
 
     protected Session getCurrentSession() {
