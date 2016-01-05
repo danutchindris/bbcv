@@ -10,9 +10,11 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ro.leje.delegate.LanguageDelegate;
 import ro.leje.model.CustomUserDetails;
+import ro.leje.model.vo.Article;
 import ro.leje.model.vo.Link;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
+import ro.leje.service.ArticleService;
 import ro.leje.service.LinkService;
 import ro.leje.service.RoleService;
 import ro.leje.service.UserService;
@@ -48,6 +50,9 @@ public class AdminController {
 
     @Resource
     private LinkService linkService;
+
+    @Resource
+    private ArticleService articleService;
 
     @Resource
     PasswordEncoder passwordEncoder;
@@ -139,5 +144,20 @@ public class AdminController {
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_LINK_LIST_JSON_GET + "')")
     public @ResponseBody List<Link> findLinks() {
         return linkService.findAll();
+    }
+
+    @RequestMapping(value = MappingConstants.ARTICLE_LIST, method = RequestMethod.GET)
+    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_LIST_GET + "')")
+    public String displayArticleList(Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
+        languageDelegate.addAvailableLanguages(model);
+        languageDelegate.addNotAvailableLanguages(model);
+        model.addAttribute(AUTHENTICATED_USER_FIRST_NAME, userDetails != null ? userDetails.getFirstName() : null);
+        return ViewConstants.ADMIN + "/" + ViewConstants.ARTICLE_LIST;
+    }
+
+    @RequestMapping(MappingConstants.ARTICLE_LIST_JSON)
+    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_LIST_JSON_GET + "')")
+    public @ResponseBody List<Article> findArticles() {
+        return articleService.findAll();
     }
 }
