@@ -1,8 +1,11 @@
 package ro.leje.service;
 
 import org.springframework.stereotype.Service;
+import ro.leje.dao.ArticleDAO;
 import ro.leje.model.vo.Article;
 
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -12,8 +15,12 @@ import java.util.List;
 @Service("articleService")
 public class ArticleServiceImpl implements ArticleService {
 
+    @Resource
+    private ArticleDAO articleDAO;
+
     @Override
+    @Transactional
     public List<Article> findAll() {
-        return null;
+        return articleDAO.findAll();
     }
 }
