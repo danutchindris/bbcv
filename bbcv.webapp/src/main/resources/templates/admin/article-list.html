@@ -45,8 +45,6 @@
                 <thead>
                 <tr>
                     <th data-field="id" data-sortable="true" data-th-text="#{id}">ID</th>
-                    <th data-field="text" data-sortable="true" data-th-text="#{text}">Text</th>
-                    <th data-field="url" data-sortable="true" data-th-text="#{url}">URL</th>
                     <th data-field="action"
                         data-align="center"
                         data-formatter="actionFormatter"
@@ -153,7 +151,7 @@
                 var token = $("meta[name='_csrf']").attr("content");
 
                 $.ajax({
-                    url: '/admin/user/' + ($modal.data('id') || ''),
+                    url: '/admin/article/' + ($modal.data('id') || ''),
                     type: $modal.data('id') ? 'put' : 'post',
                     contentType: 'application/json',
                     data: JSON.stringify(row),

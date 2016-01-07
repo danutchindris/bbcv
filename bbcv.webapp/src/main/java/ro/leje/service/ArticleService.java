@@ -9,5 +9,8 @@ import java.util.List;
  * @since January 5, 2016
  */
 public interface ArticleService {
+
     List<Article> findAll();
+
+    Long create(Article article);
 }

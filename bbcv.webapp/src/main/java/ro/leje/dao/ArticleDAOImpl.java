@@ -1,5 +1,6 @@
 package ro.leje.dao;
 
+import org.springframework.stereotype.Repository;
 import ro.leje.model.vo.Article;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
  * @author Danut Chindris
  * @since January 6, 2016
  */
+@Repository
 public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
 
     @Override

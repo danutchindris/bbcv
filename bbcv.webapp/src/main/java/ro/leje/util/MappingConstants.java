@@ -18,19 +18,27 @@ public interface MappingConstants {
 
     // administration related constants
     String ADMIN = "/admin";
+
     String USER = "/user";
     String USER_LIST = "/user/list";
     String USER_LIST_JSON = "/user/list/json";
     String USER_ROLE = "/user/{userId}/role/{roleId}";
     String USER_ROLE_LIST = "/user/{id}/role/list";
     String USER_ROLE_LIST_JSON = "/user/{id}/role/list/json";
+
     String ROLE = "/role";
     String ROLE_LIST = "/role/list";
     String ROLE_LIST_JSON = "/role/list/json";
+
+    String LINK = "/link";
     String LINK_LIST = "/link/list";
     String LINK_LIST_JSON = "/link/list/json";
+
+    String ARTICLE = "/article";
     String ARTICLE_LIST = "/article/list";
     String ARTICLE_LIST_JSON = "/article/list/json";
+
+    String MESSAGE = "/message";
     String MESSAGE_LIST = "/message/list";
     String MESSAGE_LIST_JSON = "/message/list/json";
 

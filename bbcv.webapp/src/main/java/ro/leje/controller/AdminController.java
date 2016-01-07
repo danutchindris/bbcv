@@ -86,11 +86,11 @@ public class AdminController {
                 errorMessages.add(new ErrorMessage(fieldError.getField(), fieldError.getDefaultMessage()));
             }
             validationResponse.setErrorMessageList(errorMessages);
-            validationResponse.setStatus("FAILURE");
+            validationResponse.setStatus(ConfigConstants.FAILURE);
         }
         else {
             userService.create(user);
-            validationResponse.setStatus("SUCCESS");
+            validationResponse.setStatus(ConfigConstants.SUCCESS);
         }
         return validationResponse;
     }
@@ -159,5 +159,25 @@ public class AdminController {
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_LIST_JSON_GET + "')")
     public @ResponseBody List<Article> findArticles() {
         return articleService.findAll();
+    }
+
+    @RequestMapping(value = MappingConstants.ARTICLE, method = RequestMethod.POST)
+    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_POST + "')")
+    public @ResponseBody ValidationResponse addArticle(@RequestBody @Valid Article article, BindingResult bindingResult) {
+        ValidationResponse validationResponse = new ValidationResponse();
+        if(bindingResult.hasErrors()) {
+            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+            List<ErrorMessage> errorMessages = new ArrayList<>();
+            for (FieldError fieldError: fieldErrors) {
+                errorMessages.add(new ErrorMessage(fieldError.getField(), fieldError.getDefaultMessage()));
+            }
+            validationResponse.setErrorMessageList(errorMessages);
+            validationResponse.setStatus(ConfigConstants.FAILURE);
+        }
+        else {
+            articleService.create(article);
+            validationResponse.setStatus(ConfigConstants.SUCCESS);
+        }
+        return validationResponse;
     }
 }

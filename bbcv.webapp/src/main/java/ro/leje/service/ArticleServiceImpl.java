@@ -23,4 +23,9 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> findAll() {
         return articleDAO.findAll();
     }
+
+    @Override
+    public Long create(Article article) {
+        return null;
+    }
 }
