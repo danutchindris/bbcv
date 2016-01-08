@@ -5,8 +5,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ro.leje.delegate.LanguageDelegate;
 import ro.leje.model.CustomUserDetails;
@@ -22,7 +20,6 @@ import ro.leje.util.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -74,25 +71,11 @@ public class AdminController {
 
     @RequestMapping(value = MappingConstants.USER, method = RequestMethod.POST)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_USER_POST + "')")
-    public @ResponseBody ValidationResponse addUser(@RequestBody @Valid User user, BindingResult bindingResult) {
+    public @ResponseBody Long addUser(@RequestBody @Valid User user) {
         if (user != null && user.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
-        ValidationResponse validationResponse = new ValidationResponse();
-        if(bindingResult.hasErrors()) {
-            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-            List<ErrorMessage> errorMessages = new ArrayList<>();
-            for (FieldError fieldError: fieldErrors) {
-                errorMessages.add(new ErrorMessage(fieldError.getField(), fieldError.getDefaultMessage()));
-            }
-            validationResponse.setErrorMessageList(errorMessages);
-            validationResponse.setStatus(ConfigConstants.FAILURE);
-        }
-        else {
-            userService.create(user);
-            validationResponse.setStatus(ConfigConstants.SUCCESS);
-        }
-        return validationResponse;
+        return userService.create(user);
     }
 
     @RequestMapping(value = MappingConstants.USER_ROLE_LIST, method = RequestMethod.GET)
@@ -124,11 +107,8 @@ public class AdminController {
     }
 
     @RequestMapping(value = MappingConstants.USER_ROLE, method = RequestMethod.POST)
-    public @ResponseBody ValidationResponse addRole(@PathVariable long userId, @PathVariable long roleId) {
+    public @ResponseBody void addRole(@PathVariable long userId, @PathVariable long roleId) {
         userService.addRole(userId, roleId);
-        ValidationResponse validationResponse = new ValidationResponse();
-        validationResponse.setStatus("SUCCESS");
-        return validationResponse;
     }
 
     @RequestMapping(value = MappingConstants.LINK_LIST, method = RequestMethod.GET)
@@ -163,21 +143,7 @@ public class AdminController {
 
     @RequestMapping(value = MappingConstants.ARTICLE, method = RequestMethod.POST)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_POST + "')")
-    public @ResponseBody ValidationResponse addArticle(@RequestBody @Valid Article article, BindingResult bindingResult) {
-        ValidationResponse validationResponse = new ValidationResponse();
-        if(bindingResult.hasErrors()) {
-            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-            List<ErrorMessage> errorMessages = new ArrayList<>();
-            for (FieldError fieldError: fieldErrors) {
-                errorMessages.add(new ErrorMessage(fieldError.getField(), fieldError.getDefaultMessage()));
-            }
-            validationResponse.setErrorMessageList(errorMessages);
-            validationResponse.setStatus(ConfigConstants.FAILURE);
-        }
-        else {
-            articleService.create(article);
-            validationResponse.setStatus(ConfigConstants.SUCCESS);
-        }
-        return validationResponse;
+    public @ResponseBody Long addArticle(@RequestBody @Valid Article article) {
+        return articleService.create(article);
     }
 }

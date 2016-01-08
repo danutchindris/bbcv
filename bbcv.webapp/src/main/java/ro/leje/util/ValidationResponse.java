@@ -1,5 +1,6 @@
 package ro.leje.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,22 +9,18 @@ import java.util.List;
  */
 public class ValidationResponse {
 
-    private String status;
     private List<ErrorMessage> errorMessageList;
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public ValidationResponse() {
+        errorMessageList = new ArrayList<>();
     }
 
     public List<ErrorMessage> getErrorMessageList() {
         return this.errorMessageList;
     }
 
-    public void setErrorMessageList(List<ErrorMessage> errorMessageList) {
-        this.errorMessageList = errorMessageList;
+    public void addErrorMessage(String fieldName, String message) {
+        ErrorMessage errorMessage = new ErrorMessage(fieldName, message);
+        this.errorMessageList.add(errorMessage);
     }
 }
