@@ -1,7 +1,6 @@
 package ro.leje.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,9 +50,6 @@ public class AdminController {
     @Resource
     private ArticleService articleService;
 
-    @Resource
-    PasswordEncoder passwordEncoder;
-
     @RequestMapping(value = MappingConstants.USER_LIST, method = RequestMethod.GET)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_USER_LIST_GET + "')")
     public String displayUserList(Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
@@ -72,9 +68,6 @@ public class AdminController {
     @RequestMapping(value = MappingConstants.USER, method = RequestMethod.POST)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_USER_POST + "')")
     public @ResponseBody Long addUser(@RequestBody @Valid User user) {
-        if (user != null && user.getPassword() != null) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
         return userService.create(user);
     }
 

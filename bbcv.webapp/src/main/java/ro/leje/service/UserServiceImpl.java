@@ -2,6 +2,7 @@ package ro.leje.service;
 
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.exception.ContextedRuntimeException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ro.leje.dao.UserDAO;
 import ro.leje.model.entity.RoleEntity;
@@ -23,6 +24,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private UserDAO userDAO;
+
+    @Resource
+    PasswordEncoder passwordEncoder;
 
     private <T> void validateId(long id, Class<T> clazz) {
         T entity = userDAO.findEntity(id, clazz);
@@ -60,7 +64,7 @@ public class UserServiceImpl implements UserService {
         Validate.notNull(user.getEnabled(), "Null enabled flag not allowed");
         UserEntity userEntity = new UserEntity();
         userEntity.setUserName(user.getUserName());
-        userEntity.setPassword(user.getPassword());
+        userEntity.setPassword(passwordEncoder.encode(user.getPassword()));
         userEntity.setFirstName(user.getFirstName());
         userEntity.setLastName(user.getLastName());
         userEntity.setEmail(user.getEmail());

@@ -37,15 +37,16 @@ public class User implements Serializable, Comparable<User> {
     private long id;
 
     @Size(min = 3, max = 20, message = "{error.user.name.size}")
-    @NotEmpty(message = "{error.user.name.empty}")
     private String userName;
 
+    @Size(min = 6, max = 20, message = "{error.password.size}")
     private String password;
 
     private String firstName;
 
     private String lastName;
 
+    @NotEmpty(message = "{error.email.empty}")
     @Email(message = "{error.email}")
     private String email;
 

@@ -182,25 +182,22 @@
                     success: function (result) {
                         $('.form-group').removeClass('has-error');
                         $('.help-block').empty();
-                        if (result.status == "SUCCESS") {
-                            $modal.modal('hide');
-                            $table.bootstrapTable('refresh');
-                            showAlert($modal.data('id') ? '[[#{item.updated}]]' : '[[#{item.created}]]', 'success');
-                        }
-                        else if (result.status == "FAILURE") {
-                            for (var i = 0; i < result.errorMessageList.length; i++) {
-                                var errorMessage = result.errorMessageList[i];
-                                var $formGroup = $('#' + errorMessage.fieldName + 'FormGroup');
-                                $formGroup.addClass('has-error');
-                                $formGroup.append('<span class="help-block">' + errorMessage.message + '</span>');
-                            }
-                        }
-                    },
-                    error: function () {
                         $modal.modal('hide');
-                        showAlert($modal.data('id') ? '[[#{item.not.updated}]]' : '[[#{item.not.created}]]', 'danger');
+                        $table.bootstrapTable('refresh');
+                        showAlert($modal.data('id') ? '[[#{item.updated}]]' : '[[#{item.created}]]', 'success');
                     },
-                    fail: function() {
+                    error: function (result) {
+                        $('.help-block').empty();
+                        for (var i = 0; i < result.responseJSON.errorMessageList.length; i++) {
+                            var errorMessage = result.responseJSON.errorMessageList[i];
+                            var $formGroup = $('#' + errorMessage.fieldName + 'FormGroup');
+                            $formGroup.addClass('has-error');
+                            $formGroup.append('<span class="help-block">' + errorMessage.message + '</span>');
+                        }
+                        //$modal.modal('hide');
+                        //showAlert($modal.data('id') ? '[[#{item.not.updated}]]' : '[[#{item.not.created}]]', 'danger');
+                    },
+                    fail: function (result) {
                         $modal.modal('hide');
                         showAlert($modal.data('id') ? '[[#{item.not.updated}]]' : '[[#{item.not.created}]]', 'danger');
                     }
