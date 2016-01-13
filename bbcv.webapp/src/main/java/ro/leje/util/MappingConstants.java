@@ -44,4 +44,7 @@ public interface MappingConstants {
 
     // shop related constants
     String SHOP = "/shop";
+
+    String ARTICLES = "/articles";
+    String ARTICLE_DETAILS = "/{articleId}/*";
 }

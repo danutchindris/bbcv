@@ -1,0 +1,75 @@
+<!doctype html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="../static/assets/img/favicon.ico" data-th-href="@{/assets/img/favicon.ico}" />
+    <!-- for IE; IE=edge means IE should use the latest (edge) version of its rendering engine;
+    chrome=1 means IE should use the Chrome rendering engine if installed -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/bootstrap.css" data-th-href="@{/assets/css/bootstrap.css}" />
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/gsdk.css" data-th-href="@{/assets/css/gsdk.css}" />
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/examples.css" data-th-href="@{/assets/css/examples.css}" />
+    <!-- fonts and icons -->
+    <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Grand+Hotel" />
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/pe-icon-7-stroke.css" data-th-href="@{/assets/css/pe-icon-7-stroke.css}" />
+
+    <title th:text="#{site}">Site</title>
+
+</head>
+
+<body class="blog-page">
+
+<div th:replace="common/header :: navigation-bar"></div>
+
+<div class="wrapper">
+    <div class="parallax filter-black">
+        <div class="parallax-image">
+            <img src="../static/assets/img/blog_page8.jpg" data-th-attr="src=@{/assets/img/blog_page8.jpg}" />
+        </div>
+        <div class="small-info">
+            <h1 th:text="#{words.of.life}">Header 1</h1>
+            <h3 th:text="#{awesome.articles}">Header 3</h3>
+        </div>
+    </div>
+    <div th:replace="common/footer :: footer-area"></div>
+</div>
+
+</body>
+
+<script type="text/javascript" src="../static/assets/js/jquery-1.11.2.min.js" data-th-src="@{/assets/js/jquery-1.11.2.min.js}"></script>
+<script type="text/javascript" src="../static/assets/js/bootstrap.min.js" data-th-src="@{/assets/js/bootstrap.min.js}"></script>
+<script type="text/javascript" src="../static/assets/js/get-shit-done.js" data-th-src="@{/assets/js/get-shit-done.js}"></script>
+<script type="text/javascript" src="../static/assets/js/jquery-ui-1.10.4.custom.min.js" data-th-src="@{/assets/js/jquery-ui-1.10.4.custom.min.js}"></script>
+
+<script type="text/javascript">
+var big_image;
+$().ready(function(){
+    responsive = $(window).width();
+
+    $(window).on('scroll', gsdk.checkScrollForTransparentNavbar);
+
+    if (responsive >= 768){
+        big_image = $('.parallax-image').find('img');
+
+        $(window).on('scroll',function(){
+            parallax();
+        });
+    }
+
+});
+
+var parallax = function() {
+    var current_scroll = $(this).scrollTop();
+
+    oVal = ($(window).scrollTop() / 3);
+    big_image.css('top',oVal);
+};
+</script>
+</html>
