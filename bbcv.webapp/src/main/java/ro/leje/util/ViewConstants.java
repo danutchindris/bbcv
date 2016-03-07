@@ -28,4 +28,5 @@ public interface ViewConstants {
     String SHOP = "shop";
 
     String ARTICLE_DETAILS = "article-details";
+    String CREATE_ARTICLE = "create-article";
 }

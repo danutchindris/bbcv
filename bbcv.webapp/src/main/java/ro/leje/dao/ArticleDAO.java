@@ -11,4 +11,6 @@ import java.util.List;
 public interface ArticleDAO extends BaseDAO {
 
     List<Article> findAll();
+
+    Article find(long articleId);
 }

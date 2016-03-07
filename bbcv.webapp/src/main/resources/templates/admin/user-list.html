@@ -181,13 +181,13 @@
                     },
                     success: function (result) {
                         $('.form-group').removeClass('has-error');
-                        $('.help-block').empty();
+                        $('.help-block').remove();
                         $modal.modal('hide');
                         $table.bootstrapTable('refresh');
                         showAlert($modal.data('id') ? '[[#{item.updated}]]' : '[[#{item.created}]]', 'success');
                     },
                     error: function (result) {
-                        $('.help-block').empty();
+                        $('.help-block').remove();
                         for (var i = 0; i < result.responseJSON.errorMessageList.length; i++) {
                             var errorMessage = result.responseJSON.errorMessageList[i];
                             var $formGroup = $('#' + errorMessage.fieldName + 'FormGroup');
@@ -262,7 +262,7 @@
         function showModal(title, row) {
             // remove error messages that it's possible to be previously shown
             $('.form-group').removeClass('has-error');
-            $('.help-block').empty();
+            $('.help-block').remove();
 
             row = row || {
                 id: 0,

@@ -7,6 +7,7 @@ import ro.leje.model.vo.Article;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Danut Chindris
@@ -27,5 +28,10 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Long create(Article article) {
         return null;
+    }
+
+    @Override
+    public Optional<Article> find(long articleId) {
+        return Optional.ofNullable(articleDAO.find(articleId));
     }
 }

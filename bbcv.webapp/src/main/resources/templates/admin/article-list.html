@@ -58,31 +58,6 @@
     </div>
 </div>
 
-<div id="modal" class="modal fade" layout:fragment="modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"></h4>
-            </div>
-            <div class="modal-body">
-                <div id="textFormGroup" class="form-group">
-                    <label data-th-text="#{text}">Text</label>
-                    <input type="text" class="form-control" name="text" placeholder="Text" data-th-attr="placeholder=#{text}" />
-                </div>
-                <div id="urlFormGroup" class="form-group">
-                    <label data-th-text="#{url}">URL</label>
-                    <input type="text" class="form-control" name="url" placeholder="URL" data-th-attr="placeholder=#{url}" />
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary submit" data-th-text="#{apply}">Apply</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal" data-th-text="#{close}">Close</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
 <div id="delete-modal" class="modal fade" layout:fragment="delete-modal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -124,66 +99,13 @@
                             detailOpen: 'fa fa-plus-circle',
                             detailClose: 'fa fa-minus-circle'
                         }}),
-            $modal = $('#modal').modal({show: false}),
             $alert = $('.alert').hide(),
             $deleteModal = $('#delete-modal').modal({show: false});
 
         $(function () {
             // create event
             $('.create').click(function () {
-                showModal($(this).text());
-            });
-
-            $modal.find('.submit').click(function () {
-                var row = {};
-
-                $modal.find('input[name]').each(function () {
-                    if ($(this).attr('name') == 'enabled') {
-                        row[$(this).attr('name')] = $(this).is(':checked');
-                    }
-                    else {
-                        row[$(this).attr('name')] = $(this).val();
-                    }
-                });
-
-                // required by Spring Security
-                var header = $("meta[name='_csrf_header']").attr("content");
-                var token = $("meta[name='_csrf']").attr("content");
-
-                $.ajax({
-                    url: '/admin/article/' + ($modal.data('id') || ''),
-                    type: $modal.data('id') ? 'put' : 'post',
-                    contentType: 'application/json',
-                    data: JSON.stringify(row),
-                    beforeSend: function(xhr) {
-                        xhr.setRequestHeader(header, token);
-                    },
-                    success: function (result) {
-                        $('.form-group').removeClass('has-error');
-                        $('.help-block').empty();
-                        if (result.status == "SUCCESS") {
-                            $modal.modal('hide');
-                            $table.bootstrapTable('refresh');
-                            showAlert($modal.data('id') ? '[[#{item.updated}]]' : '[[#{item.created}]]', 'success');
-                        }
-                        else if (result.status == "FAILURE") {
-                            for (var i = 0; i < result.errorMessageList.length; i++) {
-                                var errorMessage = result.errorMessageList[i];
-                                var $formGroup = $('#' + errorMessage.fieldName + 'FormGroup');
-                                $formGroup.addClass('has-error');
-                                $formGroup.append('<span class="help-block">' + errorMessage.message + '</span>');
-                            }
-                        }
-                    },
-                    error: function () {
-                        $modal.modal('hide');
-                        showAlert($modal.data('id') ? '[[#{item.not.updated}]]' : '[[#{item.not.created}]]', 'danger');
-                    },
-                    fail: function() {
-                        $modal.modal('hide');
-                        showAlert($modal.data('id') ? '[[#{item.not.updated}]]' : '[[#{item.not.created}]]', 'danger');
-                    }
-                });
+                window.location.href = '/admin/article';
             });
 
             $deleteModal.find('.submit').click(function () {
@@ -192,7 +114,7 @@
                 var token = $("meta[name='_csrf']").attr("content");
 
                 $.ajax({
-                    url: '/admin/user/' + ($modal.data('id') || ''),
+                    url: '/admin/article/' + ($modal.data('id') || ''),
                     type: 'delete',
                     contentType: 'application/json',
                     beforeSend: function(xhr) {
@@ -226,30 +148,12 @@
         // update and delete events
         window.actionEvents = {
             'click .update': function (e, value, row) {
-                showModal($(this).attr('title'), row);
+                window.location.href = '/admin/article?id=' + row.id;
             },
             'click .remove': function (e, value, row) {
                 showDeleteModal($(this).attr('title'), '[[#{confirm.delete}]]', row);
             }
         };
-
-        function showModal(title, row) {
-            // remove error messages that it's possible to be previously shown
-            $('.form-group').removeClass('has-error');
-            $('.help-block').empty();
-
-            row = row || {
-                id: 0,
-                text: '',
-                url: ''
-            }; // default row value
-            $modal.data('id', row.id);
-            $modal.find('.modal-title').text(title);
-            for (var name in row) {
-                $modal.find('input[name="' + name + '"]').val(row[name]);
-            }
-            $modal.modal('show');
-        }
 
         function showAlert(title, type) {
             $alert.attr('class', 'alert alert-' + type || 'success')

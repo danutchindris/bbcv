@@ -20,6 +20,7 @@ import ro.leje.util.*;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Danut Chindris
@@ -134,9 +135,25 @@ public class AdminController {
         return articleService.findAll();
     }
 
+    @RequestMapping(value = MappingConstants.ARTICLE, method = RequestMethod.GET)
+    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_LIST_JSON_GET + "')")
+    public String createArticleForm(Model model, @AuthenticationPrincipal CustomUserDetails userDetails,
+                                    @RequestParam(required = false, value = "id") Long articleId) {
+        languageDelegate.addAvailableLanguages(model);
+        languageDelegate.addNotAvailableLanguages(model);
+        if (articleId != null) {
+            Optional<Article> article = articleService.find(articleId);
+            if (article.isPresent()) {
+                model.addAttribute("article", article.get());
+            }
+        }
+        model.addAttribute(AUTHENTICATED_USER_FIRST_NAME, userDetails != null ? userDetails.getFirstName() : null);
+        return ViewConstants.ADMIN + "/" + ViewConstants.CREATE_ARTICLE;
+    }
+
     @RequestMapping(value = MappingConstants.ARTICLE, method = RequestMethod.POST)
-    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_POST + "')")
-    public @ResponseBody Long addArticle(@RequestBody @Valid Article article) {
+    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_LIST_JSON_GET + "')")
+    public @ResponseBody Long createArticle(@RequestBody @Valid Article article) {
         return articleService.create(article);
     }
 }

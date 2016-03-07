@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/layout">
+
+<head>
+    <script type="text/javascript" src="../../static/assets/epiceditor/js/epiceditor.min.js"
+            data-th-src="@{/assets/epiceditor/js/epiceditor.min.js}"></script>
+    <script type="text/javascript" src="../../static/assets/js/bootstrap-select.js"
+            data-th-src="@{/assets/js/bootstrap-select.js}"></script>
+    <title data-th-text="#{articles}">Page Title</title>
+</head>
+
+<body>
+
+<div class="row" layout:fragment="content">
+    <div class="col-md-12">
+        <div id="create-article-dialog" class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Title</h4>
+            </div>
+            <div class="modal-body">
+                <div id="languageFormGroup" class="form-group">
+                    <label data-th-text="#{language}">Language</label>
+                    <select name="language" class="selectpicker" data-style="form-control" data-menu-style="">
+                        <option data-th-each="locale: ${locales}"
+                                data-th-attr="value='${locale.code}'" data-th-text="${locale.name}"></option>
+                    </select>
+                </div>
+                <div id="titleFormGroup" class="form-group">
+                    <label data-th-text="#{title}">Title</label>
+                    <input type="text" class="form-control" name="title" placeholder="Title" data-th-attr="placeholder=#{title}" />
+                </div>
+                <div id="textFormGroup" class="form-group">
+                    <label data-th-text="#{text}">Text</label>
+                    <div id="epiceditor"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary submit" data-th-text="#{apply}">Apply</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-th-text="#{close}">Close</button>
+            </div>
+        </div>
+        <script data-th-inline="text">
+        /*<![CDATA[*/
+            $(function() {
+                $("#li-articles").attr("class", "active");
+            });
+
+            var editor = new EpicEditor({
+                basePath: '[[@{/assets/epiceditor}]]'
+            }).load();
+
+            var $createArticleDialog = $('#create-article-dialog');
+
+            // remove error messages that it's possible to be previously shown
+            $('.form-group').removeClass('has-error');
+            $('.help-block').empty();
+
+            var row = {
+                id: 0,
+                title: '',
+                text: ''
+            }; // default row value
+
+            if ([[${article}]]) {
+                row.id = article.id;
+                row.title = article.title;
+                row.text = article.text;
+            }
+
+            $createArticleDialog.data('id', row.id);
+            $createArticleDialog.find('.modal-title').text(row.id ? '[[#{edit.article}]]' : '[[#{create.article}]]');
+            for (var name in row) {
+                $createArticleDialog.find('input[name="' + name + '"]').val(row[name]);
+            }
+
+            $createArticleDialog.find('.submit').click(function () {
+                var row = {
+                    id: 0,
+                    title: '',
+                    text: ''
+                }; // default row value
+
+                /* gather input data */
+                /* row['language'] = $('#languageFormGroup').val(); */
+                row.title = $('#titleFormGroup').val();
+
+                // required by Spring Security
+                var header = $("meta[name='_csrf_header']").attr("content");
+                var token = $("meta[name='_csrf']").attr("content");
+
+                $.ajax({
+                    url: '/admin/article/' + ($createArticleDialog.data('id') || ''),
+                    type: $createArticleDialog.data('id') ? 'put' : 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify(row),
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success: function (result) {
+                        $('.form-group').removeClass('has-error');
+                        $('.help-block').empty();
+                        showAlert($createArticleDialog.data('id') ? '[[#{item.updated}]]' : '[[#{item.created}]]', 'success');
+                    },
+                    error: function (result) {
+                        $('.help-block').empty();
+                        for (var i = 0; i < result.responseJSON.errorMessageList.length; i++) {
+                            var errorMessage = result.responseJSON.errorMessageList[i];
+                            var $formGroup = $('#' + errorMessage.fieldName + 'FormGroup');
+                            $formGroup.addClass('has-error');
+                            $formGroup.append('<span class="help-block">' + errorMessage.message + '</span>');
+                        }
+                    },
+                    fail: function (result) {
+                        showAlert($createArticleDialog.data('id') ? '[[#{item.not.updated}]]' : '[[#{item.not.created}]]', 'danger');
+                    }
+                });
+            });
+        /*]]>*/
+        </script>
+    </div>
+</div>
+
+</body>
+
+</html>
