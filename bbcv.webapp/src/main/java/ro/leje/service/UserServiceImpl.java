@@ -102,7 +102,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void addRole(long userId, long roleId) {
+    public void assignRole(long userId, long roleId) {
         validateId(userId, UserEntity.class);
         validateId(roleId, RoleEntity.class);
         // check if the role is already assigned or not

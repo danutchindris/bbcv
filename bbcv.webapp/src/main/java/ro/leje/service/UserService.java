@@ -26,7 +26,7 @@ public interface UserService {
 
     boolean isRoleAssigned(long userId, long roleId);
 
-    void addRole(long userId, long roleId);
+    void assignRole(long userId, long roleId);
 
     List<Permission> findPermissions(long userId);
 }

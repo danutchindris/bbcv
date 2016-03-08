@@ -221,23 +221,23 @@ public class UserServiceTest extends AbstractTest {
      * at class level
      */
     @Test
-    public void whenExistingUserIdAndExistingRoleIdAreProvidedAddRoleThrowsNoException() {
-        service.addRole(TEST_USER_WITHOUT_ROLES_ID, TEST_ROLE_ID);
+    public void whenExistingUserIdAndExistingRoleIdAreProvidedAssignRoleThrowsNoException() {
+        service.assignRole(TEST_USER_WITHOUT_ROLES_ID, TEST_ROLE_ID);
     }
 
     @Test(expected = ContextedRuntimeException.class)
-    public void whenAnAlreadyAssignedRoleIdIsProvidedToAnExistingUserAddRoleThrowsException() {
-        service.addRole(TEST_USER_ID, TEST_ROLE_ID);
+    public void whenAnAlreadyAssignedRoleIdIsProvidedToAnExistingUserAssignRoleThrowsException() {
+        service.assignRole(TEST_USER_ID, TEST_ROLE_ID);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenNotExistingUserIdIsProvidedAddRoleThrowsException() {
-        service.addRole(TEST_USER_NOT_EXISTING_ID, TEST_ROLE_ID);
+    public void whenNotExistingUserIdIsProvidedAssignRoleThrowsException() {
+        service.assignRole(TEST_USER_NOT_EXISTING_ID, TEST_ROLE_ID);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenNotExistingRoleIdIsProvidedAddRoleThrowsException() {
-        service.addRole(TEST_USER_ID, TEST_ROLE_NOT_EXISTING_ID);
+    public void whenNotExistingRoleIdIsProvidedAssignRoleThrowsException() {
+        service.assignRole(TEST_USER_ID, TEST_ROLE_NOT_EXISTING_ID);
     }
 
     @Test
