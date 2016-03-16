@@ -62,48 +62,48 @@ public class UserServiceTest extends AbstractTest {
     }
 
     @Test
-    public void whenCalledFindAllReturnsANotEmptyList() {
+    public void findAllReturnsNotEmptyList() {
         List<User> list = service.findAll();
         Assert.assertNotNull("The list shouldn't be null", list);
         Assert.assertTrue("The list should contain two items", list.size() == 2);
     }
 
     @Test
-    public void whenCorrectUserNameIsProvidedFindByUserNameReturnsNotNull() {
+    public void findByUserNameReturnsNotNullWhenExistingUserNameIsProvided() {
         User object = service.findByUserName(TEST_USER_USERNAME);
         checkUserObjectProperties(object);
     }
 
     @Test
-    public void whenNotExistingUserNameIsProvidedFindByUserNameReturnsNull() {
+    public void findByUserNameReturnsNullWhenNotExistingUserNameIsProvided() {
         User object = service.findByUserName(TEST_USER_NOT_EXISTING_USERNAME);
         Assert.assertNull("The returned object for a not existing user name should be null", object);
     }
 
     @Test(expected = NullPointerException.class)
-    public void whenUserNameIsNullFindByUserNameThrowsException() {
+    public void findByUserNameThrowsExceptionWhenUserNameIsNull() {
         service.findByUserName(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenUserNameIsEmptyFindByUserNameThrowsException() {
+    public void findByUserNameThrowsExceptionWhenUserNameIsEmpty() {
         service.findByUserName("");
     }
 
     @Test
-    public void whenCorrectUserIdIsProvidedFindByIdReturnsNotNull() {
+    public void findByIdReturnsNotNullWhenExistingUserIdIsProvided() {
         User object = service.findById(TEST_USER_ID);
         checkUserObjectProperties(object);
     }
 
     @Test
-    public void whenIncorrectUserIdIsProvidedFindByIdReturnsNull() {
+    public void findByIdReturnsNullWhenNotExistingUserIdIsProvided() {
         User object = service.findById(Long.MAX_VALUE);
-        Assert.assertNull("The returned object for an incorrect id should be null", object);
+        Assert.assertNull("The returned object for a not existing user id should be null", object);
     }
 
     @Test
-    public void whenMandatoryFieldsAreProvidedCreateUserReturnsEntityId() {
+    public void createUserReturnsEntityIdWhenMandatoryFieldsAreProvided() {
         User object = new User();
         object.setUserName(TEST_USER_NEW_USERNAME);
         object.setPassword(TEST_USER_NEW_PASSWORD);
@@ -114,7 +114,7 @@ public class UserServiceTest extends AbstractTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void whenMandatoryUserNameIsNotProvidedCreateUserThrowsException() {
+    public void createUserThrowsExceptionWhenMandatoryUserNameIsNotProvided() {
         User object = new User();
         object.setPassword(TEST_USER_NEW_PASSWORD);
         object.setFirstName(TEST_USER_NEW_FIRSTNAME);
@@ -124,7 +124,7 @@ public class UserServiceTest extends AbstractTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void whenMandatoryPasswordIsNotProvidedCreateUserThrowsException() {
+    public void createUserThrowsExceptionWhenMandatoryPasswordIsNotProvided() {
         User object = new User();
         object.setUserName(TEST_USER_NEW_USERNAME);
         object.setFirstName(TEST_USER_NEW_FIRSTNAME);
@@ -134,7 +134,7 @@ public class UserServiceTest extends AbstractTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void whenMandatoryEmailIsNotProvidedCreateUserThrowsException() {
+    public void createUserThrowsExceptionWhenMandatoryEmailIsNotProvided() {
         User object = new User();
         object.setUserName(TEST_USER_NEW_USERNAME);
         object.setPassword(TEST_USER_NEW_PASSWORD);
@@ -144,12 +144,12 @@ public class UserServiceTest extends AbstractTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void whenTheUserObjectIsNotProvidedCreateThrowsException() {
+    public void createThrowsExceptionWhenTheUserObjectIsNotProvided() {
         service.create(null);
     }
 
     @Test
-    public void whenExistingUserIdIsProvidedFindRolesReturnsExpectedList() {
+    public void findRolesReturnsExpectedListWhenExistingUserIdIsProvided() {
         List<Role> list = service.findRoles(TEST_USER_ID);
         Assert.assertNotNull("The list shouldn't be null", list);
         Assert.assertTrue("The list should contain one item", list.size() == 1);
@@ -158,21 +158,21 @@ public class UserServiceTest extends AbstractTest {
     }
 
     @Test
-    public void whenNotExistingUserIdIsProvidedFindRolesReturnsNotNullList() {
+    public void findRolesReturnsNotNullListWhenNotExistingUserIdIsProvided() {
         List<Role> list = service.findRoles(TEST_USER_NOT_EXISTING_ID);
         Assert.assertNotNull("The list shouldn't be null", list);
         Assert.assertTrue("The list should contain zero items", list.size() == 0);
     }
 
     @Test
-    public void whenExistingUserWithoutRolesIsProvidedFindRolesReturnsEmptyList() {
+    public void findRolesReturnsEmptyListWhenExistingUserIdWithoutRolesIsProvided() {
         List<Role> list = service.findRoles(TEST_USER_WITHOUT_ROLES_ID);
         Assert.assertNotNull("The list shouldn't be null", list);
         Assert.assertTrue("The list should contain zero items", list.size() == 0);
     }
 
     @Test
-    public void whenExistingAssignationIsProvidedFindRoleReturnsExpectedObject() {
+    public void findRoleReturnsExpectedObjectWhenExistingAssignationIsProvided() {
         Role object = service.findRole(TEST_USER_ID, TEST_ROLE_ID);
         Assert.assertNotNull("The returned object shouldn't be null", object);
         Assert.assertEquals("The id is incorrect", TEST_ROLE_ID, object.getId());
@@ -180,39 +180,39 @@ public class UserServiceTest extends AbstractTest {
     }
 
     @Test(expected = ContextedRuntimeException.class)
-    public void whenNotExistingAssignationIsProvidedFindRoleThrowsException() {
+    public void findRoleThrowsExceptionWhenNotExistingAssignationIsProvided() {
         service.findRole(TEST_USER_WITHOUT_ROLES_ID, TEST_ROLE_ID);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenNotExistingUserIdIsProvidedFindRoleThrowsException() {
+    public void findRoleThrowsExceptionWhenNotExistingUserIdIsProvided() {
         service.findRole(TEST_USER_NOT_EXISTING_ID, TEST_ROLE_ID);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenNotExistingRoleIdIsProvidedFindRoleThrowsException() {
+    public void findRoleThrowsExceptionWhenNotExistingRoleIdIsProvided() {
         service.findRole(TEST_USER_ID, TEST_ROLE_NOT_EXISTING_ID);
     }
 
     @Test
-    public void whenExistingAssignationIsProvidedIsRoleAssignedReturnsTrue() {
+    public void isRoleAssignedReturnsTrueWhenExistingAssignationIsProvided() {
         Assert.assertTrue("The method should have detected the existing assignation",
                 service.isRoleAssigned(TEST_USER_ID, TEST_ROLE_ID));
     }
 
     @Test
-    public void whenNotExistingAssignationIsProvidedIsRoleAssignedReturnsFalse() {
+    public void isRoleAssignedReturnsFalseWhenNotExistingAssignationIsProvided() {
         Assert.assertTrue("The method should have detected that there is no assignation",
                 !service.isRoleAssigned(TEST_USER_WITHOUT_ROLES_ID, TEST_ROLE_ID));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenNotExistingUserIdIsProvidedIsRoleAssignedThrowsException() {
+    public void isRoleAssignedThrowsExceptionWhenNotExistingUserIdIsProvided() {
         service.isRoleAssigned(TEST_USER_NOT_EXISTING_ID, TEST_ROLE_ID);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenNotExistingRoleIdIsProvidedIsRoleAssignedThrowsException() {
+    public void isRoleAssignedThrowsExceptionWhenNotExistingRoleIdIsProvided() {
         service.isRoleAssigned(TEST_USER_ID, TEST_ROLE_NOT_EXISTING_ID);
     }
 
@@ -221,27 +221,27 @@ public class UserServiceTest extends AbstractTest {
      * at class level
      */
     @Test
-    public void whenExistingUserIdAndExistingRoleIdAreProvidedAssignRoleThrowsNoException() {
+    public void assignRoleThrowsNoExceptionWhenExistingUserIdAndExistingRoleIdAreProvided() {
         service.assignRole(TEST_USER_WITHOUT_ROLES_ID, TEST_ROLE_ID);
     }
 
     @Test(expected = ContextedRuntimeException.class)
-    public void whenAnAlreadyAssignedRoleIdIsProvidedToAnExistingUserAssignRoleThrowsException() {
+    public void assignRoleThrowsExceptionWhenAlreadyAssignedRoleIdIsProvidedToExistingUser() {
         service.assignRole(TEST_USER_ID, TEST_ROLE_ID);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenNotExistingUserIdIsProvidedAssignRoleThrowsException() {
+    public void assignRoleThrowsExceptionWhenNotExistingUserIdIsProvided() {
         service.assignRole(TEST_USER_NOT_EXISTING_ID, TEST_ROLE_ID);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenNotExistingRoleIdIsProvidedAssignRoleThrowsException() {
+    public void assignRoleThrowsExceptionWhenNotExistingRoleIdIsProvided() {
         service.assignRole(TEST_USER_ID, TEST_ROLE_NOT_EXISTING_ID);
     }
 
     @Test
-    public void whenExistingUserIdIsProvidedFindPermissionsReturnsExpectedList() {
+    public void findPermissionsReturnsExpectedListWhenExistingUserIdIsProvided() {
         List<Permission> list = service.findPermissions(TEST_USER_ID);
         Assert.assertNotNull("The list shouldn't be null", list);
         Assert.assertTrue("The list should contain three items", list.size() == 3);
@@ -250,14 +250,14 @@ public class UserServiceTest extends AbstractTest {
     }
 
     @Test
-    public void whenNotExistingUserIdIsProvidedFindPermissionsReturnsNotNullList() {
+    public void findPermissionsReturnsNotNullListWhenNotExistingUserIdIsProvided() {
         List<Permission> list = service.findPermissions(TEST_USER_NOT_EXISTING_ID);
         Assert.assertNotNull("The list shouldn't be null", list);
         Assert.assertTrue("The list should contain zero items", list.size() == 0);
     }
 
     @Test
-    public void whenExistingUserWithoutPermissionsIsProvidedFindPermissionsReturnsEmptyList() {
+    public void findPermissionsReturnsEmptyListWhenExistingUserWithoutPermissionsIsProvided() {
         List<Permission> list = service.findPermissions(TEST_USER_WITHOUT_ROLES_ID);
         Assert.assertNotNull("The list shouldn't be null", list);
         Assert.assertTrue("The list should contain zero items", list.size() == 0);

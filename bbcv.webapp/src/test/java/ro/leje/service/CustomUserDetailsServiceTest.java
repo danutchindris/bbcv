@@ -26,7 +26,7 @@ public class CustomUserDetailsServiceTest extends AbstractTest {
     private CustomUserDetailsService customUserDetailsService;
 
     @Test
-    public void whenCorrectUserNameIsProvidedGetCustomUserDetailsByUserNameReturnsNotNull() {
+    public void getCustomUserDetailsByUserNameReturnsNotNullWhenCorrectUserNameIsProvided() {
         CustomUserDetails customUserDetails = customUserDetailsService.getCustomUserDetailsByUserName(TEST_USER_USERNAME);
         Assert.assertNotNull("The returned custom user details shouldn't be null", customUserDetails);
         Assert.assertEquals("The custom user details' id is incorrect", TEST_USER_ID, customUserDetails.getId());
@@ -37,7 +37,7 @@ public class CustomUserDetailsServiceTest extends AbstractTest {
     }
 
     @Test
-    public void whenCorrectUserNameIsProvidedLoadUserByUsernameReturnsNotNull() {
+    public void loadUserByUsernameReturnsNotNullWhenCorrectUserNameIsProvided() {
         UserDetails userDetails = customUserDetailsService.loadUserByUsername(TEST_USER_USERNAME);
         Assert.assertNotNull("The custom user details object shouldn't be null", userDetails);
         Assert.assertEquals("The user name is incorrect", TEST_USER_USERNAME, userDetails.getUsername());

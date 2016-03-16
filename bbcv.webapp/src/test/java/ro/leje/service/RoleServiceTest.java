@@ -43,14 +43,14 @@ public class RoleServiceTest extends AbstractTest {
     }
 
     @Test
-    public void whenCalledFindAllReturnsANotEmptyList() {
+    public void findAllReturnsNotEmptyList() {
         List<Role> list = service.findAll();
         Assert.assertNotNull("The list shouldn't be null", list);
         Assert.assertTrue("The list should contain one item", list.size() == 2);
     }
 
     @Test
-    public void whenMandatoryFieldsAreProvidedCreateReturnsEntityId() {
+    public void createReturnsEntityId() {
         Role object = new Role();
         object.setName(TEST_ROLE_NEW_NAME);
         Long id = service.create(object);
@@ -59,25 +59,25 @@ public class RoleServiceTest extends AbstractTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void whenMandatoryNameIsNotProvidedCreateThrowsException() {
+    public void createThrowsExceptionWhenMandatoryRoleNameIsNotProvided() {
         Role object = new Role();
         service.create(object);
     }
 
     @Test(expected = NullPointerException.class)
-    public void whenTheRoleObjectIsNotProvidedCreateThrowsException() {
+    public void createThrowsExceptionWhenTheRoleObjectIsNotProvided() {
         service.create(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenAddingAnExistingRoleNameCreateThrowsExcetion() {
+    public void createThrowsExceptionWhenAddingAnExistingRoleName() {
         Role object = new Role();
         object.setName(TEST_ROLE_EXISTING_NAME);
         service.create(object);
     }
 
     @Test
-    public void whenCalledWithAnExistingNameFindReturnsValueObject() {
+    public void findReturnsValueObjectWhenCalledWithAnExistingRoleName() {
         Role object = service.find(TEST_ROLE_EXISTING_NAME);
         Assert.assertNotNull("The returned object shouldn't be null", object);
         Assert.assertEquals("The returned name should be " + TEST_ROLE_EXISTING_NAME,
@@ -85,7 +85,7 @@ public class RoleServiceTest extends AbstractTest {
     }
 
     @Test
-    public void whenCalledWithANotExistingNameFindReturnsEmptyValueObject() {
+    public void findReturnsEmptyValueObjectWhenCalledWithNotExistingRoleName() {
         Role object = service.find(TEST_ROLE_NEW_NAME);
         Assert.assertNotNull("The returned object shouldn't be null", object);
         Assert.assertEquals("The returned id should be zero", 0L, object.getId());
@@ -93,7 +93,7 @@ public class RoleServiceTest extends AbstractTest {
     }
 
     @Test
-    public void whenCalledWithAnExistingIdFindReturnsValueObject() {
+    public void findReturnsValueObjectWhenCalledWithExistingRoleId() {
         Role object = service.find(TEST_ROLE_EXISTING_ID);
         Assert.assertNotNull("The returned object shouldn't be null", object);
         Assert.assertEquals("The returned id should be " + TEST_ROLE_EXISTING_ID,
@@ -103,7 +103,7 @@ public class RoleServiceTest extends AbstractTest {
     }
 
     @Test
-    public void whenCalledWithANotExistingIdFindReturnsEmptyValueObject() {
+    public void findReturnsEmptyValueObjectWhenCalledWithNotExistingRoleId() {
         Role object = service.find(TEST_ROLE_NEW_ID);
         Assert.assertNotNull("The returned object shouldn't be null", object);
         Assert.assertEquals("The returned id should be zero", 0L, object.getId());
@@ -111,12 +111,12 @@ public class RoleServiceTest extends AbstractTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void whenCalledWithNullParameterUpdateThrowsException() {
+    public void updateThrowsExceptionWhenTheRoleObjectIsNotProvided() {
         service.update(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenCalledWithInvalidIdUpdateThrowsException() {
+    public void updateThrowsExceptionWhenCalledWithInvalidRoleId() {
         Role object = new Role();
         object.setId(TEST_ROLE_INVALID_ID);
         object.setName(TEST_ROLE_NEW_NAME);
@@ -124,7 +124,7 @@ public class RoleServiceTest extends AbstractTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenCalledWithNotExistingIdUpdateThrowsException() {
+    public void updateThrowsExceptionWhenCalledWithNotExistingRoleId() {
         Role object = new Role();
         object.setId(TEST_ROLE_NEW_ID);
         object.setName(TEST_ROLE_NEW_NAME);
@@ -132,21 +132,21 @@ public class RoleServiceTest extends AbstractTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void whenCalledWithNullNameUpdateThrowsException() {
+    public void updateThrowsExceptionWhenCalledWithNullRoleName() {
         Role object = service.find(TEST_ROLE_EXISTING_ID);
         object.setName(null);
         service.update(object);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenCalledWithEmptyNameUpdateThrowsException() {
+    public void updateThrowsExceptionWhenCalledWithEmptyRoleName() {
         Role object = service.find(TEST_ROLE_EXISTING_ID);
         object.setName("");
         service.update(object);
     }
 
     @Test
-    public void whenCalledWithValidValuesUpdatePersistsTheNewValues() {
+    public void updatePersistsTheNewValuesWhenCalledWithValidArguments() {
         Role object = service.find(TEST_ROLE_EXISTING_ID);
         object.setName(TEST_ROLE_NEW_NAME);
         service.update(object);
@@ -156,7 +156,7 @@ public class RoleServiceTest extends AbstractTest {
     }
 
     @Test
-    public void whenCalledWithExistingIdDeletePersistsTheChanges() {
+    public void deletePersistsTheChangesWhenCalledWithExistingRoleId() {
         Role object = new Role();
         object.setName(TEST_ROLE_NEW_NAME);
         Long id = service.create(object);
@@ -167,24 +167,24 @@ public class RoleServiceTest extends AbstractTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenCalledWithNotExistingIdDeleteThrowsException() {
+    public void deleteThrowsExceptionWhenCalledWithNotExistingRoleId() {
         service.delete(TEST_ROLE_NEW_ID);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenCalledWithAnIdReferencedInAnotherTableDeleteThrowsException() {
+    public void deleteThrowsExceptionWhenCalledWithRoleIdReferencedInAnotherTable() {
         service.delete(TEST_ROLE_EXISTING_ID);
     }
 
     @Test
-    public void whenCalledWithExistingIdFindUsersReturnsExpectedList() {
+    public void findUsersReturnsExpectedListWhenCalledWithExistingRoleId() {
         List<User> list = service.findUsers(TEST_ROLE_EXISTING_ID);
         Assert.assertNotNull("The returned list shouldn't be null", list);
         Assert.assertTrue("The returned list should contain one item", list.size() == 1);
     }
 
     @Test
-    public void whenCalledWithNotExistingIdFindUsersReturnsNotNullList() {
+    public void findUsersReturnsNotNullListWhenCalledWithNotExistingRoleId() {
         List<User> list = service.findUsers(TEST_ROLE_NEW_ID);
         Assert.assertNotNull("The returned list shouldn't be null", list);
         Assert.assertTrue("The returned list should be empty", list.isEmpty());

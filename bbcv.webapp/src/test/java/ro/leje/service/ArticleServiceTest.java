@@ -37,13 +37,13 @@ public class ArticleServiceTest extends AbstractTest {
     }
 
     @Test
-    public void whenCalledFindReturnsOptionalArticle() {
+    public void findReturnsOptionalArticle() {
         Optional<Article> object = service.find(TEST_ARTICLE_ID);
         Assert.assertNotNull("The returned object shouldn't be null", object);
     }
 
     @Test
-    public void whenNotExistingArticleIdProvidedFindReturnsEmptyOptionalArticle() {
+    public void findReturnsEmptyOptionalArticleWhenNotExistingArticleIdProvided() {
         Optional<Article> object = service.find(TEST_NOT_EXISTING_ARTICLE_ID);
         Assert.assertNotNull("The returned object shouldn't be null", object);
         Assert.assertTrue("The optional should be empty", !object.isPresent());
