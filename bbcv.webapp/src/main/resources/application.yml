@@ -28,14 +28,14 @@ hibernate:
 ---
 
 spring:
-          profiles: localtest
+          profiles: test
 
 server:
           port: 8085
 
 db:
           driver: "com.mysql.jdbc.Driver"
-          url: "jdbc:mysql://localhost:3307/bbcvdblocaltest"
+          url: "jdbc:mysql://localhost:3307/bbcvdbtest"
           usr: "testuser"
           password: "testpassword"
 

@@ -4,6 +4,7 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ComparisonChain;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -16,10 +17,13 @@ public class Dictionary implements Serializable, Comparable<Dictionary> {
 
     private long id;
 
+    @NotNull(message = "{error.object.null}")
     private String objectType;
 
+    @NotNull(message = "{error.object.null}")
     private Long objectId;
 
+    @NotNull(message = "{error.object.null}")
     private String category;
 
     private String en;
@@ -52,6 +56,22 @@ public class Dictionary implements Serializable, Comparable<Dictionary> {
 
     public void setObjectType(String objectType) {
         this.objectType = objectType;
+    }
+
+    public Long getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(Long objectId) {
+        this.objectId = objectId;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getEn() {

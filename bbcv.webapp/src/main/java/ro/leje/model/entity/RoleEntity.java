@@ -1,5 +1,7 @@
 package ro.leje.model.entity;
 
+import com.google.common.base.MoreObjects;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -53,5 +55,13 @@ public class RoleEntity {
 
     public void setPermissions(Set<PermissionEntity> permissions) {
         this.permissions = permissions;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("name", name)
+                .toString();
     }
 }

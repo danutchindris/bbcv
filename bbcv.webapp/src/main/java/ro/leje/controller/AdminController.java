@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ro.leje.delegate.LanguageDelegate;
 import ro.leje.model.CustomUserDetails;
 import ro.leje.model.vo.Article;
+import ro.leje.model.vo.Dictionary;
 import ro.leje.model.vo.Link;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
@@ -156,7 +157,7 @@ public class AdminController {
 
     @RequestMapping(value = MappingConstants.ARTICLE, method = RequestMethod.POST)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_CREATE_ARTICLE + "')")
-    public @ResponseBody Long createArticle(@RequestBody @Valid Article article) {
-        return articleService.create(article);
+    public @ResponseBody Long createArticle(@RequestBody @Valid Dictionary dictionary) {
+        return articleService.createOrUpdate(dictionary);
     }
 }

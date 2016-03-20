@@ -17,10 +17,6 @@ import java.util.Set;
 @Repository
 public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
 
-    public Long create(UserEntity userEntity) {
-        return super.create(userEntity);
-    }
-
     @Override
     @SuppressWarnings("unchecked")
     public List<User> findAll() {
@@ -76,16 +72,6 @@ public class UserDAOImpl extends BaseDAOImpl implements UserDAO {
                 .setLong("roleId", roleId)
                 .setMaxResults(1)
                 .uniqueResult();
-    }
-
-    @Override
-    public void addRole(long userId, long roleId) {
-        UserEntity userEntity = findEntity(userId, UserEntity.class);
-        RoleEntity roleEntity = findEntity(roleId, RoleEntity.class);
-        Set<RoleEntity> userRoles = userEntity.getRoles();
-        userRoles.add(roleEntity);
-        userEntity.setRoles(userRoles);
-        getCurrentSession().update(userEntity);
     }
 
     @Override

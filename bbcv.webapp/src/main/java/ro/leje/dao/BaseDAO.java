@@ -6,5 +6,11 @@ package ro.leje.dao;
  */
 public interface BaseDAO {
 
+    Long create(Object entity);
+
+    void update(Object object);
+
+    void delete(Object object);
+
     <T> T findEntity(long id, Class<T> clazz);
 }

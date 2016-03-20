@@ -14,6 +14,7 @@ import ro.leje.model.vo.User;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Danut Chindris
@@ -111,7 +112,12 @@ public class UserServiceImpl implements UserService {
                     .addContextValue("userId", userId)
                     .addContextValue("roleId", roleId);
         }
-        userDAO.addRole(userId, roleId);
+        UserEntity userEntity = userDAO.findEntity(userId, UserEntity.class);
+        RoleEntity roleEntity = userDAO.findEntity(roleId, RoleEntity.class);
+        Set<RoleEntity> userRoles = userEntity.getRoles();
+        userRoles.add(roleEntity);
+        userEntity.setRoles(userRoles);
+        userDAO.update(userEntity);
     }
 
     @Override

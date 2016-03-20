@@ -20,11 +20,6 @@ public class RoleDAOImpl extends BaseDAOImpl implements RoleDAO {
     }
 
     @Override
-    public Long create(RoleEntity entity) {
-        return super.create(entity);
-    }
-
-    @Override
     @SuppressWarnings("unchecked")
     public List<RoleEntity> find(String name) {
         return getCurrentSession()
@@ -40,16 +35,6 @@ public class RoleDAOImpl extends BaseDAOImpl implements RoleDAO {
                 .setLong("id", id)
                 .setMaxResults(1)
                 .uniqueResult();
-    }
-
-    @Override
-    public void update(RoleEntity entity) {
-        super.update(entity);
-    }
-
-    @Override
-    public void delete(RoleEntity entity) {
-        super.delete(entity);
     }
 
     @Override

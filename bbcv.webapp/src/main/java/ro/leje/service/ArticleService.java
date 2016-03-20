@@ -1,6 +1,7 @@
 package ro.leje.service;
 
 import ro.leje.model.vo.Article;
+import ro.leje.model.vo.Dictionary;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +14,7 @@ public interface ArticleService {
 
     List<Article> findAll();
 
-    Long create(Article article);
+    Long createOrUpdate(Dictionary dictionary);
 
     Optional<Article> find(long articleId);
 }
