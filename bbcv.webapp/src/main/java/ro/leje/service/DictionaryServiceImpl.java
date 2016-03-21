@@ -26,7 +26,7 @@ public class DictionaryServiceImpl implements DictionaryService {
     public Long create(Dictionary dictionary) {
         Validate.notNull(dictionary, "Null dictionary object not allowed");
         Validate.notEmpty(dictionary.getObjectType(), "Null or empty object type not allowed");
-        Validate.notNull(dictionary.getObjectId(), "Null or object id not allowed");
+        Validate.notNull(dictionary.getObjectId(), "Null object id not allowed");
         Validate.notEmpty(dictionary.getCategory(), "Null or empty category not allowed");
         DictionaryEntity dictionaryEntity = new DictionaryEntity();
         dictionaryEntity.setObjectType(dictionary.getObjectType());
@@ -42,9 +42,6 @@ public class DictionaryServiceImpl implements DictionaryService {
     public void update(Dictionary dictionary) {
         Validate.notNull(dictionary, "Null dictionary object not allowed");
         Validate.notNull(dictionary.getId(), "Null dictionary id not allowed");
-        Validate.notEmpty(dictionary.getObjectType(), "Null or empty object type not allowed");
-        Validate.notNull(dictionary.getObjectId(), "Null or object id not allowed");
-        Validate.notEmpty(dictionary.getCategory(), "Null or empty category not allowed");
         DictionaryEntity dictionaryEntity = dictionaryDAO.findEntity(dictionary.getId(), DictionaryEntity.class);
         if (dictionaryEntity != null) {
             dictionaryEntity.setEn(dictionary.getEn());

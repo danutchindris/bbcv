@@ -109,6 +109,7 @@ public class ArticleServiceTest extends AbstractTest {
         dictionary.setRo(ARTICLE_RO_TITLE);
         Long articleId = service.createOrUpdate(dictionary);
         Assert.assertNotNull("The article id should not be null", articleId);
+        Assert.assertEquals("The returned article id should match the provided object id", ARTICLE_OBJECT_ID, articleId);
     }
 
     @Test(expected = ContextedRuntimeException.class)

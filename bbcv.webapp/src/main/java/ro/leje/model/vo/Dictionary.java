@@ -15,7 +15,7 @@ public class Dictionary implements Serializable, Comparable<Dictionary> {
 
     private static final long serialVersionUID = 1L;
 
-    private long id;
+    private Long id;
 
     @NotNull(message = "{error.object.null}")
     private String objectType;
