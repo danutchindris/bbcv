@@ -16,17 +16,20 @@ public class Article implements Serializable, Comparable<Article> {
 
     private long id;
 
+    private String language;
+
     private String title;
 
-    private String text;
+    private String body;
 
     public Article() {
     }
 
-    public Article(long id, String title, String text) {
+    public Article(long id, String language, String title, String body) {
         this.id = id;
+        this.language = language;
         this.title = title;
-        this.text = text;
+        this.body = body;
     }
 
     public long getId() {
@@ -37,6 +40,14 @@ public class Article implements Serializable, Comparable<Article> {
         this.id = id;
     }
 
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -45,20 +56,21 @@ public class Article implements Serializable, Comparable<Article> {
         this.title = title;
     }
 
-    public String getText() {
-        return text;
+    public String getBody() {
+        return body;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setBody(String body) {
+        this.body = body;
     }
 
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("id", id)
+                .add("language", language)
                 .add("title", title)
-                .add("text", text)
+                .add("body", body)
                 .toString();
     }
 
@@ -72,20 +84,22 @@ public class Article implements Serializable, Comparable<Article> {
         }
         final Article other = (Article) obj;
         return Objects.equal(this.id, other.id)
+                && Objects.equal(this.language, other.language)
                 && Objects.equal(this.title, other.title)
-                && Objects.equal(this.text, other.text);
+                && Objects.equal(this.body, other.body);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.id, this.title, this.text);
+        return Objects.hashCode(this.id, this.language, this.title, this.body);
     }
 
     @Override
     public int compareTo(Article o) {
         return ComparisonChain.start()
+                .compare(this.language, o.language)
                 .compare(this.title, o.title)
-                .compare(this.text, o.text)
+                .compare(this.body, o.body)
                 .result();
     }
 }

@@ -1,7 +1,6 @@
 package ro.leje.dao;
 
 import org.springframework.stereotype.Repository;
-import ro.leje.model.entity.ArticleEntity;
 import ro.leje.model.vo.Article;
 
 import java.util.List;

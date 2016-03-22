@@ -157,13 +157,42 @@ public class AdminController {
 
     @RequestMapping(value = MappingConstants.ARTICLE, method = RequestMethod.POST)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_CREATE_ARTICLE + "')")
-    public @ResponseBody Long createArticle(@RequestBody @Valid Dictionary dictionary) {
-        return articleService.createOrUpdate(dictionary);
+    public void createArticle(@RequestBody @Valid Article article) {
+        createTitle(article);
+        createBody(article);
+    }
+
+    private void createTitle(Article article) {
+        if (article.getTitle() != null && !article.getTitle().isEmpty()) {
+            Dictionary titleDictionary = new Dictionary();
+            titleDictionary.setObjectType("ro.leje.model.entity.ArticleEntity");
+            titleDictionary.setCategory(CategoryConstants.TITLE);
+            if ("en".equalsIgnoreCase(article.getLanguage())) {
+                titleDictionary.setEn(article.getTitle());
+            } else if ("ro".equalsIgnoreCase(article.getLanguage())) {
+                titleDictionary.setRo(article.getTitle());
+            }
+            articleService.createOrUpdate(titleDictionary);
+        }
+    }
+
+    private void createBody(Article article) {
+        if (article.getBody() != null && !article.getBody().isEmpty()) {
+            Dictionary textDictionary = new Dictionary();
+            textDictionary.setObjectType("ro.leje.model.entity.ArticleEntity");
+            textDictionary.setCategory(CategoryConstants.BODY);
+            if ("en".equalsIgnoreCase(article.getLanguage())) {
+                textDictionary.setEn(article.getBody());
+            } else if ("ro".equalsIgnoreCase(article.getLanguage())) {
+                textDictionary.setRo(article.getBody());
+            }
+            articleService.createOrUpdate(textDictionary);
+        }
     }
 
     @RequestMapping(value = MappingConstants.ARTICLE, method = RequestMethod.PUT)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_CREATE_ARTICLE + "')")
-    public @ResponseBody Long updateArticle(@RequestBody @Valid Dictionary dictionary) {
-        return articleService.createOrUpdate(dictionary);
+    public void updateArticle(@RequestBody @Valid Article article) {
+        // return articleService.createOrUpdate(dictionary);
     }
 }

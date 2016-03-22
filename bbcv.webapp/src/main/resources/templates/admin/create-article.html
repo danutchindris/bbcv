@@ -63,14 +63,16 @@
 
             var row = {
                 id: 0,
+                language: '',
                 title: '',
-                text: ''
+                body: ''
             }; // default row value
 
             if ([[${article}]]) {
                 row.id = article.id;
+                row.language = article.language;
                 row.title = article.title;
-                row.text = article.text;
+                row.body = article.body;
             }
 
             $createArticleDialog.data('id', row.id);
@@ -82,8 +84,9 @@
             $createArticleDialog.find('.submit').click(function () {
                 var row = {
                     id: 0,
+                    language: '',
                     title: '',
-                    text: ''
+                    body: ''
                 }; // default row value
 
                 /* gather input data */

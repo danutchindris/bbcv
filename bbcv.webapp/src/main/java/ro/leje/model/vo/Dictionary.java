@@ -17,13 +17,10 @@ public class Dictionary implements Serializable, Comparable<Dictionary> {
 
     private Long id;
 
-    @NotNull(message = "{error.object.null}")
     private String objectType;
 
-    @NotNull(message = "{error.object.null}")
     private Long objectId;
 
-    @NotNull(message = "{error.object.null}")
     private String category;
 
     private String en;
