@@ -160,4 +160,10 @@ public class AdminController {
     public @ResponseBody Long createArticle(@RequestBody @Valid Dictionary dictionary) {
         return articleService.createOrUpdate(dictionary);
     }
+
+    @RequestMapping(value = MappingConstants.ARTICLE, method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_CREATE_ARTICLE + "')")
+    public @ResponseBody Long updateArticle(@RequestBody @Valid Dictionary dictionary) {
+        return articleService.createOrUpdate(dictionary);
+    }
 }
