@@ -13,6 +13,7 @@ import ro.leje.model.vo.Link;
 import ro.leje.model.vo.Role;
 import ro.leje.model.vo.User;
 import ro.leje.service.ArticleService;
+import ro.leje.service.DictionaryService;
 import ro.leje.service.LinkService;
 import ro.leje.service.RoleService;
 import ro.leje.service.UserService;
@@ -20,8 +21,10 @@ import ro.leje.util.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * @author Danut Chindris
@@ -51,6 +54,9 @@ public class AdminController {
 
     @Resource
     private ArticleService articleService;
+
+    @Resource
+    private DictionaryService dictionaryService;
 
     @RequestMapping(value = MappingConstants.USER_LIST, method = RequestMethod.GET)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_USER_LIST + "')")
@@ -157,36 +163,39 @@ public class AdminController {
 
     @RequestMapping(value = MappingConstants.ARTICLE, method = RequestMethod.POST)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_CREATE_ARTICLE + "')")
-    public void createArticle(@RequestBody @Valid Article article) {
-        createTitle(article);
-        createBody(article);
+    public void createArticle(@RequestBody @Valid Article article, @AuthenticationPrincipal CustomUserDetails userDetails) {
+        // for the time being the author of the published article is the logged in user
+        Set<Long> authorIds = new HashSet<>();
+        authorIds.add(userDetails.getId());
+        Long articleId = articleService.create(authorIds);
+        article.setId(articleId);
+        createDictionary(article);
     }
 
-    private void createTitle(Article article) {
-        if (article.getTitle() != null && !article.getTitle().isEmpty()) {
-            Dictionary titleDictionary = new Dictionary();
-            titleDictionary.setObjectType("ro.leje.model.entity.ArticleEntity");
-            titleDictionary.setCategory(CategoryConstants.TITLE);
-            if ("en".equalsIgnoreCase(article.getLanguage())) {
-                titleDictionary.setEn(article.getTitle());
-            } else if ("ro".equalsIgnoreCase(article.getLanguage())) {
-                titleDictionary.setRo(article.getTitle());
-            }
-            articleService.createOrUpdate(titleDictionary);
+    private void createDictionary(Article article) {
+        createElement(article, CategoryConstants.TITLE);
+        createElement(article, CategoryConstants.BODY);
+    }
+
+    private void createElement(Article article, String category) {
+        String element = null;
+        if (CategoryConstants.TITLE.equals(category)) {
+            element = article.getTitle();
         }
-    }
-
-    private void createBody(Article article) {
-        if (article.getBody() != null && !article.getBody().isEmpty()) {
-            Dictionary textDictionary = new Dictionary();
-            textDictionary.setObjectType("ro.leje.model.entity.ArticleEntity");
-            textDictionary.setCategory(CategoryConstants.BODY);
-            if ("en".equalsIgnoreCase(article.getLanguage())) {
-                textDictionary.setEn(article.getBody());
-            } else if ("ro".equalsIgnoreCase(article.getLanguage())) {
-                textDictionary.setRo(article.getBody());
+        else if (CategoryConstants.BODY.equals(category)) {
+            element = article.getBody();
+        }
+        if (element != null && !element.isEmpty()) {
+            Dictionary dictionary = new Dictionary();
+            dictionary.setObjectType(CategoryConstants.ARTICLE_TYPE);
+            dictionary.setObjectId(article.getId());
+            dictionary.setCategory(category);
+            if (CategoryConstants.EN.equalsIgnoreCase(article.getLanguage())) {
+                dictionary.setEn(element);
+            } else if (CategoryConstants.RO.equalsIgnoreCase(article.getLanguage())) {
+                dictionary.setRo(element);
             }
-            articleService.createOrUpdate(textDictionary);
+            dictionaryService.create(dictionary);
         }
     }
 

@@ -26,14 +26,14 @@
             <div class="modal-body">
                 <div id="languageFormGroup" class="form-group">
                     <label data-th-text="#{language}">Language</label>
-                    <select name="language" class="selectpicker" data-style="form-control" data-menu-style="">
+                    <select id="language" name="language" class="selectpicker" data-style="form-control" data-menu-style="">
                         <option data-th-each="locale: ${locales}"
-                                data-th-attr="value='${locale.code}'" data-th-text="${locale.name}"></option>
+                                data-th-attr="value=${locale.code}" data-th-text="${locale.name}"></option>
                     </select>
                 </div>
                 <div id="titleFormGroup" class="form-group">
                     <label data-th-text="#{title}">Title</label>
-                    <input type="text" class="form-control" name="title" placeholder="Title" data-th-attr="placeholder=#{title}" />
+                    <input id="title" type="text" class="form-control" name="title" placeholder="Title" data-th-attr="placeholder=#{title}" />
                 </div>
                 <div id="textFormGroup" class="form-group">
                     <label data-th-text="#{text}">Text</label>
@@ -90,8 +90,9 @@
                 }; // default row value
 
                 /* gather input data */
-                /* row['language'] = $('#languageFormGroup').val(); */
-                row.title = $('#titleFormGroup').val();
+                row.language = $('#language').val();
+                row.title = $('#title').val();
+                row.body = editor.getElement('previewer').body.innerHTML;
 
                 // required by Spring Security
                 var header = $("meta[name='_csrf_header']").attr("content");
