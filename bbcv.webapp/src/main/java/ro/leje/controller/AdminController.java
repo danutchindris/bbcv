@@ -163,13 +163,15 @@ public class AdminController {
 
     @RequestMapping(value = MappingConstants.ARTICLE, method = RequestMethod.POST)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_CREATE_ARTICLE + "')")
-    public void createArticle(@RequestBody @Valid Article article, @AuthenticationPrincipal CustomUserDetails userDetails) {
+    public @ResponseBody Long createArticle(@RequestBody @Valid Article article,
+                                            @AuthenticationPrincipal CustomUserDetails userDetails) {
         // for the time being the author of the published article is the logged in user
         Set<Long> authorIds = new HashSet<>();
         authorIds.add(userDetails.getId());
         Long articleId = articleService.create(authorIds);
         article.setId(articleId);
         createDictionary(article);
+        return articleId;
     }
 
     private void createDictionary(Article article) {

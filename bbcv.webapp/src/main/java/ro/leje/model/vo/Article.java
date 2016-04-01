@@ -3,6 +3,7 @@ package ro.leje.model.vo;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ComparisonChain;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import java.io.Serializable;
 
@@ -18,8 +19,10 @@ public class Article implements Serializable, Comparable<Article> {
 
     private String language;
 
+    @NotEmpty(message = "{error.title.empty}")
     private String title;
 
+    @NotEmpty(message = "{error.body.empty}")
     private String body;
 
     public Article() {

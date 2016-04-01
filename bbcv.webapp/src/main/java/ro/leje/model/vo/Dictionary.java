@@ -4,7 +4,6 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ComparisonChain;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
