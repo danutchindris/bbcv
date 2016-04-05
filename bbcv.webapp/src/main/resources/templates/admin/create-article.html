@@ -22,6 +22,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title">Title</h4>
+                <div class="alert"></div>
             </div>
             <div class="modal-body">
                 <div id="languageFormGroup" class="form-group">
@@ -57,16 +58,19 @@
 
             var $createArticleDialog = $('#create-article-dialog');
 
+            var $alert = $('.alert').hide();
+
             // remove error messages that it's possible to be previously shown
             $('.form-group').removeClass('has-error');
             $('.help-block').empty();
 
+            // default row value
             var row = {
                 id: 0,
                 language: '',
                 title: '',
                 body: ''
-            }; // default row value
+            };
 
             if ([[${article}]]) {
                 row.id = article.id;
@@ -82,14 +86,8 @@
             }
 
             $createArticleDialog.find('.submit').click(function () {
-                var row = {
-                    id: 0,
-                    language: '',
-                    title: '',
-                    body: ''
-                }; // default row value
 
-                /* gather input data */
+                // gather input data
                 row.language = $('#language').val();
                 row.title = $('#title').val();
                 row.body = editor.getElement('previewer').body.innerHTML;
@@ -99,7 +97,7 @@
                 var token = $("meta[name='_csrf']").attr("content");
 
                 $.ajax({
-                    url: '/admin/article/' + ($createArticleDialog.data('id') || ''),
+                    url: '/admin/article/',
                     type: $createArticleDialog.data('id') ? 'put' : 'post',
                     contentType: 'application/json',
                     data: JSON.stringify(row),
@@ -110,6 +108,11 @@
                         $('.form-group').removeClass('has-error');
                         $('.help-block').empty();
                         showAlert($createArticleDialog.data('id') ? '[[#{item.updated}]]' : '[[#{item.created}]]', 'success');
+                        // set the newly created article id to the row.id property
+                        // so that if the user stays on the page and applies again
+                        // to handle the request as an update
+                        row.id = result;
+                        $createArticleDialog.data('id', row.id);
                     },
                     error: function (result) {
                         $('.help-block').empty();
@@ -125,6 +128,14 @@
                     }
                 });
             });
+
+            function showAlert(title, type) {
+                $alert.attr('class', 'alert alert-' + type || 'success')
+                      .html('<div class="container"><i class="fa fa-check-square-o"></i> ' + title  + '</div>').show();
+                setTimeout(function () {
+                    $alert.hide();
+                }, 1500);
+            }
         /*]]>*/
         </script>
     </div>

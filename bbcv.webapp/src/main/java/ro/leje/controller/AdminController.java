@@ -203,7 +203,35 @@ public class AdminController {
 
     @RequestMapping(value = MappingConstants.ARTICLE, method = RequestMethod.PUT)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_CREATE_ARTICLE + "')")
-    public void updateArticle(@RequestBody @Valid Article article) {
-        // return articleService.createOrUpdate(dictionary);
+    public @ResponseBody Long updateArticle(@RequestBody @Valid Article article) {
+        updateDictionary(article);
+        return article.getId();
+    }
+
+    private void updateDictionary(Article article) {
+        updateElement(article, CategoryConstants.TITLE);
+        updateElement(article, CategoryConstants.BODY);
+    }
+
+    private void updateElement(Article article, String category) {
+        String element = null;
+        if (CategoryConstants.TITLE.equals(category)) {
+            element = article.getTitle();
+        }
+        else if (CategoryConstants.BODY.equals(category)) {
+            element = article.getBody();
+        }
+        if (element != null && !element.isEmpty()) {
+            Optional<Dictionary> dictionaryOptional = dictionaryService.find(CategoryConstants.ARTICLE_TYPE, article.getId(), category);
+            if (dictionaryOptional.isPresent()) {
+                Dictionary dictionary = dictionaryOptional.get();
+                if (CategoryConstants.EN.equalsIgnoreCase(article.getLanguage())) {
+                    dictionary.setEn(element);
+                } else if (CategoryConstants.RO.equalsIgnoreCase(article.getLanguage())) {
+                    dictionary.setRo(element);
+                }
+                dictionaryService.update(dictionary);
+            }
+        }
     }
 }
