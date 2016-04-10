@@ -234,4 +234,40 @@ public class AdminController {
             }
         }
     }
+
+    @RequestMapping(value = MappingConstants.ARTICLE_LANGUAGE, method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_CREATE_ARTICLE + "')")
+    public @ResponseBody Article changeLanguage(@RequestBody Article article) {
+        if (article != null && article.getId() != 0) {
+            Article articleWithChangedLanguage = new Article();
+            Optional<Dictionary> titleDictionary = dictionaryService.find(CategoryConstants.ARTICLE_TYPE,
+                    article.getId(), CategoryConstants.TITLE);
+            Optional<Dictionary> bodyDictionary = dictionaryService.find(CategoryConstants.ARTICLE_TYPE,
+                    article.getId(), CategoryConstants.BODY);
+            articleWithChangedLanguage.setId(article.getId());
+            articleWithChangedLanguage.setLanguage(article.getLanguage());
+            if (titleDictionary.isPresent()) {
+                String title = null;
+                if (CategoryConstants.EN.equalsIgnoreCase(article.getLanguage())) {
+                    title = titleDictionary.get().getEn();
+                }
+                else if (CategoryConstants.RO.equalsIgnoreCase(article.getLanguage())) {
+                    title = titleDictionary.get().getRo();
+                }
+                articleWithChangedLanguage.setTitle(title != null ? title : "");
+            }
+            if (bodyDictionary.isPresent()) {
+                String body = null;
+                if (CategoryConstants.EN.equalsIgnoreCase(article.getLanguage())) {
+                    body = bodyDictionary.get().getEn();
+                }
+                else if (CategoryConstants.RO.equalsIgnoreCase(article.getLanguage())) {
+                    body = bodyDictionary.get().getRo();
+                }
+                articleWithChangedLanguage.setBody(body != null ? body : "");
+            }
+            return articleWithChangedLanguage;
+        }
+        return article;
+    }
 }

@@ -37,6 +37,7 @@ public interface MappingConstants {
     String ARTICLE = "/article";
     String ARTICLE_LIST = "/article/list";
     String ARTICLE_LIST_JSON = "/article/list/json";
+    String ARTICLE_LANGUAGE = "/article/language";
 
     String MESSAGE = "/message";
     String MESSAGE_LIST = "/message/list";

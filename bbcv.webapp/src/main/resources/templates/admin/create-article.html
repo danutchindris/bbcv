@@ -37,7 +37,7 @@
                     <input id="title" type="text" class="form-control" name="title" placeholder="Title" data-th-attr="placeholder=#{title}" />
                 </div>
                 <div id="textFormGroup" class="form-group">
-                    <label data-th-text="#{text}">Text</label>
+                    <label data-th-text="#{body}">Body</label>
                     <div id="epiceditor"></div>
                 </div>
             </div>
@@ -53,7 +53,8 @@
             });
 
             var editor = new EpicEditor({
-                basePath: '[[@{/assets/epiceditor}]]'
+                basePath: '[[@{/assets/epiceditor}]]',
+                clientSideStorage: false
             }).load();
 
             var $createArticleDialog = $('#create-article-dialog');
@@ -90,7 +91,7 @@
                 // gather input data
                 row.language = $('#language').val();
                 row.title = $('#title').val();
-                row.body = editor.getElement('previewer').body.innerHTML;
+                row.body = editor.exportFile();
 
                 // required by Spring Security
                 var header = $("meta[name='_csrf_header']").attr("content");
@@ -136,6 +137,40 @@
                     $alert.hide();
                 }, 1500);
             }
+
+            // when language is changed, update title and body
+            $('#language').change(function() {
+
+                // switch to edit mode
+                editor.edit();
+
+                var articleInfo = {
+                    id: row.id,
+                    language: $(this).val()
+                };
+
+                // required by Spring Security
+                var header = $("meta[name='_csrf_header']").attr("content");
+                var token = $("meta[name='_csrf']").attr("content");
+
+                $.ajax({
+                    type: "put",
+                    url: "/admin/article/language/",
+                    contentType: 'application/json',
+                    data: JSON.stringify(articleInfo),
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success: function(response) {
+                        // display the retrieved text and body
+                        $("#title").val(response.title);
+                        editor.importFile('', response.body);
+                    },
+                    error: function() {
+                        alert('Error');
+                    }
+                });
+            });
         /*]]>*/
         </script>
     </div>
