@@ -23,6 +23,7 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
@@ -141,18 +142,18 @@ public class AdminController {
 
     @RequestMapping(MappingConstants.ARTICLE_LIST_JSON)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_LIST + "')")
-    public @ResponseBody List<Article> findArticles() {
-        return articleService.findAll();
+    public @ResponseBody List<Article> findArticles(Locale locale) {
+        return articleService.find(locale.getLanguage());
     }
 
     @RequestMapping(value = MappingConstants.ARTICLE, method = RequestMethod.GET)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_CREATE_ARTICLE + "')")
-    public String createArticleForm(Model model, @AuthenticationPrincipal CustomUserDetails userDetails,
+    public String createArticleForm(Model model, Locale locale, @AuthenticationPrincipal CustomUserDetails userDetails,
                                     @RequestParam(required = false, value = "id") Long articleId) {
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
         if (articleId != null) {
-            Optional<Article> article = articleService.find(articleId);
+            Optional<Article> article = articleService.find(articleId, locale.getLanguage());
             if (article.isPresent()) {
                 model.addAttribute("article", article.get());
             }

@@ -11,9 +11,9 @@ import java.util.List;
  */
 public interface ArticleDAO extends BaseDAO {
 
-    List<Article> findAll();
+    Article find(long articleId, String language);
 
-    Article find(long articleId);
+    List<Article> find(String language);
 
     List<User> findAuthors(long articleId);
 }

@@ -29,14 +29,14 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     @Transactional
-    public Optional<Article> find(long articleId) {
-        return Optional.ofNullable(articleDAO.find(articleId));
+    public Optional<Article> find(long articleId, String language) {
+        return Optional.ofNullable(articleDAO.find(articleId, language));
     }
 
     @Override
     @Transactional
-    public List<Article> findAll() {
-        return articleDAO.findAll();
+    public List<Article> find(String language) {
+        return articleDAO.find(language);
     }
 
     @Override

@@ -7,6 +7,7 @@ import org.junit.Test;
 import ro.leje.AbstractTest;
 import ro.leje.model.vo.Article;
 import ro.leje.model.vo.User;
+import ro.leje.util.CategoryConstants;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
@@ -44,20 +45,20 @@ public class ArticleServiceTest extends AbstractTest {
 
     @Test
     public void findReturnsOptionalArticle() {
-        Optional<Article> object = service.find(ARTICLE_ID);
+        Optional<Article> object = service.find(ARTICLE_ID, CategoryConstants.EN);
         Assert.assertNotNull("The returned object shouldn't be null", object);
     }
 
     @Test
     public void findReturnsEmptyOptionalArticleWhenNotExistingArticleIdProvided() {
-        Optional<Article> object = service.find(NOT_EXISTING_ARTICLE_ID);
+        Optional<Article> object = service.find(NOT_EXISTING_ARTICLE_ID, CategoryConstants.EN);
         Assert.assertNotNull("The returned object shouldn't be null", object);
         Assert.assertTrue("The optional should be empty", !object.isPresent());
     }
 
     @Test
-    public void findAllReturnsNotEmptyList() {
-        List<Article> list = service.findAll();
+    public void findReturnsNotEmptyList() {
+        List<Article> list = service.find(CategoryConstants.EN);
         Assert.assertNotNull("The returned list should not be null", list);
         Assert.assertTrue("The list should contain at least one item", list.size() > 0);
     }

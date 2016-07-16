@@ -13,9 +13,9 @@ import java.util.Set;
  */
 public interface ArticleService {
 
-    Optional<Article> find(long articleId);
+    Optional<Article> find(long articleId, String language);
 
-    List<Article> findAll();
+    List<Article> find(String language);
 
     List<User> findAuthors(long articleId);
 
