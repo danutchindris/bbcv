@@ -72,17 +72,19 @@
 
             // if it's an update action pre-populate the language, title and body fields
             // with the information from the database
-            if ([[${article} != null]] && [[${article.id} != null]] && [[${article.id} > 0]]) {
-                row.id = [[${article.id}]];
+            if ([[${article} != null]]) {
+                if ([[${article.id} != null]] && [[${article.id} > 0]]) {
+                    row.id = [[${article.id}]];
 
-                $(function() {
-                    $("#language").val('[[${article.language}]]'.toUpperCase());
-                    // the custom styled Bootstrap select component is not updated
-                    var l = '[[${locales.get(article.getLanguage().toUpperCase()).getName()}]]';
-                    $("button#language.btn.dropdown-toggle.clearfix.form-control span.filter-option").html(l);
-                    $("#title").val('[[${article.title}]]');
-                    editor.importFile('', `[[${article.body}]]`);
-                });
+                    $(function() {
+                        $("#language").val('[[${article.language}]]'.toUpperCase());
+                        // the custom styled Bootstrap select component is not updated
+                        var l = '[[${locales.get(article.getLanguage().toUpperCase()).getName()}]]';
+                        $("button#language.btn.dropdown-toggle.clearfix.form-control span.filter-option").html(l);
+                        $("#title").val('[[${article.title}]]');
+                        editor.importFile('', `[[${article.body}]]`);
+                    });
+                }
             }
 
             $createArticleDialog.data('id', row.id);
