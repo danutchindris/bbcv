@@ -20,6 +20,14 @@
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Grand+Hotel" />
     <link rel="stylesheet" type="text/css" href="../static/assets/css/pe-icon-7-stroke.css" data-th-href="@{/assets/css/pe-icon-7-stroke.css}" />
 
+    <script type="text/javascript" src="../static/assets/js/jquery-1.11.2.min.js" data-th-src="@{/assets/js/jquery-1.11.2.min.js}"></script>
+    <script type="text/javascript" src="../static/assets/js/bootstrap.min.js" data-th-src="@{/assets/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="../static/assets/js/gsdk.js" data-th-src="@{/assets/js/gsdk.js}"></script>
+    <script type="text/javascript" src="../static/assets/js/jquery-ui-1.10.4.custom.min.js" data-th-src="@{/assets/js/jquery-ui-1.10.4.custom.min.js}"></script>
+
+    <script type="text/javascript" src="../../static/assets/epiceditor/js/epiceditor.min.js"
+            data-th-src="@{/assets/epiceditor/js/epiceditor.min.js}"></script>
+
     <title th:text="#{site}">Site</title>
 
 </head>
@@ -38,15 +46,59 @@
             <h3 th:text="#{awesome.articles}">Header 3</h3>
         </div>
     </div>
+    <div class="section">
+        <div id="epiceditor"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 bottom-border">
+                    <h1 class="title title-blog" th:text="${article.title}">Article Title</h1>
+                    <div class="article-content"></div>
+                </div>
+
+                <div class="col-md-3 col-md-offset-1">
+                    <h3 class="title title-blog">Tags </h3>
+                    <span class="label label-warning label-fill">Food</span>
+                    <span class="label label-warning label-fill">Health</span>
+                    <span class="label label-warning label-fill">Lifestyle</span>
+                    <span class="label label-warning label-fill">Breakfast</span>
+
+                    <h3 class="title title-blog">Author</h3>
+                    <div class="media media-author">
+                        <a class="pull-left" href="#">
+                            <div class="avatar">
+                                <img class="media-object" src="../assets/img/faces/face-1.jpg" alt="..." />
+                            </div>
+                        </a>
+                        <div class="media-body">
+                            <h6 class="media-heading">Creative Tim</h6>
+                            <p class="text-muted">Moderator</p>
+                        </div>
+                        <p>Tim thinks communication is key and he enjoys all the feedback you give him</p>
+                        <button class="btn btn-round btn-info btn-sm">
+                            Follow
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script data-th-inline="text">
+            /*<![CDATA[*/
+                $(function() {
+                    var editor = new EpicEditor({
+                        basePath: '[[@{/assets/epiceditor}]]',
+                        clientSideStorage: false
+                    }).load();
+                    editor.importFile('', `[[${article.body}]]`);
+                    $(".article-content").html(editor.exportFile('', 'html'));
+                    $("#epiceditor").hide();
+                });
+            /*]]>*/
+        </script>
+    </div>
     <div th:replace="common/footer :: footer-area"></div>
 </div>
 
 </body>
-
-<script type="text/javascript" src="../static/assets/js/jquery-1.11.2.min.js" data-th-src="@{/assets/js/jquery-1.11.2.min.js}"></script>
-<script type="text/javascript" src="../static/assets/js/bootstrap.min.js" data-th-src="@{/assets/js/bootstrap.min.js}"></script>
-<script type="text/javascript" src="../static/assets/js/gsdk.js" data-th-src="@{/assets/js/gsdk.js}"></script>
-<script type="text/javascript" src="../static/assets/js/jquery-ui-1.10.4.custom.min.js" data-th-src="@{/assets/js/jquery-ui-1.10.4.custom.min.js}"></script>
 
 <script type="text/javascript">
 var big_image;
