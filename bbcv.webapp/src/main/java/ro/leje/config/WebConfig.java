@@ -13,6 +13,7 @@ import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import javax.annotation.Resource;
 import java.util.Locale;
 
 /**
@@ -23,6 +24,9 @@ import java.util.Locale;
 @EnableWebMvc
 @ComponentScan
 public class WebConfig extends WebMvcConfigurerAdapter {
+
+    @Resource
+    private Settings settings;
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -68,5 +72,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/static/assets/");
+        registry.addResourceHandler("/images/**").addResourceLocations(settings.getImagesLocation());
     }
 }

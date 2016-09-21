@@ -25,6 +25,9 @@ hibernate:
           connection:
                     characterEncoding: "UTF-8"
 
+articles:
+          images: "file:///path/to/articles/images/"
+
 ---
 
 spring:
@@ -45,6 +48,9 @@ hibernate:
           connection:
                     characterEncoding: "UTF-8"
 
+articles:
+          images: "file:///path/to/articles/images/"
+
 ---
 
 spring:
@@ -64,3 +70,6 @@ hibernate:
           show_sql: "true"
           connection:
                     characterEncoding: "UTF-8"
+
+articles:
+          images: "file:///path/to/articles/images/"

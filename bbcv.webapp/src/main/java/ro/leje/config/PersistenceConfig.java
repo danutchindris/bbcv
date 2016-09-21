@@ -24,7 +24,7 @@ public class PersistenceConfig {
     private static final String HIBERNATE_CONNECTION_CHARACTER_ENCODING = "hibernate.connection.characterEncoding";
 
     @Resource
-    private PersistenceSettings persistenceSettings;
+    private Settings settings;
 
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
@@ -39,10 +39,10 @@ public class PersistenceConfig {
     @Bean
     public DataSource restDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName(persistenceSettings.getDriver());
-        dataSource.setUrl(persistenceSettings.getUrl());
-        dataSource.setUsername(persistenceSettings.getUsr());
-        dataSource.setPassword(persistenceSettings.getPassword());
+        dataSource.setDriverClassName(settings.getDriver());
+        dataSource.setUrl(settings.getUrl());
+        dataSource.setUsername(settings.getUsr());
+        dataSource.setPassword(settings.getPassword());
 
         return dataSource;
     }
@@ -63,9 +63,9 @@ public class PersistenceConfig {
     Properties hibernateProperties() {
         return new Properties() {
             {
-                setProperty(HIBERNATE_DIALECT, persistenceSettings.getDialect());
-                setProperty(HIBERNATE_SHOW_SQL, persistenceSettings.getShowSql());
-                setProperty(HIBERNATE_CONNECTION_CHARACTER_ENCODING, persistenceSettings.getCharacterEncoding());
+                setProperty(HIBERNATE_DIALECT, settings.getDialect());
+                setProperty(HIBERNATE_SHOW_SQL, settings.getShowSql());
+                setProperty(HIBERNATE_CONNECTION_CHARACTER_ENCODING, settings.getCharacterEncoding());
             }
         };
     }

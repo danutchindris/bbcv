@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties
 @ConfigurationProperties
-public class PersistenceSettings {
+public class Settings {
 
     @Value("${db.driver}")
     private String driver;
@@ -31,6 +31,9 @@ public class PersistenceSettings {
     private String showSql;
     @Value("${hibernate.connection.characterEncoding}")
     private String characterEncoding;
+
+    @Value("${articles.images}")
+    private String imagesLocation;
 
     public String getDriver() {
         return driver;
@@ -86,5 +89,13 @@ public class PersistenceSettings {
 
     public void setCharacterEncoding(String characterEncoding) {
         this.characterEncoding = characterEncoding;
+    }
+
+    public String getImagesLocation() {
+        return imagesLocation;
+    }
+
+    public void setImagesLocation(String imagesLocation) {
+        this.imagesLocation = imagesLocation;
     }
 }
