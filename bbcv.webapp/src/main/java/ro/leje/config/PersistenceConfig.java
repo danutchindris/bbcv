@@ -16,9 +16,13 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({ "ro.leje.model.entity" })
+@ComponentScan({ PersistenceConfig.BASE_ENTITY_PACKAGE })
 public class PersistenceConfig {
 
+    static final String BASE_ENTITY_PACKAGE = "ro.leje.model.entity";
+
+    private static final String CHARACTER_ENCODING_CONNECTION_PROPERTY = "characterEncoding";
+    private static final String CHARACTER_ENCODING_UTF_8 = "UTF-8";
     private static final String HIBERNATE_DIALECT = "hibernate.dialect";
     private static final String HIBERNATE_SHOW_SQL = "hibernate.show_sql";
     private static final String HIBERNATE_CONNECTION_CHARACTER_ENCODING = "hibernate.connection.characterEncoding";
@@ -30,7 +34,7 @@ public class PersistenceConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(restDataSource());
-        sessionFactory.setPackagesToScan(new String[] {"ro.leje.model.entity"});
+        sessionFactory.setPackagesToScan(new String[] { BASE_ENTITY_PACKAGE });
         sessionFactory.setHibernateProperties(hibernateProperties());
 
         return sessionFactory;
@@ -43,6 +47,7 @@ public class PersistenceConfig {
         dataSource.setUrl(settings.getUrl());
         dataSource.setUsername(settings.getUsr());
         dataSource.setPassword(settings.getPassword());
+        dataSource.addConnectionProperty(CHARACTER_ENCODING_CONNECTION_PROPERTY, CHARACTER_ENCODING_UTF_8);
 
         return dataSource;
     }
