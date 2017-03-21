@@ -29,6 +29,9 @@ public class ArticleEntity {
             })
     private Set<UserEntity> authors;
 
+    @OneToMany(mappedBy = "article")
+    private Set<ImageEntity> images;
+
     public long getId() {
         return id;
     }
@@ -43,6 +46,14 @@ public class ArticleEntity {
 
     public void setAuthors(Set<UserEntity> authors) {
         this.authors = authors;
+    }
+
+    public Set<ImageEntity> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<ImageEntity> images) {
+        this.images = images;
     }
 
     public ArticleEntity() {

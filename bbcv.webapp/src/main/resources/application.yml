@@ -26,7 +26,7 @@ hibernate:
                     characterEncoding: "UTF-8"
 
 articles:
-          images: "file:///path/to/articles/images/"
+          images: "/Users/danut/Projects/resources/bbcv/articles/images/"
 
 ---
 
@@ -49,7 +49,7 @@ hibernate:
                     characterEncoding: "UTF-8"
 
 articles:
-          images: "file:///path/to/articles/images/"
+          images: "/path/to/articles/images/"
 
 ---
 
@@ -72,4 +72,4 @@ hibernate:
                     characterEncoding: "UTF-8"
 
 articles:
-          images: "file:///path/to/articles/images/"
+          images: "/path/to/articles/images/"

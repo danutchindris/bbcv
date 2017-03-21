@@ -143,6 +143,7 @@
             return [
                 '<a class="update" href="javascript:" title="[[#{edit}]]"><i class="fa fa-edit"></i></a>',
                 '<a class="remove" href="javascript:" title="[[#{delete}]]"><i class="fa fa-remove"></i></a>',
+                '<a class="images" href="javascript:" title="[[#{images}]]"><i class="fa fa-image"></i></a>',
             ].join('');
         }
 
@@ -153,6 +154,9 @@
             },
             'click .remove': function (e, value, row) {
                 showDeleteModal($(this).attr('title'), '[[#{confirm.delete}]]', row);
+            },
+            'click .images': function (e, value, row) {
+                window.location.href = '/admin/article/' + row.id + '/image/list';
             }
         };
 

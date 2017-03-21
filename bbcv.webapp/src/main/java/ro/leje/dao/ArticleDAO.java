@@ -1,6 +1,7 @@
 package ro.leje.dao;
 
 import ro.leje.model.vo.Article;
+import ro.leje.model.vo.Image;
 import ro.leje.model.vo.User;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface ArticleDAO extends BaseDAO {
     List<Article> find(String language);
 
     List<User> findAuthors(long articleId);
+
+    List<Image> findImages(long articleId, String language);
 }

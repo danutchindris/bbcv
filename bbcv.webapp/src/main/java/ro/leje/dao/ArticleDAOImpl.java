@@ -2,6 +2,7 @@ package ro.leje.dao;
 
 import org.springframework.stereotype.Repository;
 import ro.leje.model.vo.Article;
+import ro.leje.model.vo.Image;
 import ro.leje.model.vo.User;
 import ro.leje.util.CategoryConstants;
 
@@ -68,6 +69,28 @@ public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
         return getCurrentSession()
                 .createQuery(query.toString())
                 .setLong("articleId", articleId)
+                .list();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Image> findImages(long articleId, String language) {
+        StringBuilder query = new StringBuilder();
+        query.append("select new ro.leje.model.vo.Image(i.id, ");
+        query.append("'" + language + "', ");
+        query.append("i.fileName, ");
+        query.append("d." + language + ") ");
+        query.append("from ro.leje.model.entity.ImageEntity i, ");
+        query.append("ro.leje.model.entity.DictionaryEntity d ");
+        query.append("where i.article.id = :articleId ");
+        query.append("and d.objectId = i.id ");
+        query.append("and d.objectType = :imageObjectType ");
+        query.append("and d.category = :titleCategory");
+        return getCurrentSession()
+                .createQuery(query.toString())
+                .setLong("articleId", articleId)
+                .setString("imageObjectType", CategoryConstants.IMAGE_TYPE)
+                .setString("titleCategory", CategoryConstants.TITLE)
                 .list();
     }
 }

@@ -6,13 +6,19 @@ package ro.leje.util;
  */
 public interface CategoryConstants {
 
-    static final String EN = "en";
+    String EN = "en";
 
-    static final String RO = "ro";
+    String RO = "ro";
 
-    static final String ARTICLE_TYPE = "ro.leje.model.entity.ArticleEntity";
+    String ARTICLE_TYPE = "ro.leje.model.entity.ArticleEntity";
 
-    static final String TITLE = "title";
+    String TITLE = "title";
 
-    static final String BODY = "body";
+    String BODY = "body";
+
+    String IMAGE_TYPE = "ro.leje.model.entity.ImageEntity";
+
+    String DEFAULT_TITLE_EN = "Default Title";
+
+    String DEFAULT_TITLE_RO = "Titlu prestabilit";
 }

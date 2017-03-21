@@ -38,6 +38,10 @@ public interface MappingConstants {
     String ARTICLE_LIST = "/article/list";
     String ARTICLE_LIST_JSON = "/article/list/json";
     String ARTICLE_LANGUAGE = "/article/language";
+    String ARTICLE_IMAGE_LIST = "/article/{id}/image/list";
+    String ARTICLE_IMAGE_LIST_JSON = "/article/{id}/image/list/json";
+    String ARTICLE_IMAGE_LIST_UPLOAD_FILE = "article/{id}/uploadFile";
+    String ARTICLE_IMAGE_LANGUAGE = "/image/language";
 
     String MESSAGE = "/message";
     String MESSAGE_LIST = "/message/list";
@@ -46,6 +50,7 @@ public interface MappingConstants {
     // shop related constants
     String SHOP = "/shop";
 
+    // articles related constants
     String ARTICLES = "/articles";
     String ARTICLE_DETAILS = "/{articleId}/*";
 }

@@ -1,6 +1,7 @@
 package ro.leje.service;
 
 import ro.leje.model.vo.Article;
+import ro.leje.model.vo.Image;
 import ro.leje.model.vo.User;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface ArticleService {
     List<User> findAuthors(long articleId);
 
     Long create(Set<Long> authorIds);
+
+    List<Image> findImages(long articleId, String language);
 }

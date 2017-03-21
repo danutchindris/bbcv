@@ -27,6 +27,8 @@ public interface ViewConstants {
     // shop related constants
     String SHOP = "shop";
 
+    // articles related constants
     String ARTICLE_DETAILS = "article-details";
     String CREATE_ARTICLE = "create-article";
+    String ARTICLE_IMAGE_LIST = "article-image-list";
 }
