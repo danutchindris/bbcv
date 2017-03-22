@@ -1,36 +1,27 @@
-package ro.leje.controller;
+package ro.leje.controller.admin;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import ro.leje.config.Settings;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import ro.leje.delegate.LanguageDelegate;
 import ro.leje.model.CustomUserDetails;
 import ro.leje.model.vo.Article;
 import ro.leje.model.vo.Dictionary;
-import ro.leje.model.vo.Image;
-import ro.leje.model.vo.Link;
-import ro.leje.model.vo.Role;
-import ro.leje.model.vo.User;
 import ro.leje.service.ArticleService;
 import ro.leje.service.DictionaryService;
-import ro.leje.service.ImageService;
-import ro.leje.service.LinkService;
-import ro.leje.service.RoleService;
-import ro.leje.service.UserService;
-import ro.leje.util.*;
+import ro.leje.util.CategoryConstants;
+import ro.leje.util.MappingConstants;
+import ro.leje.util.PermissionConstants;
+import ro.leje.util.ViewConstants;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -39,51 +30,21 @@ import java.util.Set;
 
 /**
  * @author Danut Chindris
- * @since August 15, 2015, Catiasu
+ * @since March 22, 2017
  */
-//@Controller
-//@RequestMapping(value = MappingConstants.ADMIN)
-//@PreAuthorize("denyAll")
-public class AdminController {
+@Controller
+public class ArticleAdmin extends AbstractAdmin {
 
     private static final String AUTHENTICATED_USER_FIRST_NAME = "authenticatedUserFirstName";
 
-    private static final String ID = "id";
-
-    private static final String IMAGES = "images";
-
-    @Resource
-    private Settings settings;
-
     @Resource
     private LanguageDelegate languageDelegate;
-
-    @Resource
-    private LinkService linkService;
 
     @Resource
     private ArticleService articleService;
 
     @Resource
     private DictionaryService dictionaryService;
-
-    @Resource
-    private ImageService imageService;
-
-    @RequestMapping(value = MappingConstants.LINK_LIST, method = RequestMethod.GET)
-    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_LINK_LIST + "')")
-    public String displayLinkList(Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
-        languageDelegate.addAvailableLanguages(model);
-        languageDelegate.addNotAvailableLanguages(model);
-        model.addAttribute(AUTHENTICATED_USER_FIRST_NAME, userDetails != null ? userDetails.getFirstName() : null);
-        return ViewConstants.ADMIN + "/" + ViewConstants.LINK_LIST;
-    }
-
-    @RequestMapping(MappingConstants.LINK_LIST_JSON)
-    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_LINK_LIST + "')")
-    public @ResponseBody List<Link> findLinks() {
-        return linkService.findAll();
-    }
 
     @RequestMapping(value = MappingConstants.ARTICLE_LIST, method = RequestMethod.GET)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_LIST + "')")
@@ -96,7 +57,8 @@ public class AdminController {
 
     @RequestMapping(MappingConstants.ARTICLE_LIST_JSON)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_LIST + "')")
-    public @ResponseBody List<Article> findArticles(Locale locale) {
+    public @ResponseBody
+    List<Article> findArticles(Locale locale) {
         return articleService.find(locale.getLanguage());
     }
 
@@ -177,7 +139,8 @@ public class AdminController {
             element = article.getBody();
         }
         if (element != null && !element.isEmpty()) {
-            Optional<Dictionary> dictionaryOptional = dictionaryService.find(CategoryConstants.ARTICLE_TYPE, article.getId(), category);
+            Optional<Dictionary> dictionaryOptional = dictionaryService.find(CategoryConstants.ARTICLE_TYPE,
+                    article.getId(), category);
             if (dictionaryOptional.isPresent()) {
                 Dictionary dictionary = dictionaryOptional.get();
                 if (CategoryConstants.EN.equalsIgnoreCase(article.getLanguage())) {
@@ -224,61 +187,5 @@ public class AdminController {
             return articleWithChangedLanguage;
         }
         return article;
-    }
-
-    @RequestMapping(value = MappingConstants.ARTICLE_IMAGE_LIST, method = RequestMethod.GET)
-    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_LIST + "')")
-    public String displayArticleImageList(@PathVariable long id, Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
-        languageDelegate.addAvailableLanguages(model);
-        languageDelegate.addNotAvailableLanguages(model);
-        model.addAttribute(ID, id);
-        model.addAttribute(AUTHENTICATED_USER_FIRST_NAME, userDetails != null ? userDetails.getFirstName() : null);
-        return ViewConstants.ADMIN + "/" + ViewConstants.ARTICLE_IMAGE_LIST;
-    }
-
-    @RequestMapping(MappingConstants.ARTICLE_IMAGE_LIST_JSON)
-    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_LIST + "')")
-    public @ResponseBody List<Image> findArticleImages(@PathVariable long id, Locale locale) {
-        return articleService.findImages(id, locale.getLanguage());
-    }
-
-    @RequestMapping(value = MappingConstants.ARTICLE_IMAGE_LIST_UPLOAD_FILE, method = RequestMethod.POST)
-    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_CREATE_ARTICLE + "')")
-    public @ResponseBody Long uploadFile(@PathVariable long id, @RequestParam("file") MultipartFile file) {
-        try {
-            // get the file name and build the local file path
-            String filePath = Paths.get(settings.getImagesLocation() + id + "/",
-                    file.getOriginalFilename()).toString();
-            // save the file locally
-            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
-            stream.write(file.getBytes());
-            stream.close();
-        }
-        catch (Exception e) {
-            // handle exception
-        }
-        // create the image record in the database
-        Image image = new Image();
-        image.setFileName(file.getOriginalFilename());
-        Long imageId = imageService.create(image, id);
-        // create the dictionary record in the database
-        Dictionary dictionary = new Dictionary();
-        dictionary.setObjectId(imageId);
-        dictionary.setObjectType(CategoryConstants.IMAGE_TYPE);
-        dictionary.setCategory(CategoryConstants.TITLE);
-        dictionary.setEn(CategoryConstants.DEFAULT_TITLE_EN);
-        dictionary.setRo(CategoryConstants.DEFAULT_TITLE_RO);
-        dictionaryService.create(dictionary);
-        return imageId;
-    }
-
-    @RequestMapping(value = MappingConstants.ARTICLE_IMAGE_LANGUAGE, method = RequestMethod.GET)
-    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_CREATE_ARTICLE + "')")
-    public @ResponseBody String changeImageTitleLanguage(Model model, Locale locale, @RequestBody Long imageId) {
-        if (imageId != null) {
-            // get the title translation for the current language
-        }
-        // return the translation
-        return "";
     }
 }

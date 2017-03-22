@@ -1,4 +1,4 @@
-package ro.leje.controller;
+package ro.leje.controller.admin;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,13 +22,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Danut Chindris
  * @since August 15, 2015, Catiasu
  */
-public class AdminControllerTest extends AbstractTest {
+public class UserAdminTest extends AbstractTest {
 
     @Mock
     private LanguageDelegate languageDelegate;
 
     @InjectMocks
-    AdminController adminController;
+    UserAdmin userAdmin;
 
     private MockMvc mockMvc;
 
@@ -40,7 +40,7 @@ public class AdminControllerTest extends AbstractTest {
         viewResolver.setSuffix(ConfigConstants.TEMPLATES_SUFFIX);
         // for unit tests use the standaloneSetup() method
         // for integration tests use the webAppContextSetup() method
-        mockMvc = MockMvcBuilders.standaloneSetup(adminController)
+        mockMvc = MockMvcBuilders.standaloneSetup(userAdmin)
                 .setViewResolvers(viewResolver)
                 .build();
     }
