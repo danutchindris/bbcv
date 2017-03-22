@@ -13,4 +13,6 @@ public interface ImageService {
     List<Image> findAll();
 
     Long create(Image image, Long articleId);
+
+    List<Image> findImages(long articleId, String language);
 }

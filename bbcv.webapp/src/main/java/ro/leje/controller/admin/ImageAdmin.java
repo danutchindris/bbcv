@@ -16,7 +16,6 @@ import ro.leje.delegate.LanguageDelegate;
 import ro.leje.model.CustomUserDetails;
 import ro.leje.model.vo.Dictionary;
 import ro.leje.model.vo.Image;
-import ro.leje.service.ArticleService;
 import ro.leje.service.DictionaryService;
 import ro.leje.service.ImageService;
 import ro.leje.util.CategoryConstants;
@@ -50,9 +49,6 @@ public class ImageAdmin extends AbstractAdmin {
     private Settings settings;
 
     @Resource
-    private ArticleService articleService;
-
-    @Resource
     private DictionaryService dictionaryService;
 
     @Resource
@@ -72,7 +68,7 @@ public class ImageAdmin extends AbstractAdmin {
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_LIST + "')")
     public @ResponseBody
     List<Image> findArticleImages(@PathVariable long id, Locale locale) {
-        return articleService.findImages(id, locale.getLanguage());
+        return imageService.findImages(id, locale.getLanguage());
     }
 
     @RequestMapping(value = MappingConstants.ARTICLE_IMAGE_LIST_UPLOAD_FILE, method = RequestMethod.POST)

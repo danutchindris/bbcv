@@ -5,7 +5,6 @@ import ro.leje.dao.ArticleDAO;
 import ro.leje.model.entity.ArticleEntity;
 import ro.leje.model.entity.UserEntity;
 import ro.leje.model.vo.Article;
-import ro.leje.model.vo.Image;
 import ro.leje.model.vo.User;
 
 import javax.annotation.Resource;
@@ -63,11 +62,5 @@ public class ArticleServiceImpl implements ArticleService {
             userEntities.add(articleDAO.findEntity(authorId, UserEntity.class));
         }
         return userEntities;
-    }
-
-    @Override
-    @Transactional
-    public List<Image> findImages(long articleId, String language) {
-        return articleDAO.findImages(articleId, language);
     }
 }

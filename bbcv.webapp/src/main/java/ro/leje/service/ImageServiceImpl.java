@@ -41,4 +41,10 @@ public class ImageServiceImpl implements ImageService {
         imageEntity.setArticle(articleEntity);
         return imageDAO.create(imageEntity);
     }
+
+    @Override
+    @Transactional
+    public List<Image> findImages(long articleId, String language) {
+        return imageDAO.findImages(articleId, language);
+    }
 }
