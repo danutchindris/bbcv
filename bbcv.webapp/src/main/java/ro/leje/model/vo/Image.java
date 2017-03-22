@@ -25,10 +25,12 @@ public class Image implements Serializable, Comparable<Image> {
     @NotEmpty(message = "{error.title.empty}")
     private String title;
 
+    private Boolean cover;
+
     public Image() {
     }
 
-    public Image(long id, String language, String fileName, String title) {
+    public Image(final long id, final String language, final String fileName, final String title, final Boolean cover) {
         this.id = id;
         this.language = language;
         this.fileName = fileName;
@@ -74,6 +76,7 @@ public class Image implements Serializable, Comparable<Image> {
                 .add("language", language)
                 .add("fileName", fileName)
                 .add("title", title)
+                .add("cover", cover)
                 .toString();
     }
 
@@ -89,12 +92,13 @@ public class Image implements Serializable, Comparable<Image> {
         return Objects.equal(this.id, other.id)
                 && Objects.equal(this.language, other.language)
                 && Objects.equal(this.fileName, other.fileName)
-                && Objects.equal(this.title, other.title);
+                && Objects.equal(this.title, other.title)
+                && Objects.equal(this.cover, other.cover);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.id, this.language, this.fileName, this.title);
+        return Objects.hashCode(this.id, this.language, this.fileName, this.title, this.cover);
     }
 
     @Override
@@ -103,6 +107,7 @@ public class Image implements Serializable, Comparable<Image> {
                 .compare(this.language, o.language)
                 .compare(this.fileName, o.fileName)
                 .compare(this.title, o.title)
+                .compare(this.cover, o.cover)
                 .result();
     }
 }

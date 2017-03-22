@@ -75,19 +75,19 @@ public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
     @Override
     @SuppressWarnings("unchecked")
     public List<Image> findImages(long articleId, String language) {
-        StringBuilder query = new StringBuilder();
-        query.append("select new ro.leje.model.vo.Image(i.id, ");
-        query.append("'" + language + "', ");
-        query.append("i.fileName, ");
-        query.append("d." + language + ") ");
-        query.append("from ro.leje.model.entity.ImageEntity i, ");
-        query.append("ro.leje.model.entity.DictionaryEntity d ");
-        query.append("where i.article.id = :articleId ");
-        query.append("and d.objectId = i.id ");
-        query.append("and d.objectType = :imageObjectType ");
-        query.append("and d.category = :titleCategory");
+        String query = "select new ro.leje.model.vo.Image(i.id, "
+                + "'" + language + "', "
+                + "i.fileName, "
+                + "d." + language + ","
+                + "i.cover) "
+                + "from ro.leje.model.entity.ImageEntity i, "
+                + "ro.leje.model.entity.DictionaryEntity d "
+                + "where i.article.id = :articleId "
+                + "and d.objectId = i.id "
+                + "and d.objectType = :imageObjectType "
+                + "and d.category = :titleCategory";
         return getCurrentSession()
-                .createQuery(query.toString())
+                .createQuery(query)
                 .setLong("articleId", articleId)
                 .setString("imageObjectType", CategoryConstants.IMAGE_TYPE)
                 .setString("titleCategory", CategoryConstants.TITLE)

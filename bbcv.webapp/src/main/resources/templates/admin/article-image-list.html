@@ -45,6 +45,7 @@
                     <th data-field="id" data-sortable="true" data-th-text="#{id}">ID</th>
                     <th data-field="fileName" data-sortable="true" data-th-text="#{file.name}">Name</th>
                     <th data-field="title" data-sortable="true" data-th-text="#{title}">Title</th>
+                    <th data-field="cover" data-formatter="checkboxFormatter" data-th-text="#{cover}">Cover</th>
                     <th data-field="action"
                         data-align="center"
                         data-formatter="actionFormatter"
@@ -100,6 +101,10 @@
                 <div id="title-form-group" class="form-group">
                     <label data-th-text="#{title}">Title</label>
                     <input id="title" type="text" class="form-control" name="title" placeholder="Title" data-th-attr="placeholder=#{title}" />
+                </div>
+                <div id="coverFormGroup" class="form-group">
+                    <label data-th-text="#{cover}">Cover</label>
+                    <input type="checkbox" name="cover" />
                 </div>
             </div>
             <div class="modal-footer">
@@ -173,6 +178,10 @@
                 '<a class="update" href="javascript:" title="[[#{edit}]]"><i class="fa fa-edit"></i></a>',
                 '<a class="remove" href="javascript:" title="[[#{delete}]]"><i class="fa fa-remove"></i></a>',
             ].join('');
+        }
+
+        function checkboxFormatter(value) {
+            return value ? '<i class="fa fa-check-square-o"></i>' : '<i class="fa fa-square-o"></i>';
         }
 
         // update and delete events

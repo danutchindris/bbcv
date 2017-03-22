@@ -34,6 +34,9 @@ public class ImageEntity {
     @JoinColumn(name="ARTICLE_ID")
     private ArticleEntity article;
 
+    @Column(name = "COVER")
+    private Boolean cover;
+
     public long getId() {
         return id;
     }
@@ -58,6 +61,14 @@ public class ImageEntity {
         this.article = article;
     }
 
+    public Boolean getCover() {
+        return cover;
+    }
+
+    public void setCover(Boolean cover) {
+        this.cover = cover;
+    }
+
     public ImageEntity() {
     }
 
@@ -66,6 +77,7 @@ public class ImageEntity {
         return MoreObjects.toStringHelper(this)
                 .add("id", id)
                 .add("fileName", fileName)
+                .add("cover", cover)
                 .toString();
     }
 }
