@@ -69,6 +69,14 @@ public class Image implements Serializable, Comparable<Image> {
         this.title = title;
     }
 
+    public Boolean getCover() {
+        return cover;
+    }
+
+    public void setCover(Boolean cover) {
+        this.cover = cover;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)

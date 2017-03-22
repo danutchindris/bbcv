@@ -6,11 +6,15 @@ import ro.leje.dao.ImageDAO;
 import ro.leje.dao.UserDAO;
 import ro.leje.model.entity.ArticleEntity;
 import ro.leje.model.entity.ImageEntity;
+import ro.leje.model.vo.Dictionary;
 import ro.leje.model.vo.Image;
+import ro.leje.util.CategoryConstants;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Danut Chindris
@@ -22,29 +26,39 @@ public class ImageServiceImpl implements ImageService {
     @Resource
     private ImageDAO imageDAO;
 
-    @Override
-    @Transactional
-    public List<Image> findAll() {
-        return null;
-    }
+    @Resource
+    private DictionaryService dictionaryService;
 
     @Override
     @Transactional
-    public Long create(Image image, Long articleId) {
+    public Long create(final Image image, final Long articleId) {
         Validate.notNull(image, "Null user object not allowed");
         Validate.notEmpty(image.getFileName(), "Null or empty file name not allowed");
         Validate.notNull(articleId, "Null article id not allowed");
-        ArticleEntity articleEntity = imageDAO.findEntity(articleId, ArticleEntity.class);
+        final ArticleEntity articleEntity = imageDAO.findEntity(articleId, ArticleEntity.class);
         Validate.notNull(articleEntity, "Article not found", new Long[] { articleId });
-        ImageEntity imageEntity = new ImageEntity();
+        final ImageEntity imageEntity = new ImageEntity();
         imageEntity.setFileName(image.getFileName());
         imageEntity.setArticle(articleEntity);
-        return imageDAO.create(imageEntity);
+        imageEntity.setCover(image.getCover() != null ? image.getCover() : false);
+        final Long imageId = imageDAO.create(imageEntity);
+        createDictionaryRecord(imageId);
+        return imageId;
+    }
+
+    private void createDictionaryRecord(final Long imageId) {
+        final Dictionary dictionary = new Dictionary();
+        dictionary.setObjectId(imageId);
+        dictionary.setObjectType(CategoryConstants.IMAGE_TYPE);
+        dictionary.setCategory(CategoryConstants.TITLE);
+        dictionary.setEn(CategoryConstants.DEFAULT_TITLE_EN);
+        dictionary.setRo(CategoryConstants.DEFAULT_TITLE_RO);
+        dictionaryService.create(dictionary);
     }
 
     @Override
     @Transactional
-    public List<Image> findImages(long articleId, String language) {
-        return imageDAO.findImages(articleId, language);
+    public List<Image> findImages(final Optional<Long> articleId, final String language) {
+        return articleId.map(id -> imageDAO.findImages(id, language)).orElse(new ArrayList<>());
     }
 }

@@ -156,7 +156,7 @@
                 showDeleteModal($(this).attr('title'), '[[#{confirm.delete}]]', row);
             },
             'click .images': function (e, value, row) {
-                window.location.href = '/admin/article/' + row.id + '/image/list';
+                window.location.href = '/admin/images?articleId=' + row.id;
             }
         };
 

@@ -21,15 +21,16 @@ import ro.leje.service.ImageService;
 import ro.leje.util.CategoryConstants;
 import ro.leje.util.MappingConstants;
 import ro.leje.util.PermissionConstants;
-import ro.leje.util.ViewConstants;
 
 import javax.annotation.Resource;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 /**
  * @author Danut Chindris
@@ -49,55 +50,47 @@ public class ImageAdmin extends AbstractAdmin {
     private Settings settings;
 
     @Resource
-    private DictionaryService dictionaryService;
-
-    @Resource
     private ImageService imageService;
 
-    @RequestMapping(value = MappingConstants.ARTICLE_IMAGE_LIST, method = RequestMethod.GET)
-    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_LIST + "')")
-    public String displayArticleImageList(@PathVariable long id, Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
+    /**
+     * Displays the images list for an article
+     */
+    @RequestMapping("/images")
+    @PreAuthorize("hasRole('permission_admin_article_list')")
+    public String displayImages(@RequestParam Long articleId, Model model,
+                                          @AuthenticationPrincipal CustomUserDetails userDetails) {
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
-        model.addAttribute(ID, id);
+        model.addAttribute(ID, articleId);
         model.addAttribute(AUTHENTICATED_USER_FIRST_NAME, userDetails != null ? userDetails.getFirstName() : null);
-        return ViewConstants.ADMIN + "/" + ViewConstants.ARTICLE_IMAGE_LIST;
+        return "admin/images";
     }
 
-    @RequestMapping(MappingConstants.ARTICLE_IMAGE_LIST_JSON)
-    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_LIST + "')")
+    @RequestMapping("/images/json")
+    @PreAuthorize("hasRole('permission_admin_article_list')")
     public @ResponseBody
-    List<Image> findArticleImages(@PathVariable long id, Locale locale) {
-        return imageService.findImages(id, locale.getLanguage());
+    List<Image> findImages(@RequestParam Long articleId, Locale locale) {
+        return imageService.findImages(Optional.ofNullable(articleId), locale.getLanguage());
     }
 
-    @RequestMapping(value = MappingConstants.ARTICLE_IMAGE_LIST_UPLOAD_FILE, method = RequestMethod.POST)
-    @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_CREATE_ARTICLE + "')")
-    public @ResponseBody Long uploadFile(@PathVariable long id, @RequestParam("file") MultipartFile file) {
+    @RequestMapping(value = "/image/upload", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('permission_admin_create_article')")
+    public @ResponseBody Long uploadFile(@RequestParam Long articleId, @RequestParam("file") MultipartFile file) {
         try {
             // get the file name and build the local file path
-            String filePath = Paths.get(settings.getImagesLocation() + id + "/",
-                    file.getOriginalFilename()).toString();
+            final Path path = Paths.get(settings.getImagesLocation()
+                            + File.separator + articleId + File.separator,
+                    file.getOriginalFilename());
             // save the file locally
-            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+            final BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(path.toFile()));
             stream.write(file.getBytes());
             stream.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             // handle exception
         }
-        // create the image record in the database
-        Image image = new Image();
+        final Image image = new Image();
         image.setFileName(file.getOriginalFilename());
-        Long imageId = imageService.create(image, id);
-        // create the dictionary record in the database
-        Dictionary dictionary = new Dictionary();
-        dictionary.setObjectId(imageId);
-        dictionary.setObjectType(CategoryConstants.IMAGE_TYPE);
-        dictionary.setCategory(CategoryConstants.TITLE);
-        dictionary.setEn(CategoryConstants.DEFAULT_TITLE_EN);
-        dictionary.setRo(CategoryConstants.DEFAULT_TITLE_RO);
-        dictionaryService.create(dictionary);
+        final Long imageId = imageService.create(image, articleId);
         return imageId;
     }
 

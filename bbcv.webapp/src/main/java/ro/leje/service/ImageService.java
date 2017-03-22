@@ -3,6 +3,7 @@ package ro.leje.service;
 import ro.leje.model.vo.Image;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Danut Chindris
@@ -10,9 +11,7 @@ import java.util.List;
  */
 public interface ImageService {
 
-    List<Image> findAll();
-
     Long create(Image image, Long articleId);
 
-    List<Image> findImages(long articleId, String language);
+    List<Image> findImages(Optional<Long> articleId, String language);
 }
