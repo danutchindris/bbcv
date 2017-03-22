@@ -40,8 +40,9 @@ public interface MappingConstants {
     String ARTICLE_LANGUAGE = "/article/language";
     String ARTICLE_IMAGE_LIST = "/article/{id}/image/list";
     String ARTICLE_IMAGE_LIST_JSON = "/article/{id}/image/list/json";
-    String ARTICLE_IMAGE_LIST_UPLOAD_FILE = "article/{id}/uploadFile";
+    String ARTICLE_IMAGE_LIST_UPLOAD_FILE = "/article/{id}/uploadFile";
     String ARTICLE_IMAGE_LANGUAGE = "/image/language";
+    String ARTICLE_IMAGE = "/article/{id}/image";
 
     String MESSAGE = "/message";
     String MESSAGE_LIST = "/message/list";
