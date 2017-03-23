@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
 /**
  * Base class for the data access layer.
@@ -22,8 +23,8 @@ public abstract class BaseDAOImpl implements BaseDAO {
     }
 
     @Override
-    public <T> T findEntity(long id, Class<T> clazz) {
-        return (T)getCurrentSession().get(clazz, id);
+    public <T> Optional<T> findEntity(long id, Class<T> clazz) {
+        return Optional.ofNullable((T)getCurrentSession().get(clazz, id));
     }
 
     public Long create(Object object) {

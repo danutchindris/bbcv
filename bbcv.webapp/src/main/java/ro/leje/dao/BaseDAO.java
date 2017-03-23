@@ -1,5 +1,7 @@
 package ro.leje.dao;
 
+import java.util.Optional;
+
 /**
  * @author Danut Chindris
  * @since September 15, 2015
@@ -12,5 +14,5 @@ public interface BaseDAO {
 
     void delete(Object object);
 
-    <T> T findEntity(long id, Class<T> clazz);
+    <T> Optional<T> findEntity(long id, Class<T> clazz);
 }

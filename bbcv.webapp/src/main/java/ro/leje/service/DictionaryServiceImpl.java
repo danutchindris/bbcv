@@ -42,16 +42,13 @@ public class DictionaryServiceImpl implements DictionaryService {
     public void update(Dictionary dictionary) {
         Validate.notNull(dictionary, "Null dictionary object not allowed");
         Validate.notNull(dictionary.getId(), "Null dictionary id not allowed");
-        DictionaryEntity dictionaryEntity = dictionaryDAO.findEntity(dictionary.getId(), DictionaryEntity.class);
-        if (dictionaryEntity != null) {
-            dictionaryEntity.setEn(dictionary.getEn());
-            dictionaryEntity.setRo(dictionary.getRo());
-            dictionaryDAO.update(dictionaryEntity);
-        }
-        else {
-            throw new ContextedRuntimeException("No dictionary entity found")
-                    .addContextValue("id", dictionary.getId());
-        }
+        final Optional<DictionaryEntity> dictionaryEntity = dictionaryDAO.findEntity(dictionary.getId(),
+                DictionaryEntity.class);
+        dictionaryEntity.ifPresent(d -> {
+            d.setEn(dictionary.getEn());
+            d.setRo(dictionary.getRo());
+            dictionaryDAO.update(d);
+        });
     }
 
     @Override

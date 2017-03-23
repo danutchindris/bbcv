@@ -40,11 +40,11 @@ public class ImageServiceImpl implements ImageService {
         Validate.notNull(image, "Null user object not allowed");
         Validate.notEmpty(image.getFileName(), "Null or empty file name not allowed");
         Validate.notNull(articleId, "Null article id not allowed");
-        final ArticleEntity articleEntity = imageDAO.findEntity(articleId, ArticleEntity.class);
-        Validate.notNull(articleEntity, "Article not found", new Long[]{articleId});
+        final Optional<ArticleEntity> articleEntity = imageDAO.findEntity(articleId, ArticleEntity.class);
+        Validate.notNull(!articleEntity.isPresent(), "Article not found", new Long[]{articleId});
         final ImageEntity imageEntity = new ImageEntity();
         imageEntity.setFileName(image.getFileName());
-        imageEntity.setArticle(articleEntity);
+        imageEntity.setArticle(articleEntity.get());
         imageEntity.setCover(image.getCover() != null ? image.getCover() : false);
         final Long imageId = imageDAO.create(imageEntity);
         createDictionaryRecord(imageId);
@@ -59,6 +59,27 @@ public class ImageServiceImpl implements ImageService {
         dictionary.setEn(CategoryConstants.DEFAULT_TITLE_EN);
         dictionary.setRo(CategoryConstants.DEFAULT_TITLE_RO);
         dictionaryService.create(dictionary);
+    }
+
+    @Override
+    @Transactional
+    public Long update(final Image image) {
+        final Optional<Dictionary> dictionary = dictionaryService.find(CategoryConstants.IMAGE_TYPE,
+                image.getId(), CategoryConstants.TITLE);
+        dictionary.ifPresent(d -> {
+            if (CategoryConstants.EN.equalsIgnoreCase(image.getLanguage())) {
+                d.setEn(image.getTitle());
+            } else if (CategoryConstants.RO.equalsIgnoreCase(image.getLanguage())) {
+                d.setRo(image.getTitle());
+            }
+            dictionaryService.update(d);
+        });
+        final Optional<ImageEntity> imageEntity = imageDAO.findEntity(image.getId(), ImageEntity.class);
+        imageEntity.ifPresent(i -> {
+            i.setCover(Boolean.TRUE.equals(image.getCover()));
+            imageDAO.update(i);
+        });
+        return image.getId();
     }
 
     @Override

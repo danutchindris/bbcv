@@ -14,6 +14,7 @@ import ro.leje.model.vo.User;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -30,8 +31,8 @@ public class UserServiceImpl implements UserService {
     PasswordEncoder passwordEncoder;
 
     private <T> void validateId(long id, Class<T> clazz) {
-        T entity = userDAO.findEntity(id, clazz);
-        if (entity == null) {
+        Optional<T> entity = userDAO.findEntity(id, clazz);
+        if (!entity.isPresent()) {
             throw new IllegalArgumentException("No " + clazz.getName() + " entity found for id: " + id);
         }
     }
@@ -112,12 +113,16 @@ public class UserServiceImpl implements UserService {
                     .addContextValue("userId", userId)
                     .addContextValue("roleId", roleId);
         }
-        UserEntity userEntity = userDAO.findEntity(userId, UserEntity.class);
-        RoleEntity roleEntity = userDAO.findEntity(roleId, RoleEntity.class);
-        Set<RoleEntity> userRoles = userEntity.getRoles();
-        userRoles.add(roleEntity);
-        userEntity.setRoles(userRoles);
-        userDAO.update(userEntity);
+        final Optional<UserEntity> userEntity = userDAO.findEntity(userId, UserEntity.class);
+        final Optional<RoleEntity> roleEntity = userDAO.findEntity(roleId, RoleEntity.class);
+        userEntity.ifPresent(u -> {
+            roleEntity.ifPresent(r -> {
+                final Set<RoleEntity> userRoles = u.getRoles();
+                userRoles.add(r);
+                u.setRoles(userRoles);
+                userDAO.update(u);
+            });
+        });
     }
 
     @Override

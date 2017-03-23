@@ -13,10 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 import ro.leje.config.Settings;
 import ro.leje.delegate.LanguageDelegate;
 import ro.leje.model.CustomUserDetails;
+import ro.leje.model.vo.Article;
 import ro.leje.model.vo.Image;
 import ro.leje.service.ImageService;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -106,5 +108,11 @@ public class ImageAdmin extends AbstractAdmin {
             result = EMPTY;
         }
         return result;
+    }
+
+    @RequestMapping(value = "/image", method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('permission_admin_create_article')")
+    public @ResponseBody Long update(@RequestBody @Valid Image image) {
+        return imageService.update(image);
     }
 }

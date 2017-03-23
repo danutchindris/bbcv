@@ -15,5 +15,7 @@ public interface ImageService {
 
     Long create(Image image, Long articleId);
 
+    Long update(Image image);
+
     List<Image> findImages(Optional<Long> articleId, String language);
 }

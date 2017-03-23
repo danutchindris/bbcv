@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author Danut Chindris
@@ -56,11 +57,9 @@ public class ArticleServiceImpl implements ArticleService {
         return articleDAO.create(articleEntity);
     }
 
-    private Set<UserEntity> retrieveAuthors(Set<Long> authorIds) {
-        Set<UserEntity> userEntities = new HashSet<>();
-        for (Long authorId : authorIds) {
-            userEntities.add(articleDAO.findEntity(authorId, UserEntity.class));
-        }
-        return userEntities;
+    private Set<UserEntity> retrieveAuthors(final Set<Long> authorIds) {
+        return authorIds.stream()
+                .map(authorId -> articleDAO.findEntity(authorId, UserEntity.class).get())
+                .collect(Collectors.toSet());
     }
 }
