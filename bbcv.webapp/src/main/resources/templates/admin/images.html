@@ -59,7 +59,7 @@
     </div>
 </div>
 
-<div id="modal" class="modal fade" layout:fragment="modal">
+<div id="upload-modal" class="modal fade" layout:fragment="modal">
     <div id="create-image-dialog" class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary submit" data-th-text="#{upload}">Upload</button>
+                <button type="button" class="btn btn-primary submit-upload" data-th-text="#{upload}">Upload</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal" data-th-text="#{close}">Close</button>
             </div>
         </div><!-- /.modal-content -->
@@ -108,7 +108,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary submit" data-th-text="#{apply}">Apply</button>
+                <button type="button" class="btn btn-primary submit-edit" data-th-text="#{apply}">Apply</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal" data-th-text="#{close}">Close</button>
             </div>
         </div><!-- /.modal-content -->
@@ -124,7 +124,7 @@
             </div>
             <div class="modal-body"></div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary submit" data-th-text="#{yes}">Yes</button>
+                <button type="button" class="btn btn-primary submit-delete" data-th-text="#{yes}">Yes</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal" data-th-text="#{no}">No</button>
             </div>
         </div><!-- /.modal-content -->
@@ -146,7 +146,7 @@
                             detailOpen: 'fa fa-plus-circle',
                             detailClose: 'fa fa-minus-circle'
                         }}),
-            $modal = $('#modal').modal({show: false}),
+            $uploadModal = $('#upload-modal').modal({show: false}),
             $editModal = $('#edit-modal').modal({show: false}),
             $alert = $('.alert').hide(),
             $deleteModal = $('#delete-modal').modal({show: false});
@@ -161,7 +161,7 @@
         $(function () {
             // create event
             $('.add').click(function () {
-                showModal($(this).text());
+                showUploadModal($(this).text());
             });
 
             $('.back').click(function() {
@@ -194,15 +194,15 @@
             }
         };
 
-        function showModal(title, row) {
+        function showUploadModal(title, row) {
             // remove previously displayed error messages
             $('.form-group').removeClass('has-error');
             $('.help-block').empty();
 
-            $modal.data('id', '[[${id}]]');
-            $modal.find('.modal-title').text(title);
+            $uploadModal.data('id', '[[${id}]]');
+            $uploadModal.find('.modal-title').text(title);
 
-            $modal.modal('show');
+            $uploadModal.modal('show');
         }
 
         function showEditImageTitleModal(title, row) {
@@ -245,12 +245,7 @@
             $deleteModal.modal('show');
         }
 
-        // bind the on-change event for the input element (triggered when a file is chosen)
-        $(document).ready(function() {
-            $("#upload-file-input").on("change", uploadFile);
-        });
-
-        $modal.find('.submit').click(function () {
+        $uploadModal.find('.submit-upload').click(function () {
             var file = $("#upload-file-input");
             if (file.val() != "") {
                 uploadFile();
@@ -280,7 +275,7 @@
                 success: function () {
                     $('.form-group').removeClass('has-error');
                     $('.help-block').empty();
-                    $modal.modal('hide');
+                    $uploadModal.modal('hide');
                     $table.bootstrapTable('refresh');
                 },
                 error: function () {
