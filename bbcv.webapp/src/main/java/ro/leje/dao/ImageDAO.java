@@ -10,5 +10,7 @@ import java.util.List;
  */
 public interface ImageDAO extends BaseDAO {
 
+    Image find(long imageId, String language);
+
     List<Image> findImages(long articleId, String language);
 }

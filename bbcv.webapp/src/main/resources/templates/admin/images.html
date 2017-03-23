@@ -309,7 +309,7 @@
 
             $.ajax({
                 type: "put",
-                url: "/admin/article/[[${id}]]/image/language/",
+                url: "/admin/image/language",
                 contentType: 'application/json',
                 data: JSON.stringify(imageInfo),
                 beforeSend: function(xhr) {
@@ -318,7 +318,7 @@
                 success: function(response) {
                     // display the retrieved image title
                     // for the newly selected language
-                    $("#title").val(response.title);
+                    $("#title").val(response);
                 },
                 error: function() {
                     alert('Error');

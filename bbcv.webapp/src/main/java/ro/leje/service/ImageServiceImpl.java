@@ -3,7 +3,6 @@ package ro.leje.service;
 import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Service;
 import ro.leje.dao.ImageDAO;
-import ro.leje.dao.UserDAO;
 import ro.leje.model.entity.ArticleEntity;
 import ro.leje.model.entity.ImageEntity;
 import ro.leje.model.vo.Dictionary;
@@ -31,12 +30,18 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     @Transactional
+    public Optional<Image> find(final long imageId, final String language) {
+        return Optional.ofNullable(imageDAO.find(imageId, language));
+    }
+
+    @Override
+    @Transactional
     public Long create(final Image image, final Long articleId) {
         Validate.notNull(image, "Null user object not allowed");
         Validate.notEmpty(image.getFileName(), "Null or empty file name not allowed");
         Validate.notNull(articleId, "Null article id not allowed");
         final ArticleEntity articleEntity = imageDAO.findEntity(articleId, ArticleEntity.class);
-        Validate.notNull(articleEntity, "Article not found", new Long[] { articleId });
+        Validate.notNull(articleEntity, "Article not found", new Long[]{articleId});
         final ImageEntity imageEntity = new ImageEntity();
         imageEntity.setFileName(image.getFileName());
         imageEntity.setArticle(articleEntity);

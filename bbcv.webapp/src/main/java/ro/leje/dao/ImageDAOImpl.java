@@ -14,6 +14,27 @@ import java.util.List;
 public class ImageDAOImpl extends BaseDAOImpl implements ImageDAO {
 
     @Override
+    public Image find(final long imageId, final String language) {
+        String query = "select new ro.leje.model.vo.Image(i.id, "
+                + "'" + language + "', "
+                + "i.fileName, "
+                + "d." + language + ","
+                + "i.cover) "
+                + "from ro.leje.model.entity.ImageEntity i, "
+                + "ro.leje.model.entity.DictionaryEntity d "
+                + "where i.id = :imageId "
+                + "and d.objectId = i.id "
+                + "and d.objectType = :imageObjectType "
+                + "and d.category = :titleCategory";
+        return (Image) getCurrentSession()
+                .createQuery(query)
+                .setLong("imageId", imageId)
+                .setString("imageObjectType", CategoryConstants.IMAGE_TYPE)
+                .setString("titleCategory", CategoryConstants.TITLE)
+                .uniqueResult();
+    }
+
+    @Override
     @SuppressWarnings("unchecked")
     public List<Image> findImages(long articleId, String language) {
         String query = "select new ro.leje.model.vo.Image(i.id, "

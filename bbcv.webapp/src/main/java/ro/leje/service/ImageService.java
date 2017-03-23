@@ -11,6 +11,8 @@ import java.util.Optional;
  */
 public interface ImageService {
 
+    Optional<Image> find(long imageId, String language);
+
     Long create(Image image, Long articleId);
 
     List<Image> findImages(Optional<Long> articleId, String language);
