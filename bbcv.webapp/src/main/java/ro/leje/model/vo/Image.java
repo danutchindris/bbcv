@@ -35,6 +35,7 @@ public class Image implements Serializable, Comparable<Image> {
         this.language = language;
         this.fileName = fileName;
         this.title = title;
+        this.cover = cover;
     }
 
     public long getId() {
