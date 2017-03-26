@@ -31,6 +31,7 @@ public class ImageDAOImpl extends BaseDAOImpl implements ImageDAO {
                 .setLong("imageId", imageId)
                 .setString("imageObjectType", CategoryConstants.IMAGE_TYPE)
                 .setString("titleCategory", CategoryConstants.TITLE)
+                .setMaxResults(1)
                 .uniqueResult();
     }
 
@@ -54,5 +55,28 @@ public class ImageDAOImpl extends BaseDAOImpl implements ImageDAO {
                 .setString("imageObjectType", CategoryConstants.IMAGE_TYPE)
                 .setString("titleCategory", CategoryConstants.TITLE)
                 .list();
+    }
+
+    public Image findCover(final long articleId, final String language) {
+        String query = "select new ro.leje.model.vo.Image(i.id, "
+                + "'" + language + "', "
+                + "i.fileName, "
+                + "d." + language + ","
+                + "i.cover) "
+                + "from ro.leje.model.entity.ImageEntity i, "
+                + "ro.leje.model.entity.DictionaryEntity d "
+                + "where i.article.id = :articleId "
+                + "and i.cover = :cover "
+                + "and d.objectId = i.id "
+                + "and d.objectType = :imageObjectType "
+                + "and d.category = :titleCategory";
+        return (Image) getCurrentSession()
+                .createQuery(query)
+                .setLong("articleId", articleId)
+                .setBoolean("cover", true)
+                .setString("imageObjectType", CategoryConstants.IMAGE_TYPE)
+                .setString("titleCategory", CategoryConstants.TITLE)
+                .setMaxResults(1)
+                .uniqueResult();
     }
 }

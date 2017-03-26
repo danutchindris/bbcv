@@ -7,16 +7,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
+import ro.leje.util.ErrorMessage;
 import ro.leje.util.ValidationResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Danut Chindris
@@ -30,18 +34,25 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public ValidationResponse processValidationError(MethodArgumentNotValidException e) {
-        BindingResult bindingResult = e.getBindingResult();
-        List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-        return processFieldErrors(fieldErrors);
+    public ValidationResponse processValidationError(final MethodArgumentNotValidException e) {
+        final BindingResult bindingResult = e.getBindingResult();
+        final List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+        final List<ObjectError> objectErrors = bindingResult.getGlobalErrors();
+        return new ValidationResponse(Stream.concat(processFieldErrors(fieldErrors).stream(),
+                processObjectErrors(objectErrors).stream())
+                .collect(Collectors.toList()));
     }
 
-    private ValidationResponse processFieldErrors(List<FieldError> fieldErrors) {
-        ValidationResponse validationResponse = new ValidationResponse();
-        for (FieldError fieldError: fieldErrors) {
-            validationResponse.addErrorMessage(fieldError.getField(), fieldError.getDefaultMessage());
-        }
-        return validationResponse;
+    private List<ErrorMessage> processFieldErrors(final List<FieldError> fieldErrors) {
+        return fieldErrors.stream()
+                .map(error -> new ErrorMessage(error.getField(), error.getDefaultMessage()))
+                .collect(Collectors.toList());
+    }
+
+    private List<ErrorMessage> processObjectErrors(final List<ObjectError> objectErrors) {
+        return objectErrors.stream()
+                .map(error -> new ErrorMessage("object", error.getDefaultMessage()))
+                .collect(Collectors.toList());
     }
 
     @ExceptionHandler(AccessDeniedException.class)

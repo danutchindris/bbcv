@@ -4,6 +4,7 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ComparisonChain;
 import org.hibernate.validator.constraints.NotEmpty;
+import ro.leje.util.annotation.UniqueCover;
 
 import java.io.Serializable;
 
@@ -11,6 +12,7 @@ import java.io.Serializable;
  * @author Danut Chindris
  * @since September 24, 2016
  */
+@UniqueCover
 public class Image implements Serializable, Comparable<Image> {
 
     private static final long serialVersionUID = 1L;

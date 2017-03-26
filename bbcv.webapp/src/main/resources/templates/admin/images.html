@@ -102,9 +102,12 @@
                     <label data-th-text="#{title}">Title</label>
                     <input id="title" type="text" class="form-control" name="title" placeholder="Title" data-th-attr="placeholder=#{title}" />
                 </div>
-                <div id="coverFormGroup" class="form-group">
+                <div id="cover-form-group" class="form-group">
                     <label data-th-text="#{cover}">Cover</label>
                     <input id="cover" type="checkbox" name="cover" />
+                </div>
+                <div id="object-form-group" class="form-group">
+                    <!-- empty element for object level validation error messages -->
                 </div>
             </div>
             <div class="modal-footer">
@@ -263,6 +266,10 @@
         });
 
         function uploadFile() {
+
+            $('.form-group').removeClass('has-error');
+            $('.help-block').remove();
+
             // required by Spring Security
             var header = $("meta[name='_csrf_header']").attr("content");
             var token = $("meta[name='_csrf']").attr("content");
@@ -278,8 +285,6 @@
                     xhr.setRequestHeader(header, token);
                 },
                 success: function () {
-                    $('.form-group').removeClass('has-error');
-                    $('.help-block').empty();
                     $uploadModal.modal('hide');
                     $table.bootstrapTable('refresh');
                 },
@@ -287,7 +292,7 @@
                     $('.help-block').empty();
                     for (var i = 0; i < result.responseJSON.errorMessageList.length; i++) {
                         var errorMessage = result.responseJSON.errorMessageList[i];
-                        var $formGroup = $('#' + errorMessage.fieldName + 'FormGroup');
+                        var $formGroup = $('#' + errorMessage.fieldName + '-form-group');
                         $formGroup.addClass('has-error');
                         $formGroup.append('<span class="help-block">' + errorMessage.message + '</span>');
                     }
@@ -327,6 +332,10 @@
         });
 
         $editModal.find('.submit-edit').click(function () {
+
+            $('.form-group').removeClass('has-error');
+            $('.help-block').remove();
+
             // gather input data
             var imageInfo = {
                 id: editRow.id,
@@ -349,8 +358,6 @@
                     xhr.setRequestHeader(header, token);
                 },
                 success: function (result) {
-                    $('.form-group').removeClass('has-error');
-                    $('.help-block').empty();
                     $editModal.modal('hide');
                     $table.bootstrapTable('refresh');
                 },
@@ -358,7 +365,7 @@
                     $('.help-block').empty();
                     for (var i = 0; i < result.responseJSON.errorMessageList.length; i++) {
                         var errorMessage = result.responseJSON.errorMessageList[i];
-                        var $formGroup = $('#' + errorMessage.fieldName + 'FormGroup');
+                        var $formGroup = $('#' + errorMessage.fieldName + '-form-group');
                         $formGroup.addClass('has-error');
                         $formGroup.append('<span class="help-block">' + errorMessage.message + '</span>');
                     }

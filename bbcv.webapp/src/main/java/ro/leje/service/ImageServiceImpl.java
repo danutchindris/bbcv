@@ -87,4 +87,17 @@ public class ImageServiceImpl implements ImageService {
     public List<Image> findImages(final Optional<Long> articleId, final String language) {
         return articleId.map(id -> imageDAO.findImages(id, language)).orElse(new ArrayList<>());
     }
+
+    @Override
+    @Transactional
+    public Optional<Image> findCover(final Long articleId, final String language) {
+        return Optional.ofNullable(imageDAO.findCover(articleId, language));
+    }
+
+    @Override
+    @Transactional
+    public Optional<Long> findArticle(final Long imageId) {
+        final Optional<ImageEntity> imageEntity = imageDAO.findEntity(imageId, ImageEntity.class);
+        return imageEntity.map(entity -> entity.getArticle().getId());
+    }
 }

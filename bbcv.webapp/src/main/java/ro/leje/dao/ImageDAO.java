@@ -13,4 +13,6 @@ public interface ImageDAO extends BaseDAO {
     Image find(long imageId, String language);
 
     List<Image> findImages(long articleId, String language);
+
+    Image findCover(long articleId, String language);
 }

@@ -18,4 +18,8 @@ public interface ImageService {
     Long update(Image image);
 
     List<Image> findImages(Optional<Long> articleId, String language);
+
+    Optional<Image> findCover(Long articleId, String language);
+
+    Optional<Long> findArticle(Long imageId);
 }

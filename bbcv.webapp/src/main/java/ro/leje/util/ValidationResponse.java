@@ -15,6 +15,10 @@ public class ValidationResponse {
         errorMessageList = new ArrayList<>();
     }
 
+    public ValidationResponse(final List<ErrorMessage> errorMessages) {
+        this.errorMessageList = errorMessages;
+    }
+
     public List<ErrorMessage> getErrorMessageList() {
         return this.errorMessageList;
     }
