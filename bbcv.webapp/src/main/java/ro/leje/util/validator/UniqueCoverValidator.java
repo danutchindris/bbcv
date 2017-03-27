@@ -29,6 +29,6 @@ public class UniqueCoverValidator implements ConstraintValidator<UniqueCover, Im
         final String language = LocaleContextHolder.getLocale().getLanguage();
         final Optional<Long> articleId = imageService.findArticle(image.getId());
         final Optional<Image> cover = articleId.flatMap(id -> imageService.findCover(id, language));
-        return !image.getCover() || !cover.isPresent();
+        return !image.getCover() || cover.map(i -> i.getId() == image.getId()).orElse(true);
     }
 }
