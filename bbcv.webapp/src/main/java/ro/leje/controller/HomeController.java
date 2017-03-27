@@ -40,7 +40,7 @@ public class HomeController {
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
         model.addAttribute(AUTHENTICATED_USER_FIRST_NAME, userDetails != null ? userDetails.getFirstName() : null);
-        model.addAttribute(ARTICLES, articleService.find(locale.getLanguage()));
+        model.addAttribute(ARTICLES, articleService.findForHome(locale.getLanguage()));
         return ViewConstants.HOME;
     }
 }

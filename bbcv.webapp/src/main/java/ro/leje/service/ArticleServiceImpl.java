@@ -5,6 +5,7 @@ import ro.leje.dao.ArticleDAO;
 import ro.leje.model.entity.ArticleEntity;
 import ro.leje.model.entity.UserEntity;
 import ro.leje.model.vo.Article;
+import ro.leje.model.vo.HomeArticle;
 import ro.leje.model.vo.User;
 
 import javax.annotation.Resource;
@@ -38,6 +39,12 @@ public class ArticleServiceImpl implements ArticleService {
     @Transactional
     public List<Article> find(String language) {
         return articleDAO.find(language);
+    }
+
+    @Override
+    @Transactional
+    public List<HomeArticle> findForHome(final String language) {
+        return articleDAO.findForHome(language);
     }
 
     @Override

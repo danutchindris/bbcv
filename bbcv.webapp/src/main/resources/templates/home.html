@@ -41,7 +41,7 @@
                 <div th:each="article,iterator : ${articles}" class="col-md-4">
                     <div class="card card-plain">
                         <div class="image">
-                            <img src="#" th:src="@{'/images/' + ${article.id} + '/1.png'}" />
+                            <img src="#" th:src="@{'/images/' + ${article.id} + '/' + ${article.image}}" />
                             <div class="filter">
                                 <button type="button" class="btn btn-neutral btn-simple">
                                     <i class="fa fa-align-left"></i> <span th:text="#{read.article}">Read article</span>

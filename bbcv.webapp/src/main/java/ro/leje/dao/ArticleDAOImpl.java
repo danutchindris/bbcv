@@ -2,6 +2,7 @@ package ro.leje.dao;
 
 import org.springframework.stereotype.Repository;
 import ro.leje.model.vo.Article;
+import ro.leje.model.vo.HomeArticle;
 import ro.leje.model.vo.User;
 import ro.leje.util.CategoryConstants;
 
@@ -52,6 +53,25 @@ public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
         query.append("and d.category = :titleCategory");
         return getCurrentSession()
                 .createQuery(query.toString())
+                .setString("articleObjectType", CategoryConstants.ARTICLE_TYPE)
+                .setString("titleCategory", CategoryConstants.TITLE)
+                .list();
+    }
+
+    @Override
+    public List<HomeArticle> findForHome(final String language) {
+        String query = "select new ro.leje.model.vo.HomeArticle( "
+                + "a.id, '" + language + "', d." + language + ", i.fileName "
+                + ") "
+                + "from ro.leje.model.entity.ImageEntity i inner join i.article a, "
+                + "ro.leje.model.entity.DictionaryEntity d "
+                + "where i.cover = :cover "
+                + "and d.objectId = a.id "
+                + "and d.objectType = :articleObjectType "
+                + "and d.category = :titleCategory ";
+        return getCurrentSession()
+                .createQuery(query)
+                .setBoolean("cover", true)
                 .setString("articleObjectType", CategoryConstants.ARTICLE_TYPE)
                 .setString("titleCategory", CategoryConstants.TITLE)
                 .list();
