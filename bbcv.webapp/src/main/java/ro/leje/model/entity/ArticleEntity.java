@@ -29,6 +29,9 @@ public class ArticleEntity {
             })
     private Set<UserEntity> authors;
 
+    @Column(name = "STATUS")
+    private String status;
+
     @OneToMany(mappedBy = "article")
     private Set<ImageEntity> images;
 
@@ -54,6 +57,14 @@ public class ArticleEntity {
 
     public void setImages(Set<ImageEntity> images) {
         this.images = images;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public ArticleEntity() {

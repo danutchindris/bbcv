@@ -25,14 +25,18 @@ public class Article implements Serializable, Comparable<Article> {
     @NotEmpty(message = "{error.body.empty}")
     private String body;
 
+    private String status;
+
     public Article() {
     }
 
-    public Article(long id, String language, String title, String body) {
+    public Article(final long id, final String language, final String title,
+                   final String body, final String status) {
         this.id = id;
         this.language = language;
         this.title = title;
         this.body = body;
+        this.status = status;
     }
 
     public long getId() {
@@ -67,6 +71,14 @@ public class Article implements Serializable, Comparable<Article> {
         this.body = body;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -74,6 +86,7 @@ public class Article implements Serializable, Comparable<Article> {
                 .add("language", language)
                 .add("title", title)
                 .add("body", body)
+                .add("status", status)
                 .toString();
     }
 
@@ -89,12 +102,13 @@ public class Article implements Serializable, Comparable<Article> {
         return Objects.equal(this.id, other.id)
                 && Objects.equal(this.language, other.language)
                 && Objects.equal(this.title, other.title)
-                && Objects.equal(this.body, other.body);
+                && Objects.equal(this.body, other.body)
+                && Objects.equal(this.status, other.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.id, this.language, this.title, this.body);
+        return Objects.hashCode(this.id, this.language, this.title, this.body, this.status);
     }
 
     @Override
@@ -103,6 +117,7 @@ public class Article implements Serializable, Comparable<Article> {
                 .compare(this.language, o.language)
                 .compare(this.title, o.title)
                 .compare(this.body, o.body)
+                .compare(this.status, o.status)
                 .result();
     }
 }

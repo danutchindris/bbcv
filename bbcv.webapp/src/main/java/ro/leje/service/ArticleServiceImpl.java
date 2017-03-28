@@ -7,6 +7,7 @@ import ro.leje.model.entity.UserEntity;
 import ro.leje.model.vo.Article;
 import ro.leje.model.vo.HomeArticle;
 import ro.leje.model.vo.User;
+import ro.leje.util.constant.StatusConstants;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
@@ -59,8 +60,9 @@ public class ArticleServiceImpl implements ArticleService {
         if (authorIds == null) {
             authorIds = new HashSet<>();
         }
-        ArticleEntity articleEntity = new ArticleEntity();
+        final ArticleEntity articleEntity = new ArticleEntity();
         articleEntity.setAuthors(retrieveAuthors(authorIds));
+        articleEntity.setStatus(StatusConstants.NEW);
         return articleDAO.create(articleEntity);
     }
 
