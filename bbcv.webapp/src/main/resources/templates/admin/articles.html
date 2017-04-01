@@ -136,16 +136,22 @@
                 var header = $("meta[name='_csrf_header']").attr("content");
                 var token = $("meta[name='_csrf']").attr("content");
                 $.ajax({
-                    url: '/admin/article/' + ($deleteModal.data('id') || ''),
-                    type: 'delete',
+                    url: '/admin/article/delete?articleId=' + ($deleteModal.data('id') || ''),
+                    type: 'put',
                     contentType: 'application/json',
                     beforeSend: function(xhr) {
                         xhr.setRequestHeader(header, token);
                     },
-                    success: function () {
+                    success: function (result) {
                         $deleteModal.modal('hide');
                         $table.bootstrapTable('refresh');
-                        showAlert('[[#{item.deleted}]]', 'success');
+                        if (result == 'item.deleted') {
+                            showAlert('[[#{item.deleted}]]', 'success');
+                        } else if (result == 'item.not.deleted') {
+                            showAlert('[[#{item.not.deleted}]]', 'danger');
+                        } else {
+                            showAlert('[[#{item.status.incorrect}]]', 'danger');
+                        }
                     },
                     error: function () {
                         $deleteModal.modal('hide');

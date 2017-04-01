@@ -25,4 +25,6 @@ public interface ArticleService {
     Long create(Set<Long> authorIds);
 
     Optional<String> publish(long articleId);
+
+    Optional<String> delete(long articleId);
 }

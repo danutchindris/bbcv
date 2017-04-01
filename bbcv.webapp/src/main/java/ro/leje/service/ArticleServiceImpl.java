@@ -90,4 +90,23 @@ public class ArticleServiceImpl implements ArticleService {
         });
         return returnMessage;
     }
+
+    @Override
+    @Transactional
+    public Optional<String> delete(final long articleId) {
+        final Optional<ArticleEntity> entity = articleDAO.findEntity(articleId, ArticleEntity.class);
+        final Optional<String> returnMessage = entity.map(article -> {
+            final String message;
+            if (StatusConstants.NEW.equals(article.getStatus())
+                    || StatusConstants.EXPIRED.equals(article.getStatus())) {
+                article.setStatus(StatusConstants.DELETED);
+                message = "item.deleted";
+            }
+            else {
+                message = "item.status.incorrect";
+            }
+            return message;
+        });
+        return returnMessage;
+    }
 }

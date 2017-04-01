@@ -194,4 +194,10 @@ public class ArticleAdmin extends AbstractAdmin {
     public @ResponseBody String publish(@RequestParam Long articleId) {
         return articleService.publish(articleId).orElse("item.not.published");
     }
+
+    @RequestMapping(value = "/article/delete", method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('permission_admin_create_article')")
+    public @ResponseBody String delete(@RequestParam Long articleId) {
+        return articleService.delete(articleId).orElse("item.not.deleted");
+    }
 }
