@@ -188,4 +188,10 @@ public class ArticleAdmin extends AbstractAdmin {
         }
         return article;
     }
+
+    @RequestMapping(value = "/article/publish", method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('permission_admin_create_article')")
+    public @ResponseBody String publish(@RequestParam Long articleId) {
+        return articleService.publish(articleId).orElse("item.not.published");
+    }
 }

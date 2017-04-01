@@ -11,5 +11,6 @@ public class StatusConstants {
 
     public static final String NEW = "new";
     public static final String PUBLISHED = "published";
+    public static final String EXPIRED = "expired";
     public static final String DELETED = "deleted";
 }

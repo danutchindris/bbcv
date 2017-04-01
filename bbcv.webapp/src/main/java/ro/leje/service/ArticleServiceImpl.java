@@ -71,4 +71,23 @@ public class ArticleServiceImpl implements ArticleService {
                 .map(authorId -> articleDAO.findEntity(authorId, UserEntity.class).get())
                 .collect(Collectors.toSet());
     }
+
+    @Override
+    @Transactional
+    public Optional<String> publish(final long articleId) {
+        final Optional<ArticleEntity> entity = articleDAO.findEntity(articleId, ArticleEntity.class);
+        final Optional<String> returnMessage = entity.map(article -> {
+            final String message;
+            if (StatusConstants.NEW.equals(article.getStatus())
+                    || StatusConstants.EXPIRED.equals(article.getStatus())) {
+                article.setStatus(StatusConstants.PUBLISHED);
+                message = "item.published";
+            }
+            else {
+                message = "item.status.incorrect";
+            }
+            return message;
+        });
+        return returnMessage;
+    }
 }

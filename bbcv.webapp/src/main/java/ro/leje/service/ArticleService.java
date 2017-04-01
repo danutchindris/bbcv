@@ -23,4 +23,6 @@ public interface ArticleService {
     List<User> findAuthors(long articleId);
 
     Long create(Set<Long> authorIds);
+
+    Optional<String> publish(long articleId);
 }

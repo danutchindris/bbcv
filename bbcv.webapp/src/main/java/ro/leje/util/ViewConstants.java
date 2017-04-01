@@ -21,7 +21,7 @@ public interface ViewConstants {
     String USER_ROLE_LIST = "user-role-list";
     String ROLE_LIST = "role-list";
     String LINK_LIST = "link-list";
-    String ARTICLE_LIST = "article-list";
+    String ARTICLE_LIST = "articles";
     String MESSAGE_LIST = "message-list";
 
     // shop related constants

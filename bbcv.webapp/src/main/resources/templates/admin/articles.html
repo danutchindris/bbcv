@@ -64,12 +64,32 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body"></div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary submit" data-th-text="#{yes}">Yes</button>
+                <button type="button" class="btn btn-primary submit delete-action" data-th-text="#{yes}">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-th-text="#{no}">No</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="publish-modal" class="modal fade" layout:fragment="publish-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary submit publish-action" data-th-text="#{yes}">Yes</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal" data-th-text="#{no}">No</button>
             </div>
         </div><!-- /.modal-content -->
@@ -103,6 +123,7 @@
                         }}),
             $alert = $('.alert').hide(),
             $deleteModal = $('#delete-modal').modal({show: false});
+            $publishModal = $('#publish-modal').modal({show: false});
 
         $(function () {
             // create event
@@ -110,13 +131,12 @@
                 window.location.href = '/admin/article';
             });
 
-            $deleteModal.find('.submit').click(function () {
+            $deleteModal.find('.delete-action').click(function () {
                 // required by Spring Security
                 var header = $("meta[name='_csrf_header']").attr("content");
                 var token = $("meta[name='_csrf']").attr("content");
-
                 $.ajax({
-                    url: '/admin/article/' + ($modal.data('id') || ''),
+                    url: '/admin/article/' + ($deleteModal.data('id') || ''),
                     type: 'delete',
                     contentType: 'application/json',
                     beforeSend: function(xhr) {
@@ -134,6 +154,34 @@
                 });
             });
 
+            $publishModal.find('.publish-action').click(function () {
+                // required by Spring Security
+                var header = $("meta[name='_csrf_header']").attr("content");
+                var token = $("meta[name='_csrf']").attr("content");
+                $.ajax({
+                    url: '/admin/article/publish?articleId=' + ($publishModal.data('id') || ''),
+                    type: 'put',
+                    contentType: 'application/json',
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success: function (result) {
+                        $publishModal.modal('hide');
+                        $table.bootstrapTable('refresh');
+                        if (result == 'item.published') {
+                            showAlert('[[#{item.published}]]', 'success');
+                        } else if (result == 'item.not.published') {
+                            showAlert('[[#{item.not.published}]]', 'danger');
+                        } else {
+                            showAlert('[[#{item.status.incorrect}]]', 'danger');
+                        }
+                    },
+                    error: function () {
+                        $publishModal.modal('hide');
+                        showAlert('[[#{item.not.published}]]', 'danger');
+                    }
+                });
+            });
         });
 
         function queryParams(params) {
@@ -143,17 +191,20 @@
         function actionFormatter(value) {
             return [
                 '<a class="update" href="javascript:" title="[[#{edit}]]"><i class="fa fa-edit"></i></a>',
-                '<a class="remove" href="javascript:" title="[[#{delete}]]"><i class="fa fa-remove"></i></a>',
+                '<a class="publish" href="javascript:" title="[[#{publish}]]"><i class="fa fa-newspaper-o"></i></a>',
+                '<a class="delete" href="javascript:" title="[[#{delete}]]"><i class="fa fa-remove"></i></a>',
                 '<a class="images" href="javascript:" title="[[#{images}]]"><i class="fa fa-image"></i></a>',
             ].join('');
         }
 
-        // update and delete events
         window.actionEvents = {
             'click .update': function (e, value, row) {
                 window.location.href = '/admin/article?id=' + row.id;
             },
-            'click .remove': function (e, value, row) {
+            'click .publish': function (e, value, row) {
+                showPublishModal($(this).attr('title'), '[[#{confirm.publish}]]', row);
+            },
+            'click .delete': function (e, value, row) {
                 showDeleteModal($(this).attr('title'), '[[#{confirm.delete}]]', row);
             },
             'click .images': function (e, value, row) {
@@ -174,6 +225,13 @@
             $deleteModal.find('.modal-title').text(title);
             $deleteModal.find('.modal-body').text(text);
             $deleteModal.modal('show');
+        }
+
+        function showPublishModal(title, text, row) {
+            $publishModal.data('id', row.id);
+            $publishModal.find('.modal-title').text(title);
+            $publishModal.find('.modal-body').text(text);
+            $publishModal.modal('show');
         }
     /*]]>*/
     </script>
