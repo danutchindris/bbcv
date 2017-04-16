@@ -3,6 +3,7 @@ package ro.leje.model.entity;
 import com.google.common.base.MoreObjects;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -31,6 +32,9 @@ public class ArticleEntity {
 
     @Column(name = "STATUS")
     private String status;
+
+    @Column(name = "DATE")
+    private Date date;
 
     @OneToMany(mappedBy = "article")
     private Set<ImageEntity> images;
@@ -65,6 +69,14 @@ public class ArticleEntity {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public ArticleEntity() {

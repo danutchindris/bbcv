@@ -71,7 +71,8 @@ public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
                 + "and d.objectId = a.id "
                 + "and d.objectType = :articleObjectType "
                 + "and d.category = :titleCategory "
-                + "and a.status = :published ";
+                + "and a.status = :published "
+                + "order by a.date desc ";
         return getCurrentSession()
                 .createQuery(query)
                 .setBoolean("cover", true)

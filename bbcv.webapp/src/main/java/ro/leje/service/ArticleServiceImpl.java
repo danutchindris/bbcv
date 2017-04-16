@@ -11,6 +11,7 @@ import ro.leje.util.constant.StatusConstants;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -63,6 +64,7 @@ public class ArticleServiceImpl implements ArticleService {
         final ArticleEntity articleEntity = new ArticleEntity();
         articleEntity.setAuthors(retrieveAuthors(authorIds));
         articleEntity.setStatus(StatusConstants.NEW);
+        articleEntity.setDate(new Date());
         return articleDAO.create(articleEntity);
     }
 
@@ -81,6 +83,7 @@ public class ArticleServiceImpl implements ArticleService {
             if (StatusConstants.NEW.equals(article.getStatus())
                     || StatusConstants.EXPIRED.equals(article.getStatus())) {
                 article.setStatus(StatusConstants.PUBLISHED);
+                article.setDate(new Date());
                 message = "item.published";
             }
             else {
@@ -100,6 +103,7 @@ public class ArticleServiceImpl implements ArticleService {
             if (StatusConstants.NEW.equals(article.getStatus())
                     || StatusConstants.EXPIRED.equals(article.getStatus())) {
                 article.setStatus(StatusConstants.DELETED);
+                article.setDate(new Date());
                 message = "item.deleted";
             }
             else {
