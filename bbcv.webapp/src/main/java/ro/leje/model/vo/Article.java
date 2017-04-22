@@ -6,6 +6,7 @@ import com.google.common.collect.ComparisonChain;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author Danut Chindris
@@ -27,16 +28,21 @@ public class Article implements Serializable, Comparable<Article> {
 
     private String status;
 
+    private Date date;
+
+    private String formattedDate;
+
     public Article() {
     }
 
     public Article(final long id, final String language, final String title,
-                   final String body, final String status) {
+                   final String body, final String status, final Date date) {
         this.id = id;
         this.language = language;
         this.title = title;
         this.body = body;
         this.status = status;
+        this.date = date;
     }
 
     public long getId() {
@@ -79,6 +85,22 @@ public class Article implements Serializable, Comparable<Article> {
         this.status = status;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getFormattedDate() {
+        return formattedDate;
+    }
+
+    public void setFormattedDate(String formattedDate) {
+        this.formattedDate = formattedDate;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -87,6 +109,7 @@ public class Article implements Serializable, Comparable<Article> {
                 .add("title", title)
                 .add("body", body)
                 .add("status", status)
+                .add("date", date)
                 .toString();
     }
 
@@ -103,12 +126,13 @@ public class Article implements Serializable, Comparable<Article> {
                 && Objects.equal(this.language, other.language)
                 && Objects.equal(this.title, other.title)
                 && Objects.equal(this.body, other.body)
-                && Objects.equal(this.status, other.status);
+                && Objects.equal(this.status, other.status)
+                && Objects.equal(this.date, other.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.id, this.language, this.title, this.body, this.status);
+        return Objects.hashCode(this.id, this.language, this.title, this.body, this.status, this.date);
     }
 
     @Override
@@ -118,6 +142,7 @@ public class Article implements Serializable, Comparable<Article> {
                 .compare(this.title, o.title)
                 .compare(this.body, o.body)
                 .compare(this.status, o.status)
+                .compare(this.date, o.date)
                 .result();
     }
 }

@@ -22,7 +22,7 @@ public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
                 + "'" + language + "', "
                 + "dTitle." + language + ", "
                 + "dBody." + language + ", "
-                + "a.status) "
+                + "a.status, a.date) "
                 + "from ro.leje.model.entity.ArticleEntity a, "
                 + "ro.leje.model.entity.DictionaryEntity dTitle, "
                 + "ro.leje.model.entity.DictionaryEntity dBody "
@@ -34,7 +34,7 @@ public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
                 + "and dBody.objectType = :articleObjectType "
                 + "and dBody.category = :bodyCategory ";
         return (Article) getCurrentSession()
-                .createQuery(query.toString())
+                .createQuery(query)
                 .setLong("articleId", articleId)
                 .setString("articleObjectType", CategoryConstants.ARTICLE_TYPE)
                 .setString("titleCategory", CategoryConstants.TITLE)
@@ -47,20 +47,21 @@ public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
     public List<Article> find(final String language) {
         String query = "select new ro.leje.model.vo.Article(d.objectId, "
                 + "'" + language + "', "
-                + "d." + language + ", '', a.status) "
+                + "d." + language + ", '', a.status, a.date) "
                 + "from ro.leje.model.entity.ArticleEntity a, "
                 + "ro.leje.model.entity.DictionaryEntity d "
                 + "where d.objectType = :articleObjectType "
                 + "and d.category = :titleCategory "
                 + "and a.id = d.objectId ";
         return getCurrentSession()
-                .createQuery(query.toString())
+                .createQuery(query)
                 .setString("articleObjectType", CategoryConstants.ARTICLE_TYPE)
                 .setString("titleCategory", CategoryConstants.TITLE)
                 .list();
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<HomeArticle> findForHome(final String language) {
         String query = "select new ro.leje.model.vo.HomeArticle( "
                 + "a.id, '" + language + "', d." + language + ", i.fileName "
@@ -91,7 +92,7 @@ public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
                 + "inner join a.authors u "
                 + "where a.id = :articleId";
         return getCurrentSession()
-                .createQuery(query.toString())
+                .createQuery(query)
                 .setLong("articleId", articleId)
                 .list();
     }

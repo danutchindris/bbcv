@@ -11,6 +11,8 @@ import ro.leje.util.constant.StatusConstants;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -40,7 +42,13 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     @Transactional
     public List<Article> find(String language) {
-        return articleDAO.find(language);
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        final List<Article> articles = articleDAO.find(language);
+        return articles.stream().map(article -> {
+            article.setFormattedDate(article.getDate().toInstant().atZone(ZoneId.systemDefault())
+                    .toLocalDateTime().format(formatter));
+            return article;
+        }).collect(Collectors.toList());
     }
 
     @Override
@@ -78,39 +86,35 @@ public class ArticleServiceImpl implements ArticleService {
     @Transactional
     public Optional<String> publish(final long articleId) {
         final Optional<ArticleEntity> entity = articleDAO.findEntity(articleId, ArticleEntity.class);
-        final Optional<String> returnMessage = entity.map(article -> {
+        return entity.map(article -> {
             final String message;
             if (StatusConstants.NEW.equals(article.getStatus())
                     || StatusConstants.EXPIRED.equals(article.getStatus())) {
                 article.setStatus(StatusConstants.PUBLISHED);
                 article.setDate(new Date());
                 message = "item.published";
-            }
-            else {
+            } else {
                 message = "item.status.incorrect";
             }
             return message;
         });
-        return returnMessage;
     }
 
     @Override
     @Transactional
     public Optional<String> delete(final long articleId) {
         final Optional<ArticleEntity> entity = articleDAO.findEntity(articleId, ArticleEntity.class);
-        final Optional<String> returnMessage = entity.map(article -> {
+        return entity.map(article -> {
             final String message;
             if (StatusConstants.NEW.equals(article.getStatus())
                     || StatusConstants.EXPIRED.equals(article.getStatus())) {
                 article.setStatus(StatusConstants.DELETED);
                 article.setDate(new Date());
                 message = "item.deleted";
-            }
-            else {
+            } else {
                 message = "item.status.incorrect";
             }
             return message;
         });
-        return returnMessage;
     }
 }
