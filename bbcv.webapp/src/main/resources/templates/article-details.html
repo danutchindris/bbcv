@@ -56,27 +56,36 @@
                 </div>
 
                 <div class="col-md-3 col-md-offset-1">
-                    <h3 class="title title-blog">Tags </h3>
-                    <span class="label label-warning label-fill">Food</span>
-                    <span class="label label-warning label-fill">Health</span>
-                    <span class="label label-warning label-fill">Lifestyle</span>
-                    <span class="label label-warning label-fill">Breakfast</span>
-
-                    <h3 class="title title-blog">Author</h3>
-                    <div class="media media-author">
+                    <div th:if="${social} != null" class="social-buttons">
+                        <h3 class="title title-blog" th:text="#{shares}"></h3>
+                        <a href="#" class="btn btn-social btn-round btn-fill btn-facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a href="#"  class="btn btn-social btn-round btn-fill btn-twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-social btn-round btn-fill btn-google">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                        <a href="#" class="btn btn-social btn-round btn-fill btn-pinterest">
+                            <i class="fa fa-pinterest"></i>
+                        </a>
+                    </div>
+                    <h3 th:if="${tags} != null" class="title title-blog" th:text="#{tags}">Tags</h3>
+                    <span th:each="tag,iterator : ${tags}" class="label label-warning label-fill" th:text="${tag}">Tag</span>
+                    <h3 th:if="${authors} != null" class="title title-blog" th:text="#{author}">Author</h3>
+                    <div th:each="author,iterator : ${authors}" class="media media-author">
                         <a class="pull-left" href="#">
                             <div class="avatar">
-                                <img class="media-object" src="../assets/img/faces/face-1.jpg" alt="..." />
+                                <img class="media-object" src="../static/assets/img/default-avatar.png" data-th-attr="src=@{/assets/img/default-avatar.png}" alt="..." />
                             </div>
                         </a>
                         <div class="media-body">
-                            <h6 class="media-heading">Creative Tim</h6>
-                            <p class="text-muted">Moderator</p>
+                            <h6 class="media-heading" th:text="#{name}">Name</h6>
+                            <p class="text-muted" th:text="#{role}">Role</p>
                         </div>
-                        <p>Tim thinks communication is key and he enjoys all the feedback you give him</p>
-                        <button class="btn btn-round btn-info btn-sm">
-                            Follow
-                        </button>
+                        <p th:text="#{motto}">Motto</p>
+                        <button class="btn btn-round btn-info btn-sm" th:text="#{follow}">Follow</button>
                     </div>
                 </div>
             </div>

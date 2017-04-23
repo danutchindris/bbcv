@@ -17,6 +17,8 @@ public class HomeArticle {
 
     private String title;
 
+    private String titleInUrl;
+
     private String image;
 
     public HomeArticle() {
@@ -59,6 +61,14 @@ public class HomeArticle {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getTitleInUrl() {
+        return titleInUrl;
+    }
+
+    public void setTitleInUrl(String titleInUrl) {
+        this.titleInUrl = titleInUrl;
     }
 
     @Override

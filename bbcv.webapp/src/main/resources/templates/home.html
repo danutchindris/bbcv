@@ -43,7 +43,7 @@
                         <div class="image">
                             <img src="#" th:src="@{'/images/' + ${article.id} + '/' + ${article.image}}" />
                             <div class="filter">
-                                <a class="card-link" href="#" th:href="@{'/articles/' + ${article.id} + '/'}">
+                                <a class="card-link" href="#" th:href="@{'/articles/' + ${article.id} + '/' + ${article.titleInUrl}}">
                                     <button type="button" class="btn btn-neutral btn-simple">
                                         <i class="fa fa-align-left"></i> <span th:text="#{read.article}">Read article</span>
                                     </button>
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="content">
-                            <a class="card-link" href="#" th:href="@{'/articles/' + ${article.id} + '/'}">
+                            <a class="card-link" href="#" th:href="@{'/articles/' + ${article.id} + '/' + ${article.titleInUrl}}">
                                 <h4 class="title" th:text="${article.title}">Article Title</h4>
                             </a>
                         </div>

@@ -4,14 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import ro.leje.delegate.LanguageDelegate;
 import ro.leje.model.vo.Article;
 import ro.leje.service.ArticleService;
-import ro.leje.util.MappingConstants;
-import ro.leje.util.ViewConstants;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -20,11 +18,8 @@ import java.util.Optional;
  * @since January 13, 2016
  */
 @Controller
-@RequestMapping(value = MappingConstants.ARTICLES)
+@RequestMapping("/articles")
 public class ArticlesController {
-
-    private static final String ARTICLE_MODEL_ATTRIBUTE = "article";
-    private static final String ARTICLE_ID_PATH_VARIABLE = "articleId";
 
     @Resource
     private ArticleService articleService;
@@ -32,14 +27,16 @@ public class ArticlesController {
     @Resource
     private LanguageDelegate languageDelegate;
 
-    @RequestMapping(value = MappingConstants.ARTICLE_DETAILS, method = RequestMethod.GET)
-    public String getArticleDetails(Model model, Locale locale, @PathVariable(ARTICLE_ID_PATH_VARIABLE) long articleId) {
+    @RequestMapping("/{articleId}/*")
+    public String getArticleDetails(final Model model, final Locale locale,
+                                    @PathVariable("articleId") final long articleId) {
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
-        Optional<Article> article = articleService.find(articleId, locale.getLanguage());
-        if (article.isPresent()) {
-            model.addAttribute(ARTICLE_MODEL_ATTRIBUTE, article.get());
-        }
-        return ViewConstants.ARTICLE_DETAILS;
+        final Optional<Article> article = articleService.find(articleId, locale.getLanguage());
+        article.ifPresent(a -> model.addAttribute("article", a));
+        model.addAttribute("social", "");
+        model.addAttribute("tags", Arrays.asList("Tag 1", "Tag 2", "Tag 3"));
+        model.addAttribute("authors", Arrays.asList("", ""));
+        return "article-details";
     }
 }

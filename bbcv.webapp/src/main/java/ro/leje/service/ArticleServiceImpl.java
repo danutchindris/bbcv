@@ -7,6 +7,7 @@ import ro.leje.model.entity.UserEntity;
 import ro.leje.model.vo.Article;
 import ro.leje.model.vo.HomeArticle;
 import ro.leje.model.vo.User;
+import ro.leje.util.Strings;
 import ro.leje.util.constant.StatusConstants;
 
 import javax.annotation.Resource;
@@ -54,7 +55,12 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     @Transactional
     public List<HomeArticle> findForHome(final String language) {
-        return articleDAO.findForHome(language);
+        final List<HomeArticle> articles = articleDAO.findForHome(language);
+        return articles.stream().map(article -> {
+            article.setTitleInUrl(Strings
+                    .transformTitleForUrl(Optional.ofNullable(article.getTitle())));
+            return article;
+        }).collect(Collectors.toList());
     }
 
     @Override
