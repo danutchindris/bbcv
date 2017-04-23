@@ -6,10 +6,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ro.leje.delegate.LanguageDelegate;
 import ro.leje.model.vo.Article;
+import ro.leje.model.vo.User;
 import ro.leje.service.ArticleService;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -33,10 +35,11 @@ public class ArticlesController {
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
         final Optional<Article> article = articleService.find(articleId, locale.getLanguage());
+        final List<User> authors = articleService.findAuthors(articleId);
         article.ifPresent(a -> model.addAttribute("article", a));
         model.addAttribute("social", "");
         model.addAttribute("tags", Arrays.asList("Tag 1", "Tag 2", "Tag 3"));
-        model.addAttribute("authors", Arrays.asList("", ""));
+        model.addAttribute("authors", authors);
         return "article-details";
     }
 }
