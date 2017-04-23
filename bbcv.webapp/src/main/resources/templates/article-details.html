@@ -84,7 +84,7 @@
                             <h6 class="media-heading" th:text="${author.firstName}">Name</h6>
                             <p class="text-muted" th:text="#{role}">Role</p>
                         </div>
-                        <p th:text="#{motto}">Motto</p>
+                        <p th:if="${author.motto != null}" th:text="${author.motto}">Motto</p>
                         <button class="btn btn-round btn-info btn-sm" th:text="#{follow}">Follow</button>
                     </div>
                 </div>

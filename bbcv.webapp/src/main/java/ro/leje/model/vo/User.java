@@ -52,6 +52,8 @@ public class User implements Serializable, Comparable<User> {
 
     private Boolean enabled = false;
 
+    private String motto;
+
     public User() {
     }
 
@@ -68,6 +70,11 @@ public class User implements Serializable, Comparable<User> {
     public User(long id, String userName, String password, String firstName, String lastName, String email, Boolean enabled) {
         this(id, userName, firstName, lastName, email, enabled);
         this.password = password;
+    }
+
+    public User(long id, String userName, String firstName, String lastName, String email, Boolean enabled, String motto) {
+        this(id, userName, firstName, lastName, email, enabled);
+        this.motto = motto;
     }
 
     public long getId() {
@@ -126,6 +133,14 @@ public class User implements Serializable, Comparable<User> {
         this.enabled = enabled;
     }
 
+    public String getMotto() {
+        return motto;
+    }
+
+    public void setMotto(String motto) {
+        this.motto = motto;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -135,6 +150,7 @@ public class User implements Serializable, Comparable<User> {
                 .add("lastName", lastName)
                 .add("email", email)
                 .add("enabled", enabled)
+                .add("motto", motto)
                 .toString();
     }
 

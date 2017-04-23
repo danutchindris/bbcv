@@ -38,6 +38,9 @@ public class UserEntity {
     @Column(name = "ENABLED")
     private Boolean enabled;
 
+    @Column(name = "MOTTO")
+    private String motto;
+
     @ManyToMany(targetEntity = RoleEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE", joinColumns = {
             @JoinColumn(name = "USER_ID", nullable = false)
@@ -101,6 +104,14 @@ public class UserEntity {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public String getMotto() {
+        return motto;
+    }
+
+    public void setMotto(String motto) {
+        this.motto = motto;
     }
 
     public Set<RoleEntity> getRoles() {

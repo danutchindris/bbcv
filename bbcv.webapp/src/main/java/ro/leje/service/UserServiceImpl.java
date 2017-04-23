@@ -71,6 +71,7 @@ public class UserServiceImpl implements UserService {
         userEntity.setLastName(user.getLastName());
         userEntity.setEmail(user.getEmail());
         userEntity.setEnabled(user.getEnabled());
+        userEntity.setMotto(user.getMotto());
         return userDAO.create(userEntity);
     }
 

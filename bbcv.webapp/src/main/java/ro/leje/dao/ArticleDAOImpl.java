@@ -86,8 +86,8 @@ public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
     @Override
     @SuppressWarnings("unchecked")
     public List<User> findAuthors(final long articleId) {
-        String query = "select new ro.leje.model.vo.User(u.id, u.userName, u.password, "
-                + "u.firstName, u.lastName, u.email, u.enabled) "
+        String query = "select new ro.leje.model.vo.User(u.id, u.userName, "
+                + "u.firstName, u.lastName, u.email, u.enabled, u.motto) "
                 + "from ro.leje.model.entity.ArticleEntity a "
                 + "inner join a.authors u "
                 + "where a.id = :articleId";
