@@ -3,6 +3,7 @@ package ro.leje.dao;
 import org.springframework.stereotype.Repository;
 import ro.leje.model.vo.Article;
 import ro.leje.model.vo.HomeArticle;
+import ro.leje.model.vo.Tag;
 import ro.leje.model.vo.User;
 import ro.leje.util.CategoryConstants;
 import ro.leje.util.constant.StatusConstants;
@@ -90,6 +91,19 @@ public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
                 + "u.firstName, u.lastName, u.email, u.enabled, u.motto) "
                 + "from ro.leje.model.entity.ArticleEntity a "
                 + "inner join a.authors u "
+                + "where a.id = :articleId";
+        return getCurrentSession()
+                .createQuery(query)
+                .setLong("articleId", articleId)
+                .list();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Tag> findTags(final long articleId) {
+        String query = "select new ro.leje.model.vo.Tag(t.id, t.text) "
+                + "from ro.leje.model.entity.ArticleEntity a "
+                + "inner join a.tags t "
                 + "where a.id = :articleId";
         return getCurrentSession()
                 .createQuery(query)

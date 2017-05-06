@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/layout">
+
+<head>
+
+    <link rel="stylesheet" type="text/css" href="../../static/assets/css/fresh-bootstrap-table.css" data-th-href="@{/assets/css/fresh-bootstrap-table.css}" />
+
+    <script type="text/javascript" src="../../static/assets/js/bootstrap-table.js" data-th-src="@{/assets/js/bootstrap-table.js}"></script>
+    <script type="text/javascript" src="../../static/assets/js/bootstrap-table-en-US.js" data-th-src="@{/assets/js/bootstrap-table-en-US.js}"></script>
+    <script type="text/javascript" src="../../static/assets/js/bootstrap-table-ro-RO.js" data-th-src="@{/assets/js/bootstrap-table-ro-RO.js}"></script>
+    <script type="text/javascript" src="../../static/assets/js/bootstrap-select.js" data-th-src="@{/assets/js/bootstrap-select.js}"></script>
+
+    <title data-th-text="#{tags}">Page Title</title>
+
+</head>
+
+<body>
+
+<div class="row" layout:fragment="content">
+    <div class="col-md-12">
+        <div class="fresh-table full-color-blue">
+
+            <p class="toolbar">
+                <a class="add btn btn-default" data-th-text="#{add.tag}">Add Item</a>
+                <span class="alert"></span>
+            </p>
+
+            <table id="table"
+                   data-show-refresh="true"
+                   data-show-columns="true"
+                   data-show-toggle="true"
+                   data-search="true"
+                   data-query-params="queryParams"
+                   data-toolbar=".toolbar"
+                   data-striped="true"
+                   data-page-size="5"
+                   data-page-list="[5,10,25,50,100,ALL]"
+                   data-pagination="true">
+                <thead>
+                <tr>
+                    <th data-field="id" data-sortable="true" data-th-text="#{id}">ID</th>
+                    <th data-field="text" data-sortable="true" data-th-text="#{text}">Name</th>
+                    <th data-field="action"
+                        data-align="center"
+                        data-formatter="actionFormatter"
+                        data-events="actionEvents"
+                        data-th-text="#{action}">Action</th>
+                </tr>
+                </thead>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div id="add-modal" class="modal fade" layout:fragment="add-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div id="textFormGroup" class="form-group">
+                    <label data-th-text="#{text}">Text</label>
+                    <input type="text" class="form-control" name="text" placeholder="Text" data-th-attr="placeholder=#{text}" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary submit" data-th-text="#{apply}">Apply</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-th-text="#{close}">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="delete-modal" class="modal fade" layout:fragment="delete-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary delete-action" data-th-text="#{yes}">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-th-text="#{no}">No</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script layout:fragment="script" data-th-inline="text">
+    /*<![CDATA[*/
+        $(function() {
+            $("#li-tags").attr("class", "active");
+        });
+
+        var API_URL = '/admin/tags/json';
+
+        var $table = $('#table').bootstrapTable({url: API_URL, locale: '[[${#locale}]]', icons: {
+                            refresh: 'fa fa-refresh',
+                            toggle: 'fa fa-th-list',
+                            columns: 'fa fa-columns',
+                            detailOpen: 'fa fa-plus-circle',
+                            detailClose: 'fa fa-minus-circle'
+                        }}),
+            $addOrEditModal = $('#add-modal').modal({show: false}),
+            $alert = $('.alert').hide(),
+            $deleteModal = $('#delete-modal').modal({show: false});
+
+        function queryParams(params) {
+            return {};
+        }
+
+        function actionFormatter(value) {
+            return [
+                '<a class="edit" href="javascript:" title="[[#{edit}]]"><i class="fa fa-edit"></i></a>',
+                '<a class="delete" href="javascript:" title="[[#{delete}]]"><i class="fa fa-remove"></i></a>',
+            ].join('');
+        }
+
+        window.actionEvents = {
+            'click .edit': function (e, value, row) {
+                showAddOrEditModal($(this).attr('title'), row);
+            },
+            'click .delete': function (e, value, row) {
+                showDeleteModal($(this).attr('title'), '[[#{confirm.delete}]]', row);
+            }
+        };
+
+        function showAlert(title, type) {
+            $alert.attr('class', 'alert alert-' + type || 'success')
+                  .html('<i class="fa fa-check-square-o"></i> ' + title).show();
+            setTimeout(function () {
+                $alert.hide();
+            }, 1500);
+        }
+
+        $(function () {
+            $('.add').click(function () {
+                showAddOrEditModal($(this).text());
+            });
+
+            $addOrEditModal.find('.submit').click(function () {
+                var row = {};
+
+                row.id = $addOrEditModal.data('id');
+
+                $addOrEditModal.find('input[name]').each(function () {
+                    row[$(this).attr('name')] = $(this).val();
+                });
+
+                // required by Spring Security
+                var header = $("meta[name='_csrf_header']").attr("content");
+                var token = $("meta[name='_csrf']").attr("content");
+
+                $.ajax({
+                    url: '/admin/tag',
+                    type: $addOrEditModal.data('id') ? 'put' : 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify(row),
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success: function (result) {
+                        $('.form-group').removeClass('has-error');
+                        $('.help-block').remove();
+                        $addOrEditModal.modal('hide');
+                        $table.bootstrapTable('refresh');
+                        showAlert($addOrEditModal.data('id') ? '[[#{item.updated}]]' : '[[#{item.created}]]', 'success');
+                    },
+                    error: function (result) {
+                        $('.help-block').remove();
+                        for (var i = 0; i < result.responseJSON.errorMessageList.length; i++) {
+                            var errorMessage = result.responseJSON.errorMessageList[i];
+                            var $formGroup = $('#' + errorMessage.fieldName + 'FormGroup');
+                            $formGroup.addClass('has-error');
+                            $formGroup.append('<span class="help-block">' + errorMessage.message + '</span>');
+                        }
+                        //$addOrEditModal.modal('hide');
+                        //showAlert($addOrEditModal.data('id') ? '[[#{item.not.updated}]]' : '[[#{item.not.created}]]', 'danger');
+                    },
+                    fail: function (result) {
+                        $addOrEditModal.modal('hide');
+                        showAlert($addOrEditModal.data('id') ? '[[#{item.not.updated}]]' : '[[#{item.not.created}]]', 'danger');
+                    }
+                });
+            });
+
+            $deleteModal.find('.delete-action').click(function () {
+                // required by Spring Security
+                var header = $("meta[name='_csrf_header']").attr("content");
+                var token = $("meta[name='_csrf']").attr("content");
+                $.ajax({
+                    url: '/admin/tag?tagId=' + ($deleteModal.data('id') || ''),
+                    type: 'delete',
+                    contentType: 'application/json',
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success: function (result) {
+                        $deleteModal.modal('hide');
+                        $table.bootstrapTable('refresh');
+                        if (result == 'item.deleted') {
+                            showAlert('[[#{item.deleted}]]', 'success');
+                        } else if (result == 'item.not.deleted') {
+                            showAlert('[[#{item.not.deleted}]]', 'danger');
+                        } else {
+                            showAlert('[[#{item.status.incorrect}]]', 'danger');
+                        }
+                    },
+                    error: function () {
+                        $deleteModal.modal('hide');
+                        showAlert('[[#{item.not.deleted}]]', 'danger');
+                    }
+                });
+            });
+        });
+
+        function showAddOrEditModal(title, row) {
+            // remove error messages that it's possible to be previously shown
+            $('.form-group').removeClass('has-error');
+            $('.help-block').remove();
+
+            row = row || {
+                id: 0,
+                text: ''
+            };
+
+            $addOrEditModal.data('id', row.id);
+            $addOrEditModal.data('text', row.text);
+            $addOrEditModal.find('.modal-title').text(title);
+
+            for (var name in row) {
+                $addOrEditModal.find('input[name="' + name + '"]').val(row[name]);
+            }
+
+            $addOrEditModal.modal('show');
+        }
+
+        function showDeleteModal(title, text, row) {
+            $deleteModal.data('id', row.id);
+            $deleteModal.find('.modal-title').text(title);
+            $deleteModal.find('.modal-body').text(text);
+            $deleteModal.modal('show');
+        }
+
+    /*]]>*/
+    </script>
+</body>
+
+</html>

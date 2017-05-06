@@ -2,6 +2,7 @@ package ro.leje.dao;
 
 import ro.leje.model.vo.Article;
 import ro.leje.model.vo.HomeArticle;
+import ro.leje.model.vo.Tag;
 import ro.leje.model.vo.User;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface ArticleDAO extends BaseDAO {
     List<HomeArticle> findForHome(String language);
 
     List<User> findAuthors(long articleId);
+
+    List<Tag> findTags(final long articleId);
 }

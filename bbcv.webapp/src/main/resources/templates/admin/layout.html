@@ -66,6 +66,12 @@
                         <p th:text="#{articles}">Page</p>
                     </a>
                 </li>
+                <li id="li-tags">
+                    <a href="#" th:href="@{/admin/tags}">
+                        <i class="pe-7s-ribbon"></i>
+                        <p th:text="#{tags}">Page</p>
+                    </a>
+                </li>
                 <li id="li-links">
                     <a href="#" th:href="@{/admin/link/list}">
                         <i class="pe-7s-link"></i>
@@ -190,6 +196,8 @@
     </div>
 </div>
 
+<div layout:fragment="modal"></div>
+<div layout:fragment="add-modal"></div>
 <div layout:fragment="upload-modal"></div>
 <div layout:fragment="edit-modal"></div>
 <div layout:fragment="delete-modal"></div>
