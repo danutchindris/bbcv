@@ -72,7 +72,7 @@
                         </a>
                     </div>
                     <h3 th:if="${tags} != null" class="title title-blog" th:text="#{tags}">Tags</h3>
-                    <span th:each="tag,iterator : ${tags}" class="label label-warning label-fill" th:text="${tag}">Tag</span>
+                    <span th:each="tag,iterator : ${tags}" class="label label-warning label-fill" th:text="${tag.text}">Tag</span>
                     <h3 th:if="${authors} != null" class="title title-blog" th:text="#{author}">Author</h3>
                     <div th:each="author,iterator : ${authors}" class="media media-author">
                         <a class="pull-left" href="#">

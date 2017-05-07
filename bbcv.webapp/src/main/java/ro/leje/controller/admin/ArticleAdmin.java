@@ -13,8 +13,10 @@ import ro.leje.delegate.LanguageDelegate;
 import ro.leje.model.CustomUserDetails;
 import ro.leje.model.vo.Article;
 import ro.leje.model.vo.Dictionary;
+import ro.leje.model.vo.Tag;
 import ro.leje.service.ArticleService;
 import ro.leje.service.DictionaryService;
+import ro.leje.service.TagService;
 import ro.leje.util.CategoryConstants;
 import ro.leje.util.MappingConstants;
 import ro.leje.util.PermissionConstants;
@@ -46,6 +48,9 @@ public class ArticleAdmin extends AbstractAdmin {
     @Resource
     private DictionaryService dictionaryService;
 
+    @Resource
+    private TagService tagService;
+
     @RequestMapping(value = MappingConstants.ARTICLE_LIST, method = RequestMethod.GET)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_LIST + "')")
     public String displayArticleList(Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
@@ -57,7 +62,8 @@ public class ArticleAdmin extends AbstractAdmin {
 
     @RequestMapping(MappingConstants.ARTICLE_LIST_JSON)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_ARTICLE_LIST + "')")
-    public @ResponseBody
+    public
+    @ResponseBody
     List<Article> findArticles(Locale locale) {
         return articleService.find(locale.getLanguage());
     }
@@ -80,8 +86,10 @@ public class ArticleAdmin extends AbstractAdmin {
 
     @RequestMapping(value = MappingConstants.ARTICLE, method = RequestMethod.POST)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_CREATE_ARTICLE + "')")
-    public @ResponseBody Long createArticle(@RequestBody @Valid Article article,
-                                            @AuthenticationPrincipal CustomUserDetails userDetails) {
+    public
+    @ResponseBody
+    Long createArticle(@RequestBody @Valid Article article,
+                       @AuthenticationPrincipal CustomUserDetails userDetails) {
         // for the time being the author of the published article is the logged in user
         Set<Long> authorIds = new HashSet<>();
         authorIds.add(userDetails.getId());
@@ -100,8 +108,7 @@ public class ArticleAdmin extends AbstractAdmin {
         String element = null;
         if (CategoryConstants.TITLE.equals(category)) {
             element = article.getTitle();
-        }
-        else if (CategoryConstants.BODY.equals(category)) {
+        } else if (CategoryConstants.BODY.equals(category)) {
             element = article.getBody();
         }
         if (element != null && !element.isEmpty()) {
@@ -120,7 +127,9 @@ public class ArticleAdmin extends AbstractAdmin {
 
     @RequestMapping(value = MappingConstants.ARTICLE, method = RequestMethod.PUT)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_CREATE_ARTICLE + "')")
-    public @ResponseBody Long updateArticle(@RequestBody @Valid Article article) {
+    public
+    @ResponseBody
+    Long updateArticle(@RequestBody @Valid Article article) {
         updateDictionary(article);
         return article.getId();
     }
@@ -134,8 +143,7 @@ public class ArticleAdmin extends AbstractAdmin {
         String element = null;
         if (CategoryConstants.TITLE.equals(category)) {
             element = article.getTitle();
-        }
-        else if (CategoryConstants.BODY.equals(category)) {
+        } else if (CategoryConstants.BODY.equals(category)) {
             element = article.getBody();
         }
         if (element != null && !element.isEmpty()) {
@@ -155,7 +163,9 @@ public class ArticleAdmin extends AbstractAdmin {
 
     @RequestMapping(value = MappingConstants.ARTICLE_LANGUAGE, method = RequestMethod.PUT)
     @PreAuthorize("hasRole('" + PermissionConstants.ADMIN_CREATE_ARTICLE + "')")
-    public @ResponseBody Article changeArticleLanguage(@RequestBody Article article) {
+    public
+    @ResponseBody
+    Article changeArticleLanguage(@RequestBody Article article) {
         if (article != null && article.getId() != 0) {
             Article articleWithChangedLanguage = new Article();
             Optional<Dictionary> titleDictionary = dictionaryService.find(CategoryConstants.ARTICLE_TYPE,
@@ -168,8 +178,7 @@ public class ArticleAdmin extends AbstractAdmin {
                 String title = null;
                 if (CategoryConstants.EN.equalsIgnoreCase(article.getLanguage())) {
                     title = titleDictionary.get().getEn();
-                }
-                else if (CategoryConstants.RO.equalsIgnoreCase(article.getLanguage())) {
+                } else if (CategoryConstants.RO.equalsIgnoreCase(article.getLanguage())) {
                     title = titleDictionary.get().getRo();
                 }
                 articleWithChangedLanguage.setTitle(title != null ? title : "");
@@ -178,8 +187,7 @@ public class ArticleAdmin extends AbstractAdmin {
                 String body = null;
                 if (CategoryConstants.EN.equalsIgnoreCase(article.getLanguage())) {
                     body = bodyDictionary.get().getEn();
-                }
-                else if (CategoryConstants.RO.equalsIgnoreCase(article.getLanguage())) {
+                } else if (CategoryConstants.RO.equalsIgnoreCase(article.getLanguage())) {
                     body = bodyDictionary.get().getRo();
                 }
                 articleWithChangedLanguage.setBody(body != null ? body : "");
@@ -191,13 +199,53 @@ public class ArticleAdmin extends AbstractAdmin {
 
     @RequestMapping(value = "/article/publish", method = RequestMethod.PUT)
     @PreAuthorize("hasRole('permission_admin_create_article')")
-    public @ResponseBody String publish(@RequestParam Long articleId) {
+    public
+    @ResponseBody
+    String publish(@RequestParam Long articleId) {
         return articleService.publish(articleId).orElse("item.not.published");
     }
 
     @RequestMapping(value = "/article/delete", method = RequestMethod.PUT)
     @PreAuthorize("hasRole('permission_admin_create_article')")
-    public @ResponseBody String delete(@RequestParam Long articleId) {
+    public
+    @ResponseBody
+    String delete(@RequestParam Long articleId) {
         return articleService.delete(articleId).orElse("item.not.deleted");
+    }
+
+    @RequestMapping("/article/tags")
+    @PreAuthorize("hasRole('permission_admin_article_list')")
+    public String displayTags(@RequestParam final Long articleId, final Model model,
+                              final @AuthenticationPrincipal CustomUserDetails userDetails) {
+        languageDelegate.addAvailableLanguages(model);
+        languageDelegate.addNotAvailableLanguages(model);
+        model.addAttribute("articleId", articleId);
+        model.addAttribute("tags", tagService.find());
+        model.addAttribute(AUTHENTICATED_USER_FIRST_NAME, userDetails != null ? userDetails.getFirstName() : null);
+        return "admin/article-tags";
+    }
+
+    @RequestMapping("/article/tags/json")
+    @PreAuthorize("hasRole('permission_admin_article_list')")
+    public
+    @ResponseBody
+    List<Tag> findTags(@RequestParam final Long articleId) {
+        return articleService.findTags(articleId);
+    }
+
+    @RequestMapping(value = "/article/tags", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('permission_admin_article_list')")
+    public
+    @ResponseBody
+    String assignTag(@RequestParam final Long articleId, @RequestParam final Long tagId) {
+        return articleService.assignTag(articleId, tagId);
+    }
+
+    @RequestMapping(value = "/article/tags", method = RequestMethod.DELETE)
+    @PreAuthorize("hasRole('permission_admin_article_list')")
+    public
+    @ResponseBody
+    String deleteTag(@RequestParam final Long articleId, @RequestParam final Long tagId) {
+        return articleService.deleteTag(articleId, tagId);
     }
 }

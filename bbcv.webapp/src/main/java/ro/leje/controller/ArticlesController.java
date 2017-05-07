@@ -38,7 +38,7 @@ public class ArticlesController {
         final List<User> authors = articleService.findAuthors(articleId);
         article.ifPresent(a -> model.addAttribute("article", a));
         model.addAttribute("social", "");
-        model.addAttribute("tags", Arrays.asList("Tag 1", "Tag 2", "Tag 3"));
+        model.addAttribute("tags", articleService.findTags(articleId));
         model.addAttribute("authors", authors);
         return "article-details";
     }

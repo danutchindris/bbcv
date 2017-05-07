@@ -3,9 +3,11 @@ package ro.leje.service;
 import org.springframework.stereotype.Service;
 import ro.leje.dao.ArticleDAO;
 import ro.leje.model.entity.ArticleEntity;
+import ro.leje.model.entity.TagEntity;
 import ro.leje.model.entity.UserEntity;
 import ro.leje.model.vo.Article;
 import ro.leje.model.vo.HomeArticle;
+import ro.leje.model.vo.Tag;
 import ro.leje.model.vo.User;
 import ro.leje.util.Strings;
 import ro.leje.util.constant.StatusConstants;
@@ -14,6 +16,7 @@ import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -122,5 +125,57 @@ public class ArticleServiceImpl implements ArticleService {
             }
             return message;
         });
+    }
+
+    @Override
+    @Transactional
+    public List<Tag> findTags(final long articleId) {
+        final Optional<ArticleEntity> entity = articleDAO.findEntity(articleId, ArticleEntity.class);
+        return entity.map(e -> e.getTags()
+                .stream()
+                .map(tag -> new Tag(tag.getId(), tag.getText()))
+                .collect(Collectors.toList())).orElse(new ArrayList<>());
+    }
+
+    private boolean isAssigned(final long articleId, final long tagId) {
+        final Optional<TagEntity> tagEntity = articleDAO.findEntity(tagId, TagEntity.class);
+        return tagEntity.map(tag ->
+                articleDAO.findEntity(articleId, ArticleEntity.class)
+                        .map(a -> a.getTags().contains(tag)).orElse(false)
+        ).orElse(false);
+
+    }
+
+    @Override
+    @Transactional
+    public String assignTag(final long articleId, final long tagId) {
+        if (isAssigned(articleId, tagId)) {
+            return "item.already.assigned";
+        }
+        final Optional<ArticleEntity> articleEntity = articleDAO.findEntity(articleId, ArticleEntity.class);
+        final Optional<TagEntity> tagEntity = articleDAO.findEntity(tagId, TagEntity.class);
+        return articleEntity.map(a -> tagEntity.map(t -> {
+                    final Set<TagEntity> tags = a.getTags();
+                    tags.add(t);
+                    a.setTags(tags);
+                    articleDAO.update(a);
+                    return "item.added";
+                }).orElse("item.not.found")
+        ).orElse("item.not.found");
+    }
+
+    @Override
+    @Transactional
+    public String deleteTag(final long articleId, final long tagId) {
+        final Optional<ArticleEntity> articleEntity = articleDAO.findEntity(articleId, ArticleEntity.class);
+        final Optional<TagEntity> tagEntity = articleDAO.findEntity(tagId, TagEntity.class);
+        return articleEntity.map(a -> tagEntity.map(t -> {
+                    final Set<TagEntity> tags = a.getTags();
+                    tags.remove(t);
+                    a.setTags(tags);
+                    articleDAO.update(a);
+                    return "item.deleted";
+                }).orElse("item.not.found")
+        ).orElse("item.not.found");
     }
 }

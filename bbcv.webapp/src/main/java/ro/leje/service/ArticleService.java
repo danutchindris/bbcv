@@ -2,6 +2,7 @@ package ro.leje.service;
 
 import ro.leje.model.vo.Article;
 import ro.leje.model.vo.HomeArticle;
+import ro.leje.model.vo.Tag;
 import ro.leje.model.vo.User;
 
 import java.util.List;
@@ -27,4 +28,10 @@ public interface ArticleService {
     Optional<String> publish(long articleId);
 
     Optional<String> delete(long articleId);
+
+    List<Tag> findTags(final long articleId);
+
+    String assignTag(final long articleId, final long tagId);
+
+    String deleteTag(final long articleId, final long tagId);
 }

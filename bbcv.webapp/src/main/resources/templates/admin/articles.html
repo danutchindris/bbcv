@@ -201,6 +201,7 @@
                 '<a class="publish" href="javascript:" title="[[#{publish}]]"><i class="fa fa-newspaper-o"></i></a>',
                 '<a class="delete" href="javascript:" title="[[#{delete}]]"><i class="fa fa-remove"></i></a>',
                 '<a class="images" href="javascript:" title="[[#{images}]]"><i class="fa fa-image"></i></a>',
+                '<a class="tags" href="javascript:" title="[[#{tags}]]"><i class="fa fa-tags"></i></a>'
             ].join('');
         }
 
@@ -216,6 +217,9 @@
             },
             'click .images': function (e, value, row) {
                 window.location.href = '/admin/images?articleId=' + row.id;
+            },
+            'click .tags': function (e, value, row) {
+                window.location.href = '/admin/article/tags?articleId=' + row.id;
             }
         };
 
