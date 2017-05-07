@@ -15,4 +15,6 @@ public interface BaseDAO {
     void delete(Object object);
 
     <T> Optional<T> findEntity(long id, Class<T> clazz);
+
+    <T> boolean isValid(long id, Class<T> clazz);
 }

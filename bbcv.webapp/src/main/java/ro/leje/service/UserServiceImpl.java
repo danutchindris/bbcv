@@ -28,14 +28,7 @@ public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
 
     @Resource
-    PasswordEncoder passwordEncoder;
-
-    private <T> void validateId(long id, Class<T> clazz) {
-        Optional<T> entity = userDAO.findEntity(id, clazz);
-        if (!entity.isPresent()) {
-            throw new IllegalArgumentException("No " + clazz.getName() + " entity found for id: " + id);
-        }
-    }
+    private PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional
@@ -84,8 +77,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public Role findRole(long userId, long roleId) {
-        validateId(userId, UserEntity.class);
-        validateId(roleId, RoleEntity.class);
+        userDAO.isValid(userId, UserEntity.class);
+        userDAO.isValid(roleId, RoleEntity.class);
         Role role = userDAO.findRole(userId, roleId);
         if (role == null) {
             throw new ContextedRuntimeException("No user role assignation found")
@@ -98,16 +91,16 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public boolean isRoleAssigned(long userId, long roleId) {
-        validateId(userId, UserEntity.class);
-        validateId(roleId, RoleEntity.class);
+        userDAO.isValid(userId, UserEntity.class);
+        userDAO.isValid(roleId, RoleEntity.class);
         return (userDAO.findRole(userId, roleId) != null);
     }
 
     @Override
     @Transactional
     public void assignRole(long userId, long roleId) {
-        validateId(userId, UserEntity.class);
-        validateId(roleId, RoleEntity.class);
+        userDAO.isValid(userId, UserEntity.class);
+        userDAO.isValid(roleId, RoleEntity.class);
         // check if the role is already assigned or not
         if (isRoleAssigned(userId, roleId)) {
             throw new ContextedRuntimeException("Role is already assigned")

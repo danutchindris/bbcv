@@ -38,4 +38,8 @@ public abstract class BaseDAOImpl implements BaseDAO {
     public void delete(Object object) {
         getCurrentSession().delete(object);
     }
+
+    public <T> boolean isValid(long id, Class<T> clazz) {
+        return findEntity(id, clazz).map(e -> true).orElse(false);
+    }
 }
