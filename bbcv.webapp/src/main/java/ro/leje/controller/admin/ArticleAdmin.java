@@ -74,12 +74,9 @@ public class ArticleAdmin extends AbstractAdmin {
                                     @RequestParam(required = false, value = "id") Long articleId) {
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
-        if (articleId != null) {
-            Optional<Article> article = articleService.find(articleId, locale.getLanguage());
-            if (article.isPresent()) {
-                model.addAttribute("article", article.get());
-            }
-        }
+        final Article article = Optional.ofNullable(articleId)
+                .flatMap(id -> articleService.find(id, locale.getLanguage())).orElse(new Article());
+        model.addAttribute("article", article);
         model.addAttribute(AUTHENTICATED_USER_FIRST_NAME, userDetails != null ? userDetails.getFirstName() : null);
         return ViewConstants.ADMIN + "/" + ViewConstants.CREATE_ARTICLE;
     }
