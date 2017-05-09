@@ -1,5 +1,6 @@
 package ro.leje.controller.admin;
 
+import org.apache.commons.lang3.exception.ContextedRuntimeException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import ro.leje.config.Settings;
 import ro.leje.delegate.LanguageDelegate;
 import ro.leje.model.CustomUserDetails;
-import ro.leje.model.vo.Article;
 import ro.leje.model.vo.Image;
 import ro.leje.service.ImageService;
 
@@ -75,17 +75,23 @@ public class ImageAdmin extends AbstractAdmin {
     public
     @ResponseBody
     Long upload(@RequestParam Long articleId, @RequestParam("file") MultipartFile file) {
+        final Path dirPath = Paths.get(settings.getImagesLocation()
+                + File.separator + articleId);
+        if (!dirPath.toFile().exists()) {
+            dirPath.toFile().mkdirs();
+        }
+        // get the file name and build the local file path
+        final Path path = Paths.get(settings.getImagesLocation()
+                        + File.separator + articleId + File.separator,
+                file.getOriginalFilename());
         try {
-            // get the file name and build the local file path
-            final Path path = Paths.get(settings.getImagesLocation()
-                            + File.separator + articleId + File.separator,
-                    file.getOriginalFilename());
             // save the file locally
             final BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(path.toFile()));
             stream.write(file.getBytes());
             stream.close();
         } catch (Exception e) {
-            // handle exception
+            throw new ContextedRuntimeException("Exception thrown while uploading file")
+                    .addContextValue("path", path);
         }
         final Image image = new Image();
         image.setFileName(file.getOriginalFilename());
@@ -112,7 +118,9 @@ public class ImageAdmin extends AbstractAdmin {
 
     @RequestMapping(value = "/image", method = RequestMethod.PUT)
     @PreAuthorize("hasRole('permission_admin_create_article')")
-    public @ResponseBody Long update(@RequestBody @Valid Image image) {
+    public
+    @ResponseBody
+    Long update(@RequestBody @Valid Image image) {
         return imageService.update(image);
     }
 }
