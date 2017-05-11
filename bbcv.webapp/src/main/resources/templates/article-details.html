@@ -100,6 +100,16 @@
                     editor.importFile('', `[[${article.body}]]`);
                     $(".article-content").html(editor.exportFile('', 'html'));
                     $("#epiceditor").hide();
+
+                    $('.article-content img').wrapAll('<div class="row"></div>');
+
+                    $('.article-content img').wrap('<div class="col-md-12"></div>');
+
+                    $('.article-content img').wrap('<div class="card card-plain"><div class="image"></div></div>');
+
+                    $('.article-content img').attr('src', function(index, src) {
+                        return '/images/[[${article.id}]]/' + src;
+                    });
                 });
             /*]]>*/
         </script>
@@ -116,7 +126,7 @@ $().ready(function(){
 
     $(window).on('scroll', gsdk.checkScrollForTransparentNavbar);
 
-    if (responsive >= 768){
+    if (responsive >= 768) {
         big_image = $('.parallax-image').find('img');
 
         $(window).on('scroll',function(){
