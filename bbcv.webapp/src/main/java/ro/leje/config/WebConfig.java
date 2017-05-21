@@ -37,7 +37,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasenames("messages", "validation");
+        messageSource.setBasenames("messages", "validation", "application");
         messageSource.setDefaultEncoding("UTF-8");
         messageSource.setCacheSeconds(-1);
         return messageSource;
