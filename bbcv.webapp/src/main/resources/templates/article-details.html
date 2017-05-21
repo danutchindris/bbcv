@@ -39,11 +39,11 @@
 <div class="wrapper">
     <div class="parallax filter-black">
         <div class="parallax-image">
-            <img src="../static/assets/img/blog_page8.jpg" data-th-attr="src=@{/assets/img/blog_page8.jpg}" />
+            <img src="../static/assets/img/blog_page8.jpg" data-th-attr="src=@{/images/{id}/{fileName}(id=${article.id},fileName=${cover.fileName})}" />
         </div>
         <div class="small-info">
-            <h1 th:text="#{words.of.life}">Header 1</h1>
-            <h3 th:text="#{awesome.articles}">Header 3</h3>
+            <h1 th:text="${article.title}">Header 1</h1>
+            <h4 th:text="${article.title}">Header 3</h4>
         </div>
     </div>
     <div class="section">
@@ -51,11 +51,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 bottom-border">
-                    <h1 class="title title-blog" th:text="${article.title}">Article Title</h1>
+                    <!--<h1 class="title title-blog" th:text="${article.title}">Article Title</h1>-->
                     <div class="article-content"></div>
                 </div>
 
                 <div class="col-md-3 col-md-offset-1">
+                    <div class="media media-author">
+                        <p class="text-muted">
+                            <span th:text="#{published.on}">Published on</span>
+                            <span th:text="${article.formattedDate}">Date</span>
+                        </p>
+                    </div>
                     <div th:if="${social} != null" class="social-buttons">
                         <h3 class="title title-blog" th:text="#{shares}"></h3>
                         <a href="#" class="btn btn-social btn-round btn-fill btn-facebook">

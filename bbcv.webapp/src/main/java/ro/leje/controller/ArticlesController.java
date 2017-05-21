@@ -6,11 +6,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ro.leje.delegate.LanguageDelegate;
 import ro.leje.model.vo.Article;
+import ro.leje.model.vo.Image;
 import ro.leje.model.vo.User;
 import ro.leje.service.ArticleService;
+import ro.leje.service.ImageService;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -27,6 +31,9 @@ public class ArticlesController {
     private ArticleService articleService;
 
     @Resource
+    private ImageService imageService;
+
+    @Resource
     private LanguageDelegate languageDelegate;
 
     @RequestMapping("/{articleId}/*")
@@ -35,8 +42,16 @@ public class ArticlesController {
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
         final Optional<Article> article = articleService.find(articleId, locale.getLanguage());
+        article.ifPresent(a -> {
+            final DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
+                    .withLocale(locale);
+            a.setFormattedDate(a.getDate().toInstant().atZone(ZoneId.systemDefault())
+                    .toLocalDateTime().format(formatter));
+        });
         final List<User> authors = articleService.findAuthors(articleId);
         article.ifPresent(a -> model.addAttribute("article", a));
+        final Optional<Image> cover = imageService.findCover(articleId, locale.getLanguage());
+        cover.ifPresent(c -> model.addAttribute("cover", c));
         model.addAttribute("social", "");
         model.addAttribute("tags", articleService.findTags(articleId));
         model.addAttribute("authors", authors);

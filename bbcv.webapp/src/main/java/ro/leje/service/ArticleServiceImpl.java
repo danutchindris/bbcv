@@ -40,7 +40,12 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     @Transactional
     public Optional<Article> find(long articleId, String language) {
-        return Optional.ofNullable(articleDAO.find(articleId, language));
+        return Optional.ofNullable(articleDAO.find(articleId, language)).map(a -> {
+            final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+            a.setFormattedDate(a.getDate().toInstant().atZone(ZoneId.systemDefault())
+                    .toLocalDateTime().format(formatter));
+            return a;
+        });
     }
 
     @Override
