@@ -33,6 +33,10 @@
                     <label data-th-text="#{title}">Title</label>
                     <input id="title" type="text" class="form-control" name="title" placeholder="Title" data-th-attr="placeholder=#{title}" />
                 </div>
+                <div id="mottoFormGroup" class="form-group">
+                    <label data-th-text="#{motto}">Motto</label>
+                    <input id="motto" type="text" class="form-control" name="motto" placeholder="Motto" data-th-attr="placeholder=#{motto}" />
+                </div>
                 <div id="textFormGroup" class="form-group">
                     <label data-th-text="#{body}">Body</label>
                     <div id="epiceditor"></div>
@@ -67,10 +71,11 @@
                 id: 0,
                 language: '',
                 title: '',
+                motto: '',
                 body: ''
             };
 
-            // if it's an update action pre-populate the language, title and body fields
+            // if it's an update action pre-populate the language, title, motto and body fields
             // with the information from the database
             if ([[${article} != null]]) {
                 if ([[${article.id} != null]] && [[${article.id} > 0]]) {
@@ -82,6 +87,7 @@
                         var l = '[[${locales.get(article.getLanguage().toUpperCase()).getName()}]]';
                         $("button#language.btn.dropdown-toggle.clearfix.form-control span.filter-option").html(l);
                         $("#title").val('[[${article.title}]]');
+                        $("#motto").val('[[${article.motto}]]');
                         editor.importFile('', `[[${article.body}]]`);
                     });
                 }
@@ -95,6 +101,7 @@
                 // gather input data
                 row.language = $('#language').val();
                 row.title = $('#title').val();
+                row.motto = $('#motto').val();
                 row.body = editor.exportFile();
 
                 // required by Spring Security
@@ -146,7 +153,7 @@
                 }, 1500);
             }
 
-            // when language is changed, update title and body
+            // when language is changed, update title, motto and body
             $('#language').change(function() {
 
                 // switch to edit mode
@@ -172,6 +179,7 @@
                     success: function(response) {
                         // display the retrieved text and body
                         $("#title").val(response.title);
+                        $("#motto").val(response.motto);
                         editor.importFile('', response.body);
                     },
                     error: function() {

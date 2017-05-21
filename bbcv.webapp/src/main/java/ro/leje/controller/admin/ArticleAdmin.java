@@ -98,6 +98,7 @@ public class ArticleAdmin extends AbstractAdmin {
 
     private void createDictionary(Article article) {
         createElement(article, CategoryConstants.TITLE);
+        createElement(article, CategoryConstants.MOTTO);
         createElement(article, CategoryConstants.BODY);
     }
 
@@ -105,6 +106,8 @@ public class ArticleAdmin extends AbstractAdmin {
         String element = null;
         if (CategoryConstants.TITLE.equals(category)) {
             element = article.getTitle();
+        } else if (CategoryConstants.MOTTO.equals(category)) {
+            element = article.getMotto();
         } else if (CategoryConstants.BODY.equals(category)) {
             element = article.getBody();
         }
@@ -133,6 +136,7 @@ public class ArticleAdmin extends AbstractAdmin {
 
     private void updateDictionary(Article article) {
         updateElement(article, CategoryConstants.TITLE);
+        updateElement(article, CategoryConstants.MOTTO);
         updateElement(article, CategoryConstants.BODY);
     }
 
@@ -140,6 +144,8 @@ public class ArticleAdmin extends AbstractAdmin {
         String element = null;
         if (CategoryConstants.TITLE.equals(category)) {
             element = article.getTitle();
+        } else if (CategoryConstants.MOTTO.equals(category)) {
+            element = article.getMotto();
         } else if (CategoryConstants.BODY.equals(category)) {
             element = article.getBody();
         }
@@ -167,28 +173,39 @@ public class ArticleAdmin extends AbstractAdmin {
             Article articleWithChangedLanguage = new Article();
             Optional<Dictionary> titleDictionary = dictionaryService.find(CategoryConstants.ARTICLE_TYPE,
                     article.getId(), CategoryConstants.TITLE);
+            Optional<Dictionary> mottoDictionary = dictionaryService.find(CategoryConstants.ARTICLE_TYPE,
+                    article.getId(), CategoryConstants.MOTTO);
             Optional<Dictionary> bodyDictionary = dictionaryService.find(CategoryConstants.ARTICLE_TYPE,
                     article.getId(), CategoryConstants.BODY);
             articleWithChangedLanguage.setId(article.getId());
             articleWithChangedLanguage.setLanguage(article.getLanguage());
-            if (titleDictionary.isPresent()) {
-                String title = null;
+            titleDictionary.map(title -> {
                 if (CategoryConstants.EN.equalsIgnoreCase(article.getLanguage())) {
-                    title = titleDictionary.get().getEn();
+                    return title.getEn();
                 } else if (CategoryConstants.RO.equalsIgnoreCase(article.getLanguage())) {
-                    title = titleDictionary.get().getRo();
+                    return title.getRo();
+                } else {
+                    return "";
                 }
-                articleWithChangedLanguage.setTitle(title != null ? title : "");
-            }
-            if (bodyDictionary.isPresent()) {
-                String body = null;
+            }).ifPresent(title -> articleWithChangedLanguage.setTitle(title));
+            mottoDictionary.map(motto -> {
                 if (CategoryConstants.EN.equalsIgnoreCase(article.getLanguage())) {
-                    body = bodyDictionary.get().getEn();
+                    return motto.getEn();
                 } else if (CategoryConstants.RO.equalsIgnoreCase(article.getLanguage())) {
-                    body = bodyDictionary.get().getRo();
+                    return motto.getRo();
+                } else {
+                    return "";
                 }
-                articleWithChangedLanguage.setBody(body != null ? body : "");
-            }
+            }).ifPresent(motto -> articleWithChangedLanguage.setMotto(motto));
+            bodyDictionary.map(body -> {
+                if (CategoryConstants.EN.equalsIgnoreCase(article.getLanguage())) {
+                    return body.getEn();
+                } else if (CategoryConstants.RO.equalsIgnoreCase(article.getLanguage())) {
+                    return body.getRo();
+                } else {
+                    return "";
+                }
+            }).ifPresent(body -> articleWithChangedLanguage.setBody(body));
             return articleWithChangedLanguage;
         }
         return article;

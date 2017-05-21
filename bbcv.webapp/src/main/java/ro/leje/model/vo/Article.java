@@ -23,6 +23,9 @@ public class Article implements Serializable, Comparable<Article> {
     @NotEmpty(message = "{error.title.empty}")
     private String title;
 
+    @NotEmpty(message = "{error.motto.empty}")
+    private String motto;
+
     @NotEmpty(message = "{error.body.empty}")
     private String body;
 
@@ -35,11 +38,12 @@ public class Article implements Serializable, Comparable<Article> {
     public Article() {
     }
 
-    public Article(final long id, final String language, final String title,
+    public Article(final long id, final String language, final String title, final String motto,
                    final String body, final String status, final Date date) {
         this.id = id;
         this.language = language;
         this.title = title;
+        this.motto = motto;
         this.body = body;
         this.status = status;
         this.date = date;
@@ -67,6 +71,14 @@ public class Article implements Serializable, Comparable<Article> {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getMotto() {
+        return motto;
+    }
+
+    public void setMotto(String motto) {
+        this.motto = motto;
     }
 
     public String getBody() {
@@ -107,6 +119,7 @@ public class Article implements Serializable, Comparable<Article> {
                 .add("id", id)
                 .add("language", language)
                 .add("title", title)
+                .add("motto", motto)
                 .add("body", body)
                 .add("status", status)
                 .add("date", date)
@@ -125,6 +138,7 @@ public class Article implements Serializable, Comparable<Article> {
         return Objects.equal(this.id, other.id)
                 && Objects.equal(this.language, other.language)
                 && Objects.equal(this.title, other.title)
+                && Objects.equal(this.motto, other.motto)
                 && Objects.equal(this.body, other.body)
                 && Objects.equal(this.status, other.status)
                 && Objects.equal(this.date, other.date);
@@ -132,7 +146,7 @@ public class Article implements Serializable, Comparable<Article> {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.id, this.language, this.title, this.body, this.status, this.date);
+        return Objects.hashCode(this.id, this.language, this.title, this.motto, this.body, this.status, this.date);
     }
 
     @Override
@@ -140,6 +154,7 @@ public class Article implements Serializable, Comparable<Article> {
         return ComparisonChain.start()
                 .compare(this.language, o.language)
                 .compare(this.title, o.title)
+                .compare(this.motto, o.motto)
                 .compare(this.body, o.body)
                 .compare(this.status, o.status)
                 .compare(this.date, o.date)

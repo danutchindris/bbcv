@@ -52,7 +52,11 @@
                         </div>
                         <div class="content">
                             <a class="card-link" href="#" th:href="@{'/articles/' + ${article.id} + '/' + ${article.titleInUrl}}">
-                                <h4 class="title" th:text="${article.title}">Article Title</h4>
+                                <h4 class="title" >
+                                    <span th:text="${article.title}">Article Title</span>
+                                    -
+                                    <span th:text="${article.motto}">Article Motto</span>
+                                </h4>
                             </a>
                         </div>
                     </div> <!-- end card -->

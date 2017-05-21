@@ -17,6 +17,8 @@ public class HomeArticle {
 
     private String title;
 
+    private String motto;
+
     private String titleInUrl;
 
     private String image;
@@ -24,10 +26,12 @@ public class HomeArticle {
     public HomeArticle() {
     }
 
-    public HomeArticle(final long id, final String language, final String title, final String image) {
+    public HomeArticle(final long id, final String language, final String title,
+                       final String motto, final String image) {
         this.id = id;
         this.language = language;
         this.title = title;
+        this.motto = motto;
         this.image = image;
     }
 
@@ -55,6 +59,14 @@ public class HomeArticle {
         this.title = title;
     }
 
+    public String getMotto() {
+        return motto;
+    }
+
+    public void setMotto(String motto) {
+        this.motto = motto;
+    }
+
     public String getImage() {
         return image;
     }
@@ -77,6 +89,7 @@ public class HomeArticle {
                 .add("id", id)
                 .add("language", language)
                 .add("title", title)
+                .add("motto", motto)
                 .add("image", image)
                 .toString();
     }
@@ -93,11 +106,12 @@ public class HomeArticle {
         return Objects.equal(this.id, other.id)
                 && Objects.equal(this.language, other.language)
                 && Objects.equal(this.title, other.title)
+                && Objects.equal(this.motto, other.motto)
                 && Objects.equal(this.image, other.image);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.id, this.language, this.title, this.image);
+        return Objects.hashCode(this.id, this.language, this.title, this.motto, this.image);
     }
 }

@@ -14,6 +14,8 @@ public interface CategoryConstants {
 
     String TITLE = "title";
 
+    String MOTTO = "motto";
+
     String BODY = "body";
 
     String IMAGE_TYPE = "ro.leje.model.entity.ImageEntity";

@@ -22,15 +22,20 @@ public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
         String query = "select new ro.leje.model.vo.Article(a.id, "
                 + "'" + language + "', "
                 + "dTitle." + language + ", "
+                + "dMotto." + language + ", "
                 + "dBody." + language + ", "
                 + "a.status, a.date) "
                 + "from ro.leje.model.entity.ArticleEntity a, "
                 + "ro.leje.model.entity.DictionaryEntity dTitle, "
+                + "ro.leje.model.entity.DictionaryEntity dMotto, "
                 + "ro.leje.model.entity.DictionaryEntity dBody "
                 + "where a.id = :articleId "
                 + "and dTitle.objectId = a.id "
                 + "and dTitle.objectType = :articleObjectType "
                 + "and dTitle.category = :titleCategory "
+                + "and dMotto.objectId = a.id "
+                + "and dMotto.objectType = :articleObjectType "
+                + "and dMotto.category = :mottoCategory "
                 + "and dBody.objectId = a.id "
                 + "and dBody.objectType = :articleObjectType "
                 + "and dBody.category = :bodyCategory ";
@@ -39,6 +44,7 @@ public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
                 .setLong("articleId", articleId)
                 .setString("articleObjectType", CategoryConstants.ARTICLE_TYPE)
                 .setString("titleCategory", CategoryConstants.TITLE)
+                .setString("mottoCategory", CategoryConstants.MOTTO)
                 .setString("bodyCategory", CategoryConstants.BODY)
                 .uniqueResult();
     }
@@ -46,18 +52,24 @@ public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
     @Override
     @SuppressWarnings("unchecked")
     public List<Article> find(final String language) {
-        String query = "select new ro.leje.model.vo.Article(d.objectId, "
+        String query = "select new ro.leje.model.vo.Article(a.id, "
                 + "'" + language + "', "
-                + "d." + language + ", '', a.status, a.date) "
+                + "dTitle." + language + ", "
+                + "dMotto." + language + ", '', a.status, a.date) "
                 + "from ro.leje.model.entity.ArticleEntity a, "
-                + "ro.leje.model.entity.DictionaryEntity d "
-                + "where d.objectType = :articleObjectType "
-                + "and d.category = :titleCategory "
-                + "and a.id = d.objectId ";
+                + "ro.leje.model.entity.DictionaryEntity dTitle, "
+                + "ro.leje.model.entity.DictionaryEntity dMotto "
+                + "where dTitle.objectType = :articleObjectType "
+                + "and dTitle.category = :titleCategory "
+                + "and dTitle.objectId = a.id "
+                + "and dMotto.objectType = :articleObjectType "
+                + "and dMotto.category = :mottoCategory "
+                + "and dMotto.objectId = a.id ";
         return getCurrentSession()
                 .createQuery(query)
                 .setString("articleObjectType", CategoryConstants.ARTICLE_TYPE)
                 .setString("titleCategory", CategoryConstants.TITLE)
+                .setString("mottoCategory", CategoryConstants.MOTTO)
                 .list();
     }
 
@@ -65,14 +77,18 @@ public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
     @SuppressWarnings("unchecked")
     public List<HomeArticle> findForHome(final String language) {
         String query = "select new ro.leje.model.vo.HomeArticle( "
-                + "a.id, '" + language + "', d." + language + ", i.fileName "
-                + ") "
+                + "a.id, '" + language + "', dTitle." + language
+                + ", dMotto." + language + ", i.fileName ) "
                 + "from ro.leje.model.entity.ImageEntity i inner join i.article a, "
-                + "ro.leje.model.entity.DictionaryEntity d "
+                + "ro.leje.model.entity.DictionaryEntity dTitle, "
+                + "ro.leje.model.entity.DictionaryEntity dMotto "
                 + "where i.cover = :cover "
-                + "and d.objectId = a.id "
-                + "and d.objectType = :articleObjectType "
-                + "and d.category = :titleCategory "
+                + "and dTitle.objectId = a.id "
+                + "and dTitle.objectType = :articleObjectType "
+                + "and dTitle.category = :titleCategory "
+                + "and dMotto.objectId = a.id "
+                + "and dMotto.objectType = :articleObjectType "
+                + "and dMotto.category = :mottoCategory "
                 + "and a.status = :published "
                 + "order by a.date desc ";
         return getCurrentSession()
@@ -80,6 +96,7 @@ public class ArticleDAOImpl extends BaseDAOImpl implements ArticleDAO {
                 .setBoolean("cover", true)
                 .setString("articleObjectType", CategoryConstants.ARTICLE_TYPE)
                 .setString("titleCategory", CategoryConstants.TITLE)
+                .setString("mottoCategory", CategoryConstants.MOTTO)
                 .setString("published", StatusConstants.PUBLISHED)
                 .list();
     }
