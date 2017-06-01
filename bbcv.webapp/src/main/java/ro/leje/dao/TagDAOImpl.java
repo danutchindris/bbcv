@@ -14,7 +14,7 @@ public class TagDAOImpl extends BaseDAOImpl implements TagDAO {
 
     @Override
     public List<Tag> find() {
-        String query = "select new ro.leje.model.vo.Tag(t.id, t.text) "
+        String query = "select new ro.leje.model.vo.Tag(t.id, t.text, t.type) "
                 + "from ro.leje.model.entity.TagEntity t ";
         return getCurrentSession()
                 .createQuery(query)

@@ -33,6 +33,9 @@ public class TagEntity {
     @Column(name = "TEXT")
     private String text;
 
+    @Column(name = "TYPE")
+    private String type;
+
     @ManyToMany(targetEntity = ArticleEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "ARTICLE_TAG", joinColumns = {
             @JoinColumn(name = "TAG_ID", nullable = false)
@@ -58,6 +61,14 @@ public class TagEntity {
         this.text = text;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public Set<ArticleEntity> getArticles() {
         return articles;
     }
@@ -74,6 +85,7 @@ public class TagEntity {
         return MoreObjects.toStringHelper(this)
                 .add("id", id)
                 .add("text", text)
+                .add("type", type)
                 .toString();
     }
 }

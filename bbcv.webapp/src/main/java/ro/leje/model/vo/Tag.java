@@ -15,11 +15,14 @@ public class Tag implements Serializable {
     @NotEmpty(message = "{error.text.empty}")
     private String text;
 
+    private String type;
+
     public Tag() {}
 
-    public Tag(final long id, final String text) {
+    public Tag(final long id, final String text, final String type) {
         this.id = id;
         this.text = text;
+        this.type = type;
     }
 
     public long getId() {
@@ -36,5 +39,13 @@ public class Tag implements Serializable {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -15,6 +15,7 @@ import ro.leje.service.TagService;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -33,6 +34,7 @@ public class TagAdmin extends AbstractAdmin {
                           final @AuthenticationPrincipal CustomUserDetails userDetails) {
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
+        model.addAttribute("types", Arrays.asList("continent", "country", "destination", "tag"));
         model.addAttribute(AUTHENTICATED_USER_FIRST_NAME, userDetails != null ? userDetails.getFirstName() : null);
         return "admin/tags";
     }

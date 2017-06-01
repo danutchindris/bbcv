@@ -31,6 +31,7 @@ public class TagServiceImpl implements TagService {
     public Optional<String> create(final Tag tag) {
         final TagEntity entity = new TagEntity();
         entity.setText(tag.getText());
+        entity.setType(tag.getType());
         final Optional<Long> entityId = Optional.ofNullable(tagDAO.create(entity));
         return entityId.map(id -> "item.created");
     }
@@ -41,6 +42,7 @@ public class TagServiceImpl implements TagService {
         final Optional<TagEntity> entity = tagDAO.findEntity(tag.getId(), TagEntity.class);
         return entity.map(t -> {
             t.setText(tag.getText());
+            t.setType(tag.getType());
             tagDAO.update(t);
             return "item.updated";
         });

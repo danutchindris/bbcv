@@ -138,7 +138,7 @@ public class ArticleServiceImpl implements ArticleService {
         final Optional<ArticleEntity> entity = articleDAO.findEntity(articleId, ArticleEntity.class);
         return entity.map(e -> e.getTags()
                 .stream()
-                .map(tag -> new Tag(tag.getId(), tag.getText()))
+                .map(tag -> new Tag(tag.getId(), tag.getText(), tag.getType()))
                 .collect(Collectors.toList())).orElse(new ArrayList<>());
     }
 

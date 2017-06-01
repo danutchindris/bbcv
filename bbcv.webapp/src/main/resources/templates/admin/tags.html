@@ -43,6 +43,7 @@
                 <tr>
                     <th data-field="id" data-sortable="true" data-th-text="#{id}">ID</th>
                     <th data-field="text" data-sortable="true" data-th-text="#{text}">Name</th>
+                    <th data-field="type" data-sortable="true" data-th-text="#{type}">Type</th>
                     <th data-field="action"
                         data-align="center"
                         data-formatter="actionFormatter"
@@ -67,6 +68,13 @@
                 <div id="textFormGroup" class="form-group">
                     <label data-th-text="#{text}">Text</label>
                     <input type="text" class="form-control" name="text" placeholder="Text" data-th-attr="placeholder=#{text}" />
+                </div>
+                <div id="typeFormGroup" class="form-group">
+                    <label data-th-text="#{type}" style="padding-right: 2em;">Item</label>
+                    <select id="typesSelect" name="types">
+                        <option value="-1" data-th-text="#{choose.a.type}">Option</option>
+                        <option data-th-each="type : ${types}" data-th-attr="value=${type}" data-th-text="${type}">Option</option>
+                    </select>
                 </div>
             </div>
             <div class="modal-footer">
@@ -153,6 +161,7 @@
                 $addOrEditModal.find('input[name]').each(function () {
                     row[$(this).attr('name')] = $(this).val();
                 });
+                row['type'] = $('#typesSelect option:selected').attr('value');
 
                 // required by Spring Security
                 var header = $("meta[name='_csrf_header']").attr("content");
@@ -228,16 +237,19 @@
 
             row = row || {
                 id: 0,
-                text: ''
+                text: '',
+                type: '-1'
             };
 
             $addOrEditModal.data('id', row.id);
             $addOrEditModal.data('text', row.text);
+            $addOrEditModal.data('type', row.type);
             $addOrEditModal.find('.modal-title').text(title);
 
             for (var name in row) {
                 $addOrEditModal.find('input[name="' + name + '"]').val(row[name]);
             }
+            $addOrEditModal.find('#typesSelect').val(row.type);
 
             $addOrEditModal.modal('show');
         }
