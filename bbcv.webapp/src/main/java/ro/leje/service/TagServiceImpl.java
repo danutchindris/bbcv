@@ -63,4 +63,10 @@ public class TagServiceImpl implements TagService {
             return message;
         });
     }
+
+    @Override
+    @Transactional
+    public List<Tag> findByType(final List<String> types) {
+        return tagDAO.findByType(types);
+    }
 }

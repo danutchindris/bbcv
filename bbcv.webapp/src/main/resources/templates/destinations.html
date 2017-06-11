@@ -1,0 +1,110 @@
+<!doctype html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="../static/assets/img/favicon.ico" data-th-href="@{/assets/img/favicon.ico}" />
+    <!-- for IE; IE=edge means IE should use the latest (edge) version of its rendering engine;
+    chrome=1 means IE should use the Chrome rendering engine if installed -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/bootstrap.css" data-th-href="@{/assets/css/bootstrap.css}" />
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/gsdk.css" data-th-href="@{/assets/css/gsdk.css}" />
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/examples.css" data-th-href="@{/assets/css/examples.css}" />
+    <!-- fonts and icons -->
+    <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Grand+Hotel" />
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/pe-icon-7-stroke.css" data-th-href="@{/assets/css/pe-icon-7-stroke.css}" />
+
+    <script type="text/javascript" src="../static/assets/js/jquery-1.11.2.min.js" data-th-src="@{/assets/js/jquery-1.11.2.min.js}"></script>
+    <script type="text/javascript" src="../static/assets/js/bootstrap.min.js" data-th-src="@{/assets/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="../static/assets/js/gsdk.js" data-th-src="@{/assets/js/gsdk.js}"></script>
+    <script type="text/javascript" src="../static/assets/js/jquery-ui-1.10.4.custom.min.js" data-th-src="@{/assets/js/jquery-ui-1.10.4.custom.min.js}"></script>
+
+    <script type="text/javascript" src="../../static/assets/epiceditor/js/epiceditor.min.js"
+            data-th-src="@{/assets/epiceditor/js/epiceditor.min.js}"></script>
+
+    <title th:text="#{site}">Site</title>
+
+</head>
+
+<body class="blog-page">
+
+<div th:replace="common/header :: navigation-bar"></div>
+
+<div class="wrapper">
+    <div class="parallax filter-black">
+        <div class="parallax-image">
+            <img th:src="@{/assets/img/blog_page8.jpg}" />
+        </div>
+        <div class="small-info">
+            <h1 th:text="#{destinations}">Header 1</h1>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div th:each="destination,iterator : ${destinations}" th:attr="class='col-md-' + ${destination.card}" class="col-md-4">
+                    <div class="card card-plain">
+                        <div class="image">
+                            <img src="#" th:src="@{/assets/img/sidebar-1.jpg}" />
+                            <div class="filter">
+                                <a class="card-link" href="#" th:href="@{/articles}">
+                                    <button type="button" class="btn btn-neutral btn-simple">
+                                        <i class="fa fa-align-left"></i> <span th:text="${destination.text}">Destination</span>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <a class="card-link" href="#" th:href="@{/articles}">
+                                <h4 class="title" >
+                                    <span th:text="${destination.text}">Destination</span>
+                                </h4>
+                            </a>
+                        </div>
+                    </div> <!-- end card -->
+                </div> <!-- end col -->
+            </div>
+        </div>
+        <script data-th-inline="text">
+            /*<![CDATA[*/
+                $(function() {
+                });
+            /*]]>*/
+        </script>
+    </div>
+    <div th:replace="common/footer :: footer-area"></div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+var big_image;
+$().ready(function(){
+    responsive = $(window).width();
+
+    $(window).on('scroll', gsdk.checkScrollForTransparentNavbar);
+
+    if (responsive >= 768) {
+        big_image = $('.parallax-image').find('img');
+
+        $(window).on('scroll',function(){
+            parallax();
+        });
+    }
+
+});
+
+var parallax = function() {
+    var current_scroll = $(this).scrollTop();
+
+    oVal = ($(window).scrollTop() / 3);
+    big_image.css('top',oVal);
+};
+</script>
+</html>

@@ -18,4 +18,6 @@ public interface TagService {
     Optional<String> update(final Tag tag);
 
     Optional<String> delete(final long tagId);
+
+    List<Tag> findByType(final List<String> types);
 }

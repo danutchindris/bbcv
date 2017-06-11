@@ -4,11 +4,13 @@ package ro.leje.util;
  * @author Danut Chindris
  * @since August 26, 2015
  */
-public interface ConfigConstants {
+public class ConfigConstants {
 
-    String TEMPLATES_PREFIX = "/templates/";
-    String TEMPLATES_SUFFIX = ".html";
+    private ConfigConstants() {}
 
-    String SUCCESS = "SUCCESS";
-    String FAILURE = "FAILURE";
+    public static final String TEMPLATES_PREFIX = "/templates/";
+    public static final String TEMPLATES_SUFFIX = ".html";
+
+    public static final String SUCCESS = "SUCCESS";
+    public static final String FAILURE = "FAILURE";
 }

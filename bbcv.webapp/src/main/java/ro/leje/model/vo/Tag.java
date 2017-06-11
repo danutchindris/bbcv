@@ -17,6 +17,8 @@ public class Tag implements Serializable {
 
     private String type;
 
+    private int card;
+
     public Tag() {}
 
     public Tag(final long id, final String text, final String type) {
@@ -47,5 +49,13 @@ public class Tag implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getCard() {
+        return card;
+    }
+
+    public void setCard(int card) {
+        this.card = card;
     }
 }

@@ -11,4 +11,6 @@ import java.util.List;
 public interface TagDAO extends BaseDAO {
 
     List<Tag> find();
+
+    List<Tag> findByType(final List<String> types);
 }

@@ -20,4 +20,16 @@ public class TagDAOImpl extends BaseDAOImpl implements TagDAO {
                 .createQuery(query)
                 .list();
     }
+
+    @Override
+    public List<Tag> findByType(final List<String> types) {
+        String query = "select new ro.leje.model.vo.Tag(t.id, t.text, t.type) "
+                + "from ro.leje.model.entity.TagEntity t "
+                + "where t.type in (:types) "
+                + "order by t.text ";
+        return getCurrentSession()
+                .createQuery(query)
+                .setParameterList("types", types)
+                .list();
+    }
 }
