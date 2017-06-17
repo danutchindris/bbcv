@@ -6,9 +6,11 @@ import ro.leje.model.entity.ArticleEntity;
 import ro.leje.model.entity.TagEntity;
 import ro.leje.model.entity.UserEntity;
 import ro.leje.model.vo.Article;
+import ro.leje.model.vo.Dictionary;
 import ro.leje.model.vo.HomeArticle;
 import ro.leje.model.vo.Tag;
 import ro.leje.model.vo.User;
+import ro.leje.util.CategoryConstants;
 import ro.leje.util.Strings;
 import ro.leje.util.constant.StatusConstants;
 
@@ -134,12 +136,30 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     @Transactional
-    public List<Tag> findTags(final long articleId) {
+    public List<Tag> findTags(final long articleId, final String language) {
         final Optional<ArticleEntity> entity = articleDAO.findEntity(articleId, ArticleEntity.class);
         return entity.map(e -> e.getTags()
                 .stream()
-                .map(tag -> new Tag(tag.getId(), tag.getText(), tag.getType()))
+                .map(tag -> retrieveTag(tag.getId(), language, tag.getType()))
                 .collect(Collectors.toList())).orElse(new ArrayList<>());
+    }
+
+    private Tag retrieveTag(final long id, final String language, final String type) {
+        final String text = dictionaryService.find(CategoryConstants.TAG_TYPE, id, CategoryConstants.TEXT)
+                .map(d -> retrieveTranslation(d, language)).orElse("");
+        return new Tag(id, language, text, type);
+    }
+
+    private String retrieveTranslation(final Dictionary dictionary, final String language) {
+        final String result;
+        if (CategoryConstants.EN.equalsIgnoreCase(language)) {
+            result = dictionary.getEn();
+        } else if (CategoryConstants.RO.equalsIgnoreCase(language)) {
+            result = dictionary.getRo();
+        } else {
+            result = dictionary.getEn();
+        }
+        return result;
     }
 
     private boolean isAssigned(final long articleId, final long tagId) {

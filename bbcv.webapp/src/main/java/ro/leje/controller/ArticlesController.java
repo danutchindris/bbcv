@@ -53,7 +53,7 @@ public class ArticlesController {
         final Optional<Image> cover = imageService.findCover(articleId, locale.getLanguage());
         cover.ifPresent(c -> model.addAttribute("cover", c));
         model.addAttribute("social", "");
-        model.addAttribute("tags", articleService.findTags(articleId));
+        model.addAttribute("tags", articleService.findTags(articleId, locale.getLanguage()));
         model.addAttribute("authors", authors);
         return "article-details";
     }

@@ -29,7 +29,7 @@ public interface ArticleService {
 
     Optional<String> delete(long articleId);
 
-    List<Tag> findTags(final long articleId);
+    List<Tag> findTags(final long articleId, final String language);
 
     String assignTag(final long articleId, final long tagId);
 

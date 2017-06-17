@@ -12,17 +12,22 @@ public class Tag implements Serializable {
 
     private long id;
 
+    private String language;
+
     @NotEmpty(message = "{error.text.empty}")
     private String text;
 
+    @NotEmpty(message = "{error.type.empty}")
     private String type;
 
     private int card;
 
-    public Tag() {}
+    public Tag() {
+    }
 
-    public Tag(final long id, final String text, final String type) {
+    public Tag(final long id, final String language, final String text, final String type) {
         this.id = id;
+        this.language = language;
         this.text = text;
         this.type = type;
     }
@@ -33,6 +38,14 @@ public class Tag implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     public String getText() {

@@ -65,14 +65,21 @@
                 <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body">
+                <div id="languageFormGroup" class="form-group">
+                    <label data-th-text="#{language}" style="padding-right: 2em;">Item</label>
+                    <select id="language" name="language">
+                        <option value="" data-th-text="#{choose.a.language}">Option</option>
+                        <option data-th-each="locale : ${locales}" data-th-attr="value=${locale.value.code}" data-th-text="${locale.value.name}"></option>
+                    </select>
+                </div>
                 <div id="textFormGroup" class="form-group">
                     <label data-th-text="#{text}">Text</label>
-                    <input type="text" class="form-control" name="text" placeholder="Text" data-th-attr="placeholder=#{text}" />
+                    <input id="text" type="text" class="form-control" name="text" placeholder="Text" data-th-attr="placeholder=#{text}" />
                 </div>
                 <div id="typeFormGroup" class="form-group">
                     <label data-th-text="#{type}" style="padding-right: 2em;">Item</label>
                     <select id="typesSelect" name="types">
-                        <option value="-1" data-th-text="#{choose.a.type}">Option</option>
+                        <option value="" data-th-text="#{choose.a.type}">Option</option>
                         <option data-th-each="type : ${types}" data-th-attr="value=${type}" data-th-text="${type}">Option</option>
                     </select>
                 </div>
@@ -108,6 +115,14 @@
         });
 
         var API_URL = '/admin/tags/json';
+
+        // default row value
+        var editRow = {
+            id: 0,
+            language: '',
+            text: '',
+            type: ''
+        };
 
         var $table = $('#table').bootstrapTable({url: API_URL, locale: '[[${#locale}]]', icons: {
                             refresh: 'fa fa-refresh',
@@ -162,6 +177,7 @@
                     row[$(this).attr('name')] = $(this).val();
                 });
                 row['type'] = $('#typesSelect option:selected').attr('value');
+                row['language'] = $('#language option:selected').attr('value');
 
                 // required by Spring Security
                 var header = $("meta[name='_csrf_header']").attr("content");
@@ -228,6 +244,37 @@
                     }
                 });
             });
+
+            // when language is changed, update tag text
+            $('#language').change(function() {
+
+                var info = {
+                    id: $addOrEditModal.data('id'),
+                    language: $(this).val().toLowerCase()
+                };
+
+                // required by Spring Security
+                var header = $("meta[name='_csrf_header']").attr("content");
+                var token = $("meta[name='_csrf']").attr("content");
+
+                $.ajax({
+                    type: "put",
+                    url: "/admin/tag/language",
+                    contentType: 'application/json',
+                    data: JSON.stringify(info),
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success: function(response) {
+                        // display the retrieved tag text
+                        // for the newly selected language
+                        $("#text").val(response);
+                    },
+                    error: function() {
+                        alert('Error');
+                    }
+                });
+            });
         });
 
         function showAddOrEditModal(title, row) {
@@ -237,11 +284,13 @@
 
             row = row || {
                 id: 0,
+                language: '',
                 text: '',
-                type: '-1'
+                type: ''
             };
 
             $addOrEditModal.data('id', row.id);
+            $addOrEditModal.data('language', row.language.toUpperCase());
             $addOrEditModal.data('text', row.text);
             $addOrEditModal.data('type', row.type);
             $addOrEditModal.find('.modal-title').text(title);
@@ -250,6 +299,7 @@
                 $addOrEditModal.find('input[name="' + name + '"]').val(row[name]);
             }
             $addOrEditModal.find('#typesSelect').val(row.type);
+            $addOrEditModal.find('#language').val(row.language.toUpperCase());
 
             $addOrEditModal.modal('show');
         }

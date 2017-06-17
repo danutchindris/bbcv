@@ -4,23 +4,34 @@ package ro.leje.util;
  * @author Danut Chindris
  * @since December 21, 2015
  */
-public interface CategoryConstants {
+public class CategoryConstants {
 
-    String EN = "en";
+    private CategoryConstants() {
+    }
 
-    String RO = "ro";
+    public static final String EN = "en";
 
-    String ARTICLE_TYPE = "ro.leje.model.entity.ArticleEntity";
+    public static final String RO = "ro";
 
-    String TITLE = "title";
+    public static final String ARTICLE_TYPE = "ro.leje.model.entity.ArticleEntity";
 
-    String MOTTO = "motto";
+    public static final String TITLE = "title";
 
-    String BODY = "body";
+    public static final String MOTTO = "motto";
 
-    String IMAGE_TYPE = "ro.leje.model.entity.ImageEntity";
+    public static final String BODY = "body";
 
-    String DEFAULT_TITLE_EN = "Default Title";
+    public static final String IMAGE_TYPE = "ro.leje.model.entity.ImageEntity";
 
-    String DEFAULT_TITLE_RO = "Titlu prestabilit";
+    public static final String DEFAULT_TITLE_EN = "Default Title";
+
+    public static final String DEFAULT_TITLE_RO = "Titlu prestabilit";
+
+    public static final String TAG_TYPE = "ro.leje.model.entity.TagEntity";
+
+    public static final String TEXT = "text";
+
+    public static final String DEFAULT_TEXT_EN = "Default Text";
+
+    public static final String DEFAULT_TEXT_RO = "Text prestabilit";
 }

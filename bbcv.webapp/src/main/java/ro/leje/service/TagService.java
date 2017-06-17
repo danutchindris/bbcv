@@ -11,7 +11,7 @@ import java.util.Optional;
  */
 public interface TagService {
 
-    List<Tag> find();
+    List<Tag> find(final String language);
 
     Optional<String> create(final Tag tag);
 
@@ -19,5 +19,7 @@ public interface TagService {
 
     Optional<String> delete(final long tagId);
 
-    List<Tag> findByType(final List<String> types);
+    List<Tag> findByType(final List<String> types, final String language);
+
+    Optional<Tag> find(final long id, final String language);
 }

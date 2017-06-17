@@ -10,7 +10,9 @@ import java.util.List;
  */
 public interface TagDAO extends BaseDAO {
 
-    List<Tag> find();
+    List<Tag> find(final String language);
 
-    List<Tag> findByType(final List<String> types);
+    List<Tag> findByType(final List<String> types, final String language);
+
+    Tag find(final long id, final String language);
 }

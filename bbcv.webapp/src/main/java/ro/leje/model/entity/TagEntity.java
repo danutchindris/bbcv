@@ -30,9 +30,6 @@ public class TagEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "TEXT")
-    private String text;
-
     @Column(name = "TYPE")
     private String type;
 
@@ -51,14 +48,6 @@ public class TagEntity {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 
     public String getType() {
@@ -84,7 +73,6 @@ public class TagEntity {
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("id", id)
-                .add("text", text)
                 .add("type", type)
                 .toString();
     }

@@ -17,6 +17,8 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 
 /**
  * @author Danut Chindris
@@ -43,8 +45,8 @@ public class TagAdmin extends AbstractAdmin {
     @PreAuthorize("hasRole('permission_admin_article_list')")
     public
     @ResponseBody
-    List<Tag> find() {
-        return tagService.find();
+    List<Tag> find(final Locale locale) {
+        return tagService.find(locale.getLanguage());
     }
 
     @RequestMapping(value = "/tag", method = RequestMethod.POST)
@@ -69,5 +71,17 @@ public class TagAdmin extends AbstractAdmin {
     @ResponseBody
     String delete(@RequestParam Long tagId) {
         return tagService.delete(tagId).orElse("item.not.deleted");
+    }
+
+    @RequestMapping(value = "/tag/language", method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('permission_admin_article_list')")
+    public
+    @ResponseBody
+    String changeLanguage(@RequestBody Tag tag) {
+        // get the text translation for the newly selected language
+        return Optional.ofNullable(tag)
+                .filter(t -> t.getId() != 0)
+                .flatMap(t -> tagService.find(t.getId(), t.getLanguage()))
+                .map(t -> t.getText()).orElse("");
     }
 }

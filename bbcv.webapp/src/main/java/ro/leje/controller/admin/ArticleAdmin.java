@@ -230,11 +230,11 @@ public class ArticleAdmin extends AbstractAdmin {
     @RequestMapping("/article/tags")
     @PreAuthorize("hasRole('permission_admin_article_list')")
     public String displayTags(@RequestParam final Long articleId, final Model model,
-                              final @AuthenticationPrincipal CustomUserDetails userDetails) {
+                              final @AuthenticationPrincipal CustomUserDetails userDetails, final Locale locale) {
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
         model.addAttribute("articleId", articleId);
-        model.addAttribute("tags", tagService.find());
+        model.addAttribute("tags", tagService.find(locale.getLanguage()));
         model.addAttribute(AUTHENTICATED_USER_FIRST_NAME, userDetails != null ? userDetails.getFirstName() : null);
         return "admin/article-tags";
     }
@@ -243,8 +243,8 @@ public class ArticleAdmin extends AbstractAdmin {
     @PreAuthorize("hasRole('permission_admin_article_list')")
     public
     @ResponseBody
-    List<Tag> findTags(@RequestParam final Long articleId) {
-        return articleService.findTags(articleId);
+    List<Tag> findTags(@RequestParam final Long articleId, final Locale locale) {
+        return articleService.findTags(articleId, locale.getLanguage());
     }
 
     @RequestMapping(value = "/article/tags", method = RequestMethod.POST)
