@@ -37,7 +37,7 @@ public class TagDAOImpl extends BaseDAOImpl implements TagDAO {
                 + "and d.objectId = t.id "
                 + "and d.objectType = :tagObjectType "
                 + "and d.category = :textCategory "
-                + "order by t.text ";
+                + "order by d." + language;
         return getCurrentSession()
                 .createQuery(query)
                 .setParameterList("types", types)
