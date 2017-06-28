@@ -22,13 +22,14 @@ public class UniqueCoverValidator implements ConstraintValidator<UniqueCover, Im
     public UniqueCoverValidator() {
     }
 
-    public void initialize(UniqueCover constraint) {
+    @Override
+    public void initialize(final UniqueCover constraint) {
     }
 
-    public boolean isValid(Image image, ConstraintValidatorContext context) {
+    @Override
+    public boolean isValid(final Image image, final ConstraintValidatorContext context) {
         final String language = LocaleContextHolder.getLocale().getLanguage();
-        final Optional<Long> articleId = imageService.findArticle(image.getId());
-        final Optional<Image> cover = articleId.flatMap(id -> imageService.findCover(id, language));
+        final Optional<Image> cover = imageService.findCover(image.getObjectType(), image.getObjectId(), language);
         return !image.getCover() || cover.map(i -> i.getId() == image.getId()).orElse(true);
     }
 }

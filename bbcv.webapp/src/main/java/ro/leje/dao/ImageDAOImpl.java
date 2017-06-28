@@ -19,12 +19,12 @@ public class ImageDAOImpl extends BaseDAOImpl implements ImageDAO {
                 + "'" + language + "', "
                 + "i.fileName, "
                 + "d." + language + ","
-                + "i.cover) "
+                + "i.cover, i.objectType, i.objectId) "
                 + "from ro.leje.model.entity.ImageEntity i, "
                 + "ro.leje.model.entity.DictionaryEntity d "
                 + "where i.id = :imageId "
-                + "and d.objectId = i.id "
                 + "and d.objectType = :imageObjectType "
+                + "and d.objectId = i.id "
                 + "and d.category = :titleCategory";
         return (Image) getCurrentSession()
                 .createQuery(query)
@@ -37,42 +37,47 @@ public class ImageDAOImpl extends BaseDAOImpl implements ImageDAO {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Image> findImages(long articleId, String language) {
+    public List<Image> findImages(final String objectType, final long objectId, String language) {
         String query = "select new ro.leje.model.vo.Image(i.id, "
                 + "'" + language + "', "
                 + "i.fileName, "
                 + "d." + language + ","
-                + "i.cover) "
+                + "i.cover, i.objectType, i.objectId) "
                 + "from ro.leje.model.entity.ImageEntity i, "
                 + "ro.leje.model.entity.DictionaryEntity d "
-                + "where i.article.id = :articleId "
-                + "and d.objectId = i.id "
+                + "where i.objectType = :objectType "
+                + "and i.objectId = :objectId "
                 + "and d.objectType = :imageObjectType "
+                + "and d.objectId = i.id "
                 + "and d.category = :titleCategory";
         return getCurrentSession()
                 .createQuery(query)
-                .setLong("articleId", articleId)
+                .setString("objectType", objectType)
+                .setLong("objectId", objectId)
                 .setString("imageObjectType", CategoryConstants.IMAGE_TYPE)
                 .setString("titleCategory", CategoryConstants.TITLE)
                 .list();
     }
 
-    public Image findCover(final long articleId, final String language) {
+    @Override
+    public Image findCover(final String objectType, final long objectId, final String language) {
         String query = "select new ro.leje.model.vo.Image(i.id, "
                 + "'" + language + "', "
                 + "i.fileName, "
                 + "d." + language + ","
-                + "i.cover) "
+                + "i.cover, i.objectType, i.objectId) "
                 + "from ro.leje.model.entity.ImageEntity i, "
                 + "ro.leje.model.entity.DictionaryEntity d "
-                + "where i.article.id = :articleId "
+                + "where i.objectType = :objectType "
+                + "and i.objectId = :objectId "
                 + "and i.cover = :cover "
-                + "and d.objectId = i.id "
                 + "and d.objectType = :imageObjectType "
+                + "and d.objectId = i.id "
                 + "and d.category = :titleCategory";
         return (Image) getCurrentSession()
                 .createQuery(query)
-                .setLong("articleId", articleId)
+                .setString("objectType", objectType)
+                .setLong("objectId", objectId)
                 .setBoolean("cover", true)
                 .setString("imageObjectType", CategoryConstants.IMAGE_TYPE)
                 .setString("titleCategory", CategoryConstants.TITLE)

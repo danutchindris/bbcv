@@ -13,7 +13,7 @@ public class CategoryConstants {
 
     public static final String RO = "ro";
 
-    public static final String ARTICLE_TYPE = "ro.leje.model.entity.ArticleEntity";
+    public static final String ARTICLE_TYPE = "article";
 
     public static final String TITLE = "title";
 
@@ -21,13 +21,13 @@ public class CategoryConstants {
 
     public static final String BODY = "body";
 
-    public static final String IMAGE_TYPE = "ro.leje.model.entity.ImageEntity";
+    public static final String IMAGE_TYPE = "image";
 
     public static final String DEFAULT_TITLE_EN = "Default Title";
 
     public static final String DEFAULT_TITLE_RO = "Titlu prestabilit";
 
-    public static final String TAG_TYPE = "ro.leje.model.entity.TagEntity";
+    public static final String TAG_TYPE = "tag";
 
     public static final String TEXT = "text";
 

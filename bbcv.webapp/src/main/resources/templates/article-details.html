@@ -39,7 +39,7 @@
 <div class="wrapper">
     <div class="parallax filter-black">
         <div class="parallax-image">
-            <img src="../static/assets/img/blog_page8.jpg" data-th-attr="src=@{/images/{id}/{fileName}(id=${article.id},fileName=${cover.fileName})}" />
+            <img src="../static/assets/img/blog_page8.jpg" data-th-attr="src=@{/images/article/{id}/{fileName}(id=${article.id},fileName=${cover.fileName})}" />
         </div>
         <div class="small-info">
             <h1 th:text="${article.title}">Header 1</h1>
@@ -114,7 +114,7 @@
                     $('.article-content img').wrap('<div class="card card-plain"><div class="image"></div></div>');
 
                     $('.article-content img').attr('src', function(index, src) {
-                        return '/images/[[${article.id}]]/' + src;
+                        return '/images/article/[[${article.id}]]/' + src;
                     });
                 });
             /*]]>*/

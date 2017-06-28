@@ -41,7 +41,7 @@
                 <div th:each="article,iterator : ${articles}" class="col-md-4">
                     <div class="card card-plain">
                         <div class="image">
-                            <img src="#" th:src="@{'/images/' + ${article.id} + '/' + ${article.image}}" />
+                            <img src="#" th:src="@{'/images/article/' + ${article.id} + '/' + ${article.image}}" />
                             <div class="filter">
                                 <a class="card-link" href="#" th:href="@{'/articles/' + ${article.id} + '/' + ${article.titleInUrl}}">
                                     <button type="button" class="btn btn-neutral btn-simple">

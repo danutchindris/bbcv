@@ -48,41 +48,39 @@ public class ImageAdmin extends AbstractAdmin {
     @Resource
     private ImageService imageService;
 
-    /**
-     * Displays the images list for an article
-     */
     @RequestMapping("/images")
     @PreAuthorize("hasRole('permission_admin_article_list')")
-    public String displayImages(@RequestParam Long articleId, Model model,
-                                @AuthenticationPrincipal CustomUserDetails userDetails) {
+    public String displayImages(@RequestParam final String objectType, @RequestParam final Long objectId,
+                                final Model model, @AuthenticationPrincipal final CustomUserDetails userDetails) {
         languageDelegate.addAvailableLanguages(model);
         languageDelegate.addNotAvailableLanguages(model);
-        model.addAttribute(ID, articleId);
+        model.addAttribute(ID, objectId);
         model.addAttribute(AUTHENTICATED_USER_FIRST_NAME, userDetails != null ? userDetails.getFirstName() : null);
-        return "admin/images";
+        return "admin/" + objectType + "-images";
     }
 
     @RequestMapping("/images/json")
     @PreAuthorize("hasRole('permission_admin_article_list')")
     public
     @ResponseBody
-    List<Image> findImages(@RequestParam Long articleId, Locale locale) {
-        return imageService.findImages(Optional.ofNullable(articleId), locale.getLanguage());
+    List<Image> findImages(@RequestParam final String objectType, @RequestParam final Long objectId, final Locale locale) {
+        return imageService.findImages(objectType, objectId, locale.getLanguage());
     }
 
     @RequestMapping(value = "/image/upload", method = RequestMethod.POST)
     @PreAuthorize("hasRole('permission_admin_create_article')")
     public
     @ResponseBody
-    Long upload(@RequestParam Long articleId, @RequestParam("file") MultipartFile file) {
+    Long upload(@RequestParam final String objectType, @RequestParam final Long objectId,
+                @RequestParam("file") final MultipartFile file) {
         final Path dirPath = Paths.get(settings.getImagesLocation()
-                + File.separator + articleId);
+                + File.separator + objectType + File.separator + objectId);
         if (!dirPath.toFile().exists()) {
             dirPath.toFile().mkdirs();
         }
         // get the file name and build the local file path
         final Path path = Paths.get(settings.getImagesLocation()
-                        + File.separator + articleId + File.separator,
+                        + File.separator + objectType + File.separator + objectId + File.separator,
                 file.getOriginalFilename());
         try {
             // save the file locally
@@ -95,7 +93,7 @@ public class ImageAdmin extends AbstractAdmin {
         }
         final Image image = new Image();
         image.setFileName(file.getOriginalFilename());
-        final Long imageId = imageService.create(image, articleId);
+        final Long imageId = imageService.create(image, objectType, objectId);
         return imageId;
     }
 

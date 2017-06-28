@@ -10,6 +10,7 @@ import ro.leje.model.vo.Image;
 import ro.leje.model.vo.User;
 import ro.leje.service.ArticleService;
 import ro.leje.service.ImageService;
+import ro.leje.util.CategoryConstants;
 
 import javax.annotation.Resource;
 import java.time.ZoneId;
@@ -50,7 +51,8 @@ public class ArticlesController {
         });
         final List<User> authors = articleService.findAuthors(articleId);
         article.ifPresent(a -> model.addAttribute("article", a));
-        final Optional<Image> cover = imageService.findCover(articleId, locale.getLanguage());
+        final Optional<Image> cover = imageService.findCover(CategoryConstants.ARTICLE_TYPE,
+                articleId, locale.getLanguage());
         cover.ifPresent(c -> model.addAttribute("cover", c));
         model.addAttribute("social", "");
         model.addAttribute("tags", articleService.findTags(articleId, locale.getLanguage()));

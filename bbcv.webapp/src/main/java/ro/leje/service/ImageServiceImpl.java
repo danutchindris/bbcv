@@ -3,7 +3,6 @@ package ro.leje.service;
 import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Service;
 import ro.leje.dao.ImageDAO;
-import ro.leje.model.entity.ArticleEntity;
 import ro.leje.model.entity.ImageEntity;
 import ro.leje.model.vo.Dictionary;
 import ro.leje.model.vo.Image;
@@ -11,7 +10,6 @@ import ro.leje.util.CategoryConstants;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,16 +34,16 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     @Transactional
-    public Long create(final Image image, final Long articleId) {
-        Validate.notNull(image, "Null user object not allowed");
+    public Long create(final Image image, final String objectType, final Long objectId) {
+        Validate.notNull(image, "Null image object not allowed");
         Validate.notEmpty(image.getFileName(), "Null or empty file name not allowed");
-        Validate.notNull(articleId, "Null article id not allowed");
-        final Optional<ArticleEntity> articleEntity = imageDAO.findEntity(articleId, ArticleEntity.class);
-        Validate.notNull(!articleEntity.isPresent(), "Article not found", new Long[]{articleId});
+        Validate.notNull(objectType, "Null object type not allowed");
+        Validate.notNull(objectId, "Null object id not allowed");
         final ImageEntity imageEntity = new ImageEntity();
         imageEntity.setFileName(image.getFileName());
-        imageEntity.setArticle(articleEntity.get());
-        imageEntity.setCover(image.getCover() != null ? image.getCover() : false);
+        imageEntity.setCover(Optional.ofNullable(image.getCover()).orElse(false));
+        imageEntity.setObjectType(objectType);
+        imageEntity.setObjectId(objectId);
         final Long imageId = imageDAO.create(imageEntity);
         createDictionaryRecord(imageId);
         return imageId;
@@ -84,20 +82,13 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     @Transactional
-    public List<Image> findImages(final Optional<Long> articleId, final String language) {
-        return articleId.map(id -> imageDAO.findImages(id, language)).orElse(new ArrayList<>());
+    public List<Image> findImages(final String objectType, final long objectId, final String language) {
+        return imageDAO.findImages(objectType, objectId, language);
     }
 
     @Override
     @Transactional
-    public Optional<Image> findCover(final Long articleId, final String language) {
-        return Optional.ofNullable(imageDAO.findCover(articleId, language));
-    }
-
-    @Override
-    @Transactional
-    public Optional<Long> findArticle(final Long imageId) {
-        final Optional<ImageEntity> imageEntity = imageDAO.findEntity(imageId, ImageEntity.class);
-        return imageEntity.map(entity -> entity.getArticle().getId());
+    public Optional<Image> findCover(final String objectType, final long objectId, final String language) {
+        return Optional.ofNullable(imageDAO.findCover(objectType, objectId, language));
     }
 }

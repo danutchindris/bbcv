@@ -10,9 +10,9 @@ import java.util.List;
  */
 public interface ImageDAO extends BaseDAO {
 
-    Image find(long imageId, String language);
+    Image find(final long imageId, final String language);
 
-    List<Image> findImages(long articleId, String language);
+    List<Image> findImages(final String objectType, final long objectId, final String language);
 
-    Image findCover(long articleId, String language);
+    Image findCover(final String objectType, final long objectId, final String language);
 }

@@ -29,15 +29,22 @@ public class Image implements Serializable, Comparable<Image> {
 
     private Boolean cover;
 
+    private String objectType;
+
+    private Long objectId;
+
     public Image() {
     }
 
-    public Image(final long id, final String language, final String fileName, final String title, final Boolean cover) {
+    public Image(final long id, final String language, final String fileName, final String title, final Boolean cover,
+                 final String objectType, final Long objectId) {
         this.id = id;
         this.language = language;
         this.fileName = fileName;
         this.title = title;
         this.cover = cover;
+        this.objectType = objectType;
+        this.objectId = objectId;
     }
 
     public long getId() {
@@ -80,6 +87,22 @@ public class Image implements Serializable, Comparable<Image> {
         this.cover = cover;
     }
 
+    public String getObjectType() {
+        return objectType;
+    }
+
+    public void setObjectType(String objectType) {
+        this.objectType = objectType;
+    }
+
+    public Long getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(Long objectId) {
+        this.objectId = objectId;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -88,6 +111,8 @@ public class Image implements Serializable, Comparable<Image> {
                 .add("fileName", fileName)
                 .add("title", title)
                 .add("cover", cover)
+                .add("objectType", objectType)
+                .add("objectId", objectId)
                 .toString();
     }
 
@@ -104,12 +129,15 @@ public class Image implements Serializable, Comparable<Image> {
                 && Objects.equal(this.language, other.language)
                 && Objects.equal(this.fileName, other.fileName)
                 && Objects.equal(this.title, other.title)
-                && Objects.equal(this.cover, other.cover);
+                && Objects.equal(this.cover, other.cover)
+                && Objects.equal(this.objectType, other.objectType)
+                && Objects.equal(this.objectId, other.objectId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.id, this.language, this.fileName, this.title, this.cover);
+        return Objects.hashCode(this.id, this.language, this.fileName, this.title, this.cover,
+                this.objectType, this.objectId);
     }
 
     @Override
@@ -119,6 +147,8 @@ public class Image implements Serializable, Comparable<Image> {
                 .compare(this.fileName, o.fileName)
                 .compare(this.title, o.title)
                 .compare(this.cover, o.cover)
+                .compare(this.objectType, o.objectType)
+                .compare(this.objectId, o.objectId)
                 .result();
     }
 }

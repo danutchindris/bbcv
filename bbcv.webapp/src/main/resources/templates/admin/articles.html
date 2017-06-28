@@ -217,7 +217,7 @@
                 showDeleteModal($(this).attr('title'), '[[#{confirm.delete}]]', row);
             },
             'click .images': function (e, value, row) {
-                window.location.href = '/admin/images?articleId=' + row.id;
+                window.location.href = '/admin/images?objectType=article&objectId=' + row.id;
             },
             'click .tags': function (e, value, row) {
                 window.location.href = '/admin/article/tags?articleId=' + row.id;

@@ -4,12 +4,9 @@ import com.google.common.base.MoreObjects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -30,12 +27,16 @@ public class ImageEntity {
     @Column(name = "FILENAME")
     private String fileName;
 
-    @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="ARTICLE_ID")
-    private ArticleEntity article;
-
     @Column(name = "COVER")
     private Boolean cover;
+
+    // fully qualified name of the entity it refers to; e.g. ro.leje.model.entity.ArticleEntity
+    @Column(name = "OBJECT_TYPE")
+    private String objectType;
+
+    // the id of the entity it refers to
+    @Column(name = "OBJECT_ID")
+    private Long objectId;
 
     public long getId() {
         return id;
@@ -53,20 +54,28 @@ public class ImageEntity {
         this.fileName = fileName;
     }
 
-    public ArticleEntity getArticle() {
-        return article;
-    }
-
-    public void setArticle(ArticleEntity article) {
-        this.article = article;
-    }
-
     public Boolean getCover() {
         return cover;
     }
 
     public void setCover(Boolean cover) {
         this.cover = cover;
+    }
+
+    public String getObjectType() {
+        return objectType;
+    }
+
+    public void setObjectType(String objectType) {
+        this.objectType = objectType;
+    }
+
+    public Long getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(Long objectId) {
+        this.objectId = objectId;
     }
 
     public ImageEntity() {
@@ -78,6 +87,8 @@ public class ImageEntity {
                 .add("id", id)
                 .add("fileName", fileName)
                 .add("cover", cover)
+                .add("objectType", objectType)
+                .add("objectId", objectId)
                 .toString();
     }
 }

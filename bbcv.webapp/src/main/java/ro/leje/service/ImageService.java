@@ -11,15 +11,13 @@ import java.util.Optional;
  */
 public interface ImageService {
 
-    Optional<Image> find(long imageId, String language);
+    Optional<Image> find(final long imageId, final String language);
 
-    Long create(Image image, Long articleId);
+    Long create(final Image image, final String objectType, final Long objectId);
 
-    Long update(Image image);
+    Long update(final Image image);
 
-    List<Image> findImages(Optional<Long> articleId, String language);
+    List<Image> findImages(final String objectType, final long objectId, final String language);
 
-    Optional<Image> findCover(Long articleId, String language);
-
-    Optional<Long> findArticle(Long imageId);
+    Optional<Image> findCover(final String objectType, final long objectId, final String language);
 }

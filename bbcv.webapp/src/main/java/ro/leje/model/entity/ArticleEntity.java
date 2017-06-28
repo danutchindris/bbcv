@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Date;
 import java.util.Set;
@@ -47,9 +46,6 @@ public class ArticleEntity {
     @Column(name = "DATE")
     private Date date;
 
-    @OneToMany(mappedBy = "article")
-    private Set<ImageEntity> images;
-
     @ManyToMany(targetEntity = TagEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "ARTICLE_TAG", joinColumns = {
             @JoinColumn(name = "ARTICLE_ID", nullable = false)
@@ -73,14 +69,6 @@ public class ArticleEntity {
 
     public void setAuthors(Set<UserEntity> authors) {
         this.authors = authors;
-    }
-
-    public Set<ImageEntity> getImages() {
-        return images;
-    }
-
-    public void setImages(Set<ImageEntity> images) {
-        this.images = images;
     }
 
     public Set<TagEntity> getTags() {

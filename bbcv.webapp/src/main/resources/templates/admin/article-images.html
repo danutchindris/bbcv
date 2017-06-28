@@ -140,7 +140,7 @@
             $("#li-articles").attr("class", "active");
         });
 
-        var API_URL = '/admin/images/json?articleId=[[${id}]]';
+        var API_URL = '/admin/images/json?objectType=article&objectId=[[${id}]]';
 
         var $table = $('#table').bootstrapTable({url: API_URL, locale: '[[${#locale}]]', icons: {
                             refresh: 'fa fa-refresh',
@@ -274,7 +274,7 @@
             var header = $("meta[name='_csrf_header']").attr("content");
             var token = $("meta[name='_csrf']").attr("content");
             $.ajax({
-                url: "/admin/image/upload?articleId=[[${id}]]",
+                url: "/admin/image/upload?objectType=article&objectId=[[${id}]]",
                 type: "POST",
                 data: new FormData($("#upload-file-form")[0]),
                 enctype: 'multipart/form-data',
