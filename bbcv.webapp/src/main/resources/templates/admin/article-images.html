@@ -160,7 +160,9 @@
             language: '',
             fileName: '',
             title: '',
-            cover: false
+            cover: false,
+            objectType: 'article',
+            objectId: 0
         };
 
         $(function () {
@@ -223,6 +225,8 @@
             editRow.fileName = row.fileName;
             editRow.title = row.title;
             editRow.cover = row.cover;
+            editRow.objectType = 'article';
+            editRow.objectId = [[${id}]];
 
             $editModal.find('.modal-title').text(title);
 
@@ -342,7 +346,9 @@
                 language: $('#language').val(),
                 fileName: editRow.fileName,
                 title: $('#title').val(),
-                cover: $('#cover').is(':checked')
+                cover: $('#cover').is(':checked'),
+                objectType: 'article',
+                objectId: editRow.objectId
             };
 
             // required by Spring Security
