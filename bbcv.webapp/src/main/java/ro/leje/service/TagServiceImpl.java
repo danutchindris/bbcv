@@ -3,9 +3,11 @@ package ro.leje.service;
 import org.springframework.stereotype.Service;
 import ro.leje.dao.TagDAO;
 import ro.leje.model.entity.TagEntity;
+import ro.leje.model.vo.Destination;
 import ro.leje.model.vo.Dictionary;
 import ro.leje.model.vo.Tag;
 import ro.leje.util.CategoryConstants;
+import ro.leje.util.Numbers;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
@@ -106,5 +108,16 @@ public class TagServiceImpl implements TagService {
     @Transactional
     public Optional<Tag> find(final long id, final String language) {
         return Optional.ofNullable(tagDAO.find(id, language));
+    }
+
+    @Override
+    @Transactional
+    public List<Destination> findDestinations(final List<String> types, final String language) {
+        final List<Destination> destinations = tagDAO.findDestinations(types, language);
+        final List<Integer> sequence = Numbers.getCardSequence(destinations.size());
+        for (int i = 0; i < destinations.size(); i++) {
+            destinations.get(i).setCard(sequence.get(i));
+        }
+        return destinations;
     }
 }

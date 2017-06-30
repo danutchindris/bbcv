@@ -51,9 +51,9 @@
                 <div th:each="destination,iterator : ${destinations}" th:attr="class='col-md-' + ${destination.card}" class="col-md-4">
                     <div class="card card-plain">
                         <div class="image">
-                            <img src="#" th:src="@{/assets/img/sidebar-1.jpg}" />
+                            <img src="#" th:src="@{'/images/tag/' + ${destination.id} + '/' + ${destination.fileName}}" />
                             <div class="filter">
-                                <a class="card-link" href="#" th:href="@{/articles}">
+                                <a class="card-link" href="#" th:href="@{/destinations}">
                                     <button type="button" class="btn btn-neutral btn-simple">
                                         <i class="fa fa-align-left"></i> <span th:text="${destination.text}">Destination</span>
                                     </button>

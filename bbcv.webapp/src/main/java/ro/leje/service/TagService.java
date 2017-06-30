@@ -1,5 +1,6 @@
 package ro.leje.service;
 
+import ro.leje.model.vo.Destination;
 import ro.leje.model.vo.Tag;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface TagService {
     List<Tag> findByType(final List<String> types, final String language);
 
     Optional<Tag> find(final long id, final String language);
+
+    List<Destination> findDestinations(final List<String> types, final String language);
 }

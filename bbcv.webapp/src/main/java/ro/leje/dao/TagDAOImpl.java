@@ -1,6 +1,7 @@
 package ro.leje.dao;
 
 import org.springframework.stereotype.Repository;
+import ro.leje.model.vo.Destination;
 import ro.leje.model.vo.Tag;
 import ro.leje.util.CategoryConstants;
 
@@ -62,5 +63,28 @@ public class TagDAOImpl extends BaseDAOImpl implements TagDAO {
                 .setString("textCategory", CategoryConstants.TEXT)
                 .setMaxResults(1)
                 .uniqueResult();
+    }
+
+    @Override
+    public List<Destination> findDestinations(final List<String> types, final String language) {
+        String query = "select new ro.leje.model.vo.Destination(t.id, d." + language + ", i.fileName) "
+                + "from ro.leje.model.entity.TagEntity t, "
+                + "ro.leje.model.entity.DictionaryEntity d, "
+                + "ro.leje.model.entity.ImageEntity i "
+                + "where t.type in (:types) "
+                + "and i.objectType = :tagObjectType "
+                + "and i.objectId = t.id "
+                + "and i.cover = :cover "
+                + "and d.objectType = :tagObjectType "
+                + "and d.objectId = t.id "
+                + "and d.category = :textCategory "
+                + "order by d." + language;
+        return getCurrentSession()
+                .createQuery(query)
+                .setParameterList("types", types)
+                .setString("tagObjectType", CategoryConstants.TAG_TYPE)
+                .setString("textCategory", CategoryConstants.TEXT)
+                .setBoolean("cover", true)
+                .list();
     }
 }

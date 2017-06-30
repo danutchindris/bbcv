@@ -20,8 +20,6 @@ public class Tag implements Serializable {
     @NotEmpty(message = "{error.type.empty}")
     private String type;
 
-    private int card;
-
     public Tag() {
     }
 
@@ -62,13 +60,5 @@ public class Tag implements Serializable {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public int getCard() {
-        return card;
-    }
-
-    public void setCard(int card) {
-        this.card = card;
     }
 }
