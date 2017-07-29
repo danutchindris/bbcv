@@ -66,7 +66,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li th:each="locale : ${locales}">
-                            <a href="#" th:href="'?lang=' + ${locale.value.code}">
+                            <a href="#" th:href="'/change-language/' + ${locale.value.code} + '?path=' + @{${#httpServletRequest.requestURI}}">
                                 <img src="../../static/assets/img/flags/US.png" th:attr="src=${'/assets/img/flags/' + locale.value.country + '.png'}" />
                                 <span th:text="${locale.value.name}">English</span>
                             </a>
